@@ -1,0 +1,41 @@
+# Local, single-service packaging. Start with:
+#   docker compose -f deployment/docker-compose.yml up --build
+#
+# Security notes
+# - The Docker socket is NOT mounted. Mounting it would give this container root-equivalent control
+#   of the host, so the per-command Docker sandbox is disabled here (NECRO_SANDBOX=off).
+# - This container is the isolation boundary instead: non-root, read-only root filesystem, no
+#   capabilities, memory/CPU/PID limits. Bundled demo fixtures run their baseline tests inside it.
+#   Git URL and local-path repositories are analysed statically; their tests are reported "not run".
+# - For the full per-command sandbox (network off, one mount, limits per command), run the backend
+#   on a host that has Docker. See the README.
+# - The service is published on localhost only.
+name: necromancer
+services:
+  necromancer:
+    build:
+      context: ..
+      dockerfile: deployment/Dockerfile
+    image: necromancer:local
+    ports:
+      - "127.0.0.1:8000:8000"
+    environment:
+      NECRO_DATA_DIR: /data
+      NECRO_SANDBOX: "off"
+      # Local paths must be inside an allowed root. Mount a directory read-only and list it here:
+      # NECRO_ALLOWED_ROOTS: /repos
+    volumes:
+      - necro-data:/data
+      # - /absolute/path/to/projects:/repos:ro
+    read_only: true
+    tmpfs:
+      - /tmp:size=256m
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 2g
+    cpus: 2.0
+    pids_limit: 256
+    restart: unless-stopped
+volumes:
+  necro-data:

@@ -106,3 +106,25 @@ def test_inspect_never_modifies_source(client: TestClient, allowed_root: Path):
     before = sorted(p.name for p in proj.rglob("*"))
     client.post("/api/repositories/import", json={"local_path": str(proj)})
     assert sorted(p.name for p in proj.rglob("*")) == before
+
+
+def test_built_frontend_is_served_without_shadowing_the_api(settings, tmp_path):
+    from dataclasses import replace
+
+    from app.main import create_app
+
+    dist = tmp_path / "dist"
+    (dist / "assets").mkdir(parents=True)
+    (dist / "index.html").write_text("<!doctype html><title>Repo Necromancer</title>")
+    (dist / "assets" / "app.js").write_text("console.log(1)")
+    client = TestClient(create_app(replace(settings, static_dir=dist)))
+    assert "Repo Necromancer" in client.get("/").text
+    assert client.get("/assets/app.js").status_code == 200
+    assert client.get("/api/health").json()["status"] == "ok"  # the API still wins
+    assert client.get("/api/fixtures").status_code == 200
+    assert client.get("/api/nope").status_code == 404
+    assert client.get("/../../etc/passwd").status_code in (400, 404)
+
+
+def test_no_static_mount_when_the_frontend_is_not_built(client: TestClient):
+    assert client.get("/").status_code == 404

@@ -1,0 +1,11 @@
+.git
+.kiro
+Project2
+**/node_modules
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+backend/.data
+backend/tests
+frontend/dist

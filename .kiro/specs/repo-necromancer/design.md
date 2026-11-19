@@ -29,24 +29,24 @@ the REST/SSE contract; use real backend data only; avoid unnecessary services.
 
 ## 2. Module layout
 
-Implemented (`backend/app/`):
-- `config.py`: settings from `NECRO_*` variables. `db.py`: SQLAlchemy tables (`repositories`,
-  `runs`, `run_events`, `approvals`, `artifacts`). `schemas.py`: Pydantic v2 contracts.
-- `repositories/`: `paths.py`, `urls.py`, `detect.py`, `service.py` (intake).
-- `adapters/`: `base.py` (interface), `models.py` (Finding, AutopsyReport, BaselineReport),
-  `python_adapter.py` (Autopsy, Ruff, pip-audit, baseline pytest), `python_ast.py`,
-  `python_deps.py`. Adapters do not import LangGraph.
-- `agents/roadmap.py`: deterministic, evidence-linked Revival Roadmap and versioned edits.
-- `execution/`: `runner.py` (no-shell command runner, timeouts, process-group kill, resource
-  limits, `HostFixtureRunner`), `redact.py`.
-- `workspace.py`: per-run directories, snapshot, commit pinning, hardened clone.
-- `graph/`: `state.py` (typed state), `nodes.py`, `workflow.py`, `runner.py` (thread pool,
-  SQLite checkpointer, failure handling).
-- `runs/`: `service.py` (lifecycle), `events.py` (event log), `orchestrator.py` (API to graph).
-- `artifacts.py`, `reports.py`, `fixtures.py`, `api/` (thin routers).
+`backend/app/`:
+- `config.py`, `db.py`, `schemas.py`, `fixtures.py`, `artifacts.py`, `reports.py`, `workspace.py`.
+- `repositories/`: path and URL validation, read-only detection, intake service.
+- `adapters/`: `base.py` interface, `models.py`, `python_adapter.py` (Autopsy, Ruff, pip-audit,
+  baseline pytest, safe lint fixes), `python_ast.py`, `python_deps.py`, `python_edit.py`
+  (conservative source edits). Adapters do not import LangGraph.
+- `agents/`: `roadmap.py` (deterministic, versioned), `patches.py` (proposal, digest, apply).
+- `execution/`: `runner.py` (no shell, minimal env, process-group kill, rlimits), `sandbox.py`
+  (Docker runner and status), `redact.py`.
+- `scoring/health_score.py`, `consecration.py` (verification and CI/Docker checks).
+- `graph/`: `state.py`, `nodes.py`, `workflow.py`, `runner.py`.
+- `runs/`: `service.py`, `events.py`, `orchestrator.py`.
+- `api/`: thin routers. `main.py` builds the app and serves the built dashboard.
 
-Planned: `scoring/health_score.py`, `execution/sandbox.py` (Docker), `agents/reanimation.py`,
-`agents/consecration.py`, TypeScript and C++ adapters, `frontend/` application.
+`frontend/src/`: `types/revival.ts` (contract mirror), `services/api.ts`, `state/runState.ts`
+(pure reducer, de-duplicates by sequence), `hooks/useRevivalStream.ts`, `hooks/useRunData.ts`,
+`components/` (TopHeader, WorkflowSidebar, IntakePanel, Overview, RoadmapView, DiffInspector,
+KiroTrace, TerminalStream, HealthMeter, ApprovalDialog), `styles/theme.css`.
 
 ## 3. Intake and path safety
 
@@ -77,16 +77,18 @@ Original repository (read-only)
 Source mutation is never part of this flow. REVIVE works under
 `NECRO_DATA_DIR/runs/<run_id>/work`. Git sources are cloned into the data directory.
 
-## 5. LangGraph state machine (implemented up to the approval gate)
+## 5. LangGraph state machine
 
 ```
 START -> validate_and_snapshot -> autopsy -> characterization
   INSPECT -> complete_inspect -> END
-  PREVIEW -> roadmap -> complete_preview -> END
-  REVIVE  -> roadmap -> request_approval -> await_decision (interrupt)
-               approve -> reanimation_unavailable -> END   (task 7 replaces this node)
-               edit    -> revise -> request_approval
-               reject  -> END
+  otherwise roadmap -> generate_patches
+    PREVIEW -> complete_preview -> END
+    REVIVE, nothing patchable -> complete_no_patches -> END
+    REVIVE -> request_approval -> await_decision (interrupt)
+        approve -> reanimation -> consecration -> END
+        edit    -> revise -> generate_patches -> request_approval
+        reject  -> END
 ```
 - Typed `WorkflowState`, `SqliteSaver` checkpointer in `NECRO_DATA_DIR/checkpoints.db`, thread id
   equals run id. A run waiting for approval resumes in a new process (tested).
@@ -96,9 +98,17 @@ START -> validate_and_snapshot -> autopsy -> characterization
 - Retries: two attempts, only for `OSError` and `TimeoutError`. `WorkflowError` and other
   deterministic failures are never retried. Any uncaught error ends the run `FAILED` with a
   redacted message.
-- The roadmap belongs to the REANIMATION stage. Approval does not leave the stage.
-- Characterization runs in a disposable copy of the snapshot, so the snapshot stays pristine for
-  the working copy that Reanimation will create.
+- Characterization and the final test run use disposable copies, so the snapshot and the working
+  copy stay free of test artifacts.
+- `generate_patches` works against the snapshot and writes nothing to any working copy. The
+  working copy is created only after approval.
+- `reanimation` refuses to run unless the latest approval is an `approve` whose digest equals the
+  patch set's digest. `apply_patchset` checks each file's SHA-256 before writing, writes atomically,
+  and refuses symlinks and paths that escape the copy.
+- `consecration` re-runs the Python adapter's Autopsy on the working copy, runs tests in a disposable
+  copy, validates CI workflows, optionally builds the Dockerfile, then calls `consecration.verify`.
+  A failed verdict triggers `_rollback`: the failed copy is kept as `work-failed` and a fresh copy
+  is restored from the snapshot.
 
 ## 6. Run lifecycle
 
@@ -153,14 +163,17 @@ missing `conmon`). Real container execution must be verified on a machine with D
 
 | Area | Blueprint | Current code |
 | --- | --- | --- |
-| Event types | the 11 listed types | all 11 defined. `health_score_updated`, `diff_generated`, `verification_completed` are not emitted yet. Two extensions added: `run_cancelled`, `cancel_requested` |
-| Duplicate-event protection | required | the server guarantees unique, ordered `(run_id, sequence)`. Client-side de-duplication by `sequence` arrives with the React hook |
+| Event types | the 11 listed types | all 11 are emitted. Four extensions: `run_cancelled`, `cancel_requested`, `patch_applied`, `rollback_completed` |
+| Extra endpoints | the 10 listed | adds `GET /api/revive`, `GET /api/revive/{id}`, `GET /api/revive/{id}/artifacts/{artifact}` and `GET /api/health`. None changes a listed contract |
+| Duplicate-event protection | required | the server guarantees unique, ordered `(run_id, sequence)`. The React reducer drops sequences it has seen |
 | Approval actor | actor or local user context | always `local` |
-| Roadmap generation | LLM-assisted (LiteLLM) | deterministic rules over findings. LiteLLM is introduced for patch generation (task 7) |
-| Baseline execution | Docker sandbox | bundled fixtures run on the host with resource limits. Other sources are not run. Sandbox is task 6 |
-| Build and coverage | recorded when run | always "not measured" until a coverage tool or build runs |
-| Reanimation, Consecration, Vitality Score | required | not implemented. An approved run ends `FAILED` with an explicit reason |
-| Entities | Finding, Roadmap, RoadmapTask, Patch, Verification tables | stored as JSON artifacts for now |
+| Roadmap and patch generation | LLM-assisted (LiteLLM) | deterministic rules. LiteLLM is not integrated |
+| Sandbox | Docker sandbox | implemented and unit tested, never run against a real daemon. Bundled fixtures fall back to the host with rlimits |
+| Compose | Docker Compose packaging | single service with no Docker socket, sandbox off, the container is the boundary |
+| Build and coverage | recorded when run | coverage is never measured. Docker build is opt-in (`NECRO_ALLOW_DOCKER_BUILD`) |
+| Revert in Diff Inspector | revert in managed workspace | not implemented. Rollback is automatic on a failed verification |
+| Entities | Finding, Roadmap, RoadmapTask, Patch, Verification tables | stored as JSON artifacts |
 | Observability, Git library | OpenTelemetry, GitPython | not added. `git` runs through the command runner |
 | Fixtures | `legacy-python-cli`, `legacy-ts-utils`, `legacy-cpp-parser` | `legacy-python-cli` only |
+| Languages | Python P0, TypeScript P1, C++ stretch | Python only |
 | Folder layout | blueprint's logical tree | consolidated under `backend/app/` as the blueprint allows |

@@ -1,43 +1,72 @@
+@import "tailwindcss";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/600.css";
+
 /* Repo Necromancer design tokens. Haunted Cyberpunk: a gothic software-forensics console.
-   Source of truth: .kiro/steering/brand.md. Tailwind will map these in tailwind.config. */
-:root {
-  /* Surfaces */
-  --necro-obsidian: #0b0f17; /* app background */
-  --necro-slate: #111827; /* navigation, panels */
-  --necro-slate-elevated: #1f2937; /* cards, inputs, overlays */
-  --necro-border: #334155;
+   Source of truth: .kiro/steering/brand.md. Colour meaning is fixed:
+   phosphor = verified with real evidence, haunt = agent activity (never success),
+   pumpkin = approval or warning, crimson = failure, ice = information. */
+@theme {
+  --color-obsidian: #0b0f17;
+  --color-panel: #111827;
+  --color-raised: #1f2937;
+  --color-edge: #334155;
+  --color-phosphor: #10b981;
+  --color-phosphor-muted: #064e3b;
+  --color-haunt: #8b5cf6;
+  --color-haunt-soft: #a78bfa;
+  --color-pumpkin: #f59e0b;
+  --color-crimson: #ef4444;
+  --color-ice: #38bdf8;
+  --color-ink: #e5e7eb;
+  --color-ink-2: #94a3b8;
+  --color-ink-3: #64748b;
 
-  /* Signals. Meaning is fixed: see brand.md "Colour meaning". */
-  --necro-emerald: #10b981; /* healthy and verified, only with real evidence */
-  --necro-emerald-muted: #064e3b; /* selected, subtle green surfaces */
-  --necro-violet: #8b5cf6; /* AI and agent activity, never success */
-  --necro-violet-soft: #a78bfa;
-  --necro-amber: #f59e0b; /* approval required, warning */
-  --necro-crimson: #ef4444; /* failure, critical finding */
-  --necro-ice: #38bdf8; /* information */
-
-  /* Text */
-  --necro-text: #e5e7eb;
-  --necro-text-secondary: #94a3b8;
-  --necro-text-muted: #64748b;
-
-  /* Typography roles */
-  --necro-font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --necro-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --necro-font-code: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --necro-font-metric: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-
-  /* Layout starting values at 1440 x 900. Not fixed constraints. */
-  --necro-header-height: 64px;
-  --necro-rail-width: 220px;
-  --necro-inspector-width: 280px;
-  --necro-terminal-height: 200px;
+  --font-heading: "Space Grotesk Variable", "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-code: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-metric: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--color-obsidian);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+*:focus-visible { outline: 2px solid var(--color-ice); outline-offset: 2px; }
+::selection { background: var(--color-phosphor-muted); }
+.scan-lines {
+  background-image: repeating-linear-gradient(
+    0deg, transparent 0, transparent 3px, rgba(16, 185, 129, 0.025) 3px, rgba(16, 185, 129, 0.025) 4px
+  );
+}
+
+/* Diff2Html on the dark surface: added = emerald, removed = crimson. */
+.d2h-wrapper { font-family: var(--font-code); font-size: 12px; }
+.d2h-file-wrapper { border: 1px solid var(--color-edge); border-radius: 6px; background: var(--color-panel); }
+.d2h-file-header { background: var(--color-raised); border-bottom: 1px solid var(--color-edge); }
+.d2h-file-name, .d2h-code-line-ctn, .d2h-code-side-line, .d2h-code-linenumber, .d2h-code-side-linenumber { color: var(--color-ink); }
+.d2h-code-linenumber, .d2h-code-side-linenumber { background: var(--color-panel); border-color: var(--color-edge); color: var(--color-ink-3); }
+.d2h-code-line, .d2h-code-side-line { background: transparent; }
+.d2h-cntx { background: var(--color-panel); }
+.d2h-ins { background: rgba(16, 185, 129, 0.14); border-color: rgba(16, 185, 129, 0.35); }
+.d2h-del { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); }
+.d2h-ins .d2h-code-line-ctn ins, ins.d2h-change { background: rgba(16, 185, 129, 0.35); color: var(--color-ink); }
+.d2h-del .d2h-code-line-ctn del, del.d2h-change { background: rgba(239, 68, 68, 0.35); color: var(--color-ink); }
+.d2h-info { background: var(--color-raised); border-color: var(--color-edge); color: var(--color-ink-2); }
+.d2h-emptyplaceholder { background: var(--color-raised); border-color: var(--color-edge); }
+.d2h-file-diff { overflow-x: auto; }
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

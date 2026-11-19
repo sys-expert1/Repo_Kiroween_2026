@@ -10,6 +10,7 @@ from app.execution.sandbox import SandboxConfig
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 FIXTURES_DIR = BACKEND_DIR.parent / "fixtures"
+FRONTEND_DIST = BACKEND_DIR.parent / "frontend" / "dist"
 
 
 @dataclass(frozen=True)
@@ -21,6 +22,8 @@ class Settings:
     # (resource-limited) because the Docker sandbox does not exist yet. Never applies to Git URLs
     # or local paths.
     allow_host_fixture_exec: bool = True
+    # Built frontend served at "/" when the directory exists.
+    static_dir: Path | None = None
     # "auto" uses Docker when the daemon and image are usable. "off" never uses Docker.
     # Building a repository's Dockerfile runs its RUN steps with network access: opt-in only.
     allow_docker_build: bool = False
@@ -50,6 +53,7 @@ def load_settings() -> Settings:
         allowed_roots=tuple(dict.fromkeys(roots)),
         fixtures_dir=fixtures_dir,
         allow_host_fixture_exec=os.environ.get("NECRO_ALLOW_HOST_FIXTURE_EXEC", "1") != "0",
+        static_dir=Path(os.environ.get("NECRO_STATIC_DIR", FRONTEND_DIST)).resolve(),
         allow_docker_build=os.environ.get("NECRO_ALLOW_DOCKER_BUILD", "0") == "1",
         sandbox_mode="off" if os.environ.get("NECRO_SANDBOX", "auto") == "off" else "auto",
         sandbox=SandboxConfig(

@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from app.adapters.base import LanguageAdapter
 from app.adapters.python_adapter import PythonAdapter
@@ -103,5 +104,9 @@ def create_app(
                 "host_fixture_exec": settings.allow_host_fixture_exec,
             },
         }
+
+    if settings.static_dir and (settings.static_dir / "index.html").is_file():
+        # Registered last so every /api route wins over the static catch-all.
+        app.mount("/", StaticFiles(directory=settings.static_dir, html=True), name="frontend")
 
     return app

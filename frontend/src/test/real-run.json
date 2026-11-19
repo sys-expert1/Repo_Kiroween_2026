@@ -1,0 +1,2467 @@
+{
+ "rolled_back": {
+  "artifacts": [
+   {
+    "checksum": "4e8eada43b309ca0b021d203e6fc2e2411720d6a22ddc4231e6dfbf9af5fd248",
+    "created_at": "2026-11-19T12:52:22.975340",
+    "id": "5bbd1360-2ee3-46e8-86fc-fec5486e779d",
+    "name": "AUTOPSY_REPORT.md",
+    "size": 1630,
+    "type": "autopsy_report"
+   },
+   {
+    "checksum": "cb0c5c460b4518013c0732e139728687669493196242d2963ef15110f29c78ed",
+    "created_at": "2026-11-19T12:52:22.976566",
+    "id": "78e28306-0428-4b7a-a2be-f05fe7fd9214",
+    "name": "autopsy.json",
+    "size": 4160,
+    "type": "autopsy_data"
+   },
+   {
+    "checksum": "004383cd84a30a6bc9cc7def7891472de7f28e7d468dab3d34f94750c9335187",
+    "created_at": "2026-11-19T12:52:22.983307",
+    "id": "10b0fa1f-829f-4bb8-8433-7e973cc58682",
+    "name": "CHARACTERIZATION_REPORT.md",
+    "size": 585,
+    "type": "characterization_report"
+   },
+   {
+    "checksum": "5f602acda5c7297ab1bc01aa6782891a40ef1633895273ea47e14f91af6c0862",
+    "created_at": "2026-11-19T12:52:22.985562",
+    "id": "38a32ce0-f328-4f95-8b00-4e689ca839fe",
+    "name": "characterization.json",
+    "size": 625,
+    "type": "characterization_data"
+   },
+   {
+    "checksum": "abac01541c42b5d2fb5b67c3ea05bf3957d9a0defb170b69e1f4dafa18ad4d76",
+    "created_at": "2026-11-19T12:52:22.990824",
+    "id": "04ad653f-cc41-48d7-ac85-e96c66591c37",
+    "name": "REVIVAL_ROADMAP.v1.md",
+    "size": 2768,
+    "type": "roadmap"
+   },
+   {
+    "checksum": "eb4dbd6d90fd3612406735278e95612ebd41427ce6576260e428dc4b0a0bac8c",
+    "created_at": "2026-11-19T12:52:22.991756",
+    "id": "9046f0fa-c981-4d7a-bc49-4669c2b19f51",
+    "name": "roadmap.v1.json",
+    "size": 3984,
+    "type": "roadmap_data"
+   },
+   {
+    "checksum": "05a1e79ac7b4c79cfd7e14d858d904f8669f02a3686dff96872a6eb0cdc2a3fd",
+    "created_at": "2026-11-19T12:52:23.031309",
+    "id": "9a1f0a08-0fd2-4922-8e67-0495d4fc8ed4",
+    "name": "PATCHSET.v1.diff",
+    "size": 1941,
+    "type": "patch_set"
+   },
+   {
+    "checksum": "854515d8597e0e3687ca26d39a610b57671108d7760186c605cb6ccc0e4d1da4",
+    "created_at": "2026-11-19T12:52:23.032153",
+    "id": "8ec61d51-ecaf-474d-aca6-986586af84df",
+    "name": "PATCHSET.v1.md",
+    "size": 991,
+    "type": "patch_set_summary"
+   },
+   {
+    "checksum": "e6140791fdaf6bf5920a2529ac9e66f31eab302ed597d91260e55085223ed9d7",
+    "created_at": "2026-11-19T12:52:23.033046",
+    "id": "34726002-1e82-4043-8aa6-b23a99ecf33f",
+    "name": "patches.v1.json",
+    "size": 6577,
+    "type": "patch_set_data"
+   },
+   {
+    "checksum": "070a5802f5f0efeddd3a098da8c143ed38c888ebb4ab7b90c58513e9bc69049d",
+    "created_at": "2026-11-19T12:52:23.110750",
+    "id": "db407d6d-499b-4650-9a5d-68d6f161b526",
+    "name": "VERIFICATION_REPORT.md",
+    "size": 1496,
+    "type": "verification_report"
+   },
+   {
+    "checksum": "05a7ad7d72b8ff815cd342040de3ca80d729f942c693990598cb6f9efec0ddb2",
+    "created_at": "2026-11-19T12:52:23.111711",
+    "id": "67ea9250-eff5-4182-bbe0-38380d8a1527",
+    "name": "verification.json",
+    "size": 1508,
+    "type": "verification_data"
+   },
+   {
+    "checksum": "8e82d00493429972ee85494bfb9eb6df46d16cda7dcd653bff673cf418eaf577",
+    "created_at": "2026-11-19T12:52:23.112554",
+    "id": "ef56f40a-20d3-4b50-9563-6ef030d4bf0a",
+    "name": "VITALITY_REPORT.json",
+    "size": 2638,
+    "type": "vitality_report"
+   },
+   {
+    "checksum": "df0d90dbf8a97da2827deb833780f29e0538ddbd4ac1996b371d9c47214d12f0",
+    "created_at": "2026-11-19T12:52:23.117514",
+    "id": "f9cca7a1-b165-4897-aeb2-d917196a837a",
+    "name": "RUN_AUDIT.json",
+    "size": 3335,
+    "type": "run_audit"
+   }
+  ],
+  "data": {
+   "autopsy_data": {
+    "audited_packages": 4,
+    "build_files": [],
+    "dependencies": [
+     {
+      "name": "click",
+      "pinned_version": "7.0",
+      "source_file": "requirements.txt",
+      "specifier": "==7.0"
+     },
+     {
+      "name": "jinja2",
+      "pinned_version": "2.10",
+      "source_file": "requirements.txt",
+      "specifier": "==2.10"
+     },
+     {
+      "name": "pyyaml",
+      "pinned_version": "3.13",
+      "source_file": "requirements.txt",
+      "specifier": "==3.13"
+     },
+     {
+      "name": "requests",
+      "pinned_version": "2.19.1",
+      "source_file": "requirements.txt",
+      "specifier": "==2.19.1"
+     }
+    ],
+    "dependency_files": [
+     "requirements.txt"
+    ],
+    "findings": [
+     {
+      "category": "dependencies",
+      "evidence": "PYSEC-A, PYSEC-B. Fixed in: 0.12.3, 1.0. pip-audit gives no severity score.",
+      "file_path": "requirements.txt",
+      "fix_versions": [
+       "2.20.0",
+       "2.31.0"
+      ],
+      "id": "F-001",
+      "installed_version": "2.19.1",
+      "line": null,
+      "package": "requests",
+      "severity": "high",
+      "source": "pip-audit",
+      "status": "open",
+      "title": "requests 2.19.1 has 2 known vulnerabilities"
+     },
+     {
+      "category": "security",
+      "evidence": "A string literal is assigned to a secret-like name (the value is not shown).",
+      "file_path": "inventory.py",
+      "fix_versions": [],
+      "id": "F-002",
+      "installed_version": null,
+      "line": 4,
+      "package": null,
+      "severity": "high",
+      "source": "ast",
+      "status": "open",
+      "title": "Hardcoded secret-like value assigned to `API_TOKEN`"
+     },
+     {
+      "category": "security",
+      "evidence": "`os.popen(...)` with a dynamic argument",
+      "file_path": "inventory.py",
+      "fix_versions": [],
+      "id": "F-003",
+      "installed_version": null,
+      "line": 24,
+      "package": null,
+      "severity": "high",
+      "source": "ast",
+      "status": "open",
+      "title": "Shell command via `os.popen`"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No .github/workflows, .gitlab-ci.yml or equivalent.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-004",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "low",
+      "source": "detect",
+      "status": "open",
+      "title": "No CI workflow found"
+     },
+     {
+      "category": "code_quality",
+      "evidence": "First hits: inventory.py:28",
+      "file_path": "inventory.py",
+      "fix_versions": [],
+      "id": "F-005",
+      "installed_version": null,
+      "line": 28,
+      "package": null,
+      "severity": "low",
+      "source": "ruff",
+      "status": "open",
+      "title": "F401: `json` imported but unused (1 occurrence)"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No Dockerfile in the repository.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-006",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "info",
+      "source": "detect",
+      "status": "open",
+      "title": "No Dockerfile found"
+     }
+    ],
+    "frameworks": [
+     "Click"
+    ],
+    "has_ci": false,
+    "has_dockerfile": false,
+    "known_vulnerabilities": 2,
+    "language": "Python",
+    "lint_violations": 1,
+    "lockfile_present": false,
+    "python_files": 3,
+    "python_lines": 78,
+    "repository_name": "legacy-python-cli",
+    "test_config": [],
+    "test_files": 1,
+    "test_functions": 2,
+    "tools": [
+     {
+      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
+      "duration_seconds": 0.032,
+      "exit_code": 1,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "1 violations across 1 rules",
+      "tool": "ruff"
+     },
+     {
+      "command": "pip-audit (offline test double)",
+      "duration_seconds": 0.0,
+      "exit_code": 1,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "2 known vulnerabilities in 1 of 1 audited packages",
+      "tool": "pip-audit"
+     }
+    ],
+    "unpinned_dependencies": [],
+    "vulnerable_packages": 1
+   },
+   "characterization_data": {
+    "build": "not_measured",
+    "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+    "counts": {
+     "errors": 0,
+     "failed": 1,
+     "passed": 1,
+     "skipped": 0,
+     "xfailed": 0,
+     "xpassed": 0
+    },
+    "coverage": "not_measured",
+    "duration_seconds": 0.01,
+    "exit_code": 1,
+    "failing_tests": [
+     "tests/test_inventory.py::test_total_items_known_failure"
+    ],
+    "output_excerpt": "=== short test summary info ===\nFAILED tests/test_inventory.py::test_total_items_known_failure - assert False\n1 failed, 1 passed in 0.01s",
+    "reason": null,
+    "status": "completed",
+    "timed_out": false
+   },
+   "patch_set_data": {
+    "patches": [
+     {
+      "action": "modify",
+      "after_content": "click==7.0\nJinja2==2.10\nrequests==2.31.0\nPyYAML==3.13\n",
+      "after_sha256": "904b6d002aae2f17958f513937880a0dfc5d2fa5b2aca5543d53e9034f0b008a",
+      "before_sha256": "d2d8548f0f11f93eb3b7d6327ea0250a72d61484c87f1e175d3a2a1c7640666f",
+      "diff": "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,4 +1,4 @@\n click==7.0\n Jinja2==2.10\n-requests==2.19.1\n+requests==2.31.0\n PyYAML==3.13\n",
+      "path": "requirements.txt",
+      "rationale": "Raise requests from 2.19.1 to 2.31.0, the highest fix version listed by pip-audit. Only the repository tests (and the Docker build, if enabled) check compatibility.",
+      "task_id": "RT-001"
+     },
+     {
+      "action": "modify",
+      "after_content": "import os\nimport sys\n\nAPI_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\nITEMS = {}\n\n\ndef add_item(name, qty):\n    if qty < 0:\n        raise ValueError(\"qty must be >= 0\")\n    ITEMS[name] = ITEMS.get(name, 0) + qty\n    return ITEMS[name]\n\n\ndef total_items():\n    total = 0\n    for k in ITEMS.keys():\n        total = total + ITEMS[k]\n    return total\n\n\ndef run_report(cmd):\n    # legacy: shells out with user-controlled input\n    return os.popen(\"report \" + cmd).read()\n\n\ndef unused_helper():\n    import json\n    return sys.version\n",
+      "after_sha256": "088e48f45a23db0fdc554cb7ebf692fbda2a9771d037c27d7b1abb968a5f66eb",
+      "before_sha256": "afa04f6bf567d5eb26bb4bb25e32a948cfee781d9a5ced2302fec5fd7b5bc20f",
+      "diff": "--- a/inventory.py\n+++ b/inventory.py\n@@ -1,7 +1,7 @@\n import os\n import sys\n \n-API_TOKEN = \"legacy-token-do-not-commit\"\n+API_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\n ITEMS = {}\n \n \n",
+      "path": "inventory.py",
+      "rationale": "Read the secret from the environment, not source code. Rotate the old value.",
+      "task_id": "RT-002"
+     },
+     {
+      "action": "modify",
+      "after_content": "import subprocess\nimport os\nimport sys\n\nAPI_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\nITEMS = {}\n\n\ndef add_item(name, qty):\n    if qty < 0:\n        raise ValueError(\"qty must be >= 0\")\n    ITEMS[name] = ITEMS.get(name, 0) + qty\n    return ITEMS[name]\n\n\ndef total_items():\n    total = 0\n    for k in ITEMS.keys():\n        total = total + ITEMS[k]\n    return total\n\n\ndef run_report(cmd):\n    # legacy: shells out with user-controlled input\n    return subprocess.run(['report', cmd], capture_output=True, text=True).stdout\n\n\ndef unused_helper():\n    import json\n    return sys.version\n",
+      "after_sha256": "7a78c291fe297b20315dd31f7674d1b999bddc3f00d373637736df106a8c4a1b",
+      "before_sha256": "088e48f45a23db0fdc554cb7ebf692fbda2a9771d037c27d7b1abb968a5f66eb",
+      "diff": "--- a/inventory.py\n+++ b/inventory.py\n@@ -1,3 +1,4 @@\n+import subprocess\n import os\n import sys\n \n@@ -21,7 +22,7 @@\n \n def run_report(cmd):\n     # legacy: shells out with user-controlled input\n-    return os.popen(\"report \" + cmd).read()\n+    return subprocess.run(['report', cmd], capture_output=True, text=True).stdout\n \n \n def unused_helper():\n",
+      "path": "inventory.py",
+      "rationale": "Run the command without a shell so the argument cannot inject commands.",
+      "task_id": "RT-003"
+     },
+     {
+      "action": "create",
+      "after_content": "name: CI\non: [push, pull_request]\npermissions:\n  contents: read\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-python@v5\n        with:\n          python-version: \"3.12\"\n      - run: pip install -r requirements.txt pytest ruff\n      - run: ruff check .\n      - run: pytest -q\n",
+      "after_sha256": "e9e3e156a1064868e9b7a17d7abc6903d75b1c2dff68eb114de697b2a9e0f73b",
+      "before_sha256": null,
+      "diff": "--- /dev/null\n+++ b/.github/workflows/ci.yml\n@@ -0,0 +1,15 @@\n+name: CI\n+on: [push, pull_request]\n+permissions:\n+  contents: read\n+jobs:\n+  test:\n+    runs-on: ubuntu-latest\n+    steps:\n+      - uses: actions/checkout@v4\n+      - uses: actions/setup-python@v5\n+        with:\n+          python-version: \"3.12\"\n+      - run: pip install -r requirements.txt pytest ruff\n+      - run: ruff check .\n+      - run: pytest -q\n",
+      "path": ".github/workflows/ci.yml",
+      "rationale": "Run lint and tests on every push.",
+      "task_id": "RT-005"
+     },
+     {
+      "action": "create",
+      "after_content": "FROM python:3.12-slim\nRUN useradd --create-home --uid 10001 app\nWORKDIR /app\nCOPY requirements.txt ./\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nUSER app\nCMD [\"python\", \"cli.py\"]\n",
+      "after_sha256": "caee7f01abfb46c159c91efcd805aa855239410f19a120e84a120984143875fe",
+      "before_sha256": null,
+      "diff": "--- /dev/null\n+++ b/Dockerfile\n@@ -0,0 +1,8 @@\n+FROM python:3.12-slim\n+RUN useradd --create-home --uid 10001 app\n+WORKDIR /app\n+COPY requirements.txt ./\n+RUN pip install --no-cache-dir -r requirements.txt\n+COPY . .\n+USER app\n+CMD [\"python\", \"cli.py\"]\n",
+      "path": "Dockerfile",
+      "rationale": "Build and run as a non-root user.",
+      "task_id": "RT-006"
+     },
+     {
+      "action": "modify",
+      "after_content": "import subprocess\nimport os\nimport sys\n\nAPI_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\nITEMS = {}\n\n\ndef add_item(name, qty):\n    if qty < 0:\n        raise ValueError(\"qty must be >= 0\")\n    ITEMS[name] = ITEMS.get(name, 0) + qty\n    return ITEMS[name]\n\n\ndef total_items():\n    total = 0\n    for k in ITEMS.keys():\n        total = total + ITEMS[k]\n    return total\n\n\ndef run_report(cmd):\n    # legacy: shells out with user-controlled input\n    return subprocess.run(['report', cmd], capture_output=True, text=True).stdout\n\n\ndef unused_helper():\n    return sys.version\n",
+      "after_sha256": "409cab0d17854dba062205df9769c559ea5728362f11756b93b47bffe3b15818",
+      "before_sha256": "7a78c291fe297b20315dd31f7674d1b999bddc3f00d373637736df106a8c4a1b",
+      "diff": "--- a/inventory.py\n+++ b/inventory.py\n@@ -26,5 +26,4 @@\n \n \n def unused_helper():\n-    import json\n     return sys.version\n",
+      "path": "inventory.py",
+      "rationale": "Apply Ruff's safe automatic fixes only.",
+      "task_id": "RT-007"
+     }
+    ],
+    "roadmap_version": 1,
+    "skipped": [
+     {
+      "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+      "task_id": "RT-004",
+      "title": "Investigate 1 pre-existing failing test(s)"
+     }
+    ]
+   },
+   "roadmap_data": {
+    "repository_name": "legacy-python-cli",
+    "tasks": [
+     {
+      "affected_files": [
+       "requirements.txt"
+      ],
+      "category": "dependencies",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-001"
+      ],
+      "id": "RT-001",
+      "priority": "P1",
+      "proposed_action": "Raise the pin for requests to a release that fixes every listed advisory (fix versions across advisories: 0.12.3, 1.0), then re-run tests.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Upgrade requests to a patched release",
+      "verification": "pip-audit reports no known vulnerabilities for requests; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "inventory.py"
+      ],
+      "category": "security",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-002"
+      ],
+      "id": "RT-002",
+      "priority": "P1",
+      "proposed_action": "Remove the literal from source and read it from the environment or a secrets store. Rotate the exposed value.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Hardcoded secret-like value assigned to `API_TOKEN`",
+      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "inventory.py"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-003"
+      ],
+      "id": "RT-003",
+      "priority": "P1",
+      "proposed_action": "Replace the call with a safe API (argument-list subprocess without a shell, or a library call) and validate the input.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Shell command via `os.popen`",
+      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "tests/test_inventory.py"
+      ],
+      "category": "tests",
+      "estimated_effort": "M",
+      "evidence": [
+       "Baseline failure: tests/test_inventory.py::test_total_items_known_failure"
+      ],
+      "id": "RT-004",
+      "priority": "P2",
+      "proposed_action": "Determine for each failing test whether the production code or the test expectation is wrong. Do not edit a test only to make it pass.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Investigate 1 pre-existing failing test(s)",
+      "verification": "Each failure is explained, and any fix is confirmed against intended behaviour."
+     },
+     {
+      "affected_files": [
+       ".github/workflows/ci.yml"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-004"
+      ],
+      "id": "RT-005",
+      "priority": "P3",
+      "proposed_action": "Add a workflow that installs dependencies, runs lint and tests.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a CI workflow",
+      "verification": "The workflow file validates and runs the same commands used locally."
+     },
+     {
+      "affected_files": [
+       "Dockerfile"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-006"
+      ],
+      "id": "RT-006",
+      "priority": "P3",
+      "proposed_action": "Add a minimal non-root Dockerfile that installs pinned dependencies.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a Dockerfile",
+      "verification": "`docker build` succeeds."
+     },
+     {
+      "affected_files": [
+       "inventory.py"
+      ],
+      "category": "code_quality",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-005"
+      ],
+      "id": "RT-007",
+      "priority": "P3",
+      "proposed_action": "Fix the reported Ruff rule violations (E, F, B rule sets).",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Resolve lint findings",
+      "verification": "`ruff check` reports zero violations for the selected rules."
+     }
+    ],
+    "version": 1
+   },
+   "verification_data": {
+    "checks": [
+     {
+      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+      "detail": "0 passed, 2 failed, 0 errors. 1 failure(s) existed in the baseline; 1 new.",
+      "exit_code": 1,
+      "name": "tests",
+      "status": "failed"
+     },
+     {
+      "command": null,
+      "detail": "Ruff violations: 1 before, 0 after.",
+      "exit_code": null,
+      "name": "lint",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "Known vulnerabilities: 2 before, 2 after.",
+      "exit_code": null,
+      "name": "dependency_audit",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+      "exit_code": null,
+      "name": "ci_workflows",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "Not run: building an untrusted Dockerfile is disabled by default. Set NECRO_ALLOW_DOCKER_BUILD=1 to enable it.",
+      "exit_code": null,
+      "name": "docker_build",
+      "status": "not_measured"
+     }
+    ],
+    "new_findings": [],
+    "regressions": [
+     "New failing test: t::new"
+    ],
+    "resolved_findings": [
+     "F401: `json` imported but unused (1 occurrence)",
+     "Hardcoded secret-like value assigned to `API_TOKEN`",
+     "No CI workflow found",
+     "No Dockerfile found",
+     "Shell command via `os.popen`"
+    ],
+    "score_warning": null,
+    "unmeasured": [
+     "docker_build"
+    ],
+    "verdict": "failed"
+   },
+   "vitality_report": {
+    "after": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "0 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 0.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 100.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 100.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: present, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 75.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "score": 61.2,
+     "unmeasured": []
+    },
+    "before": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 43.8,
+       "weight": 0.2
+      },
+      {
+       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 50.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "score": 46.3,
+     "unmeasured": []
+    },
+    "comparison_warning": null
+   }
+  },
+  "events": [
+   {
+    "event": "run_started",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:1",
+    "id": "1",
+    "payload": {
+     "mode": "REVIVE",
+     "repository_id": "c8723089-6944-4e2c-9d5e-539e40c01c67"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 1,
+    "timestamp": "2026-11-19T12:52:22.927488",
+    "type": "run_started"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:2",
+    "id": "2",
+    "payload": {
+     "stage": "AUTOPSY",
+     "status": "RUNNING"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 2,
+    "timestamp": "2026-11-19T12:52:22.932811",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:3",
+    "id": "3",
+    "payload": {
+     "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
+     "duration_seconds": 0.032,
+     "exit_code": 1,
+     "output": "    },\n    \"filename\": \"/tmp/tmpngxf_tge/data/runs/f00c6647-5093-4803-9b43-80fcc8f0d54b/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
+     "stage": "AUTOPSY",
+     "timed_out": false
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 3,
+    "timestamp": "2026-11-19T12:52:22.972968",
+    "type": "terminal_log"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:4",
+    "id": "4",
+    "payload": {
+     "stage": "CHARACTERIZATION",
+     "status": "RUNNING"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 4,
+    "timestamp": "2026-11-19T12:52:22.980381",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:5",
+    "id": "5",
+    "payload": {
+     "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+     "duration_seconds": 0.01,
+     "exit_code": 1,
+     "output": "=== short test summary info ===\nFAILED tests/test_inventory.py::test_total_items_known_failure - assert False\n1 failed, 1 passed in 0.01s",
+     "stage": "CHARACTERIZATION",
+     "timed_out": false
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 5,
+    "timestamp": "2026-11-19T12:52:22.982307",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:6",
+    "id": "6",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 43.8,
+       "weight": 0.2
+      },
+      {
+       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 50.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "phase": "before",
+     "score": 46.3,
+     "unmeasured": []
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 6,
+    "timestamp": "2026-11-19T12:52:22.986848",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:7",
+    "id": "7",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 7,
+    "timestamp": "2026-11-19T12:52:22.989507",
+    "type": "stage_changed"
+   },
+   {
+    "event": "roadmap_ready",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:8",
+    "id": "8",
+    "payload": {
+     "roadmap_digest": "e826113d7e3ab9c7ff27400c722e2a0df1230d73bf54c90c4f5e2d0fe055e6f5",
+     "roadmap_version": 1,
+     "task_count": 7
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 8,
+    "timestamp": "2026-11-19T12:52:22.993524",
+    "type": "roadmap_ready"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:9",
+    "id": "9",
+    "payload": {
+     "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --fix --select E,F,B --ignore E501 .",
+     "duration_seconds": 0.03,
+     "exit_code": 0,
+     "output": "Found 1 error (1 fixed, 0 remaining).",
+     "stage": "REANIMATION",
+     "timed_out": false
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 9,
+    "timestamp": "2026-11-19T12:52:23.029660",
+    "type": "terminal_log"
+   },
+   {
+    "event": "diff_generated",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:10",
+    "id": "10",
+    "payload": {
+     "files_changed": [
+      ".github/workflows/ci.yml",
+      "Dockerfile",
+      "inventory.py",
+      "requirements.txt"
+     ],
+     "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+     "patches": [
+      {
+       "action": "modify",
+       "path": "requirements.txt",
+       "task_id": "RT-001"
+      },
+      {
+       "action": "modify",
+       "path": "inventory.py",
+       "task_id": "RT-002"
+      },
+      {
+       "action": "modify",
+       "path": "inventory.py",
+       "task_id": "RT-003"
+      },
+      {
+       "action": "create",
+       "path": ".github/workflows/ci.yml",
+       "task_id": "RT-005"
+      },
+      {
+       "action": "create",
+       "path": "Dockerfile",
+       "task_id": "RT-006"
+      },
+      {
+       "action": "modify",
+       "path": "inventory.py",
+       "task_id": "RT-007"
+      }
+     ],
+     "roadmap_version": 1,
+     "skipped": [
+      {
+       "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+       "task_id": "RT-004",
+       "title": "Investigate 1 pre-existing failing test(s)"
+      }
+     ]
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 10,
+    "timestamp": "2026-11-19T12:52:23.035212",
+    "type": "diff_generated"
+   },
+   {
+    "event": "hitl_required",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:11",
+    "id": "11",
+    "payload": {
+     "dependency_changes": [
+      "Raise requests from 2.19.1 to 2.31.0, the highest fix version listed by pip-audit. Only the repository tests (and the Docker build, if enabled) check compatibility."
+     ],
+     "execution_target": "isolated working copy",
+     "files_affected": 4,
+     "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+     "patched_task_count": 6,
+     "repository": "legacy-python-cli",
+     "roadmap_version": 1,
+     "security_fixes": 2,
+     "source_commit": null,
+     "stage": "REANIMATION",
+     "status": "AWAITING_APPROVAL",
+     "task_count": 7
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 11,
+    "timestamp": "2026-11-19T12:52:23.038608",
+    "type": "hitl_required"
+   },
+   {
+    "event": "approval_received",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:12",
+    "id": "12",
+    "payload": {
+     "actor": "local",
+     "decision": "approve",
+     "excluded_task_ids": [],
+     "note": null,
+     "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+     "roadmap_version": 1
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 12,
+    "timestamp": "2026-11-19T12:52:23.054738",
+    "type": "approval_received"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:13",
+    "id": "13",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 13,
+    "timestamp": "2026-11-19T12:52:23.055410",
+    "type": "stage_changed"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:14",
+    "id": "14",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "904b6d002aae2f17958f513937880a0dfc5d2fa5b2aca5543d53e9034f0b008a",
+     "path": "requirements.txt",
+     "target": "isolated working copy",
+     "task_id": "RT-001"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 14,
+    "timestamp": "2026-11-19T12:52:23.064119",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:15",
+    "id": "15",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "088e48f45a23db0fdc554cb7ebf692fbda2a9771d037c27d7b1abb968a5f66eb",
+     "path": "inventory.py",
+     "target": "isolated working copy",
+     "task_id": "RT-002"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 15,
+    "timestamp": "2026-11-19T12:52:23.065044",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:16",
+    "id": "16",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "7a78c291fe297b20315dd31f7674d1b999bddc3f00d373637736df106a8c4a1b",
+     "path": "inventory.py",
+     "target": "isolated working copy",
+     "task_id": "RT-003"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 16,
+    "timestamp": "2026-11-19T12:52:23.065807",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:17",
+    "id": "17",
+    "payload": {
+     "action": "create",
+     "after_sha256": "e9e3e156a1064868e9b7a17d7abc6903d75b1c2dff68eb114de697b2a9e0f73b",
+     "path": ".github/workflows/ci.yml",
+     "target": "isolated working copy",
+     "task_id": "RT-005"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 17,
+    "timestamp": "2026-11-19T12:52:23.066619",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:18",
+    "id": "18",
+    "payload": {
+     "action": "create",
+     "after_sha256": "caee7f01abfb46c159c91efcd805aa855239410f19a120e84a120984143875fe",
+     "path": "Dockerfile",
+     "target": "isolated working copy",
+     "task_id": "RT-006"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 18,
+    "timestamp": "2026-11-19T12:52:23.067373",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:19",
+    "id": "19",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "409cab0d17854dba062205df9769c559ea5728362f11756b93b47bffe3b15818",
+     "path": "inventory.py",
+     "target": "isolated working copy",
+     "task_id": "RT-007"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 19,
+    "timestamp": "2026-11-19T12:52:23.068083",
+    "type": "patch_applied"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:20",
+    "id": "20",
+    "payload": {
+     "stage": "CONSECRATION",
+     "status": "RUNNING"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 20,
+    "timestamp": "2026-11-19T12:52:23.070614",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:21",
+    "id": "21",
+    "payload": {
+     "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
+     "duration_seconds": 0.03,
+     "exit_code": 0,
+     "output": "[]",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 21,
+    "timestamp": "2026-11-19T12:52:23.105157",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:22",
+    "id": "22",
+    "payload": {
+     "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+     "duration_seconds": 0.01,
+     "exit_code": 1,
+     "output": "=== short test summary info ===\nFAILED tests/test_inventory.py::test_total_items_known_failure - assert False\nFAILED t::new - assert False\n2 failed, 0 passed in 0.01s",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 22,
+    "timestamp": "2026-11-19T12:52:23.108032",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:23",
+    "id": "23",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "0 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 0.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 100.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 100.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: present, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 75.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "phase": "after",
+     "score": 61.2,
+     "unmeasured": []
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 23,
+    "timestamp": "2026-11-19T12:52:23.113412",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "verification_completed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:24",
+    "id": "24",
+    "payload": {
+     "checks": [
+      {
+       "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+       "detail": "0 passed, 2 failed, 0 errors. 1 failure(s) existed in the baseline; 1 new.",
+       "exit_code": 1,
+       "name": "tests",
+       "status": "failed"
+      },
+      {
+       "command": null,
+       "detail": "Ruff violations: 1 before, 0 after.",
+       "exit_code": null,
+       "name": "lint",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "Known vulnerabilities: 2 before, 2 after.",
+       "exit_code": null,
+       "name": "dependency_audit",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+       "exit_code": null,
+       "name": "ci_workflows",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "Not run: building an untrusted Dockerfile is disabled by default. Set NECRO_ALLOW_DOCKER_BUILD=1 to enable it.",
+       "exit_code": null,
+       "name": "docker_build",
+       "status": "not_measured"
+      }
+     ],
+     "regressions": [
+      "New failing test: t::new"
+     ],
+     "verdict": "failed"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 24,
+    "timestamp": "2026-11-19T12:52:23.114262",
+    "type": "verification_completed"
+   },
+   {
+    "event": "rollback_completed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:25",
+    "id": "25",
+    "payload": {
+     "evidence_kept": "work-failed",
+     "reason": "New failing test: t::new",
+     "restored_from": "snapshot"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 25,
+    "timestamp": "2026-11-19T12:52:23.119210",
+    "type": "rollback_completed"
+   },
+   {
+    "event": "run_failed",
+    "event_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b:26",
+    "id": "26",
+    "payload": {
+     "error": "Verification failed and the working copy was rolled back: New failing test: t::new",
+     "mode": "REVIVE",
+     "patches_applied": 6,
+     "score_after": 61.2,
+     "score_before": 46.3,
+     "stage": "CONSECRATION",
+     "stages_completed": [
+      "AUTOPSY",
+      "CHARACTERIZATION",
+      "REANIMATION",
+      "CONSECRATION"
+     ],
+     "status": "FAILED",
+     "verdict": "failed"
+    },
+    "run_id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+    "sequence": 26,
+    "timestamp": "2026-11-19T12:52:23.120877",
+    "type": "run_failed"
+   }
+  ],
+  "final_run": {
+   "cancel_requested": false,
+   "completed_at": "2026-11-19T12:52:23.119766",
+   "created_at": "2026-11-19T12:52:22.925890",
+   "current_stage": "CONSECRATION",
+   "error": "Verification failed and the working copy was rolled back: New failing test: t::new",
+   "id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+   "mode": "REVIVE",
+   "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+   "pinned_commit": null,
+   "repository_id": "c8723089-6944-4e2c-9d5e-539e40c01c67",
+   "roadmap_version": 1,
+   "status": "FAILED",
+   "updated_at": "2026-11-19T12:52:23.119766"
+  },
+  "waiting_run": {
+   "cancel_requested": false,
+   "completed_at": null,
+   "created_at": "2026-11-19T12:52:22.925890",
+   "current_stage": "REANIMATION",
+   "error": null,
+   "id": "f00c6647-5093-4803-9b43-80fcc8f0d54b",
+   "mode": "REVIVE",
+   "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+   "pinned_commit": null,
+   "repository_id": "c8723089-6944-4e2c-9d5e-539e40c01c67",
+   "roadmap_version": 1,
+   "status": "AWAITING_APPROVAL",
+   "updated_at": "2026-11-19T12:52:23.037206"
+  }
+ },
+ "verified": {
+  "artifacts": [
+   {
+    "checksum": "4e8eada43b309ca0b021d203e6fc2e2411720d6a22ddc4231e6dfbf9af5fd248",
+    "created_at": "2026-11-19T12:52:22.593476",
+    "id": "ca5a9751-7ed6-4c86-91ff-3af709976ae5",
+    "name": "AUTOPSY_REPORT.md",
+    "size": 1630,
+    "type": "autopsy_report"
+   },
+   {
+    "checksum": "2c9f658debf36ae5a0300ad1d57ddfd54b2e86df054e81477a65ab07346a9d84",
+    "created_at": "2026-11-19T12:52:22.594825",
+    "id": "26073c69-b734-4a02-b72b-00409aff6a4e",
+    "name": "autopsy.json",
+    "size": 4160,
+    "type": "autopsy_data"
+   },
+   {
+    "checksum": "004383cd84a30a6bc9cc7def7891472de7f28e7d468dab3d34f94750c9335187",
+    "created_at": "2026-11-19T12:52:22.601415",
+    "id": "1792a869-3c74-44cd-9e71-6844e79b7387",
+    "name": "CHARACTERIZATION_REPORT.md",
+    "size": 585,
+    "type": "characterization_report"
+   },
+   {
+    "checksum": "5f602acda5c7297ab1bc01aa6782891a40ef1633895273ea47e14f91af6c0862",
+    "created_at": "2026-11-19T12:52:22.602302",
+    "id": "345dba20-ee24-4807-ab16-697a299b87cf",
+    "name": "characterization.json",
+    "size": 625,
+    "type": "characterization_data"
+   },
+   {
+    "checksum": "abac01541c42b5d2fb5b67c3ea05bf3957d9a0defb170b69e1f4dafa18ad4d76",
+    "created_at": "2026-11-19T12:52:22.607095",
+    "id": "245c8016-33fe-4369-94fc-400bace2fb59",
+    "name": "REVIVAL_ROADMAP.v1.md",
+    "size": 2768,
+    "type": "roadmap"
+   },
+   {
+    "checksum": "eb4dbd6d90fd3612406735278e95612ebd41427ce6576260e428dc4b0a0bac8c",
+    "created_at": "2026-11-19T12:52:22.608113",
+    "id": "c85d71c5-2fe7-4f9d-b9fe-09c975eed2da",
+    "name": "roadmap.v1.json",
+    "size": 3984,
+    "type": "roadmap_data"
+   },
+   {
+    "checksum": "05a1e79ac7b4c79cfd7e14d858d904f8669f02a3686dff96872a6eb0cdc2a3fd",
+    "created_at": "2026-11-19T12:52:22.647618",
+    "id": "a5f10a74-f314-47f1-92c9-f4dba650845c",
+    "name": "PATCHSET.v1.diff",
+    "size": 1941,
+    "type": "patch_set"
+   },
+   {
+    "checksum": "854515d8597e0e3687ca26d39a610b57671108d7760186c605cb6ccc0e4d1da4",
+    "created_at": "2026-11-19T12:52:22.648436",
+    "id": "ab52e772-e3ed-4b13-bf8a-86f905b24101",
+    "name": "PATCHSET.v1.md",
+    "size": 991,
+    "type": "patch_set_summary"
+   },
+   {
+    "checksum": "e6140791fdaf6bf5920a2529ac9e66f31eab302ed597d91260e55085223ed9d7",
+    "created_at": "2026-11-19T12:52:22.649308",
+    "id": "871ee7a1-cda4-403b-99b9-81c07a454fe1",
+    "name": "patches.v1.json",
+    "size": 6577,
+    "type": "patch_set_data"
+   },
+   {
+    "checksum": "e8b01555180d7f5773eb01902b1954d40a3c6c04cac03e54f783e6df44f7ab4a",
+    "created_at": "2026-11-19T12:52:22.732177",
+    "id": "7ef88858-0785-4ab2-a6ad-de7e2641f1c5",
+    "name": "VERIFICATION_REPORT.md",
+    "size": 1455,
+    "type": "verification_report"
+   },
+   {
+    "checksum": "54faa124c87b6b6170d68fcbcf49b2d4b4299840290fb3645c94c87e651ac91d",
+    "created_at": "2026-11-19T12:52:22.733146",
+    "id": "3b7928fe-a865-464d-94db-15db42a31d1b",
+    "name": "verification.json",
+    "size": 1476,
+    "type": "verification_data"
+   },
+   {
+    "checksum": "c48968dff247a7714bc52f5057831ee2ae4ad26150c22b38aaf1c7bdeea77a87",
+    "created_at": "2026-11-19T12:52:22.734029",
+    "id": "99dda976-7a12-42e4-875a-38241e548b24",
+    "name": "VITALITY_REPORT.json",
+    "size": 2639,
+    "type": "vitality_report"
+   },
+   {
+    "checksum": "1dfcb41035e649e911bb5c67784239e7381ba70fbb6b19c3cc27f048b3f0bffd",
+    "created_at": "2026-11-19T12:52:22.740731",
+    "id": "638aa67e-6aab-4325-a68f-5feab3b2b547",
+    "name": "RUN_AUDIT.json",
+    "size": 3336,
+    "type": "run_audit"
+   }
+  ],
+  "data": {
+   "autopsy_data": {
+    "audited_packages": 4,
+    "build_files": [],
+    "dependencies": [
+     {
+      "name": "click",
+      "pinned_version": "7.0",
+      "source_file": "requirements.txt",
+      "specifier": "==7.0"
+     },
+     {
+      "name": "jinja2",
+      "pinned_version": "2.10",
+      "source_file": "requirements.txt",
+      "specifier": "==2.10"
+     },
+     {
+      "name": "pyyaml",
+      "pinned_version": "3.13",
+      "source_file": "requirements.txt",
+      "specifier": "==3.13"
+     },
+     {
+      "name": "requests",
+      "pinned_version": "2.19.1",
+      "source_file": "requirements.txt",
+      "specifier": "==2.19.1"
+     }
+    ],
+    "dependency_files": [
+     "requirements.txt"
+    ],
+    "findings": [
+     {
+      "category": "dependencies",
+      "evidence": "PYSEC-A, PYSEC-B. Fixed in: 0.12.3, 1.0. pip-audit gives no severity score.",
+      "file_path": "requirements.txt",
+      "fix_versions": [
+       "2.20.0",
+       "2.31.0"
+      ],
+      "id": "F-001",
+      "installed_version": "2.19.1",
+      "line": null,
+      "package": "requests",
+      "severity": "high",
+      "source": "pip-audit",
+      "status": "open",
+      "title": "requests 2.19.1 has 2 known vulnerabilities"
+     },
+     {
+      "category": "security",
+      "evidence": "A string literal is assigned to a secret-like name (the value is not shown).",
+      "file_path": "inventory.py",
+      "fix_versions": [],
+      "id": "F-002",
+      "installed_version": null,
+      "line": 4,
+      "package": null,
+      "severity": "high",
+      "source": "ast",
+      "status": "open",
+      "title": "Hardcoded secret-like value assigned to `API_TOKEN`"
+     },
+     {
+      "category": "security",
+      "evidence": "`os.popen(...)` with a dynamic argument",
+      "file_path": "inventory.py",
+      "fix_versions": [],
+      "id": "F-003",
+      "installed_version": null,
+      "line": 24,
+      "package": null,
+      "severity": "high",
+      "source": "ast",
+      "status": "open",
+      "title": "Shell command via `os.popen`"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No .github/workflows, .gitlab-ci.yml or equivalent.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-004",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "low",
+      "source": "detect",
+      "status": "open",
+      "title": "No CI workflow found"
+     },
+     {
+      "category": "code_quality",
+      "evidence": "First hits: inventory.py:28",
+      "file_path": "inventory.py",
+      "fix_versions": [],
+      "id": "F-005",
+      "installed_version": null,
+      "line": 28,
+      "package": null,
+      "severity": "low",
+      "source": "ruff",
+      "status": "open",
+      "title": "F401: `json` imported but unused (1 occurrence)"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No Dockerfile in the repository.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-006",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "info",
+      "source": "detect",
+      "status": "open",
+      "title": "No Dockerfile found"
+     }
+    ],
+    "frameworks": [
+     "Click"
+    ],
+    "has_ci": false,
+    "has_dockerfile": false,
+    "known_vulnerabilities": 2,
+    "language": "Python",
+    "lint_violations": 1,
+    "lockfile_present": false,
+    "python_files": 3,
+    "python_lines": 78,
+    "repository_name": "legacy-python-cli",
+    "test_config": [],
+    "test_files": 1,
+    "test_functions": 2,
+    "tools": [
+     {
+      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
+      "duration_seconds": 0.029,
+      "exit_code": 1,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "1 violations across 1 rules",
+      "tool": "ruff"
+     },
+     {
+      "command": "pip-audit (offline test double)",
+      "duration_seconds": 0.0,
+      "exit_code": 1,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "2 known vulnerabilities in 1 of 1 audited packages",
+      "tool": "pip-audit"
+     }
+    ],
+    "unpinned_dependencies": [],
+    "vulnerable_packages": 1
+   },
+   "characterization_data": {
+    "build": "not_measured",
+    "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+    "counts": {
+     "errors": 0,
+     "failed": 1,
+     "passed": 1,
+     "skipped": 0,
+     "xfailed": 0,
+     "xpassed": 0
+    },
+    "coverage": "not_measured",
+    "duration_seconds": 0.01,
+    "exit_code": 1,
+    "failing_tests": [
+     "tests/test_inventory.py::test_total_items_known_failure"
+    ],
+    "output_excerpt": "=== short test summary info ===\nFAILED tests/test_inventory.py::test_total_items_known_failure - assert False\n1 failed, 1 passed in 0.01s",
+    "reason": null,
+    "status": "completed",
+    "timed_out": false
+   },
+   "patch_set_data": {
+    "patches": [
+     {
+      "action": "modify",
+      "after_content": "click==7.0\nJinja2==2.10\nrequests==2.31.0\nPyYAML==3.13\n",
+      "after_sha256": "904b6d002aae2f17958f513937880a0dfc5d2fa5b2aca5543d53e9034f0b008a",
+      "before_sha256": "d2d8548f0f11f93eb3b7d6327ea0250a72d61484c87f1e175d3a2a1c7640666f",
+      "diff": "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,4 +1,4 @@\n click==7.0\n Jinja2==2.10\n-requests==2.19.1\n+requests==2.31.0\n PyYAML==3.13\n",
+      "path": "requirements.txt",
+      "rationale": "Raise requests from 2.19.1 to 2.31.0, the highest fix version listed by pip-audit. Only the repository tests (and the Docker build, if enabled) check compatibility.",
+      "task_id": "RT-001"
+     },
+     {
+      "action": "modify",
+      "after_content": "import os\nimport sys\n\nAPI_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\nITEMS = {}\n\n\ndef add_item(name, qty):\n    if qty < 0:\n        raise ValueError(\"qty must be >= 0\")\n    ITEMS[name] = ITEMS.get(name, 0) + qty\n    return ITEMS[name]\n\n\ndef total_items():\n    total = 0\n    for k in ITEMS.keys():\n        total = total + ITEMS[k]\n    return total\n\n\ndef run_report(cmd):\n    # legacy: shells out with user-controlled input\n    return os.popen(\"report \" + cmd).read()\n\n\ndef unused_helper():\n    import json\n    return sys.version\n",
+      "after_sha256": "088e48f45a23db0fdc554cb7ebf692fbda2a9771d037c27d7b1abb968a5f66eb",
+      "before_sha256": "afa04f6bf567d5eb26bb4bb25e32a948cfee781d9a5ced2302fec5fd7b5bc20f",
+      "diff": "--- a/inventory.py\n+++ b/inventory.py\n@@ -1,7 +1,7 @@\n import os\n import sys\n \n-API_TOKEN = \"legacy-token-do-not-commit\"\n+API_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\n ITEMS = {}\n \n \n",
+      "path": "inventory.py",
+      "rationale": "Read the secret from the environment, not source code. Rotate the old value.",
+      "task_id": "RT-002"
+     },
+     {
+      "action": "modify",
+      "after_content": "import subprocess\nimport os\nimport sys\n\nAPI_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\nITEMS = {}\n\n\ndef add_item(name, qty):\n    if qty < 0:\n        raise ValueError(\"qty must be >= 0\")\n    ITEMS[name] = ITEMS.get(name, 0) + qty\n    return ITEMS[name]\n\n\ndef total_items():\n    total = 0\n    for k in ITEMS.keys():\n        total = total + ITEMS[k]\n    return total\n\n\ndef run_report(cmd):\n    # legacy: shells out with user-controlled input\n    return subprocess.run(['report', cmd], capture_output=True, text=True).stdout\n\n\ndef unused_helper():\n    import json\n    return sys.version\n",
+      "after_sha256": "7a78c291fe297b20315dd31f7674d1b999bddc3f00d373637736df106a8c4a1b",
+      "before_sha256": "088e48f45a23db0fdc554cb7ebf692fbda2a9771d037c27d7b1abb968a5f66eb",
+      "diff": "--- a/inventory.py\n+++ b/inventory.py\n@@ -1,3 +1,4 @@\n+import subprocess\n import os\n import sys\n \n@@ -21,7 +22,7 @@\n \n def run_report(cmd):\n     # legacy: shells out with user-controlled input\n-    return os.popen(\"report \" + cmd).read()\n+    return subprocess.run(['report', cmd], capture_output=True, text=True).stdout\n \n \n def unused_helper():\n",
+      "path": "inventory.py",
+      "rationale": "Run the command without a shell so the argument cannot inject commands.",
+      "task_id": "RT-003"
+     },
+     {
+      "action": "create",
+      "after_content": "name: CI\non: [push, pull_request]\npermissions:\n  contents: read\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-python@v5\n        with:\n          python-version: \"3.12\"\n      - run: pip install -r requirements.txt pytest ruff\n      - run: ruff check .\n      - run: pytest -q\n",
+      "after_sha256": "e9e3e156a1064868e9b7a17d7abc6903d75b1c2dff68eb114de697b2a9e0f73b",
+      "before_sha256": null,
+      "diff": "--- /dev/null\n+++ b/.github/workflows/ci.yml\n@@ -0,0 +1,15 @@\n+name: CI\n+on: [push, pull_request]\n+permissions:\n+  contents: read\n+jobs:\n+  test:\n+    runs-on: ubuntu-latest\n+    steps:\n+      - uses: actions/checkout@v4\n+      - uses: actions/setup-python@v5\n+        with:\n+          python-version: \"3.12\"\n+      - run: pip install -r requirements.txt pytest ruff\n+      - run: ruff check .\n+      - run: pytest -q\n",
+      "path": ".github/workflows/ci.yml",
+      "rationale": "Run lint and tests on every push.",
+      "task_id": "RT-005"
+     },
+     {
+      "action": "create",
+      "after_content": "FROM python:3.12-slim\nRUN useradd --create-home --uid 10001 app\nWORKDIR /app\nCOPY requirements.txt ./\nRUN pip install --no-cache-dir -r requirements.txt\nCOPY . .\nUSER app\nCMD [\"python\", \"cli.py\"]\n",
+      "after_sha256": "caee7f01abfb46c159c91efcd805aa855239410f19a120e84a120984143875fe",
+      "before_sha256": null,
+      "diff": "--- /dev/null\n+++ b/Dockerfile\n@@ -0,0 +1,8 @@\n+FROM python:3.12-slim\n+RUN useradd --create-home --uid 10001 app\n+WORKDIR /app\n+COPY requirements.txt ./\n+RUN pip install --no-cache-dir -r requirements.txt\n+COPY . .\n+USER app\n+CMD [\"python\", \"cli.py\"]\n",
+      "path": "Dockerfile",
+      "rationale": "Build and run as a non-root user.",
+      "task_id": "RT-006"
+     },
+     {
+      "action": "modify",
+      "after_content": "import subprocess\nimport os\nimport sys\n\nAPI_TOKEN = os.environ.get(\"API_TOKEN\", \"\")\nITEMS = {}\n\n\ndef add_item(name, qty):\n    if qty < 0:\n        raise ValueError(\"qty must be >= 0\")\n    ITEMS[name] = ITEMS.get(name, 0) + qty\n    return ITEMS[name]\n\n\ndef total_items():\n    total = 0\n    for k in ITEMS.keys():\n        total = total + ITEMS[k]\n    return total\n\n\ndef run_report(cmd):\n    # legacy: shells out with user-controlled input\n    return subprocess.run(['report', cmd], capture_output=True, text=True).stdout\n\n\ndef unused_helper():\n    return sys.version\n",
+      "after_sha256": "409cab0d17854dba062205df9769c559ea5728362f11756b93b47bffe3b15818",
+      "before_sha256": "7a78c291fe297b20315dd31f7674d1b999bddc3f00d373637736df106a8c4a1b",
+      "diff": "--- a/inventory.py\n+++ b/inventory.py\n@@ -26,5 +26,4 @@\n \n \n def unused_helper():\n-    import json\n     return sys.version\n",
+      "path": "inventory.py",
+      "rationale": "Apply Ruff's safe automatic fixes only.",
+      "task_id": "RT-007"
+     }
+    ],
+    "roadmap_version": 1,
+    "skipped": [
+     {
+      "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+      "task_id": "RT-004",
+      "title": "Investigate 1 pre-existing failing test(s)"
+     }
+    ]
+   },
+   "roadmap_data": {
+    "repository_name": "legacy-python-cli",
+    "tasks": [
+     {
+      "affected_files": [
+       "requirements.txt"
+      ],
+      "category": "dependencies",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-001"
+      ],
+      "id": "RT-001",
+      "priority": "P1",
+      "proposed_action": "Raise the pin for requests to a release that fixes every listed advisory (fix versions across advisories: 0.12.3, 1.0), then re-run tests.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Upgrade requests to a patched release",
+      "verification": "pip-audit reports no known vulnerabilities for requests; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "inventory.py"
+      ],
+      "category": "security",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-002"
+      ],
+      "id": "RT-002",
+      "priority": "P1",
+      "proposed_action": "Remove the literal from source and read it from the environment or a secrets store. Rotate the exposed value.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Hardcoded secret-like value assigned to `API_TOKEN`",
+      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "inventory.py"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-003"
+      ],
+      "id": "RT-003",
+      "priority": "P1",
+      "proposed_action": "Replace the call with a safe API (argument-list subprocess without a shell, or a library call) and validate the input.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Shell command via `os.popen`",
+      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "tests/test_inventory.py"
+      ],
+      "category": "tests",
+      "estimated_effort": "M",
+      "evidence": [
+       "Baseline failure: tests/test_inventory.py::test_total_items_known_failure"
+      ],
+      "id": "RT-004",
+      "priority": "P2",
+      "proposed_action": "Determine for each failing test whether the production code or the test expectation is wrong. Do not edit a test only to make it pass.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Investigate 1 pre-existing failing test(s)",
+      "verification": "Each failure is explained, and any fix is confirmed against intended behaviour."
+     },
+     {
+      "affected_files": [
+       ".github/workflows/ci.yml"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-004"
+      ],
+      "id": "RT-005",
+      "priority": "P3",
+      "proposed_action": "Add a workflow that installs dependencies, runs lint and tests.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a CI workflow",
+      "verification": "The workflow file validates and runs the same commands used locally."
+     },
+     {
+      "affected_files": [
+       "Dockerfile"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-006"
+      ],
+      "id": "RT-006",
+      "priority": "P3",
+      "proposed_action": "Add a minimal non-root Dockerfile that installs pinned dependencies.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a Dockerfile",
+      "verification": "`docker build` succeeds."
+     },
+     {
+      "affected_files": [
+       "inventory.py"
+      ],
+      "category": "code_quality",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-005"
+      ],
+      "id": "RT-007",
+      "priority": "P3",
+      "proposed_action": "Fix the reported Ruff rule violations (E, F, B rule sets).",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Resolve lint findings",
+      "verification": "`ruff check` reports zero violations for the selected rules."
+     }
+    ],
+    "version": 1
+   },
+   "verification_data": {
+    "checks": [
+     {
+      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+      "detail": "1 passed, 1 failed, 0 errors. 1 failure(s) existed in the baseline; 0 new.",
+      "exit_code": 1,
+      "name": "tests",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "Ruff violations: 1 before, 0 after.",
+      "exit_code": null,
+      "name": "lint",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "Known vulnerabilities: 2 before, 2 after.",
+      "exit_code": null,
+      "name": "dependency_audit",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+      "exit_code": null,
+      "name": "ci_workflows",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "Not run: building an untrusted Dockerfile is disabled by default. Set NECRO_ALLOW_DOCKER_BUILD=1 to enable it.",
+      "exit_code": null,
+      "name": "docker_build",
+      "status": "not_measured"
+     }
+    ],
+    "new_findings": [],
+    "regressions": [],
+    "resolved_findings": [
+     "F401: `json` imported but unused (1 occurrence)",
+     "Hardcoded secret-like value assigned to `API_TOKEN`",
+     "No CI workflow found",
+     "No Dockerfile found",
+     "Shell command via `os.popen`"
+    ],
+    "score_warning": null,
+    "unmeasured": [
+     "docker_build"
+    ],
+    "verdict": "verified"
+   },
+   "vitality_report": {
+    "after": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 100.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 100.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: present, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 75.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "score": 76.2,
+     "unmeasured": []
+    },
+    "before": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 43.8,
+       "weight": 0.2
+      },
+      {
+       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 50.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "score": 46.3,
+     "unmeasured": []
+    },
+    "comparison_warning": null
+   }
+  },
+  "events": [
+   {
+    "event": "run_started",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:1",
+    "id": "1",
+    "payload": {
+     "mode": "REVIVE",
+     "repository_id": "4c22f0a6-171e-4051-aba5-5fb983c5af65"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 1,
+    "timestamp": "2026-11-19T12:52:22.545510",
+    "type": "run_started"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:2",
+    "id": "2",
+    "payload": {
+     "stage": "AUTOPSY",
+     "status": "RUNNING"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 2,
+    "timestamp": "2026-11-19T12:52:22.553145",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:3",
+    "id": "3",
+    "payload": {
+     "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
+     "duration_seconds": 0.029,
+     "exit_code": 1,
+     "output": "    },\n    \"filename\": \"/tmp/tmpsg544527/data/runs/c56e34e3-11e8-44c0-8bb9-7fc73ca913c3/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
+     "stage": "AUTOPSY",
+     "timed_out": false
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 3,
+    "timestamp": "2026-11-19T12:52:22.591089",
+    "type": "terminal_log"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:4",
+    "id": "4",
+    "payload": {
+     "stage": "CHARACTERIZATION",
+     "status": "RUNNING"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 4,
+    "timestamp": "2026-11-19T12:52:22.598428",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:5",
+    "id": "5",
+    "payload": {
+     "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+     "duration_seconds": 0.01,
+     "exit_code": 1,
+     "output": "=== short test summary info ===\nFAILED tests/test_inventory.py::test_total_items_known_failure - assert False\n1 failed, 1 passed in 0.01s",
+     "stage": "CHARACTERIZATION",
+     "timed_out": false
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 5,
+    "timestamp": "2026-11-19T12:52:22.600376",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:6",
+    "id": "6",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 43.8,
+       "weight": 0.2
+      },
+      {
+       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 50.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "phase": "before",
+     "score": 46.3,
+     "unmeasured": []
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 6,
+    "timestamp": "2026-11-19T12:52:22.603369",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:7",
+    "id": "7",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 7,
+    "timestamp": "2026-11-19T12:52:22.605795",
+    "type": "stage_changed"
+   },
+   {
+    "event": "roadmap_ready",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:8",
+    "id": "8",
+    "payload": {
+     "roadmap_digest": "e826113d7e3ab9c7ff27400c722e2a0df1230d73bf54c90c4f5e2d0fe055e6f5",
+     "roadmap_version": 1,
+     "task_count": 7
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 8,
+    "timestamp": "2026-11-19T12:52:22.609957",
+    "type": "roadmap_ready"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:9",
+    "id": "9",
+    "payload": {
+     "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --fix --select E,F,B --ignore E501 .",
+     "duration_seconds": 0.03,
+     "exit_code": 0,
+     "output": "Found 1 error (1 fixed, 0 remaining).",
+     "stage": "REANIMATION",
+     "timed_out": false
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 9,
+    "timestamp": "2026-11-19T12:52:22.646032",
+    "type": "terminal_log"
+   },
+   {
+    "event": "diff_generated",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:10",
+    "id": "10",
+    "payload": {
+     "files_changed": [
+      ".github/workflows/ci.yml",
+      "Dockerfile",
+      "inventory.py",
+      "requirements.txt"
+     ],
+     "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+     "patches": [
+      {
+       "action": "modify",
+       "path": "requirements.txt",
+       "task_id": "RT-001"
+      },
+      {
+       "action": "modify",
+       "path": "inventory.py",
+       "task_id": "RT-002"
+      },
+      {
+       "action": "modify",
+       "path": "inventory.py",
+       "task_id": "RT-003"
+      },
+      {
+       "action": "create",
+       "path": ".github/workflows/ci.yml",
+       "task_id": "RT-005"
+      },
+      {
+       "action": "create",
+       "path": "Dockerfile",
+       "task_id": "RT-006"
+      },
+      {
+       "action": "modify",
+       "path": "inventory.py",
+       "task_id": "RT-007"
+      }
+     ],
+     "roadmap_version": 1,
+     "skipped": [
+      {
+       "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+       "task_id": "RT-004",
+       "title": "Investigate 1 pre-existing failing test(s)"
+      }
+     ]
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 10,
+    "timestamp": "2026-11-19T12:52:22.651413",
+    "type": "diff_generated"
+   },
+   {
+    "event": "hitl_required",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:11",
+    "id": "11",
+    "payload": {
+     "dependency_changes": [
+      "Raise requests from 2.19.1 to 2.31.0, the highest fix version listed by pip-audit. Only the repository tests (and the Docker build, if enabled) check compatibility."
+     ],
+     "execution_target": "isolated working copy",
+     "files_affected": 4,
+     "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+     "patched_task_count": 6,
+     "repository": "legacy-python-cli",
+     "roadmap_version": 1,
+     "security_fixes": 2,
+     "source_commit": null,
+     "stage": "REANIMATION",
+     "status": "AWAITING_APPROVAL",
+     "task_count": 7
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 11,
+    "timestamp": "2026-11-19T12:52:22.655053",
+    "type": "hitl_required"
+   },
+   {
+    "event": "approval_received",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:12",
+    "id": "12",
+    "payload": {
+     "actor": "local",
+     "decision": "approve",
+     "excluded_task_ids": [],
+     "note": null,
+     "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+     "roadmap_version": 1
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 12,
+    "timestamp": "2026-11-19T12:52:22.673608",
+    "type": "approval_received"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:13",
+    "id": "13",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 13,
+    "timestamp": "2026-11-19T12:52:22.674483",
+    "type": "stage_changed"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:14",
+    "id": "14",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "904b6d002aae2f17958f513937880a0dfc5d2fa5b2aca5543d53e9034f0b008a",
+     "path": "requirements.txt",
+     "target": "isolated working copy",
+     "task_id": "RT-001"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 14,
+    "timestamp": "2026-11-19T12:52:22.684034",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:15",
+    "id": "15",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "088e48f45a23db0fdc554cb7ebf692fbda2a9771d037c27d7b1abb968a5f66eb",
+     "path": "inventory.py",
+     "target": "isolated working copy",
+     "task_id": "RT-002"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 15,
+    "timestamp": "2026-11-19T12:52:22.684980",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:16",
+    "id": "16",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "7a78c291fe297b20315dd31f7674d1b999bddc3f00d373637736df106a8c4a1b",
+     "path": "inventory.py",
+     "target": "isolated working copy",
+     "task_id": "RT-003"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 16,
+    "timestamp": "2026-11-19T12:52:22.685802",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:17",
+    "id": "17",
+    "payload": {
+     "action": "create",
+     "after_sha256": "e9e3e156a1064868e9b7a17d7abc6903d75b1c2dff68eb114de697b2a9e0f73b",
+     "path": ".github/workflows/ci.yml",
+     "target": "isolated working copy",
+     "task_id": "RT-005"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 17,
+    "timestamp": "2026-11-19T12:52:22.686631",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:18",
+    "id": "18",
+    "payload": {
+     "action": "create",
+     "after_sha256": "caee7f01abfb46c159c91efcd805aa855239410f19a120e84a120984143875fe",
+     "path": "Dockerfile",
+     "target": "isolated working copy",
+     "task_id": "RT-006"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 18,
+    "timestamp": "2026-11-19T12:52:22.687422",
+    "type": "patch_applied"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:19",
+    "id": "19",
+    "payload": {
+     "action": "modify",
+     "after_sha256": "409cab0d17854dba062205df9769c559ea5728362f11756b93b47bffe3b15818",
+     "path": "inventory.py",
+     "target": "isolated working copy",
+     "task_id": "RT-007"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 19,
+    "timestamp": "2026-11-19T12:52:22.688186",
+    "type": "patch_applied"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:20",
+    "id": "20",
+    "payload": {
+     "stage": "CONSECRATION",
+     "status": "RUNNING"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 20,
+    "timestamp": "2026-11-19T12:52:22.690835",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:21",
+    "id": "21",
+    "payload": {
+     "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
+     "duration_seconds": 0.031,
+     "exit_code": 0,
+     "output": "[]",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 21,
+    "timestamp": "2026-11-19T12:52:22.726066",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:22",
+    "id": "22",
+    "payload": {
+     "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+     "duration_seconds": 0.01,
+     "exit_code": 1,
+     "output": "=== short test summary info ===\nFAILED tests/test_inventory.py::test_total_items_known_failure - assert False\n1 failed, 1 passed in 0.01s",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 22,
+    "timestamp": "2026-11-19T12:52:22.728940",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:23",
+    "id": "23",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "1 of 4 audited packages have known vulnerabilities (2 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 75.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 100.0,
+       "weight": 0.2
+      },
+      {
+       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "name": "security",
+       "score": 100.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: present, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 75.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 1.0,
+     "note": "All five dimensions were measured.",
+     "phase": "after",
+     "score": 76.2,
+     "unmeasured": []
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 23,
+    "timestamp": "2026-11-19T12:52:22.735064",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "verification_completed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:24",
+    "id": "24",
+    "payload": {
+     "checks": [
+      {
+       "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
+       "detail": "1 passed, 1 failed, 0 errors. 1 failure(s) existed in the baseline; 0 new.",
+       "exit_code": 1,
+       "name": "tests",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "Ruff violations: 1 before, 0 after.",
+       "exit_code": null,
+       "name": "lint",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "Known vulnerabilities: 2 before, 2 after.",
+       "exit_code": null,
+       "name": "dependency_audit",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+       "exit_code": null,
+       "name": "ci_workflows",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "Not run: building an untrusted Dockerfile is disabled by default. Set NECRO_ALLOW_DOCKER_BUILD=1 to enable it.",
+       "exit_code": null,
+       "name": "docker_build",
+       "status": "not_measured"
+      }
+     ],
+     "regressions": [],
+     "verdict": "verified"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 24,
+    "timestamp": "2026-11-19T12:52:22.735930",
+    "type": "verification_completed"
+   },
+   {
+    "event": "run_completed",
+    "event_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3:25",
+    "id": "25",
+    "payload": {
+     "mode": "REVIVE",
+     "patches_applied": 6,
+     "score_after": 76.2,
+     "score_before": 46.3,
+     "stage": "CONSECRATION",
+     "stages_completed": [
+      "AUTOPSY",
+      "CHARACTERIZATION",
+      "REANIMATION",
+      "CONSECRATION"
+     ],
+     "status": "COMPLETED",
+     "verdict": "verified"
+    },
+    "run_id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+    "sequence": 25,
+    "timestamp": "2026-11-19T12:52:22.742500",
+    "type": "run_completed"
+   }
+  ],
+  "final_run": {
+   "cancel_requested": false,
+   "completed_at": "2026-11-19T12:52:22.741280",
+   "created_at": "2026-11-19T12:52:22.543235",
+   "current_stage": "CONSECRATION",
+   "error": null,
+   "id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+   "mode": "REVIVE",
+   "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+   "pinned_commit": null,
+   "repository_id": "4c22f0a6-171e-4051-aba5-5fb983c5af65",
+   "roadmap_version": 1,
+   "status": "COMPLETED",
+   "updated_at": "2026-11-19T12:52:22.741280"
+  },
+  "waiting_run": {
+   "cancel_requested": false,
+   "completed_at": null,
+   "created_at": "2026-11-19T12:52:22.543235",
+   "current_stage": "REANIMATION",
+   "error": null,
+   "id": "c56e34e3-11e8-44c0-8bb9-7fc73ca913c3",
+   "mode": "REVIVE",
+   "patch_set_digest": "9c7a592bfb4d59ad6e189175950a7c8f7a96f9d62bf721893076e42cce6d0bd1",
+   "pinned_commit": null,
+   "repository_id": "4c22f0a6-171e-4051-aba5-5fb983c5af65",
+   "roadmap_version": 1,
+   "status": "AWAITING_APPROVAL",
+   "updated_at": "2026-11-19T12:52:22.653987"
+  }
+ }
+}

@@ -33,23 +33,30 @@ Python flow before any other language.
 - [x] 5.2 Approval interrupt, resume after approval, resume after process restart
 
 ## Day 4: Reanimation
-- [ ] 6. Docker sandbox runner (non-root, CPU/memory/PID/time limits, no network, restricted mounts)
-  - [ ] Verify on a machine with a working Docker daemon
-- [ ] 7. Managed working copy, patch generation, apply, focused tests, rollback, PATCHSET.diff
+- [x] 6. Docker sandbox runner (non-root, CPU/memory/PID/time limits, no network, one restricted mount)
+  - [x] Command construction, mount validation, status check, timeout kill: unit tested
+  - [ ] **Run against a real Docker daemon.** Not done: none was available in the build environment.
+        The real-container test exists and is skipped when Docker is missing.
+- [x] 7. Managed working copy, patch generation, digest-bound apply, rollback, PATCHSET.diff
+  - [x] Patches for dependency pins, hardcoded secrets, os.popen, Ruff safe fixes, CI, Dockerfile
+  - [ ] LiteLLM-assisted patch generation (patches are deterministic today)
 
 ## Day 5: Consecration and integration
-- [ ] 8. Consecration checks, baseline comparison, Vitality Score, VERIFICATION_REPORT.md
-- [ ] 9. React dashboard (header, rail, workspace, inspector, terminal, all UI states)
-- [ ] 10. SSE hook with reconnect and replay, connect UI to the API
+- [x] 8. Consecration checks, baseline comparison, Vitality Score, VERIFICATION_REPORT.md, RUN_AUDIT.json
+- [x] 9. React dashboard (header, rail, workspace, inspector, terminal, all four views and states)
+- [x] 10. SSE hook with reconnect, replay and de-duplication; UI connected to the API
 
 ## Day 6: Hardening
-- [ ] 11. Security tests (traversal, malicious URL, secret leakage, sandbox limits, network off,
-      approval bypass, source immutability) and E2E tests
-- [ ] 11.1 Docker Compose packaging
+- [x] 11. Security tests (traversal, malicious URL, secret redaction, mount rules, approval bypass,
+      source immutability, rollback) and workflow tests. Frontend contract test on a real exported run
+  - [ ] Browser E2E against a live server (not possible in the build environment)
+- [x] 11.1 Docker Compose packaging (no Docker socket mounted)
+  - [ ] Build the image with Docker (not possible in the build environment)
 
 ## Day 7: Demo
-- [ ] 12. Deterministic fixture demo, README, pitch, three-minute video, scope freeze
+- [x] 12. DEMO.md storyboard, README, scripts, deterministic fixture
+  - [ ] Record the three-minute video
 
 ## Stretch (P1)
-- [ ] TypeScript adapter, advanced Kiro Trace, run history, additional scanners
+- [ ] TypeScript adapter, run history view, additional scanners, OpenTelemetry
 - [ ] C++ adapter, optional MCP integration
