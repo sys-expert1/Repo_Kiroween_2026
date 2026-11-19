@@ -184,11 +184,22 @@ class Nodes:
     def _run_tests(self, state: WorkflowState, copy: Path, stage: Stage) -> BaselineReport:
         run_id = state["run_id"]
         home = run_dir(self.ctx.settings, run_id) / "scratch" / "home"
+        adapter = self._adapter(state)
         runner = self.ctx.runner_for(state["source_type"], home)
-        report = self._adapter(state).characterize(
+        tool = getattr(adapter, "runner_tool", None)
+        if (
+            tool
+            and runner is not None
+            and not getattr(runner, tool, None)
+            and self.ctx.host_runner_for
+        ):
+            fallback = self.ctx.host_runner_for(state["source_type"], home)
+            if fallback is not None and getattr(fallback, tool, None):
+                runner = fallback  # trusted fixtures only: the factory refuses everything else
+        report = adapter.characterize(
             copy, runner, self._observer(run_id, stage), self.ctx.baseline_timeout
         )
-        if report.status == "not_run":
+        if report.status == "not_run" and runner is None:
             report.reason = self.ctx.no_runner_reason(state["source_type"])
         return report
 

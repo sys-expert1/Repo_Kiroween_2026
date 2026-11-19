@@ -18,7 +18,8 @@ SKIP_DIRS = {".git", "node_modules", ".venv", "venv", "__pycache__", ".tox", "di
 LOCKFILES = {"package-lock.json", "yarn.lock", "pnpm-lock.yaml", "poetry.lock", "Pipfile.lock",
              "uv.lock", "pdm.lock", "composer.lock", "Cargo.lock", "Gemfile.lock"}  # fmt: skip
 SUFFIXES = {".env", ".ini", ".cfg", ".conf", ".yml", ".yaml", ".json", ".toml", ".properties",
-            ".sh", ".bash", ".js", ".mjs", ".ts", ".tsx", ".jsx", ".xml"}  # fmt: skip
+            ".sh", ".bash", ".js", ".mjs", ".ts", ".tsx", ".jsx", ".xml",
+            ".c", ".cc", ".cpp", ".cxx", ".h", ".hh", ".hpp", ".hxx", ".cmake"}  # fmt: skip
 MAX_FILE_BYTES = 200_000
 MAX_FILES = 5_000
 MAX_FINDINGS = 25

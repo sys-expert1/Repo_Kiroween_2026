@@ -167,7 +167,7 @@ def verify(
         checks.append(Check(
             name="lint", status="failed" if worse else "passed",
             detail=(
-                f"Ruff violations: {before.lint_violations} before, "
+                f"Linter findings: {before.lint_violations} before, "
                 f"{after.lint_violations} after."
             ),
         ))  # fmt: skip
@@ -193,6 +193,29 @@ def verify(
             detail=f"Known vulnerabilities: {_n(was)} before, {after.known_vulnerabilities} after.",
         ))  # fmt: skip
 
+    # The build is a check only when it was actually measured, so Python and TypeScript runs do not
+    # show a "not measured" build line.
+    if baseline.build != "not_measured" or final_tests.build != "not_measured":
+        if baseline.build == "passed" and final_tests.build == "failed":
+            regressions.append("The project built before the patch and no longer builds.")
+            build_check = Check(
+                name="build",
+                status="failed",
+                detail="The build passed in the baseline and failed after the patch.",
+            )
+        elif final_tests.build == "passed":
+            build_check = Check(name="build", status="passed", detail="The project builds.")
+        elif final_tests.build == "failed":
+            build_check = Check(
+                name="build", status="failed", detail="The build fails, as it did in the baseline."
+            )
+        else:
+            build_check = Check(
+                name="build",
+                status="not_measured",
+                detail="The build was not measured after the patch.",
+            )
+        checks.append(build_check)
     checks += [ci, docker]
     for c in (ci, docker):
         if c.status == "failed":

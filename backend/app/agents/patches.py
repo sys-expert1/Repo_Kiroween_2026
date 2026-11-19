@@ -49,6 +49,20 @@ jobs:
       - run: pytest -q
 """
 
+CPP_CI_WORKFLOW = """name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+      - run: cmake --build build --parallel
+      - run: ctest --test-dir build --output-on-failure --timeout 60
+"""
+
 NODE_CI_WORKFLOW = """name: CI
 on: [push, pull_request]
 permissions:
@@ -258,6 +272,11 @@ def _generate_for_task(task, findings, ws, emit, fix_lint, report, llm) -> None:
         raise EditNotApplicable(
             "Tests are never edited automatically, so failures are not hidden or rewritten."
         )
+    elif title == "Add a CI workflow" and report.language == "C++":
+        emit(task, ".github/workflows/ci.yml", CPP_CI_WORKFLOW,
+             "Configure, build and run CTest on every push.")  # fmt: skip
+    elif title == "Add a Dockerfile" and report.language == "C++":
+        raise EditNotApplicable("There is no Dockerfile template for C++ projects yet.")
     elif title == "Add a CI workflow" and report.language == "TypeScript":
         lock = ws.read("package-lock.json") is not None
         typecheck = (

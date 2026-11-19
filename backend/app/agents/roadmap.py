@@ -105,7 +105,7 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
             f"pip-audit reports no known vulnerabilities for {pkg}; the test baseline does not "
             "regress.",
         )  # fmt: skip
-    security = ("ast", "secrets", "ts-scan")
+    security = ("ast", "secrets", "ts-scan", "cpp-scan", "clang-tidy")
     for f in (x for x in report.findings if x.source in security and x.category == "security"):
         if f.source == "secrets":
             action = (
@@ -114,6 +114,13 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
                 "Keep local env files out of version control."
             )
             effort, risk = "S", "low"
+        elif f.source in ("cpp-scan", "clang-tidy"):
+            action = (
+                "Replace unbounded C string functions with bounded ones (`snprintf`, "
+                "`std::string`, or a checked length), and replace `system` and `popen` with a "
+                "direct exec-style call or a library, validating every input that reaches them."
+            )
+            effort, risk = "M", "medium"
         elif f.source == "ts-scan":
             action = (
                 "Remove the dangerous call or replace it with a safe API (for example `execFile` "
@@ -136,6 +143,15 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
         add(
             f.title, "security", [f], [f.file_path] if f.file_path else [], action, risk, effort,
             "The scan no longer reports this finding; the test baseline does not regress.",
+        )  # fmt: skip
+    tidy = [x for x in report.findings if x.source == "clang-tidy" and x.category != "security"]
+    if tidy:
+        add(
+            "Resolve clang-tidy findings", "code_quality", tidy,
+            [f.file_path for f in tidy if f.file_path],
+            "Review the reported bugprone and static-analyzer findings. Fix real defects, and "
+            "suppress a check only with a written reason.",
+            "medium", "M", "`clang-tidy` reports none of these findings for the same files.",
         )  # fmt: skip
     parse_fail = [x for x in report.findings if x.title.startswith("File does not parse")]
     if parse_fail:

@@ -52,6 +52,8 @@ class WorkflowContext:
     runner_for: RunnerFactory
     baseline_timeout: float = 300.0
     llm_client: LLMClient | None = None
+    # Used when the normal runner lacks a tool the adapter needs (for example Node or CMake).
+    host_runner_for: RunnerFactory | None = None
     # Explains why a source type has no runner (shown in the report instead of a bare "not run").
     no_runner_reason: Callable[[str], str] = lambda source_type: (  # noqa: E731
         "No sandbox is available for this repository, so its tests were not run."

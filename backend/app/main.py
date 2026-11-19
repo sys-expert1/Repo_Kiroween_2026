@@ -9,6 +9,7 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from app.adapters.base import LanguageAdapter
+from app.adapters.cpp_adapter import CppAdapter
 from app.adapters.python_adapter import PythonAdapter
 from app.adapters.ts_adapter import TypeScriptAdapter
 from app.agents.llm_patches import LiteLLMClient, LLMClient
@@ -38,6 +39,15 @@ def default_runner_factory(settings: Settings) -> RunnerFactory:
     return factory
 
 
+def host_fixture_runner_factory(settings: Settings) -> RunnerFactory:
+    def factory(source_type: str, home: Path) -> CommandRunner | None:
+        if source_type == "fixture" and settings.allow_host_fixture_exec:
+            return HostFixtureRunner(home)
+        return None
+
+    return factory
+
+
 def no_runner_reason(settings: Settings):  # noqa: ANN201
     def reason(source_type: str) -> str:
         if settings.sandbox_mode == "off":
@@ -59,6 +69,7 @@ def create_app(
     runner_factory: RunnerFactory | None = None,
     adapter: LanguageAdapter | None = None,
     ts_adapter: LanguageAdapter | None = None,
+    cpp_adapter: LanguageAdapter | None = None,
     llm_client: LLMClient | None = None,
 ) -> FastAPI:
     """The executor, runner factory and adapters can be replaced to run inline and offline."""
@@ -69,9 +80,14 @@ def create_app(
     ctx = WorkflowContext(
         settings=settings,
         session_factory=session_factory,
-        adapters=(adapter or PythonAdapter(), ts_adapter or TypeScriptAdapter()),
+        adapters=(
+            adapter or PythonAdapter(),
+            ts_adapter or TypeScriptAdapter(),
+            cpp_adapter or CppAdapter(),
+        ),
         runner_for=runner_factory or default_runner_factory(settings),
         no_runner_reason=no_runner_reason(settings),
+        host_runner_for=host_fixture_runner_factory(settings),
         llm_client=llm_client
         or (
             LiteLLMClient(settings.llm_model, settings.llm_timeout) if settings.llm_model else None

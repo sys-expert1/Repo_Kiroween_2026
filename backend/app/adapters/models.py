@@ -8,7 +8,17 @@ from pydantic import BaseModel, Field
 
 Category = Literal["dependencies", "tests", "code_quality", "security", "ci_docker", "structure"]
 Severity = Literal["critical", "high", "medium", "low", "info"]
-Source = Literal["ast", "ruff", "pip-audit", "detect", "secrets", "npm-audit", "ts-scan"]
+Source = Literal[
+    "ast",
+    "ruff",
+    "pip-audit",
+    "detect",
+    "secrets",
+    "npm-audit",
+    "ts-scan",
+    "cpp-scan",
+    "clang-tidy",
+]
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
 
 
@@ -49,7 +59,7 @@ class ToolRun(BaseModel):
 
 class AutopsyReport(BaseModel):
     repository_name: str
-    language: Literal["Python", "TypeScript"] = "Python"
+    language: Literal["Python", "TypeScript", "C++"] = "Python"
     frameworks: list[str]
     source_files: int
     source_lines: int
@@ -99,6 +109,7 @@ class BaselineReport(BaseModel):
     failing_tests: list[str] = Field(default_factory=list)
     # Always "not_measured" unless a coverage tool ran. None of the adapters run one yet.
     coverage: Literal["not_measured"] = "not_measured"
-    build: Literal["not_measured"] = "not_measured"
+    # "passed" or "failed" only when a build actually ran; otherwise unknown.
+    build: Literal["passed", "failed", "not_measured"] = "not_measured"
     duration_seconds: float | None = None
     output_excerpt: str = ""

@@ -63,9 +63,12 @@ class CommandRunner(Protocol):
 
 
 def _cap(text: str) -> str:
+    """Keep the start and the end: summaries and errors are usually at the end."""
     if len(text) <= MAX_OUTPUT_CHARS:
         return text
-    return text[:MAX_OUTPUT_CHARS] + "\n[output truncated]"
+    head = MAX_OUTPUT_CHARS // 10
+    tail = MAX_OUTPUT_CHARS - head
+    return f"{text[:head]}\n[... output truncated ...]\n{text[-tail:]}"
 
 
 def build_env(home: Path, extra: Mapping[str, str] | None = None) -> dict[str, str]:
@@ -148,7 +151,10 @@ class HostFixtureRunner:
     """Runs commands for trusted bundled fixtures with resource limits. Not a sandbox."""
 
     python = sys.executable
-    node = shutil.which("node")  # Node is allowed here because bundled fixtures are trusted
+    # Toolchains are allowed here because bundled fixtures are trusted code.
+    node = shutil.which("node")
+    cmake = shutil.which("cmake")
+    ctest = shutil.which("ctest")
 
     def __init__(self, home: Path, timeout_cap: float = 300.0) -> None:
         self._home = home
@@ -156,7 +162,7 @@ class HostFixtureRunner:
 
     def run(self, argv: Sequence[str], cwd: Path, timeout: float) -> CommandResult:
         self._home.mkdir(parents=True, exist_ok=True)
-        is_node = Path(argv[0]).name == "node"
+        is_node = Path(argv[0]).name == "node"  # V8 reserves huge address ranges
         return run_command(
             argv,
             cwd,

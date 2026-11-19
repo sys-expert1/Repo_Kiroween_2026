@@ -1,0 +1,5 @@
+{
+  "name": "Legacy C++ Parser",
+  "description": "A small CMake project with a C-style config parser: unbounded strcpy and sprintf, a system() call with user input, a hardcoded token, one passing and one deliberately failing CTest test, and no CI.",
+  "language": "cpp"
+}
