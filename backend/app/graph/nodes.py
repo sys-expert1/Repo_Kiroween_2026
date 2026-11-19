@@ -34,9 +34,17 @@ from app.runs import service
 from app.runs.events import events_after
 from app.schemas import TERMINAL_STATUSES, EventType, RunStatus, Stage
 from app.scoring.health_score import VitalityScore, compute_vitality
+from app.telemetry import record_command, span
 from app.workspace import WorkspaceError, clone_git, read_head_sha, run_dir, snapshot_tree
 
 Node = Callable[[WorkflowState], dict]
+STAGE_OF = {
+    "validate_and_snapshot": "AUTOPSY", "autopsy": "AUTOPSY",
+    "characterization": "CHARACTERIZATION",
+    "roadmap": "REANIMATION", "generate_patches": "REANIMATION", "request_approval": "REANIMATION",
+    "await_decision": "REANIMATION", "revise": "REANIMATION", "reanimation": "REANIMATION",
+    "consecration": "CONSECRATION",
+}  # fmt: skip
 OUTPUT_EXCERPT_LINES = 30
 
 
@@ -55,22 +63,26 @@ class Nodes:
         def wrapper(state: WorkflowState) -> dict:
             if state.get("halt"):
                 return {}
-            with self.ctx.session_factory() as db:
-                if service.is_cancel_requested(db, state["run_id"]):
-                    run = service.get_run(db, state["run_id"])
-                    if run.status not in TERMINAL_STATUSES:
-                        service.transition(
-                            db, state["run_id"], RunStatus.CANCELLED,
-                            payload={"reason": "cancelled"},
-                        )  # fmt: skip
-                    return {"halt": True}
-            return fn(state)
+            with span(f"necro.node.{fn.__name__}", state["run_id"], STAGE_OF.get(fn.__name__)):
+                with self.ctx.session_factory() as db:
+                    if service.is_cancel_requested(db, state["run_id"]):
+                        run = service.get_run(db, state["run_id"])
+                        if run.status not in TERMINAL_STATUSES:
+                            service.transition(
+                                db, state["run_id"], RunStatus.CANCELLED,
+                                payload={"reason": "cancelled"},
+                            )  # fmt: skip
+                        return {"halt": True}
+                return fn(state)
 
         wrapper.__name__ = fn.__name__
         return wrapper
 
     def _observer(self, run_id: str, stage: Stage):  # noqa: ANN202
         def observe(result: CommandResult) -> None:
+            record_command(
+                result.command, result.exit_code, result.duration_seconds, result.timed_out
+            )
             lines = (result.stdout + result.stderr).strip().splitlines()
             with self.ctx.session_factory() as db:
                 service.log_event(

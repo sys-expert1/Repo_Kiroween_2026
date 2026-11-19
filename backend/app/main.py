@@ -19,6 +19,7 @@ from app.execution.sandbox import DockerSandboxRunner, sandbox_status
 from app.graph.runner import WorkflowRunner
 from app.graph.state import RunnerFactory, WorkflowContext
 from app.runs.orchestrator import RunOrchestrator
+from app.telemetry import configure_tracing
 
 
 def default_runner_factory(settings: Settings) -> RunnerFactory:
@@ -61,6 +62,7 @@ def create_app(
     """`executor`, `runner_factory` and `adapter` let tests run the workflow inline and offline."""
     settings = settings or load_settings()
     settings.data_dir.mkdir(parents=True, exist_ok=True)
+    configure_tracing(settings.otel)
     session_factory = make_session_factory(make_engine(settings.db_url))
     ctx = WorkflowContext(
         settings=settings,

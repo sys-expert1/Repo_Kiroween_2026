@@ -148,3 +148,18 @@ def canned_output(passed: int, failing: list[str]) -> tuple[str, int]:
         f"=== short test summary info ===\n{lines}{len(failing)} failed, {passed} passed in 0.01s\n",
         1 if failing else 0,
     )
+
+
+@pytest.fixture(scope="session")
+def span_exporter():
+    """One in-memory exporter for the whole session (a global tracer provider can be set once)."""
+    from opentelemetry import trace
+    from opentelemetry.sdk.trace import TracerProvider
+    from opentelemetry.sdk.trace.export import SimpleSpanProcessor
+    from opentelemetry.sdk.trace.export.in_memory_span_exporter import InMemorySpanExporter
+
+    exporter = InMemorySpanExporter()
+    provider = TracerProvider()
+    provider.add_span_processor(SimpleSpanProcessor(exporter))
+    trace.set_tracer_provider(provider)
+    return exporter

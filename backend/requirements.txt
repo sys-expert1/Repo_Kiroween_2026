@@ -9,3 +9,5 @@ ruff==0.17.5
 PyYAML==6.0.3
 packaging==26.3
 litellm==1.110.1
+opentelemetry-api==1.45.2
+opentelemetry-sdk==1.45.2

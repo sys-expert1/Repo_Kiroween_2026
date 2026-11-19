@@ -28,6 +28,7 @@ class Settings:
     # Building a repository's Dockerfile runs its RUN steps with network access: opt-in only.
     allow_docker_build: bool = False
     # AI-assisted patches. Empty means disabled. Code leaves the machine only when this is set.
+    otel: str = ""  # "", "console" or "otlp"
     llm_model: str = ""
     llm_timeout: float = 60.0
     llm_max_tasks: int = 5
@@ -59,6 +60,7 @@ def load_settings() -> Settings:
         allow_host_fixture_exec=os.environ.get("NECRO_ALLOW_HOST_FIXTURE_EXEC", "1") != "0",
         static_dir=Path(os.environ.get("NECRO_STATIC_DIR", FRONTEND_DIST)).resolve(),
         allow_docker_build=os.environ.get("NECRO_ALLOW_DOCKER_BUILD", "0") == "1",
+        otel=os.environ.get("NECRO_OTEL", "").strip(),
         llm_model=os.environ.get("NECRO_LLM_MODEL", "").strip(),
         llm_timeout=float(os.environ.get("NECRO_LLM_TIMEOUT", "60")),
         llm_max_tasks=max(0, int(os.environ.get("NECRO_LLM_MAX_TASKS", "5"))),
