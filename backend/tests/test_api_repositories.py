@@ -8,7 +8,11 @@ FIXTURE = {"fixture_id": "legacy-python-cli"}
 
 
 def test_health(client: TestClient):
-    assert client.get("/api/health").json() == {"status": "ok"}
+    body = client.get("/api/health").json()
+    assert body["status"] == "ok"
+    assert body["sandbox"] == {
+        "mode": "off", "available": False, "reason": "disabled", "host_fixture_exec": True,
+    }  # fmt: skip
 
 
 def test_fixtures_listed(client: TestClient):

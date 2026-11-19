@@ -318,13 +318,36 @@ class PythonAdapter:
                     "The result is unknown, not zero."
                 ),
             )
+        python = getattr(runner, "python", self._python)
+        install_note = None
+        install = getattr(runner, "install_requirements", None)
+        if install is not None:
+            reqs = [r for r in ("requirements.txt",) if (root / r).is_file()]
+            installed = install(root, reqs, timeout)
+            if installed is not None:
+                observe(installed)
+                if installed.exit_code != 0:
+                    install_note = "Dependency installation failed, so tests ran without them."
         argv = [
-            self._python, "-m", "pytest", "-q", "-rfE", "--tb=no", "--no-header",
+            python, "-m", "pytest", "-q", "-rfE", "--tb=no", "--no-header",
             "-p", "no:cacheprovider",
         ]  # fmt: skip
         result = runner.run(argv, root, timeout)
         observe(result)
-        return self.parse_pytest(result)
+        report = self.parse_pytest(result)
+        output = result.stdout + result.stderr
+        if install_note:
+            report.reason = install_note
+        elif report.status == "completed" and (
+            "ModuleNotFoundError" in output or "No module named" in output
+        ):
+            report.reason = (
+                "Some tests could not import a module. The sandbox has no network, so the "
+                "repository's dependencies are not installed. These errors come from the "
+                "environment, not necessarily the code. Set NECRO_SANDBOX_INSTALL_DEPS=1 to "
+                "install wheels first."
+            )
+        return report
 
     @staticmethod
     def parse_pytest(result: CommandResult) -> BaselineReport:

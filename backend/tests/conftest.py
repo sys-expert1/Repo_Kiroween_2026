@@ -86,6 +86,7 @@ def settings(tmp_path: Path, allowed_root: Path) -> Settings:
         data_dir=tmp_path / "data",
         allowed_roots=(allowed_root.resolve(), FIXTURES_DIR.resolve()),
         fixtures_dir=FIXTURES_DIR.resolve(),
+        sandbox_mode="off",  # tests never depend on the host's Docker
     )
 
 

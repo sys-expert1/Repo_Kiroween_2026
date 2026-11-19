@@ -6,6 +6,8 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from app.execution.sandbox import SandboxConfig
+
 BACKEND_DIR = Path(__file__).resolve().parent.parent
 FIXTURES_DIR = BACKEND_DIR.parent / "fixtures"
 
@@ -19,6 +21,9 @@ class Settings:
     # (resource-limited) because the Docker sandbox does not exist yet. Never applies to Git URLs
     # or local paths.
     allow_host_fixture_exec: bool = True
+    # "auto" uses Docker when the daemon and image are usable. "off" never uses Docker.
+    sandbox_mode: str = "auto"
+    sandbox: SandboxConfig = SandboxConfig()
 
     @property
     def db_url(self) -> str:
@@ -43,4 +48,9 @@ def load_settings() -> Settings:
         allowed_roots=tuple(dict.fromkeys(roots)),
         fixtures_dir=fixtures_dir,
         allow_host_fixture_exec=os.environ.get("NECRO_ALLOW_HOST_FIXTURE_EXEC", "1") != "0",
+        sandbox_mode="off" if os.environ.get("NECRO_SANDBOX", "auto") == "off" else "auto",
+        sandbox=SandboxConfig(
+            image=os.environ.get("NECRO_SANDBOX_IMAGE", SandboxConfig.image),
+            install_dependencies=os.environ.get("NECRO_SANDBOX_INSTALL_DEPS", "0") == "1",
+        ),
     )

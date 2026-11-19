@@ -45,3 +45,7 @@ class WorkflowContext:
     adapter: LanguageAdapter
     runner_for: RunnerFactory
     baseline_timeout: float = 300.0
+    # Explains why a source type has no runner (shown in the report instead of a bare "not run").
+    no_runner_reason: Callable[[str], str] = lambda source_type: (  # noqa: E731
+        "No sandbox is available for this repository, so its tests were not run."
+    )

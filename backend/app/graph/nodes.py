@@ -137,6 +137,8 @@ class Nodes:
             self.ctx.baseline_timeout,
         )  # fmt: skip
         shutil.rmtree(work, ignore_errors=True)
+        if report.status == "not_run":
+            report.reason = self.ctx.no_runner_reason(state["source_type"])
         self._store(run_id, "characterization_report", "CHARACTERIZATION_REPORT.md",
                     characterization_md(report).encode())  # fmt: skip
         self._store(run_id, "characterization_data", "characterization.json", _json(report))

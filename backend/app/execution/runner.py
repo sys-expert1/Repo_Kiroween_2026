@@ -13,6 +13,7 @@ import os
 import resource
 import signal
 import subprocess
+import sys
 import time
 from collections.abc import Mapping, Sequence
 from pathlib import Path
@@ -55,6 +56,8 @@ class SandboxUnavailableError(RuntimeError):
 
 
 class CommandRunner(Protocol):
+    python: str  # interpreter to invoke inside this runner's environment
+
     def run(self, argv: Sequence[str], cwd: Path, timeout: float) -> CommandResult: ...
 
 
@@ -141,6 +144,8 @@ def run_command(
 
 class HostFixtureRunner:
     """Runs commands for trusted bundled fixtures with resource limits. Not a sandbox."""
+
+    python = sys.executable
 
     def __init__(self, home: Path, timeout_cap: float = 300.0) -> None:
         self._home = home
