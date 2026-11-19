@@ -89,6 +89,13 @@ def get_run(db: Session, run_id: str) -> RunOut:
     return _out(_get(db, run_id))
 
 
+def list_runs(db: Session, repository_id: str | None = None, limit: int = 20) -> list[RunOut]:
+    query = select(RunRow).order_by(RunRow.created_at.desc()).limit(limit)
+    if repository_id:
+        query = query.where(RunRow.repository_id == repository_id)
+    return [_out(r) for r in db.scalars(query).all()]
+
+
 def start_run(db: Session, req: StartRunRequest) -> RunOut:
     if db.get(RepositoryRow, req.repository_id) is None:
         raise RepositoryMissingError(req.repository_id)
@@ -139,9 +146,17 @@ def transition(
     return _out(row)
 
 
-def set_roadmap(db: Session, run_id: str, version: int, digest: str) -> None:
+def set_roadmap(db: Session, run_id: str, version: int) -> None:
+    """Record a new roadmap version. The patch-set digest is cleared until patches exist."""
     row = _get(db, run_id)
     row.roadmap_version = version
+    row.patch_set_digest = None
+    row.updated_at = _now()
+    db.commit()
+
+
+def set_patch_set(db: Session, run_id: str, digest: str | None) -> None:
+    row = _get(db, run_id)
     row.patch_set_digest = digest
     row.updated_at = _now()
     db.commit()
@@ -171,8 +186,8 @@ def approve(db: Session, run_id: str, req: ApprovalRequest) -> RunOut:
         raise InvalidStateError(
             f"Run is {row.status}; approval is only valid while AWAITING_APPROVAL."
         )
-    if row.roadmap_version is None:
-        raise InvalidStateError("Run has no roadmap to approve.")
+    if row.roadmap_version is None or row.patch_set_digest is None:
+        raise InvalidStateError("Run has no patch set to approve.")
     if req.roadmap_version != row.roadmap_version:
         raise InvalidStateError(
             f"roadmap_version must equal the awaited version ({row.roadmap_version})."

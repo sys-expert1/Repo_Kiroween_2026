@@ -33,6 +33,24 @@ def _not_found() -> HTTPException:
     return HTTPException(status_code=404, detail="Run not found.")
 
 
+@router.get("", response_model=list[RunOut])
+def list_runs(
+    db: DbDep,
+    repository_id: Annotated[str | None, Query(max_length=36)] = None,
+    limit: Annotated[int, Query(ge=1, le=100)] = 20,
+) -> list[RunOut]:
+    """Recent runs, newest first. Additive to the blueprint contract; used to restore the UI."""
+    return service.list_runs(db, repository_id, limit)
+
+
+@router.get("/{run_id}", response_model=RunOut, responses={404: {"model": ErrorOut}})
+def get_run(run_id: str, db: DbDep) -> RunOut:
+    try:
+        return service.get_run(db, run_id)
+    except service.RunNotFoundError:
+        raise _not_found() from None
+
+
 @router.post(
     "/start",
     response_model=RunOut,

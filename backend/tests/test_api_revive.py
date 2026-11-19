@@ -70,14 +70,46 @@ def test_approve_records_digest_and_cannot_be_replayed(client: TestClient):
     assert approve(client, run).status_code == 409  # run is no longer awaiting
 
 
-def test_approve_resumes_then_fails_honestly_at_reanimation(client: TestClient):
+def test_approve_applies_patches_verifies_and_completes(client: TestClient):
     run = start(client)
     final = approve(client, run).json()
-    assert final["status"] == "FAILED" and final["current_stage"] == "REANIMATION"
-    assert "not implemented" in final["error"]
+    assert final["status"] == "COMPLETED" and final["current_stage"] == "CONSECRATION"
+    assert final["error"] is None and final["completed_at"] is not None
     events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
-    assert events[-1]["type"] == "run_failed"
-    assert events[-1]["payload"]["reason"] == "reanimation_not_implemented"
+    types = [e["type"] for e in events]
+    assert types.index("hitl_required") < types.index("approval_received")
+    assert types.index("approval_received") < types.index("patch_applied")
+    assert types.index("patch_applied") < types.index("verification_completed")
+    assert types[-1] == "run_completed"
+    stages = [e["payload"]["stage"] for e in events if e["type"] == "stage_changed"]
+    assert stages == [
+        "AUTOPSY", "CHARACTERIZATION", "REANIMATION", "REANIMATION", "CONSECRATION",
+    ]  # fmt: skip
+    scores = [e["payload"] for e in events if e["type"] == "health_score_updated"]
+    assert [s["phase"] for s in scores] == ["before", "after"]
+    assert scores[1]["score"] > scores[0]["score"]
+    applied = [e["payload"] for e in events if e["type"] == "patch_applied"]
+    assert applied and all(p["target"] == "isolated working copy" for p in applied)
+    done = events[-1]["payload"]
+    assert done["verdict"] == "verified" and done["patches_applied"] == len(applied)
+
+
+def test_final_artifacts_and_report(client: TestClient):
+    run = start(client)
+    approve(client, run)
+    names = {a["name"] for a in client.get(f"/api/revive/{run['id']}/artifacts").json()}
+    assert {"PATCHSET.v1.diff", "VERIFICATION_REPORT.md", "VITALITY_REPORT.json",
+            "RUN_AUDIT.json"} <= names  # fmt: skip
+    report = _artifact(client, run["id"], "VERIFICATION_REPORT.md")
+    assert "Verdict: **verified**" in report and "original repository was not modified" in report
+    assert "Pre-existing" not in report and "| tests | passed |" in report
+    vit = json.loads(_artifact(client, run["id"], "VITALITY_REPORT.json"))
+    assert vit["after"]["score"] > vit["before"]["score"] and vit["comparison_warning"] is None
+    audit = json.loads(_artifact(client, run["id"], "RUN_AUDIT.json"))
+    assert audit["approvals"][0]["decision"] == "approve"
+    assert audit["approvals"][0]["patch_set_digest"] == run["patch_set_digest"]
+    assert audit["patches_applied"] and any("pytest" in c["command"] for c in audit["commands"])
+    assert all(c["exit_code"] is not None for c in audit["commands"])
 
 
 def test_edit_creates_new_roadmap_version_and_awaits_again(client: TestClient):
@@ -243,4 +275,6 @@ def test_non_revive_modes_never_ask_for_approval(client: TestClient, mode: str):
     events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
     assert run["status"] == "COMPLETED"
     assert "hitl_required" not in {e["type"] for e in events}
-    assert events[-1]["payload"]["patches_generated"] is False
+    assert "patch_applied" not in {e["type"] for e in events}
+    assert events[-1]["payload"]["patches_generated"] is (mode == "PREVIEW")
+    assert events[-1]["payload"].get("patches_applied", False) is False

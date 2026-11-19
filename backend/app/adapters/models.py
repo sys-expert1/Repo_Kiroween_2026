@@ -22,6 +22,10 @@ class Finding(BaseModel):
     line: int | None = None
     source: Source
     status: Literal["open"] = "open"
+    # Structured data for dependency findings, so patching never parses evidence text.
+    package: str | None = None
+    installed_version: str | None = None
+    fix_versions: list[str] = Field(default_factory=list)
 
 
 class Dependency(BaseModel):
@@ -64,6 +68,7 @@ class AutopsyReport(BaseModel):
     # None means "not measured". Never substitute zero for a missing measurement.
     known_vulnerabilities: int | None
     vulnerable_packages: int | None
+    audited_packages: int | None = None
     lint_violations: int | None
 
 

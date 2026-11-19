@@ -33,6 +33,9 @@ class OfflineAdapter(PythonAdapter):
             title="requests 2.19.1 has 2 known vulnerabilities",
             evidence="PYSEC-A, PYSEC-B. Fixed in: 0.12.3, 1.0. pip-audit gives no severity score.",
             file_path="requirements.txt",
+            package="requests",
+            installed_version="2.19.1",
+            fix_versions=["2.20.0", "2.31.0"],
         )
         tool = ToolRun(
             tool="pip-audit", command="pip-audit (offline test double)", exit_code=1,
@@ -120,3 +123,28 @@ def deferred_client(settings: Settings, fake_runner: FakeRunner):
     )
     app.state.sse_poll_seconds = 0.01
     return TestClient(app), executor
+
+
+class SequencedRunner:
+    """Returns a different canned result per call (baseline first, then the final run)."""
+
+    python = "python"
+
+    def __init__(self, outputs: list[tuple[str, int]]) -> None:
+        self.outputs = outputs
+        self.calls: list[tuple[list[str], Path]] = []
+
+    def run(self, argv: Sequence[str], cwd: Path, timeout: float) -> CommandResult:
+        self.calls.append((list(argv), cwd))
+        stdout, code = self.outputs[min(len(self.calls) - 1, len(self.outputs) - 1)]
+        return CommandResult(
+            argv=list(argv), exit_code=code, stdout=stdout, stderr="", duration_seconds=0.01
+        )
+
+
+def canned_output(passed: int, failing: list[str]) -> tuple[str, int]:
+    lines = "".join(f"FAILED {t} - assert False\n" for t in failing)
+    return (
+        f"=== short test summary info ===\n{lines}{len(failing)} failed, {passed} passed in 0.01s\n",
+        1 if failing else 0,
+    )

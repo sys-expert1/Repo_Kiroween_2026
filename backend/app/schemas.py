@@ -105,7 +105,8 @@ TERMINAL_STATUSES = frozenset({RunStatus.COMPLETED, RunStatus.FAILED, RunStatus.
 
 
 class EventType(StrEnum):
-    """Blueprint event types, plus two documented extensions (RUN_CANCELLED, CANCEL_REQUESTED)."""
+    """Blueprint event types plus documented extensions: RUN_CANCELLED, CANCEL_REQUESTED,
+    PATCH_APPLIED and ROLLBACK_COMPLETED."""
 
     RUN_STARTED = "run_started"
     STAGE_CHANGED = "stage_changed"
@@ -121,6 +122,8 @@ class EventType(StrEnum):
     # Extensions: the blueprint list has no cancelled terminal event or cancel acknowledgement.
     RUN_CANCELLED = "run_cancelled"
     CANCEL_REQUESTED = "cancel_requested"
+    PATCH_APPLIED = "patch_applied"
+    ROLLBACK_COMPLETED = "rollback_completed"
 
 
 class StartRunRequest(BaseModel):

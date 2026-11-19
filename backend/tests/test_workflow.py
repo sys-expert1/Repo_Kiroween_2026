@@ -173,7 +173,7 @@ def test_approval_survives_a_process_restart(settings: Settings, fake_runner: Fa
     body = second.post(
         f"/api/revive/approve/{r['id']}", json={"decision": "approve", "roadmap_version": 1}
     ).json()
-    assert body["status"] == "FAILED" and "not implemented" in body["error"]
+    assert body["status"] == "COMPLETED" and body["current_stage"] == "CONSECRATION"
     assert not second.app.state.workflow.is_waiting(r["id"])
 
 

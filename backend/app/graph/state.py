@@ -26,6 +26,10 @@ class WorkflowState(TypedDict, total=False):
     autopsy: dict
     baseline: dict
     roadmap: dict
+    patchset: dict
+    score_before: dict
+    work_dir: str
+    applied: list[str]
     decision: dict
     halt: bool
 

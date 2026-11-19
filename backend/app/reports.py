@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from app.adapters.models import AutopsyReport, BaselineReport
+from app.agents.patches import PatchSet
 from app.agents.roadmap import Roadmap
+from app.consecration import Verification
+from app.scoring.health_score import VitalityScore
 
 
 def _cell(text: str) -> str:
@@ -109,3 +112,72 @@ def roadmap_md(r: Roadmap) -> str:
             "",
         ]
     return "\n".join(lines)
+
+
+def patchset_md(ps: PatchSet) -> str:
+    lines = [
+        f"# Surgical Patches (roadmap v{ps.roadmap_version})",
+        "",
+        f"- Patch-set digest: `{ps.digest}`",
+        f"- Patches: {len(ps.patches)} across {len(ps.files_changed)} file(s)",
+        f"- Tasks with no automatic patch: {len(ps.skipped)}",
+        "",
+    ]
+    for p in ps.patches:
+        lines += [f"## {p.task_id}: {p.action} `{p.path}`", "", p.rationale, ""]
+    if ps.skipped:
+        lines += ["## No automatic patch", ""]
+        lines += [f"- **{s.task_id}** {s.title}: {s.reason}" for s in ps.skipped]
+    return "\n".join(lines) + "\n"
+
+
+def verification_md(
+    v: Verification, before: VitalityScore, after: VitalityScore, applied: list[str]
+) -> str:
+    lines = [
+        "# Verification Report",
+        "",
+        f"- Verdict: **{v.verdict}**",
+        f"- Patches applied to the isolated working copy: {len(applied)}",
+        "- The original repository was not modified.",
+        "",
+        "## Checks",
+        "",
+        "| Check | Status | Detail |",
+        "| --- | --- | --- |",
+    ]
+    for c in v.checks:
+        lines.append(f"| {c.name} | {c.status} | {_cell(c.detail)} |")
+    commands = [c for c in v.checks if c.command]
+    if commands:
+        lines += ["", "## Commands", ""]
+        lines += [f"- `{c.command}` exit {c.exit_code}" for c in commands]
+    if v.regressions:
+        lines += ["", "## Regressions", ""] + [f"- {r}" for r in v.regressions]
+    lines += ["", "## Findings", ""]
+    lines += [f"- Resolved: {t}" for t in v.resolved_findings] or ["- Resolved: none"]
+    lines += [f"- New: {t}" for t in v.new_findings] or ["- New: none"]
+    if v.unmeasured:
+        lines += ["", f"Not measured: {', '.join(v.unmeasured)}."]
+    lines += [
+        "",
+        "## Vitality Score",
+        "",
+        "| Dimension | Weight | Before | After |",
+        "| --- | --- | --- | --- |",
+    ]
+    for b, a in zip(before.dimensions, after.dimensions, strict=True):
+        lines.append(f"| {b.name} | {b.weight:.0%} | {_score(b.score)} | {_score(a.score)} |")
+    lines += [
+        f"| **Total** | | **{_score(before.score)}** | **{_score(after.score)}** |",
+        "",
+        f"- Before: {before.note}",
+        f"- After: {after.note}",
+    ]
+    if v.score_warning:
+        lines.append(f"- Warning: {v.score_warning}")
+    return "\n".join(lines) + "\n"
+
+
+def _score(value: float | None) -> str:
+    return "not measured" if value is None else f"{value:.1f}"

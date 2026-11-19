@@ -36,3 +36,8 @@ class LanguageAdapter(Protocol):
         timeout: float,
     ) -> BaselineReport:
         """Run baseline tests with `runner`. `root` must be a disposable copy."""
+
+    def fix_lint(
+        self, files: dict[str, str], scratch: Path, observe: CommandObserver
+    ) -> dict[str, str]:
+        """Apply safe automatic lint fixes to copies of `files`; return only changed files."""

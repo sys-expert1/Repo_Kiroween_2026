@@ -22,6 +22,8 @@ class Settings:
     # or local paths.
     allow_host_fixture_exec: bool = True
     # "auto" uses Docker when the daemon and image are usable. "off" never uses Docker.
+    # Building a repository's Dockerfile runs its RUN steps with network access: opt-in only.
+    allow_docker_build: bool = False
     sandbox_mode: str = "auto"
     sandbox: SandboxConfig = SandboxConfig()
 
@@ -48,6 +50,7 @@ def load_settings() -> Settings:
         allowed_roots=tuple(dict.fromkeys(roots)),
         fixtures_dir=fixtures_dir,
         allow_host_fixture_exec=os.environ.get("NECRO_ALLOW_HOST_FIXTURE_EXEC", "1") != "0",
+        allow_docker_build=os.environ.get("NECRO_ALLOW_DOCKER_BUILD", "0") == "1",
         sandbox_mode="off" if os.environ.get("NECRO_SANDBOX", "auto") == "off" else "auto",
         sandbox=SandboxConfig(
             image=os.environ.get("NECRO_SANDBOX_IMAGE", SandboxConfig.image),

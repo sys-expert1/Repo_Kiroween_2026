@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import sys
 from pathlib import Path
 
@@ -147,6 +148,9 @@ class PythonAdapter:
             tools=tools,
             known_vulnerabilities=vuln_total,
             vulnerable_packages=vuln_pkgs,
+            audited_packages=(
+                len({d.name for d in deps if d.pinned_version}) if vuln_total is not None else None
+            ),
             lint_violations=lint_count,
         )
 
@@ -292,6 +296,7 @@ class PythonAdapter:
                     evidence=f"{shown}. Fixed in: {', '.join(fixes) if fixes else 'no fix listed'}."
                     " pip-audit gives no severity score; known-vulnerable packages are rated high.",
                     file_path=dep.source_file if dep else None,
+                    package=entry["name"], installed_version=entry["version"], fix_versions=fixes,
                 )
             )  # fmt: skip
         tool.measured = True
@@ -301,6 +306,29 @@ class PythonAdapter:
             + (f"; {skipped} dependency entries not pinned and not audited" if skipped else "")
         )
         return total, packages, findings, tool
+
+    def fix_lint(
+        self, files: dict[str, str], scratch: Path, observe: CommandObserver
+    ) -> dict[str, str]:
+        """Apply Ruff's safe fixes to copies of `files`. Returns only the files that changed."""
+        work = scratch / "lintfix"
+        shutil.rmtree(work, ignore_errors=True)
+        for rel, text in files.items():
+            target = work / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text(text, encoding="utf-8")
+        argv = [
+            self._python, "-m", "ruff", "check", "--isolated", "--no-cache", "--fix",
+            "--select", "E,F,B", "--ignore", "E501", ".",
+        ]  # fmt: skip
+        observe(run_command(argv, work, TOOL_TIMEOUT, build_env(scratch / "home")))
+        changed = {}
+        for rel, text in files.items():
+            new = (work / rel).read_text(encoding="utf-8")
+            if new != text:
+                changed[rel] = new
+        shutil.rmtree(work, ignore_errors=True)
+        return changed
 
     # ------------------------------------------------------------- characterize
     def characterize(

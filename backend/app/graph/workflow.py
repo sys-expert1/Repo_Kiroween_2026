@@ -2,11 +2,13 @@
 
 START -> validate_and_snapshot -> autopsy -> characterization
   INSPECT -> complete_inspect -> END
-  PREVIEW -> roadmap -> complete_preview -> END
-  REVIVE  -> roadmap -> request_approval -> await_decision (interrupt)
-               approve -> reanimation_unavailable (Reanimation arrives in task 7) -> END
-               edit    -> revise -> request_approval
-               reject  -> END
+  otherwise roadmap -> generate_patches
+    PREVIEW -> complete_preview -> END
+    REVIVE, nothing patchable -> complete_no_patches -> END
+    REVIVE -> request_approval -> await_decision (interrupt)
+        approve -> reanimation -> consecration -> END
+        edit    -> revise -> generate_patches -> request_approval
+        reject  -> END
 Every node is guarded: a cancelled run skips remaining work and ends.
 """
 
@@ -32,17 +34,19 @@ def _after_characterization(state: WorkflowState) -> str:
     return "complete_inspect" if state["mode"] == "INSPECT" else "roadmap"
 
 
-def _after_roadmap(state: WorkflowState) -> str:
+def _after_patches(state: WorkflowState) -> str:
     if state.get("halt"):
         return END
-    return "complete_preview" if state["mode"] == "PREVIEW" else "request_approval"
+    if state["mode"] == "PREVIEW":
+        return "complete_preview"
+    return "request_approval" if state["patchset"]["patches"] else "complete_no_patches"
 
 
 def _after_decision(state: WorkflowState) -> str:
     if state.get("halt"):
         return END
     decision = state.get("decision", {}).get("decision")
-    return {"approve": "reanimation_unavailable", "edit": "revise"}.get(decision, END)
+    return {"approve": "reanimation", "edit": "revise"}.get(decision, END)
 
 
 def _next(target: str):  # noqa: ANN202
@@ -53,28 +57,34 @@ def build_workflow(ctx: WorkflowContext, checkpointer: BaseCheckpointSaver) -> C
     n = Nodes(ctx)
     g = StateGraph(WorkflowState)
     guarded = n.guarded
-    g.add_node(
-        "validate_and_snapshot", guarded(n.validate_and_snapshot), retry_policy=TRANSIENT_RETRY
-    )
-    g.add_node("autopsy", guarded(n.autopsy), retry_policy=TRANSIENT_RETRY)
-    g.add_node("characterization", guarded(n.characterization), retry_policy=TRANSIENT_RETRY)
-    g.add_node("complete_inspect", guarded(n.complete_inspect))
-    g.add_node("roadmap", guarded(n.roadmap))
-    g.add_node("complete_preview", guarded(n.complete_preview))
-    g.add_node("request_approval", guarded(n.request_approval))
-    g.add_node("await_decision", guarded(n.await_decision))
-    g.add_node("revise", guarded(n.revise))
-    g.add_node("reanimation_unavailable", guarded(n.reanimation_unavailable))
+    for name in ("validate_and_snapshot", "autopsy", "characterization"):
+        g.add_node(name, guarded(getattr(n, name)), retry_policy=TRANSIENT_RETRY)
+    for name in (
+        "complete_inspect",
+        "roadmap",
+        "generate_patches",
+        "complete_preview",
+        "complete_no_patches",
+        "request_approval",
+        "await_decision",
+        "revise",
+        "reanimation",
+        "consecration",
+    ):
+        g.add_node(name, guarded(getattr(n, name)))
 
     g.add_edge(START, "validate_and_snapshot")
     g.add_conditional_edges("validate_and_snapshot", _next("autopsy"))
     g.add_conditional_edges("autopsy", _next("characterization"))
     g.add_conditional_edges("characterization", _after_characterization)
     g.add_edge("complete_inspect", END)
-    g.add_conditional_edges("roadmap", _after_roadmap)
+    g.add_conditional_edges("roadmap", _next("generate_patches"))
+    g.add_conditional_edges("generate_patches", _after_patches)
     g.add_edge("complete_preview", END)
+    g.add_edge("complete_no_patches", END)
     g.add_conditional_edges("request_approval", _next("await_decision"))
     g.add_conditional_edges("await_decision", _after_decision)
-    g.add_conditional_edges("revise", _next("request_approval"))
-    g.add_edge("reanimation_unavailable", END)
+    g.add_conditional_edges("revise", _next("generate_patches"))
+    g.add_conditional_edges("reanimation", _next("consecration"))
+    g.add_edge("consecration", END)
     return g.compile(checkpointer=checkpointer)
