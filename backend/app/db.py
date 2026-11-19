@@ -47,10 +47,15 @@ class RunRow(Base):
     repository_id: Mapped[str] = mapped_column(String(36), index=True)
     mode: Mapped[str] = mapped_column(String(16))
     status: Mapped[str] = mapped_column(String(24))
-    phase: Mapped[str | None] = mapped_column(String(24), nullable=True)
+    current_stage: Mapped[str | None] = mapped_column(String(24), nullable=True)
     cancel_requested: Mapped[bool] = mapped_column(Boolean, default=False)
+    roadmap_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    patch_set_digest: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    error: Mapped[str | None] = mapped_column(Text, nullable=True)
+    pinned_commit: Mapped[str | None] = mapped_column(String(64), nullable=True)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
+    completed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True), nullable=True)
 
 
 class RunEventRow(Base):
@@ -74,6 +79,9 @@ class ApprovalRow(Base):
     run_id: Mapped[str] = mapped_column(String(36), index=True)
     decision: Mapped[str] = mapped_column(String(16))
     note: Mapped[str | None] = mapped_column(String(2000), nullable=True)
+    roadmap_version: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    patch_set_digest: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    actor: Mapped[str] = mapped_column(String(128), default="local")
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
 
 
@@ -84,6 +92,9 @@ class ArtifactRow(Base):
     run_id: Mapped[str] = mapped_column(String(36), index=True)
     kind: Mapped[str] = mapped_column(String(32))
     name: Mapped[str] = mapped_column(String(256))
+    path: Mapped[str] = mapped_column(String(4096))
+    checksum: Mapped[str] = mapped_column(String(64))
+    size: Mapped[int] = mapped_column(Integer)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=_now)
 
 

@@ -136,6 +136,8 @@ GET  /api/fixtures                    POST /api/revive/approve/{run_id}
 3. Requirements: heartbeats, monotonically increasing per-run sequence numbers, `Last-Event-ID`
    reconnect, replay from a persisted log, duplicate-event protection, concurrent runs,
    cancellation, terminal event and stream closure. No in-memory-only queues.
+4. Documented extensions to the type list: `run_cancelled` (terminal event for a cancelled run) and
+   `cancel_requested` (acknowledges a cancel request on a running run).
 
 ## R11. Dashboard and UI
 1. Five regions: top header (logo, repository, branch and commit, mode, run state, settings), left

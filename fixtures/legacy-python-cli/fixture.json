@@ -1,0 +1,5 @@
+{
+  "name": "Legacy Python CLI",
+  "description": "A small Click command-line inventory tool with old pinned dependencies, a hardcoded token, an unsafe shell call, one failing baseline test and no CI.",
+  "language": "python"
+}

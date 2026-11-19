@@ -2,15 +2,17 @@ from __future__ import annotations
 
 import asyncio
 from collections.abc import AsyncIterator
+from pathlib import Path
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Header, HTTPException, Query, Request
-from fastapi.responses import StreamingResponse
+from fastapi.responses import Response, StreamingResponse
 from sqlalchemy.orm import Session
 
-from app.api.deps import get_db
+from app.api.deps import get_db, get_orchestrator
 from app.runs import service
 from app.runs.events import events_after, format_sse
+from app.runs.orchestrator import InvalidDecisionError, RunOrchestrator
 from app.schemas import (
     TERMINAL_STATUSES,
     ApprovalRequest,
@@ -23,6 +25,7 @@ from app.schemas import (
 router = APIRouter(prefix="/api/revive")
 
 DbDep = Annotated[Session, Depends(get_db)]
+OrchDep = Annotated[RunOrchestrator, Depends(get_orchestrator)]
 HEARTBEAT_SECONDS = 15.0
 
 
@@ -36,9 +39,9 @@ def _not_found() -> HTTPException:
     status_code=201,
     responses={404: {"model": ErrorOut}},
 )
-def start(req: StartRunRequest, db: DbDep) -> RunOut:
+def start(req: StartRunRequest, db: DbDep, orch: OrchDep) -> RunOut:
     try:
-        return service.start_run(db, req)
+        return orch.start(db, req)
     except service.RepositoryMissingError:
         raise HTTPException(status_code=404, detail="Repository not found.") from None
 
@@ -46,15 +49,17 @@ def start(req: StartRunRequest, db: DbDep) -> RunOut:
 @router.post(
     "/approve/{run_id}",
     response_model=RunOut,
-    responses={404: {"model": ErrorOut}, 409: {"model": ErrorOut}},
+    responses={404: {"model": ErrorOut}, 409: {"model": ErrorOut}, 422: {"model": ErrorOut}},
 )
-def approve(run_id: str, req: ApprovalRequest, db: DbDep) -> RunOut:
+def approve(run_id: str, req: ApprovalRequest, db: DbDep, orch: OrchDep) -> RunOut:
     try:
-        return service.approve(db, run_id, req)
+        return orch.approve(db, run_id, req)
     except service.RunNotFoundError:
         raise _not_found() from None
     except service.InvalidStateError as exc:
         raise HTTPException(status_code=409, detail=str(exc)) from None
+    except InvalidDecisionError as exc:
+        raise HTTPException(status_code=422, detail=str(exc)) from None
 
 
 @router.post(
@@ -62,9 +67,9 @@ def approve(run_id: str, req: ApprovalRequest, db: DbDep) -> RunOut:
     response_model=RunOut,
     responses={404: {"model": ErrorOut}, 409: {"model": ErrorOut}},
 )
-def cancel(run_id: str, db: DbDep) -> RunOut:
+def cancel(run_id: str, db: DbDep, orch: OrchDep) -> RunOut:
     try:
-        return service.cancel(db, run_id)
+        return orch.cancel(db, run_id)
     except service.RunNotFoundError:
         raise _not_found() from None
     except service.InvalidStateError as exc:
@@ -81,6 +86,31 @@ def artifacts(run_id: str, db: DbDep) -> list[ArtifactOut]:
         return service.list_artifacts(db, run_id)
     except service.RunNotFoundError:
         raise _not_found() from None
+
+
+_MEDIA_TYPES = {".md": "text/markdown", ".json": "application/json", ".diff": "text/x-diff"}
+
+
+@router.get(
+    "/{run_id}/artifacts/{artifact_id}",
+    responses={404: {"model": ErrorOut}, 409: {"model": ErrorOut}},
+)
+def download_artifact(run_id: str, artifact_id: str, db: DbDep) -> Response:
+    """Return one artifact's bytes after verifying its recorded checksum."""
+    try:
+        artifact, data = service.read_artifact(db, run_id, artifact_id)
+    except service.RunNotFoundError:
+        raise _not_found() from None
+    except service.ArtifactNotFoundError:
+        raise HTTPException(status_code=404, detail="Artifact not found.") from None
+    except service.InvalidStateError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from None
+    media = _MEDIA_TYPES.get(Path(artifact.name).suffix, "application/octet-stream")
+    return Response(
+        content=data,
+        media_type=media,
+        headers={"X-Content-Type-Options": "nosniff", "X-Artifact-Checksum": artifact.checksum},
+    )
 
 
 @router.get("/stream/{run_id}", responses={404: {"model": ErrorOut}})
@@ -123,7 +153,7 @@ async def stream(
         while True:
             run, events = await asyncio.to_thread(fetch, seq)
             for event in events:
-                seq = event.seq
+                seq = event.sequence
                 idle = 0.0
                 yield format_sse(event)
             if run is None or (run.status in TERMINAL_STATUSES and not events):

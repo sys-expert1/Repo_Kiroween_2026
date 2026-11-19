@@ -17,24 +17,39 @@ with real tools, never auto-push. The original repository is never the patch tar
 
 ## Project status
 
-The blueprint targets a seven-day build. Only the backend foundation exists so far.
+The blueprint targets a seven-day build. The backend now covers Autopsy, Characterization, the
+Revival Roadmap and the approval gate. Reanimation, Consecration and the dashboard are not built.
 
 | Area | State |
 | --- | --- |
 | Specs, steering, architecture | Done (`.kiro/`) |
 | Repository intake: inspect, import, list, get, fixtures | Done |
-| Local path and Git URL validation | Done |
-| Revive API: start, SSE stream with replay, approve, cancel, artifacts | Done. Runs stay `QUEUED` until the workflow executor exists |
-| Python Autopsy adapter (AST, Ruff, pip-audit) | Not started |
-| LangGraph workflow, checkpointing, approval interrupt | Not started |
-| Characterization (baseline tests) | Not started |
+| Local path and Git URL validation, Git clone with commit pinning, managed snapshot | Done |
+| Python Autopsy: AST, Ruff, pip-audit, dependency and test discovery, findings | Done |
+| LangGraph workflow: typed state, SQLite checkpoints, approval interrupt, cancellation, bounded retries | Done |
+| Characterization: baseline pytest run, pre-existing failures recorded | Done for bundled fixtures. Other sources report "not run" until the sandbox exists |
+| Revival Roadmap, approve / edit / reject, versioned roadmaps, patch-set digest | Done |
+| Revive API with SSE replay, artifacts with checksums | Done |
 | Restricted Docker sandbox | Not started |
-| Reanimation (patches, diff, rollback) | Not started |
+| Reanimation (patches, diff, rollback) | Not started. An approved REVIVE run ends `FAILED` with an explicit message |
 | Consecration and Vitality Score | Not started |
-| React dashboard | Not started |
-| Docker Compose packaging | Not started |
+| React dashboard | Theme tokens only (`frontend/src/styles/theme.css`) |
+| Docker Compose packaging, LiteLLM-assisted patch generation | Not started |
 
 Nothing marked "Not started" is simulated. The API never reports progress that did not happen.
+
+## What a run does today
+
+| Mode | Stages executed | Ends |
+| --- | --- | --- |
+| INSPECT | Autopsy, Characterization | `COMPLETED` |
+| PREVIEW | Autopsy, Characterization, Revival Roadmap | `COMPLETED` (no patches yet) |
+| REVIVE | Autopsy, Characterization, Revival Roadmap, then waits for approval | `AWAITING_APPROVAL`. After approval: `FAILED` with "Reanimation is not implemented yet" |
+
+Baseline tests run only for the bundled demo fixtures, on the host with CPU, memory and file-size
+limits, because they are trusted code and the sandbox does not exist yet. Git URL and local-path
+repositories are analysed statically and their tests are reported as **not run** (unknown, never
+zero). Set `NECRO_ALLOW_HOST_FIXTURE_EXEC=0` to disable host execution entirely.
 
 ## Workflow
 
@@ -92,9 +107,12 @@ different measurement sets are not compared without a warning.
 Docker is a practical isolation boundary for the MVP, not a guarantee against every container
 escape. Treat running untrusted code as high risk.
 
-**Implemented now:** path and URL validation, source immutability for intake, approval-state
-enforcement, approval audit records, cancellation. **Planned:** the sandbox, credential flow,
-rollback and resource limits.
+**Implemented now:** path and URL validation (re-checked when a run starts), snapshots that skip
+`.git` and symlinks, hardened `git clone` (hooks off, only https and ssh, no prompts, `--`
+separator), detection that never runs git or repository code, a command runner with no shell, a
+minimal environment, timeouts that kill the process group and output redaction, approval bound to a
+roadmap version, approval audit records, artifact checksums verified on download, cancellation.
+**Planned:** the Docker sandbox, credential flow, rollback.
 
 ## Technology
 
@@ -109,7 +127,7 @@ rollback and resource limits.
 | Testing | Pytest, Ruff, frontend type-check and tests |
 | Adapters | Python (P0), TypeScript (P1), C++ (stretch) |
 
-Currently installed: FastAPI, Pydantic, SQLAlchemy and Uvicorn. The rest arrives with its phase.
+Installed now: FastAPI, Pydantic, SQLAlchemy, Uvicorn, LangGraph with the SQLite checkpointer, pip-audit and Ruff. LiteLLM, Tree-sitter and OpenTelemetry arrive with their phases.
 
 ## API
 
@@ -121,22 +139,31 @@ Contracts follow the blueprint. See `/docs` on a running server for the live sch
 | POST | `/api/repositories/import` | Register a repository |
 | GET | `/api/repositories` | List repositories |
 | GET | `/api/repositories/{id}` | Repository metadata |
-| POST | `/api/revive/start` | Start a run (`INSPECT`, `PREVIEW` or `REVIVE`) |
+| POST | `/api/revive/start` | Start a run (`INSPECT` default, `PREVIEW` or `REVIVE`) |
 | GET | `/api/revive/stream/{run_id}` | SSE stream with `Last-Event-ID` replay and heartbeats |
-| POST | `/api/revive/approve/{run_id}` | Approve or reject (valid only while `AWAITING_APPROVAL`) |
+| POST | `/api/revive/approve/{run_id}` | `approve`, `edit` or `reject`. Valid only while `AWAITING_APPROVAL`, and `roadmap_version` must match |
 | POST | `/api/revive/{run_id}/cancel` | Cancel a run |
-| GET | `/api/revive/{run_id}/artifacts` | List run artifacts |
+| GET | `/api/revive/{run_id}/artifacts` | List artifacts with type, size and SHA-256 |
+| GET | `/api/revive/{run_id}/artifacts/{id}` | Download one artifact (checksum verified) |
 | GET | `/api/fixtures` | List demo fixtures |
 
-Local paths are resolved by the local backend, not the browser. They must fall inside an allowed
+Local paths are resolved by the local backend, not the browser, and must fall inside an allowed
 root.
 
-The current event envelope differs from the blueprint. See
-[Known deviations](.kiro/specs/repo-necromancer/design.md#known-deviations-from-the-blueprint).
+**SSE envelope:** `event_id`, `run_id`, `sequence`, `type`, `timestamp`, `payload`. The SSE `id:`
+field is `sequence`. Types: `run_started`, `stage_changed`, `roadmap_ready`, `hitl_required`,
+`approval_received`, `terminal_log`, `run_completed`, `run_failed`, plus two extensions the
+blueprint lacks, `run_cancelled` and `cancel_requested`. `health_score_updated`, `diff_generated`
+and `verification_completed` are defined but not emitted until their features exist. Clients should
+drop events whose `sequence` they have already seen.
+
+**Artifacts per run:** `AUTOPSY_REPORT.md`, `autopsy.json`, `CHARACTERIZATION_REPORT.md`,
+`characterization.json`, `REVIVAL_ROADMAP.v{n}.md`, `roadmap.v{n}.json`.
 
 ## Run the backend
 
-Requires Python 3.12+ and Git.
+Requires Python 3.12+ and Git. Dependency auditing (`pip-audit`) and Git URL imports need network
+access; without it the audit is reported as "not measured" and the run continues.
 
 ```bash
 cd backend
@@ -151,7 +178,7 @@ Open http://localhost:8000/docs, or:
 curl localhost:8000/api/health
 curl localhost:8000/api/fixtures
 curl -X POST localhost:8000/api/repositories/inspect \
-  -H 'content-type: application/json' -d '{"fixture_id": "legacy_flask_app"}'
+  -H 'content-type: application/json' -d '{"fixture_id": "legacy-python-cli"}'
 ```
 
 ## Test and lint
@@ -168,7 +195,8 @@ cd backend
 | --- | --- | --- |
 | `NECRO_DATA_DIR` | `backend/.data` | SQLite database and run data |
 | `NECRO_ALLOWED_ROOTS` | none | Extra directories (separated by `:`) that local paths may point into |
-| `NECRO_FIXTURES_DIR` | `backend/fixtures` | Demo fixtures, always allowed |
+| `NECRO_FIXTURES_DIR` | `fixtures` | Demo fixtures, always allowed |
+| `NECRO_ALLOW_HOST_FIXTURE_EXEC` | `1` | Run bundled fixtures' baseline tests on the host. `0` disables it |
 
 `/` and your home directory are refused as roots. Git URLs must be `https://`, `ssh://` or
 `git@host:path`.
@@ -205,10 +233,19 @@ keyboard focus, reduced motion and CPU-only laptops.
 
 ```
 .kiro/specs/repo-necromancer/   requirements.md, design.md, tasks.md
-.kiro/steering/                 product, stack, rules, security, standards, testing
-backend/app/                    FastAPI app (api, repositories, runs, db, schemas)
-backend/fixtures/               demo fixtures
-backend/tests/                  pytest suite
+.kiro/steering/                 product, stack, rules, security, standards, testing, brand
+backend/app/
+  api/            thin FastAPI routers
+  repositories/   intake: path and URL validation, read-only detection
+  adapters/       language adapters (Python today): models, AST, dependencies, Ruff, pip-audit
+  agents/         roadmap generation
+  graph/          LangGraph state, nodes, workflow, runner
+  execution/      command runner and secret redaction
+  runs/           run lifecycle, event log, orchestrator
+  workspace.py    snapshots, commit pinning, hardened clone
+backend/tests/    pytest suite
+fixtures/         demo fixtures (legacy-python-cli)
+frontend/         theme tokens only for now
 ```
 
 ## Terminology

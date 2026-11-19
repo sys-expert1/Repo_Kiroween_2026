@@ -1,0 +1,46 @@
+/* Repo Necromancer design tokens. Haunted Cyberpunk: a gothic software-forensics console.
+   Source of truth: .kiro/steering/brand.md. Tailwind will map these in tailwind.config. */
+:root {
+  /* Surfaces */
+  --necro-obsidian: #0b0f17; /* app background */
+  --necro-slate: #111827; /* navigation, panels */
+  --necro-slate-elevated: #1f2937; /* cards, inputs, overlays */
+  --necro-border: #334155;
+
+  /* Signals. Meaning is fixed: see brand.md "Colour meaning". */
+  --necro-emerald: #10b981; /* healthy and verified, only with real evidence */
+  --necro-emerald-muted: #064e3b; /* selected, subtle green surfaces */
+  --necro-violet: #8b5cf6; /* AI and agent activity, never success */
+  --necro-violet-soft: #a78bfa;
+  --necro-amber: #f59e0b; /* approval required, warning */
+  --necro-crimson: #ef4444; /* failure, critical finding */
+  --necro-ice: #38bdf8; /* information */
+
+  /* Text */
+  --necro-text: #e5e7eb;
+  --necro-text-secondary: #94a3b8;
+  --necro-text-muted: #64748b;
+
+  /* Typography roles */
+  --necro-font-heading: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --necro-font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --necro-font-code: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --necro-font-metric: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Layout starting values at 1440 x 900. Not fixed constraints. */
+  --necro-header-height: 64px;
+  --necro-rail-width: 220px;
+  --necro-inspector-width: 280px;
+  --necro-terminal-height: 200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

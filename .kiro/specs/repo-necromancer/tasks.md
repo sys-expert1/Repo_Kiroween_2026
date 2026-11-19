@@ -11,26 +11,26 @@ Python flow before any other language.
   - [x] 2.3 Read-only repository detection
   - [x] 2.4 Repositories and fixtures endpoints
   - [x] 2.5 Revive endpoints (start, stream, approve, cancel, artifacts)
-- [ ] 2.6 Align contracts with the blueprint (see design.md, Known deviations)
-  - [ ] Rename SSE fields to `sequence`, `timestamp`, `payload`
-  - [ ] Adopt blueprint event types (`run_started`, `stage_changed`, `hitl_required`, ...)
-  - [ ] Add `edit` approval decision, roadmap version and patch-set digest to the approval record
-  - [ ] Rename fixture to `legacy-python-cli` and move to top-level `fixtures/`
-  - [ ] Add duplicate-event protection on the client contract
-- [ ] 2.7 LangGraph state definition and frontend theme tokens
+- [x] 2.6 Align contracts with the blueprint
+  - [x] SSE fields `sequence`, `timestamp`, `payload`; blueprint event types
+  - [x] `edit` approval decision, roadmap version and patch-set digest in the approval record
+  - [x] Fixture `legacy-python-cli` (Click) in top-level `fixtures/`
+  - [x] Unique ordered event sequence (client de-duplicates by `sequence`)
+- [x] 2.7 LangGraph state definition and frontend theme tokens
 
 ## Day 2: Python Autopsy
-- [ ] 3. Python adapter and shared adapter interface
-  - [ ] 3.1 Git clone into managed workspace, pin commit SHA, snapshot
-  - [ ] 3.2 Framework, dependency and test discovery
-  - [ ] 3.3 Ruff and pip-audit integration
-  - [ ] 3.4 Finding model and AUTOPSY_REPORT.md
+- [x] 3. Python adapter and shared adapter interface
+  - [x] 3.1 Git clone into managed workspace, pin commit SHA, snapshot
+  - [x] 3.2 Framework, dependency and test discovery
+  - [x] 3.3 Ruff and pip-audit integration (unmeasured results stay unknown)
+  - [x] 3.4 Finding model and AUTOPSY_REPORT.md
 
 ## Day 3: Characterization and approval
-- [ ] 4. LangGraph workflow with SQLite checkpointer, cancellation, bounded retries
-- [ ] 5. Characterization (baseline tests, coverage only if measured) and CHARACTERIZATION_REPORT.md
-- [ ] 5.1 Roadmap generation (LiteLLM) and REVIVAL_ROADMAP.md
-- [ ] 5.2 Approval interrupt, resume after approval, resume after process restart
+- [x] 4. LangGraph workflow with SQLite checkpointer, cancellation, bounded retries
+- [x] 5. Characterization (baseline tests, coverage only if measured) and CHARACTERIZATION_REPORT.md
+  - [x] Baseline runs for bundled fixtures; other sources report "not run" until task 6
+- [x] 5.1 Roadmap generation and REVIVAL_ROADMAP.md (deterministic; LiteLLM not used yet)
+- [x] 5.2 Approval interrupt, resume after approval, resume after process restart
 
 ## Day 4: Reanimation
 - [ ] 6. Docker sandbox runner (non-root, CPU/memory/PID/time limits, no network, restricted mounts)

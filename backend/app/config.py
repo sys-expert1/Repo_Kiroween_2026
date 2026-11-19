@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
-FIXTURES_DIR = BACKEND_DIR / "fixtures"
+FIXTURES_DIR = BACKEND_DIR.parent / "fixtures"
 
 
 @dataclass(frozen=True)
@@ -15,6 +15,10 @@ class Settings:
     data_dir: Path
     allowed_roots: tuple[Path, ...]
     fixtures_dir: Path
+    # Bundled demo fixtures are trusted code. When true, their baseline tests may run on the host
+    # (resource-limited) because the Docker sandbox does not exist yet. Never applies to Git URLs
+    # or local paths.
+    allow_host_fixture_exec: bool = True
 
     @property
     def db_url(self) -> str:
@@ -38,4 +42,5 @@ def load_settings() -> Settings:
         data_dir=data_dir,
         allowed_roots=tuple(dict.fromkeys(roots)),
         fixtures_dir=fixtures_dir,
+        allow_host_fixture_exec=os.environ.get("NECRO_ALLOW_HOST_FIXTURE_EXEC", "1") != "0",
     )

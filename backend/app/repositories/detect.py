@@ -10,7 +10,15 @@ from app.schemas import LanguageStat, RepositorySignals
 MAX_FILES = 20_000
 MAX_BYTES_PER_FILE = 2_000_000
 SKIP_DIRS = {
-    ".git", "node_modules", ".venv", "venv", "__pycache__", ".tox", ".mypy_cache", "dist", "build",
+    ".git",
+    "node_modules",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".tox",
+    ".mypy_cache",
+    "dist",
+    "build",
 }
 CI_MARKERS = {".gitlab-ci.yml", ".travis.yml", "Jenkinsfile", ".circleci"}
 LANGUAGES = {

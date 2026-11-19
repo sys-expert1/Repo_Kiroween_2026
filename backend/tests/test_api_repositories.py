@@ -4,7 +4,7 @@ from pathlib import Path
 
 from fastapi.testclient import TestClient
 
-FIXTURE = {"fixture_id": "legacy_flask_app"}
+FIXTURE = {"fixture_id": "legacy-python-cli"}
 
 
 def test_health(client: TestClient):
@@ -13,7 +13,7 @@ def test_health(client: TestClient):
 
 def test_fixtures_listed(client: TestClient):
     body = client.get("/api/fixtures").json()
-    assert [f["id"] for f in body] == ["legacy_flask_app"]
+    assert [f["id"] for f in body] == ["legacy-python-cli"]
     assert body[0]["language"] == "python"
 
 
@@ -36,7 +36,9 @@ def test_inspect_does_not_persist(client: TestClient):
 
 
 def test_inspect_git_url_has_unknown_signals(client: TestClient):
-    r = client.post("/api/repositories/inspect", json={"git_url": "https://github.com/org/repo.git"})
+    r = client.post(
+        "/api/repositories/inspect", json={"git_url": "https://github.com/org/repo.git"}
+    )
     assert r.status_code == 200
     assert r.json()["signals"] is None
     assert r.json()["display_name"] == "repo"
@@ -88,7 +90,7 @@ def test_bad_git_urls_and_unknown_fixture_return_422(client: TestClient):
 
 def test_exactly_one_source_required(client: TestClient):
     assert client.post("/api/repositories/inspect", json={}).status_code == 422
-    both = {"fixture_id": "legacy_flask_app", "git_url": "https://github.com/o/r"}
+    both = {"fixture_id": "legacy-python-cli", "git_url": "https://github.com/o/r"}
     assert client.post("/api/repositories/inspect", json=both).status_code == 422
     assert client.post("/api/repositories/inspect", json={**FIXTURE, "x": 1}).status_code == 422
 

@@ -85,7 +85,7 @@ class FixtureOut(BaseModel):
     language: Literal["python"]
 
 
-class Phase(StrEnum):
+class Stage(StrEnum):
     AUTOPSY = "AUTOPSY"
     CHARACTERIZATION = "CHARACTERIZATION"
     REANIMATION = "REANIMATION"
@@ -104,6 +104,25 @@ class RunStatus(StrEnum):
 TERMINAL_STATUSES = frozenset({RunStatus.COMPLETED, RunStatus.FAILED, RunStatus.CANCELLED})
 
 
+class EventType(StrEnum):
+    """Blueprint event types, plus two documented extensions (RUN_CANCELLED, CANCEL_REQUESTED)."""
+
+    RUN_STARTED = "run_started"
+    STAGE_CHANGED = "stage_changed"
+    HEALTH_SCORE_UPDATED = "health_score_updated"
+    ROADMAP_READY = "roadmap_ready"
+    HITL_REQUIRED = "hitl_required"
+    APPROVAL_RECEIVED = "approval_received"
+    DIFF_GENERATED = "diff_generated"
+    TERMINAL_LOG = "terminal_log"
+    VERIFICATION_COMPLETED = "verification_completed"
+    RUN_COMPLETED = "run_completed"
+    RUN_FAILED = "run_failed"
+    # Extensions: the blueprint list has no cancelled terminal event or cancel acknowledgement.
+    RUN_CANCELLED = "run_cancelled"
+    CANCEL_REQUESTED = "cancel_requested"
+
+
 class StartRunRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -112,10 +131,18 @@ class StartRunRequest(BaseModel):
 
 
 class ApprovalRequest(BaseModel):
+    """Decision on the roadmap a run is waiting on.
+
+    `roadmap_version` must match the version the run is awaiting, so a stale approval cannot
+    authorize a different roadmap. `excluded_task_ids` applies to `edit` only.
+    """
+
     model_config = ConfigDict(extra="forbid")
 
-    decision: Literal["approve", "reject"]
+    decision: Literal["approve", "edit", "reject"]
     note: str | None = Field(default=None, max_length=2000)
+    roadmap_version: int | None = Field(default=None, ge=1)
+    excluded_task_ids: list[str] = Field(default_factory=list, max_length=500)
 
 
 class RunOut(BaseModel):
@@ -123,27 +150,34 @@ class RunOut(BaseModel):
     repository_id: str
     mode: ExecutionMode
     status: RunStatus
-    phase: Phase | None
+    current_stage: Stage | None
     cancel_requested: bool
+    roadmap_version: int | None
+    patch_set_digest: str | None
+    pinned_commit: str | None
+    error: str | None
     created_at: datetime
     updated_at: datetime
+    completed_at: datetime | None
 
 
 class RunEventOut(BaseModel):
-    """Payload of one SSE event. The SSE `id:` field is `seq`."""
+    """Payload of one SSE event. The SSE `id:` field is `sequence`."""
 
     event_id: str
     run_id: str
-    seq: int
-    ts: datetime
-    type: str
-    data: dict
+    sequence: int
+    type: EventType
+    timestamp: datetime
+    payload: dict
 
 
 class ArtifactOut(BaseModel):
     id: str
-    kind: str
+    type: str
     name: str
+    checksum: str
+    size: int
     created_at: datetime
 
 

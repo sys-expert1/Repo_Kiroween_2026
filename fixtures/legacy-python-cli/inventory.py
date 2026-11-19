@@ -1,7 +1,7 @@
 import os
 import sys
 
-SECRET_KEY = "hunter2-do-not-commit"
+API_TOKEN = "legacy-token-do-not-commit"
 ITEMS = {}
 
 

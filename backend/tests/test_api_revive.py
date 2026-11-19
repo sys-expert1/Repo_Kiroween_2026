@@ -6,164 +6,241 @@ import pytest
 from fastapi.testclient import TestClient
 
 from app.db import ApprovalRow
-from app.runs import service
-from app.schemas import Phase, RunStatus
+from app.schemas import EventType
+from tests.helpers import parse_sse
+
+FIXTURE = {"fixture_id": "legacy-python-cli"}
 
 
-@pytest.fixture
-def repo_id(client: TestClient) -> str:
-    body = {"fixture_id": "legacy_flask_app"}
-    return client.post("/api/repositories/import", json=body).json()["id"]
+def start(client: TestClient, mode: str = "REVIVE") -> dict:
+    repo = client.post("/api/repositories/import", json=FIXTURE).json()["id"]
+    r = client.post("/api/revive/start", json={"repository_id": repo, "mode": mode})
+    assert r.status_code == 201, r.text
+    return r.json()
 
 
-@pytest.fixture
-def run_id(client: TestClient, repo_id: str) -> str:
-    r = client.post("/api/revive/start", json={"repository_id": repo_id, "mode": "PREVIEW"})
-    assert r.status_code == 201
-    return r.json()["id"]
-
-
-def set_status(client: TestClient, run_id: str, status: RunStatus, phase: Phase | None = None):
-    with client.app.state.session_factory() as db:
-        service.transition(db, run_id, status, phase)
-
-
-def parse_sse(body: str) -> list[dict]:
-    events = []
-    for block in body.split("\n\n"):
-        fields = dict(line.split(": ", 1) for line in block.splitlines() if ": " in line)
-        if "data" in fields:
-            events.append(
-                {"id": fields["id"], "event": fields["event"], "data": json.loads(fields["data"])}
-            )
-    return events
-
-
-def test_start_creates_queued_run_with_created_event(client: TestClient, repo_id: str):
-    r = client.post("/api/revive/start", json={"repository_id": repo_id})
-    body = r.json()
-    assert body["status"] == "QUEUED" and body["mode"] == "INSPECT" and body["phase"] is None
-    assert body["cancel_requested"] is False
+def approve(client: TestClient, run: dict, decision: str = "approve", **extra) -> object:
+    body = {"decision": decision, "roadmap_version": run["roadmap_version"], **extra}
+    return client.post(f"/api/revive/approve/{run['id']}", json=body)
 
 
 def test_start_validation(client: TestClient):
     assert client.post("/api/revive/start", json={"repository_id": "missing"}).status_code == 404
     assert client.post("/api/revive/start", json={}).status_code == 422
-    bad_mode = {"repository_id": "x", "mode": "DESTROY"}
-    assert client.post("/api/revive/start", json=bad_mode).status_code == 422
+    bad = {"repository_id": "x", "mode": "DESTROY"}
+    assert client.post("/api/revive/start", json=bad).status_code == 422
 
 
-def test_approve_only_when_awaiting(client: TestClient, run_id: str):
-    r = client.post(f"/api/revive/approve/{run_id}", json={"decision": "approve"})
+def test_default_mode_is_inspect(client: TestClient):
+    repo = client.post("/api/repositories/import", json=FIXTURE).json()["id"]
+    run = client.post("/api/revive/start", json={"repository_id": repo}).json()
+    assert run["mode"] == "INSPECT" and run["status"] == "COMPLETED"
+
+
+def test_approve_only_when_awaiting(client: TestClient):
+    run = start(client, "INSPECT")  # completed, never awaiting
+    r = client.post(f"/api/revive/approve/{run['id']}", json={"decision": "approve"})
     assert r.status_code == 409
     with client.app.state.session_factory() as db:
         assert db.query(ApprovalRow).count() == 0
 
 
-def test_approve_records_decision_and_resumes(client: TestClient, run_id: str):
-    set_status(client, run_id, RunStatus.AWAITING_APPROVAL, Phase.REANIMATION)
-    r = client.post(f"/api/revive/approve/{run_id}", json={"decision": "approve", "note": "ok"})
-    assert r.status_code == 200 and r.json()["status"] == "RUNNING"
+def test_approval_requires_matching_roadmap_version(client: TestClient):
+    run = start(client)
+    assert run["status"] == "AWAITING_APPROVAL"
+    missing = client.post(f"/api/revive/approve/{run['id']}", json={"decision": "approve"})
+    stale = approve(client, {**run, "roadmap_version": 99})
+    assert missing.status_code == 409 and stale.status_code == 409
+    with client.app.state.session_factory() as db:
+        assert db.query(ApprovalRow).count() == 0
+
+
+def test_approve_records_digest_and_cannot_be_replayed(client: TestClient):
+    run = start(client)
+    r = approve(client, run, note="looks right")
+    assert r.status_code == 200
     with client.app.state.session_factory() as db:
         rows = db.query(ApprovalRow).all()
-        assert [(a.run_id, a.decision, a.note) for a in rows] == [(run_id, "approve", "ok")]
-    # A second approval cannot replay the same gate.
-    again = client.post(f"/api/revive/approve/{run_id}", json={"decision": "approve"})
-    assert again.status_code == 409
+        assert len(rows) == 1
+        row = rows[0]
+        assert (row.decision, row.note, row.roadmap_version, row.actor) == (
+            "approve", "looks right", 1, "local",
+        )  # fmt: skip
+        assert row.patch_set_digest == run["patch_set_digest"] and len(row.patch_set_digest) == 64
+    assert approve(client, run).status_code == 409  # run is no longer awaiting
 
 
-def test_reject_cancels_run(client: TestClient, run_id: str):
-    set_status(client, run_id, RunStatus.AWAITING_APPROVAL, Phase.REANIMATION)
-    r = client.post(f"/api/revive/approve/{run_id}", json={"decision": "reject"})
-    assert r.json()["status"] == "CANCELLED"
+def test_approve_resumes_then_fails_honestly_at_reanimation(client: TestClient):
+    run = start(client)
+    final = approve(client, run).json()
+    assert final["status"] == "FAILED" and final["current_stage"] == "REANIMATION"
+    assert "not implemented" in final["error"]
+    events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
+    assert events[-1]["type"] == "run_failed"
+    assert events[-1]["payload"]["reason"] == "reanimation_not_implemented"
 
 
-def test_approve_bad_input(client: TestClient, run_id: str):
-    maybe = client.post(f"/api/revive/approve/{run_id}", json={"decision": "maybe"})
-    assert maybe.status_code == 422
-    missing = client.post("/api/revive/approve/nope", json={"decision": "approve"})
-    assert missing.status_code == 404
+def test_edit_creates_new_roadmap_version_and_awaits_again(client: TestClient):
+    run = start(client)
+    roadmap = json.loads(_artifact(client, run["id"], "roadmap.v1.json"))
+    drop = roadmap["tasks"][-1]["id"]
+    r = approve(client, run, "edit", excluded_task_ids=[drop])
+    body = r.json()
+    assert r.status_code == 200
+    assert body["status"] == "AWAITING_APPROVAL" and body["roadmap_version"] == 2
+    assert body["patch_set_digest"] != run["patch_set_digest"]
+    v2 = json.loads(_artifact(client, run["id"], "roadmap.v2.json"))
+    assert {t["id"]: t["status"] for t in v2["tasks"]}[drop] == "excluded"
+    # The old version can no longer be approved.
+    assert approve(client, run).status_code == 409
 
 
-def test_cancel_queued_is_immediate(client: TestClient, run_id: str):
-    r = client.post(f"/api/revive/{run_id}/cancel")
-    assert r.json()["status"] == "CANCELLED" and r.json()["cancel_requested"] is True
-    assert client.post(f"/api/revive/{run_id}/cancel").status_code == 409
+def test_edit_rejects_unknown_task_and_empty_result(client: TestClient):
+    run = start(client)
+    roadmap = json.loads(_artifact(client, run["id"], "roadmap.v1.json"))
+    unknown = approve(client, run, "edit", excluded_task_ids=["RT-999"])
+    everything = approve(client, run, "edit", excluded_task_ids=[t["id"] for t in roadmap["tasks"]])
+    assert unknown.status_code == 422 and everything.status_code == 422
+    with client.app.state.session_factory() as db:
+        assert db.query(ApprovalRow).count() == 0  # invalid edits are not recorded
+    assert client.get(f"/api/revive/{run['id']}/artifacts").status_code == 200
 
 
-def test_cancel_running_only_requests(client: TestClient, run_id: str):
-    set_status(client, run_id, RunStatus.RUNNING, Phase.AUTOPSY)
-    r = client.post(f"/api/revive/{run_id}/cancel").json()
-    assert r["status"] == "RUNNING" and r["cancel_requested"] is True
+def test_reject_cancels_and_ends_the_graph(client: TestClient):
+    run = start(client)
+    body = approve(client, run, "reject").json()
+    assert body["status"] == "CANCELLED"
+    assert not client.app.state.workflow.is_waiting(run["id"])
+    events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
+    assert [e["type"] for e in events[-2:]] == ["approval_received", "run_cancelled"]
+
+
+def test_approve_bad_input(client: TestClient):
+    run = start(client)
+    assert approve(client, run, "maybe").status_code == 422
+    nope = client.post("/api/revive/approve/nope", json={"decision": "approve"})
+    assert nope.status_code == 404
+
+
+def test_cancel_awaiting_run_closes_graph(client: TestClient):
+    run = start(client)
+    r = client.post(f"/api/revive/{run['id']}/cancel").json()
+    assert r["status"] == "CANCELLED" and r["cancel_requested"] is True
+    assert not client.app.state.workflow.is_waiting(run["id"])
+    assert client.post(f"/api/revive/{run['id']}/cancel").status_code == 409
+
+
+def test_cancel_before_start_skips_all_work(deferred_client, fake_runner):
+    client, executor = deferred_client
+    repo = client.post("/api/repositories/import", json=FIXTURE).json()["id"]
+    run = client.post("/api/revive/start", json={"repository_id": repo, "mode": "REVIVE"}).json()
+    assert run["status"] == "QUEUED"
+    assert client.post(f"/api/revive/{run['id']}/cancel").json()["status"] == "CANCELLED"
+    executor.run_all()
+    assert fake_runner.calls == []  # nothing ran
+    assert client.get(f"/api/revive/{run['id']}/artifacts").json() == []
 
 
 def test_cancel_unknown_404(client: TestClient):
     assert client.post("/api/revive/nope/cancel").status_code == 404
 
 
-def test_terminal_status_is_final(client: TestClient, run_id: str):
-    client.post(f"/api/revive/{run_id}/cancel")
-    with client.app.state.session_factory() as db, pytest.raises(service.InvalidStateError):
-        service.transition(db, run_id, RunStatus.RUNNING)
+def _artifact(client: TestClient, run_id: str, name: str) -> str:
+    arts = client.get(f"/api/revive/{run_id}/artifacts").json()
+    art = next(a for a in arts if a["name"] == name)
+    return client.get(f"/api/revive/{run_id}/artifacts/{art['id']}").text
 
 
-def test_artifacts(client: TestClient, run_id: str):
-    assert client.get(f"/api/revive/{run_id}/artifacts").json() == []
+def test_artifacts_listed_with_checksums_and_downloadable(client: TestClient):
+    run = start(client)
+    arts = client.get(f"/api/revive/{run['id']}/artifacts").json()
+    names = {a["name"] for a in arts}
+    assert {"AUTOPSY_REPORT.md", "CHARACTERIZATION_REPORT.md", "REVIVAL_ROADMAP.v1.md"} <= names
+    assert all(len(a["checksum"]) == 64 and a["size"] > 0 for a in arts)
+    md = _artifact(client, run["id"], "AUTOPSY_REPORT.md")
+    assert (
+        "# Autopsy Report" in md and "legacy-token-do-not-commit" not in md
+    )  # secret value never reported
+
+
+def test_artifact_tampering_is_detected(client: TestClient):
+    run = start(client)
+    arts = client.get(f"/api/revive/{run['id']}/artifacts").json()
+    art = arts[0]
+    with client.app.state.session_factory() as db:
+        from app.db import ArtifactRow
+
+        path = db.get(ArtifactRow, art["id"]).path
+    open(path, "ab").write(b"tampered")
+    r = client.get(f"/api/revive/{run['id']}/artifacts/{art['id']}")
+    assert r.status_code == 409
+
+
+def test_artifact_access_is_scoped_to_run(client: TestClient):
+    a = start(client, "INSPECT")
+    b = start(client, "INSPECT")
+    art = client.get(f"/api/revive/{a['id']}/artifacts").json()[0]
+    assert client.get(f"/api/revive/{b['id']}/artifacts/{art['id']}").status_code == 404
+    assert client.get(f"/api/revive/{a['id']}/artifacts/nope").status_code == 404
     assert client.get("/api/revive/nope/artifacts").status_code == 404
 
 
-def test_stream_replays_events_with_ids_and_ends_when_terminal(client: TestClient, run_id: str):
-    client.app.state.sse_poll_seconds = 0.01
-    set_status(client, run_id, RunStatus.RUNNING, Phase.AUTOPSY)
-    client.post(f"/api/revive/{run_id}/cancel")  # request only; executor finalizes
-    set_status(client, run_id, RunStatus.CANCELLED)
-    r = client.get(f"/api/revive/stream/{run_id}")
+def test_stream_has_blueprint_envelope_and_ordered_events(client: TestClient):
+    run = start(client, "PREVIEW")
+    r = client.get(f"/api/revive/stream/{run['id']}")
     assert r.headers["content-type"].startswith("text/event-stream")
     events = parse_sse(r.text)
-    assert [e["data"]["seq"] for e in events] == [1, 2, 3, 4]
-    assert [e["id"] for e in events] == ["1", "2", "3", "4"]
-    assert [e["event"] for e in events] == [
-        "run.created", "run.status", "run.cancel_requested", "run.status",
-    ]
-    first = events[0]["data"]
-    assert first["run_id"] == run_id and first["event_id"] == f"{run_id}:1"
-    assert first["ts"] and first["data"]["mode"] == "PREVIEW"
-    assert events[-1]["data"]["data"]["status"] == "CANCELLED"
+    assert [e["sequence"] for e in events] == list(range(1, len(events) + 1))
+    assert [e["id"] for e in events] == [str(e["sequence"]) for e in events]
+    first = events[0]
+    assert set(first) >= {"event_id", "run_id", "sequence", "type", "timestamp", "payload"}
+    assert first["type"] == "run_started" and first["event_id"] == f"{run['id']}:1"
+    assert {e["type"] for e in events} <= {t.value for t in EventType}
+    assert events[-1]["type"] == "run_completed"
+    stages = [e["payload"]["stage"] for e in events if e["type"] == "stage_changed"]
+    assert stages == ["AUTOPSY", "CHARACTERIZATION", "REANIMATION"]
 
 
-def test_stream_ends_with_terminal_status(client: TestClient, run_id: str):
-    client.app.state.sse_poll_seconds = 0.01
-    client.post(f"/api/revive/{run_id}/cancel")
-    events = parse_sse(client.get(f"/api/revive/stream/{run_id}").text)
-    assert events[-1]["data"]["data"]["status"] == "CANCELLED"
+def test_stream_terminal_log_carries_real_command_and_exit_code(client: TestClient):
+    run = start(client, "INSPECT")
+    events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
+    logs = [e["payload"] for e in events if e["type"] == "terminal_log"]
+    assert any("ruff" in p["command"] and p["exit_code"] == 1 for p in logs)
+    assert any("pytest" in p["command"] and p["exit_code"] == 1 for p in logs)
+    assert all(isinstance(p["duration_seconds"], float) for p in logs)
 
 
-def test_stream_resume_with_last_event_id_and_after(client: TestClient, run_id: str):
-    client.app.state.sse_poll_seconds = 0.01
-    client.post(f"/api/revive/{run_id}/cancel")  # events: 1 created, 2 cancelled
+def test_stream_resume_with_last_event_id_and_after(client: TestClient):
+    run = start(client, "INSPECT")
+    full = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
     resumed = parse_sse(
-        client.get(f"/api/revive/stream/{run_id}", headers={"Last-Event-ID": "1"}).text
+        client.get(f"/api/revive/stream/{run['id']}", headers={"Last-Event-ID": "3"}).text
     )
-    assert [e["data"]["seq"] for e in resumed] == [2]
-    by_query = parse_sse(client.get(f"/api/revive/stream/{run_id}?after=2").text)
-    assert by_query == []
+    assert [e["sequence"] for e in resumed] == [e["sequence"] for e in full if e["sequence"] > 3]
+    last = full[-1]["sequence"]
+    assert parse_sse(client.get(f"/api/revive/stream/{run['id']}?after={last}").text) == []
 
 
-def test_stream_errors(client: TestClient, run_id: str):
+def test_stream_errors(client: TestClient):
+    run = start(client, "INSPECT")
     assert client.get("/api/revive/stream/nope").status_code == 404
-    bad = client.get(f"/api/revive/stream/{run_id}", headers={"Last-Event-ID": "abc"})
-    assert bad.status_code == 400
-    neg = client.get(f"/api/revive/stream/{run_id}", headers={"Last-Event-ID": "-1"})
-    assert neg.status_code == 400
+    for bad in ("abc", "-1"):
+        r = client.get(f"/api/revive/stream/{run['id']}", headers={"Last-Event-ID": bad})
+        assert r.status_code == 400
 
 
-def test_events_are_isolated_per_run(client: TestClient, repo_id: str):
-    client.app.state.sse_poll_seconds = 0.01
-    a = client.post("/api/revive/start", json={"repository_id": repo_id}).json()["id"]
-    b = client.post("/api/revive/start", json={"repository_id": repo_id}).json()["id"]
-    client.post(f"/api/revive/{a}/cancel")
-    client.post(f"/api/revive/{b}/cancel")
-    for rid in (a, b):
-        events = parse_sse(client.get(f"/api/revive/stream/{rid}").text)
-        assert {e["data"]["run_id"] for e in events} == {rid}
-        assert [e["data"]["seq"] for e in events] == [1, 2]
+def test_events_are_isolated_per_run(client: TestClient):
+    a, b = start(client, "INSPECT"), start(client, "INSPECT")
+    for run in (a, b):
+        events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
+        assert {e["run_id"] for e in events} == {run["id"]}
+        assert [e["sequence"] for e in events] == list(range(1, len(events) + 1))
+
+
+@pytest.mark.parametrize("mode", ["INSPECT", "PREVIEW"])
+def test_non_revive_modes_never_ask_for_approval(client: TestClient, mode: str):
+    run = start(client, mode)
+    events = parse_sse(client.get(f"/api/revive/stream/{run['id']}").text)
+    assert run["status"] == "COMPLETED"
+    assert "hitl_required" not in {e["type"] for e in events}
+    assert events[-1]["payload"]["patches_generated"] is False
