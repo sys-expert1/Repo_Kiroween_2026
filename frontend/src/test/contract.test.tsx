@@ -16,7 +16,7 @@ import real from "./real-run.json";
  * These tests replay a real run exported from the backend (see backend/tests/export_ui_fixture.py).
  * They fail if the backend's event or artifact shapes drift away from what the UI reads.
  */
-type Export = typeof real.verified | typeof real.rolled_back;
+type Export = typeof real.verified | typeof real.rolled_back | typeof real.typescript;
 const load = (e: Export) => ({
   events: e.events as unknown as RunEvent[],
   run: e.final_run as unknown as Run,
@@ -130,5 +130,44 @@ describe("a run waiting for approval from the real backend", () => {
     expect(midway.approval).not.toBeNull();
     expect(stageStates(midway, waiting).REANIMATION).toBe("awaiting_approval");
     expect(stageStates(midway, waiting).CONSECRATION).toBe("pending");
+  });
+});
+
+describe("a TypeScript run from the real backend", () => {
+  const { events, run, data, artifacts } = load(real.typescript);
+  const view = replay(run.id, events);
+
+  it("completes through every stage and reports the language it analysed", () => {
+    expect(data.autopsy_data.language).toBe("TypeScript");
+    expect(view.status).toBe("COMPLETED");
+    expect(view.verdict).toBe("verified");
+    expect(stageStates(view, run)).toEqual({
+      AUTOPSY: "completed", CHARACTERIZATION: "completed", REANIMATION: "completed", CONSECRATION: "completed",
+    });
+  });
+
+  it("keeps code quality unknown instead of scoring it", () => {
+    expect(view.scoreAfter?.unmeasured).toEqual(["code_quality"]);
+    const quality = view.scoreAfter!.dimensions.find((d) => d.name === "code_quality");
+    expect(quality?.score).toBeNull();
+    expect(data.autopsy_data.lint_violations).toBeNull();
+  });
+
+  it("renders the TypeScript findings, a Node baseline and the CI patch", () => {
+    const patched = new Set(data.patch_set_data.patches.map((p) => p.task_id));
+    const skipped = new Map(data.patch_set_data.skipped.map((s) => [s.task_id, s.reason]));
+    render(
+      <>
+        <RoadmapView roadmap={data.roadmap_data} patchedTaskIds={patched} skipped={skipped} editing={null} />
+        <DiffInspector patches={data.patch_set_data} />
+        <HealthMeter before={view.scoreBefore} after={view.scoreAfter} autopsy={data.autopsy_data} warning={null} />
+        <Overview run={run} autopsy={data.autopsy_data} baseline={data.characterization_data} verification={data.verification_data} artifacts={artifacts} hasRepository />
+      </>,
+    );
+    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("Use of `eval`", { selector: "h3" })).toBeInTheDocument();
+    expect(screen.getByRole("navigation", { name: "Changed files" })).toHaveTextContent(".github/workflows/ci.yml");
+    expect(screen.getAllByText(/not measured/i).length).toBeGreaterThan(0);
+    expect(screen.getByText("totalItems known failure", { selector: "li" })).toBeInTheDocument(); // baseline list
   });
 });

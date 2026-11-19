@@ -16,6 +16,9 @@ CommandObserver = Callable[[CommandResult], None]
 class LanguageAdapter(Protocol):
     language: str
 
+    def score(self, root: Path) -> int:
+        """How strongly this adapter applies (0 means not at all). The highest score wins."""
+
     def detect(self, root: Path) -> bool:
         """True if this adapter applies to the repository at `root`."""
 

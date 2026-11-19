@@ -101,9 +101,9 @@ export function HealthMeter({ before, after, autopsy, warning }: Props) {
           <p className="text-sm text-ink-2">Autopsy has not produced results yet.</p>
         ) : (
           <dl className="space-y-1.5 text-xs">
-            <Row k="Language" v="Python" />
+            <Row k="Language" v={autopsy.language ?? "Python"} />
             <Row k="Frameworks" v={autopsy.frameworks.join(", ") || "none detected"} />
-            <Row k="Python files" v={`${autopsy.python_files} (${autopsy.python_lines} lines)`} />
+            <Row k="Source files" v={`${autopsy.source_files} (${autopsy.source_lines} lines)`} />
             <Row k="Test files" v={String(autopsy.test_files)} />
             <Row k="Known vulnerabilities" v={autopsy.known_vulnerabilities === null ? "not measured" : String(autopsy.known_vulnerabilities)} />
             <Row k="Lint violations" v={autopsy.lint_violations === null ? "not measured" : String(autopsy.lint_violations)} />

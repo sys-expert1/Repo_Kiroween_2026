@@ -153,7 +153,11 @@ def verify(
 
     # Lint must not get worse.
     if before.lint_violations is None or after.lint_violations is None:
-        checks.append(Check(name="lint", status="not_measured", detail="Ruff gave no result."))
+        checks.append(
+            Check(
+                name="lint", status="not_measured", detail="No lint result: the linter did not run."
+            )
+        )
     else:
         worse = after.lint_violations > before.lint_violations
         if worse:
@@ -174,7 +178,7 @@ def verify(
             Check(
                 name="dependency_audit",
                 status="not_measured",
-                detail="pip-audit gave no result (for example, no network).",
+                detail="The dependency audit gave no result (for example, no network).",
             )
         )
     else:

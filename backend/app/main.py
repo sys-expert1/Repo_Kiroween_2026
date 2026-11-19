@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.adapters.base import LanguageAdapter
 from app.adapters.python_adapter import PythonAdapter
+from app.adapters.ts_adapter import TypeScriptAdapter
 from app.agents.llm_patches import LiteLLMClient, LLMClient
 from app.api import repositories, revive
 from app.config import Settings, load_settings
@@ -57,9 +58,10 @@ def create_app(
     executor: Executor | None = None,
     runner_factory: RunnerFactory | None = None,
     adapter: LanguageAdapter | None = None,
+    ts_adapter: LanguageAdapter | None = None,
     llm_client: LLMClient | None = None,
 ) -> FastAPI:
-    """`executor`, `runner_factory` and `adapter` let tests run the workflow inline and offline."""
+    """The executor, runner factory and adapters can be replaced to run inline and offline."""
     settings = settings or load_settings()
     settings.data_dir.mkdir(parents=True, exist_ok=True)
     configure_tracing(settings.otel)
@@ -67,7 +69,7 @@ def create_app(
     ctx = WorkflowContext(
         settings=settings,
         session_factory=session_factory,
-        adapter=adapter or PythonAdapter(),
+        adapters=(adapter or PythonAdapter(), ts_adapter or TypeScriptAdapter()),
         runner_for=runner_factory or default_runner_factory(settings),
         no_runner_reason=no_runner_reason(settings),
         llm_client=llm_client

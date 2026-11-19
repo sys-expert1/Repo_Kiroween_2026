@@ -17,7 +17,7 @@ def finding(i: int, **kw) -> Finding:
 
 def report(findings: list[Finding]) -> AutopsyReport:
     return AutopsyReport(
-        repository_name="r", frameworks=[], python_files=1, python_lines=1, dependency_files=[],
+        repository_name="r", frameworks=[], source_files=1, source_lines=1, dependency_files=[],
         dependencies=[], unpinned_dependencies=[], lockfile_present=False, test_files=0,
         test_functions=0, test_config=[], build_files=[], has_dockerfile=False, has_ci=False,
         findings=findings, tools=[], known_vulnerabilities=None, vulnerable_packages=None,

@@ -10,7 +10,9 @@ from pathlib import Path
 
 from sqlalchemy import select
 
+from app.adapters.base import LanguageAdapter
 from app.adapters.models import AutopsyReport, BaselineReport
+from app.adapters.registry import choose_adapter
 from app.agents.llm_patches import LLMPatcher
 from app.agents.patches import PatchApplyError, PatchSet, apply_patchset, generate_patchset
 from app.agents.roadmap import Roadmap, build_roadmap, revise_roadmap
@@ -135,19 +137,27 @@ class Nodes:
     def autopsy(self, state: WorkflowState) -> dict:
         run_id = state["run_id"]
         root = Path(state["snapshot_dir"])
-        if not self.ctx.adapter.detect(root):
+        adapter = choose_adapter(self.ctx.adapters, root)
+        if adapter is None:
+            supported = ", ".join(a.language for a in self.ctx.adapters)
             raise WorkflowError(
-                f"Unsupported language or toolchain: no {self.ctx.adapter.language} "
-                "sources were found."
+                f"Unsupported language or toolchain: no {supported} sources were found."
             )
-        report = self.ctx.adapter.autopsy(
+        report = adapter.autopsy(
             root, state["repository_name"], run_dir(self.ctx.settings, run_id) / "scratch",
             self._observer(run_id, Stage.AUTOPSY),
         )  # fmt: skip
         self._store(run_id, "autopsy_report", "AUTOPSY_REPORT.md",
                     autopsy_md(report, state.get("commit")).encode())  # fmt: skip
         self._store(run_id, "autopsy_data", "autopsy.json", _json(report))
-        return {"autopsy": report.model_dump()}
+        return {"autopsy": report.model_dump(), "language": adapter.language}
+
+    def _adapter(self, state: WorkflowState) -> LanguageAdapter:
+        """The adapter chosen in Autopsy. Every later stage uses the same one."""
+        for adapter in self.ctx.adapters:
+            if adapter.language == state.get("language"):
+                return adapter
+        raise WorkflowError(f"No adapter for language {state.get('language')!r}.")
 
     def characterization(self, state: WorkflowState) -> dict:
         run_id = state["run_id"]
@@ -175,7 +185,7 @@ class Nodes:
         run_id = state["run_id"]
         home = run_dir(self.ctx.settings, run_id) / "scratch" / "home"
         runner = self.ctx.runner_for(state["source_type"], home)
-        report = self.ctx.adapter.characterize(
+        report = self._adapter(state).characterize(
             copy, runner, self._observer(run_id, stage), self.ctx.baseline_timeout
         )
         if report.status == "not_run":
@@ -225,7 +235,7 @@ class Nodes:
         roadmap = Roadmap(**state["roadmap"])
         scratch = run_dir(self.ctx.settings, run_id) / "scratch"
         fixer = partial(
-            self.ctx.adapter.fix_lint, scratch=scratch,
+            self._adapter(state).fix_lint, scratch=scratch,
             observe=self._observer(run_id, Stage.REANIMATION),
         )  # fmt: skip
         llm = (
@@ -395,7 +405,7 @@ class Nodes:
         before = AutopsyReport(**state["autopsy"])
         baseline = BaselineReport(**state["baseline"])
 
-        after = self.ctx.adapter.autopsy(
+        after = self._adapter(state).autopsy(
             work, state["repository_name"], base / "scratch" / "after", observe
         )
         final_copy = base / "final-run"

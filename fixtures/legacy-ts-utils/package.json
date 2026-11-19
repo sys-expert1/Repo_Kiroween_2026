@@ -1,0 +1,12 @@
+{
+  "name": "legacy-ts-utils",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test"
+  },
+  "dependencies": {
+    "lodash": "4.17.15"
+  }
+}

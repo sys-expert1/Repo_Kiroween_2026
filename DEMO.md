@@ -38,6 +38,11 @@ Your exact numbers can differ if new advisories are published; read them off the
 
 ## Optional beats
 
+- **TypeScript:** pick **Legacy TypeScript Utils** instead. Autopsy runs `npm audit` (network needed)
+  and finds a vulnerable `lodash`, an `eval`, a shell `exec` and a hardcoded token. The Node baseline
+  shows one pass and one pre-existing failure. Revive proposes only a CI workflow and lists why the
+  rest needs a person. Say plainly that code quality is **not measured** for TypeScript.
+
 - **Rollback:** to show failure handling, make a patched run regress (for example, add a second
   failing test to a copy of the fixture under an allowed root). Consecration then fails the run,
   the copy is restored from the snapshot, and the failed copy is kept as evidence.

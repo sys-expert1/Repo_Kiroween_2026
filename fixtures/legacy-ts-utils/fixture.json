@@ -1,0 +1,5 @@
+{
+  "name": "Legacy TypeScript Utils",
+  "description": "A small TypeScript inventory library with a pinned vulnerable dependency, an eval call, a shell exec with user input, a hardcoded token, one failing baseline test and no CI.",
+  "language": "typescript"
+}

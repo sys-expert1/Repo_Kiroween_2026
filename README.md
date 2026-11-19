@@ -47,7 +47,7 @@ docker compose -f deployment/docker-compose.yml up --build
 | Area | State |
 | --- | --- |
 | Intake: Git URL, local path, demo fixture, with path and URL validation | Done |
-| Autopsy: AST, Ruff, pip-audit, secret-pattern scan of config and script files, dependency and test discovery, evidence-backed findings | Done (Python) |
+| Autopsy: AST, Ruff, pip-audit, secret-pattern scan of config and script files, dependency and test discovery, evidence-backed findings | Done for Python and TypeScript |
 | Characterization: baseline tests, pre-existing failures recorded, coverage and build "not measured" | Done |
 | Revival Roadmap: versioned, evidence-linked, editable | Done (rule-based) |
 | Patches: bound to file hashes and a digest, shown as diffs | Done for 6 kinds of task |
@@ -60,12 +60,13 @@ docker compose -f deployment/docker-compose.yml up --build
 | OpenTelemetry traces correlated by run and stage | Built, **off by default** (`NECRO_OTEL`). Tested with an in-memory exporter. Never sent to a real collector |
 | Restricted Docker sandbox | Built and unit tested. **Never run against a real Docker daemon** (see below) |
 | AI-assisted patches (LiteLLM) | Built, **off by default**. Tested with a scripted fake client only. Never called a real model (see below) |
-| TypeScript and C++ adapters, MCP | Not built (P1 and stretch) |
+| TypeScript adapter | Built with limits (see below). Python stays the complete flow |
+| C++ adapter, MCP | Not built (stretch) |
 
 ### What was verified, and what was not
 
-- **Backend:** 281 tests pass and 1 is skipped. `ruff check` is clean.
-- **Frontend:** `tsc --noEmit` is clean, 57 tests pass and the production build succeeds. The tests
+- **Backend:** 320 tests pass and 1 is skipped. `ruff check` is clean.
+- **Frontend:** `tsc --noEmit` is clean, 62 tests pass and the production build succeeds. The tests
   cover the reducer, the stream hook (replay, reconnect, de-duplication), diff escaping, the
   approval flow, and a **contract test that replays a real run exported from the backend**.
 - **Real tools:** a full REVIVE run on the demo fixture was executed with real Ruff, real pytest and
@@ -112,6 +113,29 @@ must match the digest, otherwise nothing is written. Patches are generated for:
 Everything else gets a stated reason instead of a guess, for example "tests are never edited
 automatically" or "no automatic fix exists for this construct". Dependency upgrades can break
 compatibility. Only the repository's tests (and the Docker build, if enabled) check that.
+
+### TypeScript
+
+The repository's dominant language picks the adapter (the one with more source files; a tie goes to
+Python). The demo fixture is `fixtures/legacy-ts-utils`. The adapter never installs dependencies and
+never runs the repository's own `npm test` script, because install scripts and arbitrary test
+commands are untrusted code. That decides what it can measure:
+
+| Measured | How |
+| --- | --- |
+| Dangerous calls (`eval`, `new Function`, `child_process.exec`, `innerHTML`, `document.write`, `dangerouslySetInnerHTML`) | Built-in heuristic scan that ignores comments and strings. Not a type checker |
+| Secrets | The same secret-pattern scan as for Python |
+| Known vulnerabilities | `npm audit --package-lock-only` on a copy of `package.json` and `package-lock.json`, with `--ignore-scripts`. Needs a lockfile and network |
+| Baseline tests | Node's built-in test runner (`node --test`, running `.ts` files directly) when the runner provides Node. Dependencies are not installed, so tests that import a package fail and are labelled as environment errors |
+| **Not measured** | ESLint and the TypeScript compiler (they need installed dependencies), so code quality stays `null` and out of the score |
+
+Patches for TypeScript are limited: a Node CI workflow is generated, but dependency upgrades, `eval`,
+`exec` and secrets are listed with a reason and left to a person. npm upgrades must change
+`package.json` and `package-lock.json` together, and no Dockerfile template exists yet. Findings from
+TypeScript are never sent to a model. Node has no memory cap through `RLIMIT_AS` (V8 fails under it),
+so Node runs use a V8 heap cap (`--max-old-space-size=1024`) plus the CPU and file-size limits. The
+Docker sandbox image contains no Node yet, so TypeScript tests only run for bundled fixtures on the
+host and are reported as not run elsewhere.
 
 ### Secret-pattern scan
 

@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
 import { ev } from "../test/fakes";
-import type { PatchSet, Run, Vitality } from "../types/revival";
+import type { Autopsy, PatchSet, Run, Vitality } from "../types/revival";
 import { ApprovalDialog } from "./ApprovalDialog";
 import { DiffInspector, renderDiff } from "./DiffInspector";
 import { HealthMeter } from "./HealthMeter";
@@ -238,5 +238,26 @@ describe("RunHistory", () => {
   it("formats unfinished and malformed durations without inventing numbers", () => {
     expect(formatDuration(mk({ completed_at: null, status: "RUNNING" }))).toBe("in progress");
     expect(formatDuration(mk({ completed_at: "not a date" }))).toBe("unknown");
+  });
+});
+
+describe("language awareness", () => {
+  const autopsy = (language: "Python" | "TypeScript" | undefined): Autopsy => ({
+    repository_name: "r", language, frameworks: ["React"], source_files: 12, source_lines: 340,
+    dependency_files: [], unpinned_dependencies: [], test_files: 2, test_functions: 5, has_dockerfile: false,
+    has_ci: false, findings: [], tools: [], known_vulnerabilities: null, lint_violations: null,
+  });
+
+  it("shows the language the backend analysed, and says lint was not measured", () => {
+    render(<HealthMeter before={null} after={null} autopsy={autopsy("TypeScript")} warning={null} />);
+    expect(screen.getByText("TypeScript")).toBeInTheDocument();
+    expect(screen.getByText("Source files")).toBeInTheDocument();
+    expect(screen.getByText("12 (340 lines)")).toBeInTheDocument();
+    expect(screen.getByText("Lint violations").nextSibling).toHaveTextContent("not measured");
+  });
+
+  it("falls back to Python for runs recorded before the language field existed", () => {
+    render(<HealthMeter before={null} after={null} autopsy={autopsy(undefined)} warning={null} />);
+    expect(screen.getByText("Python")).toBeInTheDocument();
   });
 });

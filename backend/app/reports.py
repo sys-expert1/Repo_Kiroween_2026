@@ -20,7 +20,7 @@ def autopsy_md(r: AutopsyReport, commit: str | None) -> str:
         f"- Language: {r.language}",
         f"- Frameworks: {', '.join(r.frameworks) or 'none detected'}",
         f"- Pinned commit: {commit or 'not available (not a git source or HEAD unreadable)'}",
-        f"- Python files: {r.python_files} ({r.python_lines} lines)",
+        f"- Source files: {r.source_files} ({r.source_lines} lines)",
         f"- Dependency files: {', '.join(r.dependency_files) or 'none'}",
         f"- Dependencies: {len(r.dependencies)} ({len(r.unpinned_dependencies)} not pinned)",
         f"- Lockfile: {'present' if r.lockfile_present else 'not found'}",

@@ -81,10 +81,21 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
             )
         )
 
-    for f in (x for x in report.findings if x.source == "pip-audit"):
-        pkg = f.title.split(" ")[0]
+    for f in (x for x in report.findings if x.source in ("pip-audit", "npm-audit")):
+        pkg = f.package or f.title.split(" ")[0]
         fixed = re.search(r"Fixed in: (.+?)\.(?: pip-audit|$)", f.evidence)
-        fixes = fixed.group(1) if fixed else "see the advisories"
+        fixes = ", ".join(f.fix_versions) or (fixed.group(1) if fixed else "see the advisories")
+        if f.source == "npm-audit":
+            add(
+                f"Upgrade {pkg} to a patched release", "dependencies", [f],
+                [f.file_path] if f.file_path else [],
+                f"Run `npm install {pkg}@<fixed version>` so package.json and package-lock.json "
+                f"change together. {f.evidence.split('. ')[-1].strip()}",
+                "medium", "S",
+                f"npm audit reports no known vulnerabilities for {pkg}; the test baseline does "
+                "not regress.",
+            )  # fmt: skip
+            continue
         add(
             f"Upgrade {pkg} to a patched release", "dependencies", [f],
             [f.file_path] if f.file_path else [],
@@ -94,9 +105,8 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
             f"pip-audit reports no known vulnerabilities for {pkg}; the test baseline does not "
             "regress.",
         )  # fmt: skip
-    for f in (
-        x for x in report.findings if x.source in ("ast", "secrets") and x.category == "security"
-    ):
+    security = ("ast", "secrets", "ts-scan")
+    for f in (x for x in report.findings if x.source in security and x.category == "security"):
         if f.source == "secrets":
             action = (
                 "Remove the value from the file, load it from the environment or a secrets store, "
@@ -104,6 +114,13 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
                 "Keep local env files out of version control."
             )
             effort, risk = "S", "low"
+        elif f.source == "ts-scan":
+            action = (
+                "Remove the dangerous call or replace it with a safe API (for example `execFile` "
+                "with an argument array instead of `exec`, `textContent` instead of `innerHTML`) "
+                "and validate the input."
+            )
+            effort, risk = "M", "medium"
         elif "secret" in f.title.lower():
             action = (
                 "Remove the literal from source and read it from the environment or a secrets "

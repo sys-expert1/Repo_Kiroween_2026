@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 
 Category = Literal["dependencies", "tests", "code_quality", "security", "ci_docker", "structure"]
 Severity = Literal["critical", "high", "medium", "low", "info"]
-Source = Literal["ast", "ruff", "pip-audit", "detect", "secrets"]
+Source = Literal["ast", "ruff", "pip-audit", "detect", "secrets", "npm-audit", "ts-scan"]
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
 
 
@@ -49,10 +49,10 @@ class ToolRun(BaseModel):
 
 class AutopsyReport(BaseModel):
     repository_name: str
-    language: Literal["Python"] = "Python"
+    language: Literal["Python", "TypeScript"] = "Python"
     frameworks: list[str]
-    python_files: int
-    python_lines: int
+    source_files: int
+    source_lines: int
     dependency_files: list[str]
     dependencies: list[Dependency]
     unpinned_dependencies: list[str]

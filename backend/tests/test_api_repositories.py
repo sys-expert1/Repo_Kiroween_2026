@@ -17,8 +17,8 @@ def test_health(client: TestClient):
 
 def test_fixtures_listed(client: TestClient):
     body = client.get("/api/fixtures").json()
-    assert [f["id"] for f in body] == ["legacy-python-cli"]
-    assert body[0]["language"] == "python"
+    assert [f["id"] for f in body] == ["legacy-python-cli", "legacy-ts-utils"]
+    assert [f["language"] for f in body] == ["python", "typescript"]
 
 
 def test_inspect_fixture_detects_real_signals(client: TestClient):

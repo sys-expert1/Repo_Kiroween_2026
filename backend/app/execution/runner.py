@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import os
 import resource
+import shutil
 import signal
 import subprocess
 import sys
@@ -91,7 +92,7 @@ def run_command(
     env: Mapping[str, str],
     limits: bool = False,
     cpu_seconds: int = 120,
-    memory_bytes: int = 2 * 1024**3,
+    memory_bytes: int | None = 2 * 1024**3,
 ) -> CommandResult:
     """Run argv without a shell. `limits` applies CPU, memory and file-size rlimits."""
 
@@ -99,7 +100,8 @@ def run_command(
         os.setsid()
         if limits:
             resource.setrlimit(resource.RLIMIT_CPU, (cpu_seconds, cpu_seconds))
-            resource.setrlimit(resource.RLIMIT_AS, (memory_bytes, memory_bytes))
+            if memory_bytes is not None:  # V8 reserves huge address ranges, so Node uses a heap cap
+                resource.setrlimit(resource.RLIMIT_AS, (memory_bytes, memory_bytes))
             resource.setrlimit(resource.RLIMIT_FSIZE, (100 * 1024**2, 100 * 1024**2))
 
     started = time.monotonic()
@@ -146,6 +148,7 @@ class HostFixtureRunner:
     """Runs commands for trusted bundled fixtures with resource limits. Not a sandbox."""
 
     python = sys.executable
+    node = shutil.which("node")  # Node is allowed here because bundled fixtures are trusted
 
     def __init__(self, home: Path, timeout_cap: float = 300.0) -> None:
         self._home = home
@@ -153,10 +156,13 @@ class HostFixtureRunner:
 
     def run(self, argv: Sequence[str], cwd: Path, timeout: float) -> CommandResult:
         self._home.mkdir(parents=True, exist_ok=True)
+        is_node = Path(argv[0]).name == "node"
         return run_command(
             argv,
             cwd,
             min(timeout, self._timeout_cap),
             build_env(self._home),
             limits=True,
+            # Node fails under an address-space cap, so its callers pass --max-old-space-size.
+            memory_bytes=None if is_node else 2 * 1024**3,
         )

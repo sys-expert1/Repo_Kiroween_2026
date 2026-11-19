@@ -82,7 +82,7 @@ class FixtureOut(BaseModel):
     id: str
     name: str
     description: str
-    language: Literal["python"]
+    language: Literal["python", "typescript"]
 
 
 class Stage(StrEnum):

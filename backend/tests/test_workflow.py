@@ -254,7 +254,7 @@ def test_cancel_during_a_run_stops_before_the_next_stage(settings: Settings):
             run_id = db.query(RunRow).one().id
         assert client.post(f"/api/revive/{run_id}/cancel").json()["status"] == "RUNNING"
 
-    client.app.state.workflow._ctx.adapter.behaviour = cancel_the_run_in_flight
+    client.app.state.workflow._ctx.adapters[0].behaviour = cancel_the_run_in_flight
     repo = client.post("/api/repositories/import", json={"fixture_id": "legacy-python-cli"}).json()[
         "id"
     ]

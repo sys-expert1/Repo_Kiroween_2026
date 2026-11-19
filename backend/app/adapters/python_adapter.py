@@ -69,11 +69,16 @@ class PythonAdapter:
     def __init__(self, python: str | None = None) -> None:
         self._python = python or sys.executable
 
-    def detect(self, root: Path) -> bool:
+    def score(self, root: Path) -> int:
+        """How strongly this adapter applies: its number of source files (1 for manifests only)."""
         files = _walk_files(root)
-        return any(f.endswith(".py") for f in files) or any(
-            Path(f).name in {"pyproject.toml", "setup.py", "Pipfile"} for f in files
-        )
+        py = sum(1 for f in files if f.endswith(".py"))
+        if py:
+            return py
+        return int(any(Path(f).name in {"pyproject.toml", "setup.py", "Pipfile"} for f in files))
+
+    def detect(self, root: Path) -> bool:
+        return self.score(root) > 0
 
     # ------------------------------------------------------------------ autopsy
     def autopsy(
@@ -142,8 +147,8 @@ class PythonAdapter:
         return AutopsyReport(
             repository_name=name,
             frameworks=frameworks,
-            python_files=scan.files,
-            python_lines=scan.lines,
+            source_files=scan.files,
+            source_lines=scan.lines,
             dependency_files=sorted(manifests),
             dependencies=sorted(deps, key=lambda d: (d.name, d.source_file)),
             unpinned_dependencies=unpinned,

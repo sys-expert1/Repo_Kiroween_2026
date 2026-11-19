@@ -2,107 +2,107 @@
  "rolled_back": {
   "artifacts": [
    {
-    "checksum": "4e8eada43b309ca0b021d203e6fc2e2411720d6a22ddc4231e6dfbf9af5fd248",
-    "created_at": "2026-11-19T13:06:40.743353",
-    "id": "7f1078fd-9688-49a0-af8f-067dca4da6f9",
+    "checksum": "4f0df2b4040b9c3802a72343fa3c80001c4a9f262170b86155553a57f596e08a",
+    "created_at": "2026-11-19T13:22:35.015515",
+    "id": "df78b6f3-3f35-428c-b0f3-0fd59989c43c",
     "name": "AUTOPSY_REPORT.md",
-    "size": 1630,
+    "size": 1713,
     "type": "autopsy_report"
    },
    {
-    "checksum": "fb01d1423c40486b0debbcc20735827bfae110d84b5c09efb8916dad6fa5cca1",
-    "created_at": "2026-11-19T13:06:40.744569",
-    "id": "3f298b2f-0678-42f7-befc-e032c978b925",
+    "checksum": "bd08a82eb941ecdddfd56d83ddac0e00be16af633a5ecf3dd83dfd2009b546b6",
+    "created_at": "2026-11-19T13:22:35.016675",
+    "id": "b1102fb8-a243-4d72-8d0a-926450cc8358",
     "name": "autopsy.json",
-    "size": 4160,
+    "size": 4423,
     "type": "autopsy_data"
    },
    {
     "checksum": "004383cd84a30a6bc9cc7def7891472de7f28e7d468dab3d34f94750c9335187",
-    "created_at": "2026-11-19T13:06:40.750948",
-    "id": "50541da3-26d9-4e6b-b604-d4f0c31e53bb",
+    "created_at": "2026-11-19T13:22:35.023283",
+    "id": "c7900920-e90c-44a5-8aa4-41c2038860f1",
     "name": "CHARACTERIZATION_REPORT.md",
     "size": 585,
     "type": "characterization_report"
    },
    {
     "checksum": "5f602acda5c7297ab1bc01aa6782891a40ef1633895273ea47e14f91af6c0862",
-    "created_at": "2026-11-19T13:06:40.751752",
-    "id": "5ca32157-bc7d-4753-bbdc-c2c434829b04",
+    "created_at": "2026-11-19T13:22:35.024122",
+    "id": "5e12894b-68b2-40da-a4ae-b2038834688e",
     "name": "characterization.json",
     "size": 625,
     "type": "characterization_data"
    },
    {
-    "checksum": "abac01541c42b5d2fb5b67c3ea05bf3957d9a0defb170b69e1f4dafa18ad4d76",
-    "created_at": "2026-11-19T13:06:40.756455",
-    "id": "b6068ece-d725-40ee-9788-227c54a37bdb",
+    "checksum": "f2b49da4699bfa65ab00b218533414ce9428f4ed57f7f3e1826b866a67730140",
+    "created_at": "2026-11-19T13:22:35.029043",
+    "id": "ab645192-2b79-464d-9347-ac7269ff1ef4",
     "name": "REVIVAL_ROADMAP.v1.md",
-    "size": 2768,
+    "size": 2763,
     "type": "roadmap"
    },
    {
-    "checksum": "eb4dbd6d90fd3612406735278e95612ebd41427ce6576260e428dc4b0a0bac8c",
-    "created_at": "2026-11-19T13:06:40.757621",
-    "id": "707df5dc-d545-40c1-be7c-bb9218f327d8",
+    "checksum": "9161eb4b3634e499b2cafcb04fd0ab912913e910b046a8fe75fc1a625920bd60",
+    "created_at": "2026-11-19T13:22:35.030119",
+    "id": "3faab348-2c57-4021-9eaa-2e8d39414e87",
     "name": "roadmap.v1.json",
-    "size": 3984,
+    "size": 3979,
     "type": "roadmap_data"
    },
    {
     "checksum": "05a1e79ac7b4c79cfd7e14d858d904f8669f02a3686dff96872a6eb0cdc2a3fd",
-    "created_at": "2026-11-19T13:06:40.799694",
-    "id": "1a7ff9b8-8861-4899-9e11-82b36d99c42f",
+    "created_at": "2026-11-19T13:22:35.069277",
+    "id": "d3416a06-e4ab-4e45-85de-3df69429b229",
     "name": "PATCHSET.v1.diff",
     "size": 1941,
     "type": "patch_set"
    },
    {
     "checksum": "b1bd42cdc4e28e1d205075e2ad754e3e23badbfd855ec774a42a9ec5b85349c5",
-    "created_at": "2026-11-19T13:06:40.800578",
-    "id": "22f8e8a8-a8be-4858-abc9-d3d8573d668f",
+    "created_at": "2026-11-19T13:22:35.070212",
+    "id": "611bacb7-97dd-448c-8152-c2ca0f47bc51",
     "name": "PATCHSET.v1.md",
     "size": 991,
     "type": "patch_set_summary"
    },
    {
     "checksum": "13657b5591390abace8f5812df9b827f348da15027b957014963f9947331de27",
-    "created_at": "2026-11-19T13:06:40.801453",
-    "id": "fa82c6d0-8387-47e3-839c-a16a281b7ccd",
+    "created_at": "2026-11-19T13:22:35.071208",
+    "id": "d72ae9c9-60ee-4918-ae2e-da327400f178",
     "name": "patches.v1.json",
     "size": 6862,
     "type": "patch_set_data"
    },
    {
     "checksum": "070a5802f5f0efeddd3a098da8c143ed38c888ebb4ab7b90c58513e9bc69049d",
-    "created_at": "2026-11-19T13:06:40.880170",
-    "id": "b507f9df-4027-4857-aab6-335d0c9525b4",
+    "created_at": "2026-11-19T13:22:35.153320",
+    "id": "7659b8c7-9d53-40a6-87a5-e186cd07b668",
     "name": "VERIFICATION_REPORT.md",
     "size": 1496,
     "type": "verification_report"
    },
    {
     "checksum": "05a7ad7d72b8ff815cd342040de3ca80d729f942c693990598cb6f9efec0ddb2",
-    "created_at": "2026-11-19T13:06:40.881071",
-    "id": "5e6ab143-5e5e-4152-badc-3db697310049",
+    "created_at": "2026-11-19T13:22:35.154283",
+    "id": "2d8e59ea-4d9d-475f-887f-e9d0deb10c94",
     "name": "verification.json",
     "size": 1508,
     "type": "verification_data"
    },
    {
-    "checksum": "8e82d00493429972ee85494bfb9eb6df46d16cda7dcd653bff673cf418eaf577",
-    "created_at": "2026-11-19T13:06:40.881926",
-    "id": "7f17180d-e6e1-4a73-812c-64446a8fa993",
+    "checksum": "4aa4dcfe83ca6f6b02a335b8e3b319fc6524111d98b6d7974a76f8c94cda62ff",
+    "created_at": "2026-11-19T13:22:35.155372",
+    "id": "a35bcc4e-e6d5-4cd6-bae5-3eefeab1d5c3",
     "name": "VITALITY_REPORT.json",
-    "size": 2638,
+    "size": 2702,
     "type": "vitality_report"
    },
    {
-    "checksum": "df0c7cca7a0ade90b042dee301a21c69a3b50573a74d4c6be14c724f26f77cd4",
-    "created_at": "2026-11-19T13:06:40.886888",
-    "id": "84370d89-8099-4eac-9b9f-f77db85e50f9",
+    "checksum": "f4f3ff8d23929566528aaef844e87082ce42d0ba2be500ef8f62cbf58136a600",
+    "created_at": "2026-11-19T13:22:35.160396",
+    "id": "19cb9ef6-0a28-4655-9c47-4a61aaf51532",
     "name": "RUN_AUDIT.json",
-    "size": 3607,
+    "size": 3606,
     "type": "run_audit"
    }
   ],
@@ -237,16 +237,25 @@
     "language": "Python",
     "lint_violations": 1,
     "lockfile_present": false,
-    "python_files": 3,
-    "python_lines": 78,
     "repository_name": "legacy-python-cli",
+    "source_files": 3,
+    "source_lines": 78,
     "test_config": [],
     "test_files": 1,
     "test_functions": 2,
     "tools": [
      {
+      "command": "built-in pattern scan",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "0 possible secret(s) in 1 config and script file(s)",
+      "tool": "secret-scan"
+     },
+     {
       "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-      "duration_seconds": 0.031,
+      "duration_seconds": 0.032,
       "exit_code": 1,
       "measured": true,
       "output_excerpt": "",
@@ -387,7 +396,7 @@
       ],
       "id": "RT-001",
       "priority": "P1",
-      "proposed_action": "Raise the pin for requests to a release that fixes every listed advisory (fix versions across advisories: 0.12.3, 1.0), then re-run tests.",
+      "proposed_action": "Raise the pin for requests to a release that fixes every listed advisory (fix versions across advisories: 2.20.0, 2.31.0), then re-run tests.",
       "risk": "medium",
       "status": "proposed",
       "title": "Upgrade requests to a patched release",
@@ -408,7 +417,7 @@
       "risk": "low",
       "status": "proposed",
       "title": "Hardcoded secret-like value assigned to `API_TOKEN`",
-      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
      },
      {
       "affected_files": [
@@ -425,7 +434,7 @@
       "risk": "medium",
       "status": "proposed",
       "title": "Shell command via `os.popen`",
-      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
      },
      {
       "affected_files": [
@@ -575,7 +584,7 @@
        "weight": 0.2
       },
       {
-       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -620,7 +629,7 @@
        "weight": 0.2
       },
       {
-       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -650,63 +659,63 @@
   "events": [
    {
     "event": "run_started",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:1",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:1",
     "id": "1",
     "payload": {
      "mode": "REVIVE",
-     "repository_id": "651482b8-47f5-4ecb-93c9-7136dfc8485b"
+     "repository_id": "db1e0565-142d-4869-810c-c79d85f2fe6a"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 1,
-    "timestamp": "2026-11-19T13:06:40.695602",
+    "timestamp": "2026-11-19T13:22:34.965890",
     "type": "run_started"
    },
    {
     "event": "stage_changed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:2",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:2",
     "id": "2",
     "payload": {
      "stage": "AUTOPSY",
      "status": "RUNNING"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 2,
-    "timestamp": "2026-11-19T13:06:40.701676",
+    "timestamp": "2026-11-19T13:22:34.971660",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:3",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:3",
     "id": "3",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.031,
+     "duration_seconds": 0.032,
      "exit_code": 1,
-     "output": "    },\n    \"filename\": \"/tmp/tmpnd9n8wpn/data/runs/ddf9ea12-8570-4896-8476-17840eda5dc0/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
+     "output": "    },\n    \"filename\": \"/tmp/tmpz0ec_xxr/data/runs/1f9dda81-21d9-4a09-ab55-e4faddd71ec9/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
      "stage": "AUTOPSY",
      "timed_out": false
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 3,
-    "timestamp": "2026-11-19T13:06:40.741125",
+    "timestamp": "2026-11-19T13:22:35.013186",
     "type": "terminal_log"
    },
    {
     "event": "stage_changed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:4",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:4",
     "id": "4",
     "payload": {
      "stage": "CHARACTERIZATION",
      "status": "RUNNING"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 4,
-    "timestamp": "2026-11-19T13:06:40.748141",
+    "timestamp": "2026-11-19T13:22:35.020293",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:5",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:5",
     "id": "5",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -716,14 +725,14 @@
      "stage": "CHARACTERIZATION",
      "timed_out": false
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 5,
-    "timestamp": "2026-11-19T13:06:40.749916",
+    "timestamp": "2026-11-19T13:22:35.022279",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:6",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:6",
     "id": "6",
     "payload": {
      "dimensions": [
@@ -746,7 +755,7 @@
        "weight": 0.2
       },
       {
-       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -771,58 +780,58 @@
      "score": 46.3,
      "unmeasured": []
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 6,
-    "timestamp": "2026-11-19T13:06:40.752770",
+    "timestamp": "2026-11-19T13:22:35.025410",
     "type": "health_score_updated"
    },
    {
     "event": "stage_changed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:7",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:7",
     "id": "7",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 7,
-    "timestamp": "2026-11-19T13:06:40.755340",
+    "timestamp": "2026-11-19T13:22:35.027684",
     "type": "stage_changed"
    },
    {
     "event": "roadmap_ready",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:8",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:8",
     "id": "8",
     "payload": {
-     "roadmap_digest": "e826113d7e3ab9c7ff27400c722e2a0df1230d73bf54c90c4f5e2d0fe055e6f5",
+     "roadmap_digest": "9efc2c8d96494fc9d50f652d4bff02d45b840a1e89a3c83b175be7589626a6da",
      "roadmap_version": 1,
      "task_count": 7
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 8,
-    "timestamp": "2026-11-19T13:06:40.759613",
+    "timestamp": "2026-11-19T13:22:35.031947",
     "type": "roadmap_ready"
    },
    {
     "event": "terminal_log",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:9",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:9",
     "id": "9",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --fix --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.032,
+     "duration_seconds": 0.029,
      "exit_code": 0,
      "output": "Found 1 error (1 fixed, 0 remaining).",
      "stage": "REANIMATION",
      "timed_out": false
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 9,
-    "timestamp": "2026-11-19T13:06:40.798051",
+    "timestamp": "2026-11-19T13:22:35.067716",
     "type": "terminal_log"
    },
    {
     "event": "diff_generated",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:10",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:10",
     "id": "10",
     "payload": {
      "files_changed": [
@@ -880,14 +889,14 @@
       }
      ]
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 10,
-    "timestamp": "2026-11-19T13:06:40.803686",
+    "timestamp": "2026-11-19T13:22:35.073373",
     "type": "diff_generated"
    },
    {
     "event": "hitl_required",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:11",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:11",
     "id": "11",
     "payload": {
      "ai_model": null,
@@ -907,14 +916,14 @@
      "status": "AWAITING_APPROVAL",
      "task_count": 7
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 11,
-    "timestamp": "2026-11-19T13:06:40.807715",
+    "timestamp": "2026-11-19T13:22:35.077864",
     "type": "hitl_required"
    },
    {
     "event": "approval_received",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:12",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:12",
     "id": "12",
     "payload": {
      "actor": "local",
@@ -924,27 +933,27 @@
      "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
      "roadmap_version": 1
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 12,
-    "timestamp": "2026-11-19T13:06:40.825416",
+    "timestamp": "2026-11-19T13:22:35.096302",
     "type": "approval_received"
    },
    {
     "event": "stage_changed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:13",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:13",
     "id": "13",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 13,
-    "timestamp": "2026-11-19T13:06:40.826131",
+    "timestamp": "2026-11-19T13:22:35.096952",
     "type": "stage_changed"
    },
    {
     "event": "patch_applied",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:14",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:14",
     "id": "14",
     "payload": {
      "action": "modify",
@@ -955,14 +964,14 @@
      "target": "isolated working copy",
      "task_id": "RT-001"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 14,
-    "timestamp": "2026-11-19T13:06:40.834565",
+    "timestamp": "2026-11-19T13:22:35.105745",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:15",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:15",
     "id": "15",
     "payload": {
      "action": "modify",
@@ -973,14 +982,14 @@
      "target": "isolated working copy",
      "task_id": "RT-002"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 15,
-    "timestamp": "2026-11-19T13:06:40.835499",
+    "timestamp": "2026-11-19T13:22:35.106733",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:16",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:16",
     "id": "16",
     "payload": {
      "action": "modify",
@@ -991,14 +1000,14 @@
      "target": "isolated working copy",
      "task_id": "RT-003"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 16,
-    "timestamp": "2026-11-19T13:06:40.836257",
+    "timestamp": "2026-11-19T13:22:35.107573",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:17",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:17",
     "id": "17",
     "payload": {
      "action": "create",
@@ -1009,14 +1018,14 @@
      "target": "isolated working copy",
      "task_id": "RT-005"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 17,
-    "timestamp": "2026-11-19T13:06:40.837028",
+    "timestamp": "2026-11-19T13:22:35.108461",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:18",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:18",
     "id": "18",
     "payload": {
      "action": "create",
@@ -1027,14 +1036,14 @@
      "target": "isolated working copy",
      "task_id": "RT-006"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 18,
-    "timestamp": "2026-11-19T13:06:40.837732",
+    "timestamp": "2026-11-19T13:22:35.109225",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:19",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:19",
     "id": "19",
     "payload": {
      "action": "modify",
@@ -1045,44 +1054,44 @@
      "target": "isolated working copy",
      "task_id": "RT-007"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 19,
-    "timestamp": "2026-11-19T13:06:40.838469",
+    "timestamp": "2026-11-19T13:22:35.109947",
     "type": "patch_applied"
    },
    {
     "event": "stage_changed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:20",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:20",
     "id": "20",
     "payload": {
      "stage": "CONSECRATION",
      "status": "RUNNING"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 20,
-    "timestamp": "2026-11-19T13:06:40.840905",
+    "timestamp": "2026-11-19T13:22:35.112322",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:21",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:21",
     "id": "21",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.029,
+     "duration_seconds": 0.03,
      "exit_code": 0,
      "output": "[]",
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 21,
-    "timestamp": "2026-11-19T13:06:40.874820",
+    "timestamp": "2026-11-19T13:22:35.147759",
     "type": "terminal_log"
    },
    {
     "event": "terminal_log",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:22",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:22",
     "id": "22",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -1092,14 +1101,14 @@
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 22,
-    "timestamp": "2026-11-19T13:06:40.877421",
+    "timestamp": "2026-11-19T13:22:35.150652",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:23",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:23",
     "id": "23",
     "payload": {
      "dimensions": [
@@ -1122,7 +1131,7 @@
        "weight": 0.2
       },
       {
-       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -1147,14 +1156,14 @@
      "score": 61.2,
      "unmeasured": []
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 23,
-    "timestamp": "2026-11-19T13:06:40.882874",
+    "timestamp": "2026-11-19T13:22:35.156267",
     "type": "health_score_updated"
    },
    {
     "event": "verification_completed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:24",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:24",
     "id": "24",
     "payload": {
      "checks": [
@@ -1199,28 +1208,28 @@
      ],
      "verdict": "failed"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 24,
-    "timestamp": "2026-11-19T13:06:40.883673",
+    "timestamp": "2026-11-19T13:22:35.157050",
     "type": "verification_completed"
    },
    {
     "event": "rollback_completed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:25",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:25",
     "id": "25",
     "payload": {
      "evidence_kept": "work-failed",
      "reason": "New failing test: t::new",
      "restored_from": "snapshot"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 25,
-    "timestamp": "2026-11-19T13:06:40.888544",
+    "timestamp": "2026-11-19T13:22:35.162055",
     "type": "rollback_completed"
    },
    {
     "event": "run_failed",
-    "event_id": "ddf9ea12-8570-4896-8476-17840eda5dc0:26",
+    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:26",
     "id": "26",
     "payload": {
      "error": "Verification failed and the working copy was rolled back: New failing test: t::new",
@@ -1238,147 +1247,1343 @@
      "status": "FAILED",
      "verdict": "failed"
     },
-    "run_id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
     "sequence": 26,
-    "timestamp": "2026-11-19T13:06:40.890134",
+    "timestamp": "2026-11-19T13:22:35.163776",
     "type": "run_failed"
    }
   ],
   "final_run": {
    "cancel_requested": false,
-   "completed_at": "2026-11-19T13:06:40.889052",
-   "created_at": "2026-11-19T13:06:40.693819",
+   "completed_at": "2026-11-19T13:22:35.162640",
+   "created_at": "2026-11-19T13:22:34.964108",
    "current_stage": "CONSECRATION",
    "error": "Verification failed and the working copy was rolled back: New failing test: t::new",
-   "id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+   "id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "651482b8-47f5-4ecb-93c9-7136dfc8485b",
+   "repository_id": "db1e0565-142d-4869-810c-c79d85f2fe6a",
    "roadmap_version": 1,
    "status": "FAILED",
-   "updated_at": "2026-11-19T13:06:40.889052"
+   "updated_at": "2026-11-19T13:22:35.162640"
   },
   "waiting_run": {
    "cancel_requested": false,
    "completed_at": null,
-   "created_at": "2026-11-19T13:06:40.693819",
+   "created_at": "2026-11-19T13:22:34.964108",
    "current_stage": "REANIMATION",
    "error": null,
-   "id": "ddf9ea12-8570-4896-8476-17840eda5dc0",
+   "id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "651482b8-47f5-4ecb-93c9-7136dfc8485b",
+   "repository_id": "db1e0565-142d-4869-810c-c79d85f2fe6a",
    "roadmap_version": 1,
    "status": "AWAITING_APPROVAL",
-   "updated_at": "2026-11-19T13:06:40.806064"
+   "updated_at": "2026-11-19T13:22:35.076697"
+  }
+ },
+ "typescript": {
+  "artifacts": [
+   {
+    "checksum": "046b43961319404e001114a15254b4f5d5c688ca2c2c483f65f10d797a176689",
+    "created_at": "2026-11-19T13:22:35.310230",
+    "id": "dff94c1d-6089-4763-ae93-29f689e73486",
+    "name": "AUTOPSY_REPORT.md",
+    "size": 2433,
+    "type": "autopsy_report"
+   },
+   {
+    "checksum": "ed548a82dcbdce1dcdabe54f4d98f9c15931f6a7e49a6f1fbcb4e7eae2cf8c69",
+    "created_at": "2026-11-19T13:22:35.311467",
+    "id": "dc6037c5-a40c-4c06-abe6-b2dc6c89c427",
+    "name": "autopsy.json",
+    "size": 5469,
+    "type": "autopsy_data"
+   },
+   {
+    "checksum": "71bd78556dcb6546e652c33714b1b3ab2e4f9718686b156ff48915e71749bc5a",
+    "created_at": "2026-11-19T13:22:35.317334",
+    "id": "ee415ecd-d325-40e0-934f-47e3d57bfc00",
+    "name": "CHARACTERIZATION_REPORT.md",
+    "size": 564,
+    "type": "characterization_report"
+   },
+   {
+    "checksum": "b816f937b3f425fe1f7e0b612e84b823b521551c249be5a6b9ceedfe8e13cece",
+    "created_at": "2026-11-19T13:22:35.318161",
+    "id": "bd4996e7-99ae-45f2-8fef-6923f15a0c48",
+    "name": "characterization.json",
+    "size": 609,
+    "type": "characterization_data"
+   },
+   {
+    "checksum": "3bc172f85e0ec7161089e1853b322cd7b737fbb79c00e4f096698559f3d3da5c",
+    "created_at": "2026-11-19T13:22:35.322959",
+    "id": "15c753ea-c4bc-45c4-894a-f0fa8e8d2226",
+    "name": "REVIVAL_ROADMAP.v1.md",
+    "size": 3832,
+    "type": "roadmap"
+   },
+   {
+    "checksum": "913be2f1346f9fb0a27e0acbb9277c0dbcc49d98181d0a656da52fb3795f4c5c",
+    "created_at": "2026-11-19T13:22:35.323923",
+    "id": "a79f37cf-4669-4f86-a907-c6ab942961fb",
+    "name": "roadmap.v1.json",
+    "size": 5444,
+    "type": "roadmap_data"
+   },
+   {
+    "checksum": "3e297367139294533b8821e6aac389d8a69811fc654886f1260230acde03a9bb",
+    "created_at": "2026-11-19T13:22:35.328995",
+    "id": "f2318547-f553-402d-857c-d6e28fffbaa1",
+    "name": "PATCHSET.v1.diff",
+    "size": 445,
+    "type": "patch_set"
+   },
+   {
+    "checksum": "111ba4d7c816888ee0fc1b92b4238ad0e8bedc1679f86176de14af0b5299bec2",
+    "created_at": "2026-11-19T13:22:35.329861",
+    "id": "1d6302dd-a837-4e35-ac5b-f127b292b34c",
+    "name": "PATCHSET.v1.md",
+    "size": 1388,
+    "type": "patch_set_summary"
+   },
+   {
+    "checksum": "c7cebccc3491095f6ed3011e0e3fb6f6ae85e27bb7fc130b6817f6dc35fc5769",
+    "created_at": "2026-11-19T13:22:35.330770",
+    "id": "0db6fbd3-e932-411c-a2f9-44b18ac55a4c",
+    "name": "patches.v1.json",
+    "size": 2787,
+    "type": "patch_set_data"
+   },
+   {
+    "checksum": "0eb90980f047482bba030f0621655d02c1d80828044fed5d70986dfe09cebe6a",
+    "created_at": "2026-11-19T13:22:35.370358",
+    "id": "a7b7dabe-05c8-4a38-a9bf-0d1a12124132",
+    "name": "VERIFICATION_REPORT.md",
+    "size": 1351,
+    "type": "verification_report"
+   },
+   {
+    "checksum": "a7fabe5ebae56170e08216db2cf019eed422940a15faff84d5e2b68d97819226",
+    "created_at": "2026-11-19T13:22:35.371432",
+    "id": "5f1b14b3-f811-4d3a-94ae-2128d1fd0789",
+    "name": "verification.json",
+    "size": 1236,
+    "type": "verification_data"
+   },
+   {
+    "checksum": "ca2e9d4594627e363d37dae1784433bdc8b61f00d606386fc134a1b345491cc6",
+    "created_at": "2026-11-19T13:22:35.372483",
+    "id": "022b3226-a538-40c3-833c-c6bf1b33e73d",
+    "name": "VITALITY_REPORT.json",
+    "size": 2771,
+    "type": "vitality_report"
+   },
+   {
+    "checksum": "cc1106e5503b1d28cf8b1292d84baa6a5301ce6bee78c375e33a021e686e0180",
+    "created_at": "2026-11-19T13:22:35.377276",
+    "id": "cca0a61b-96c7-48c3-88d2-b1ca62767bd1",
+    "name": "RUN_AUDIT.json",
+    "size": 1933,
+    "type": "run_audit"
+   }
+  ],
+  "data": {
+   "autopsy_data": {
+    "audited_packages": 40,
+    "build_files": [
+     "package.json",
+     "tsconfig.json"
+    ],
+    "dependencies": [
+     {
+      "name": "lodash",
+      "pinned_version": "4.17.15",
+      "source_file": "package.json",
+      "specifier": "4.17.15"
+     }
+    ],
+    "dependency_files": [
+     "package.json"
+    ],
+    "findings": [
+     {
+      "category": "dependencies",
+      "evidence": "Prototype Pollution in lodash; Command Injection in lodash. Fix available: lodash@4.17.21.",
+      "file_path": "package.json",
+      "fix_versions": [
+       "4.17.21"
+      ],
+      "id": "F-001",
+      "installed_version": "4.17.15",
+      "line": null,
+      "package": "lodash",
+      "severity": "high",
+      "source": "npm-audit",
+      "status": "open",
+      "title": "lodash 4.17.15 has known vulnerabilities"
+     },
+     {
+      "category": "security",
+      "evidence": "`exec` with a dynamic argument runs through a shell",
+      "file_path": "src/report.ts",
+      "fix_versions": [],
+      "id": "F-002",
+      "installed_version": null,
+      "line": 8,
+      "package": null,
+      "severity": "high",
+      "source": "ts-scan",
+      "status": "open",
+      "title": "Shell command via `child_process.exec`"
+     },
+     {
+      "category": "security",
+      "evidence": "`Use of `eval`` appears in code",
+      "file_path": "src/report.ts",
+      "fix_versions": [],
+      "id": "F-003",
+      "installed_version": null,
+      "line": 12,
+      "package": null,
+      "severity": "high",
+      "source": "ts-scan",
+      "status": "open",
+      "title": "Use of `eval`"
+     },
+     {
+      "category": "dependencies",
+      "evidence": "See the npm advisory database. A fix is available through `npm audit fix`.",
+      "file_path": "package.json",
+      "fix_versions": [],
+      "id": "F-004",
+      "installed_version": null,
+      "line": null,
+      "package": "minimist",
+      "severity": "medium",
+      "source": "npm-audit",
+      "status": "open",
+      "title": "minimist has known vulnerabilities"
+     },
+     {
+      "category": "security",
+      "evidence": "A literal value is assigned on line 4 (the value is not shown).",
+      "file_path": "src/report.ts",
+      "fix_versions": [],
+      "id": "F-005",
+      "installed_version": null,
+      "line": 4,
+      "package": null,
+      "severity": "medium",
+      "source": "secrets",
+      "status": "open",
+      "title": "Possible secret in src/report.ts: value assigned to `API_TOKEN`"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No .github/workflows, .gitlab-ci.yml or equivalent.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-006",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "low",
+      "source": "detect",
+      "status": "open",
+      "title": "No CI workflow found"
+     },
+     {
+      "category": "dependencies",
+      "evidence": "See the npm advisory database. No fix is available.",
+      "file_path": "package.json",
+      "fix_versions": [],
+      "id": "F-007",
+      "installed_version": null,
+      "line": null,
+      "package": "old",
+      "severity": "low",
+      "source": "npm-audit",
+      "status": "open",
+      "title": "old has known vulnerabilities"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No Dockerfile in the repository.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-008",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "info",
+      "source": "detect",
+      "status": "open",
+      "title": "No Dockerfile found"
+     }
+    ],
+    "frameworks": [],
+    "has_ci": false,
+    "has_dockerfile": false,
+    "known_vulnerabilities": 3,
+    "language": "TypeScript",
+    "lint_violations": null,
+    "lockfile_present": true,
+    "repository_name": "legacy-ts-utils",
+    "source_files": 3,
+    "source_lines": 57,
+    "test_config": [],
+    "test_files": 1,
+    "test_functions": 2,
+    "tools": [
+     {
+      "command": "built-in heuristic scan",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "2 finding(s) in 3 file(s). Heuristic, not a type checker.",
+      "tool": "ts-scan"
+     },
+     {
+      "command": "built-in pattern scan",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "1 possible secret(s) in 6 config and script file(s)",
+      "tool": "secret-scan"
+     },
+     {
+      "command": "/usr/bin/npm audit --package-lock-only --json --ignore-scripts",
+      "duration_seconds": 0.3,
+      "exit_code": 1,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "3 vulnerable package(s) of 40 in the lockfile",
+      "tool": "npm-audit"
+     },
+     {
+      "command": "",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": false,
+      "output_excerpt": "",
+      "summary": "Not measured: the TypeScript compiler needs the repository's dependencies installed, which is not done because install scripts are untrusted code",
+      "tool": "tsc"
+     },
+     {
+      "command": "",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": false,
+      "output_excerpt": "",
+      "summary": "Not measured: ESLint needs the repository's dependencies installed, which is not done because install scripts are untrusted code",
+      "tool": "eslint"
+     }
+    ],
+    "unpinned_dependencies": [],
+    "vulnerable_packages": 3
+   },
+   "characterization_data": {
+    "build": "not_measured",
+    "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
+    "counts": {
+     "errors": 0,
+     "failed": 1,
+     "passed": 1,
+     "skipped": 0,
+     "xfailed": 0,
+     "xpassed": 0
+    },
+    "coverage": "not_measured",
+    "duration_seconds": 0.1,
+    "exit_code": 1,
+    "failing_tests": [
+     "totalItems known failure"
+    ],
+    "output_excerpt": "TAP version 13\nnot ok 2 - totalItems known failure\n1..2\n# tests 2\n# pass 1\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0",
+    "reason": null,
+    "status": "completed",
+    "timed_out": false
+   },
+   "patch_set_data": {
+    "llm": null,
+    "patches": [
+     {
+      "action": "create",
+      "after_content": "name: CI\non: [push, pull_request]\npermissions:\n  contents: read\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: \"22\"\n      - run: npm ci\n      - run: npx tsc --noEmit\n      - run: npm test --if-present\n",
+      "after_sha256": "66ba7d5058931be50862ff40e235d7287646a4d7a572e5afafa9b87586aa1dfe",
+      "before_sha256": null,
+      "diff": "--- /dev/null\n+++ b/.github/workflows/ci.yml\n@@ -0,0 +1,15 @@\n+name: CI\n+on: [push, pull_request]\n+permissions:\n+  contents: read\n+jobs:\n+  test:\n+    runs-on: ubuntu-latest\n+    steps:\n+      - uses: actions/checkout@v4\n+      - uses: actions/setup-node@v4\n+        with:\n+          node-version: \"22\"\n+      - run: npm ci\n+      - run: npx tsc --noEmit\n+      - run: npm test --if-present\n",
+      "model": null,
+      "origin": "rule",
+      "path": ".github/workflows/ci.yml",
+      "rationale": "Install, type-check and test on every push.",
+      "task_id": "RT-007"
+     }
+    ],
+    "roadmap_version": 1,
+    "skipped": [
+     {
+      "reason": "npm upgrades must change package.json and package-lock.json together. Run `npm install <package>@<version>` yourself.",
+      "task_id": "RT-001",
+      "title": "Upgrade lodash to a patched release"
+     },
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-002",
+      "title": "Shell command via `child_process.exec`"
+     },
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-003",
+      "title": "Use of `eval`"
+     },
+     {
+      "reason": "npm upgrades must change package.json and package-lock.json together. Run `npm install <package>@<version>` yourself.",
+      "task_id": "RT-004",
+      "title": "Upgrade minimist to a patched release"
+     },
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-005",
+      "title": "Possible secret in src/report.ts: value assigned to `API_TOKEN`"
+     },
+     {
+      "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+      "task_id": "RT-006",
+      "title": "Investigate 1 pre-existing failing test(s)"
+     },
+     {
+      "reason": "There is no Dockerfile template for TypeScript projects yet.",
+      "task_id": "RT-008",
+      "title": "Add a Dockerfile"
+     },
+     {
+      "reason": "npm upgrades must change package.json and package-lock.json together. Run `npm install <package>@<version>` yourself.",
+      "task_id": "RT-009",
+      "title": "Upgrade old to a patched release"
+     }
+    ]
+   },
+   "roadmap_data": {
+    "repository_name": "legacy-ts-utils",
+    "tasks": [
+     {
+      "affected_files": [
+       "package.json"
+      ],
+      "category": "dependencies",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-001"
+      ],
+      "id": "RT-001",
+      "priority": "P1",
+      "proposed_action": "Run `npm install lodash@<fixed version>` so package.json and package-lock.json change together. Fix available: lodash@4.17.21.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Upgrade lodash to a patched release",
+      "verification": "npm audit reports no known vulnerabilities for lodash; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "src/report.ts"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-002"
+      ],
+      "id": "RT-002",
+      "priority": "P1",
+      "proposed_action": "Remove the dangerous call or replace it with a safe API (for example `execFile` with an argument array instead of `exec`, `textContent` instead of `innerHTML`) and validate the input.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Shell command via `child_process.exec`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "src/report.ts"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-003"
+      ],
+      "id": "RT-003",
+      "priority": "P1",
+      "proposed_action": "Remove the dangerous call or replace it with a safe API (for example `execFile` with an argument array instead of `exec`, `textContent` instead of `innerHTML`) and validate the input.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Use of `eval`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "package.json"
+      ],
+      "category": "dependencies",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-004"
+      ],
+      "id": "RT-004",
+      "priority": "P2",
+      "proposed_action": "Run `npm install minimist@<fixed version>` so package.json and package-lock.json change together. A fix is available through `npm audit fix`.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Upgrade minimist to a patched release",
+      "verification": "npm audit reports no known vulnerabilities for minimist; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "src/report.ts"
+      ],
+      "category": "security",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-005"
+      ],
+      "id": "RT-005",
+      "priority": "P2",
+      "proposed_action": "Remove the value from the file, load it from the environment or a secrets store, and rotate the credential, because it is already in the repository history. Keep local env files out of version control.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Possible secret in src/report.ts: value assigned to `API_TOKEN`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "totalItems known failure"
+      ],
+      "category": "tests",
+      "estimated_effort": "M",
+      "evidence": [
+       "Baseline failure: totalItems known failure"
+      ],
+      "id": "RT-006",
+      "priority": "P2",
+      "proposed_action": "Determine for each failing test whether the production code or the test expectation is wrong. Do not edit a test only to make it pass.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Investigate 1 pre-existing failing test(s)",
+      "verification": "Each failure is explained, and any fix is confirmed against intended behaviour."
+     },
+     {
+      "affected_files": [
+       ".github/workflows/ci.yml"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-006"
+      ],
+      "id": "RT-007",
+      "priority": "P3",
+      "proposed_action": "Add a workflow that installs dependencies, runs lint and tests.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a CI workflow",
+      "verification": "The workflow file validates and runs the same commands used locally."
+     },
+     {
+      "affected_files": [
+       "Dockerfile"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-008"
+      ],
+      "id": "RT-008",
+      "priority": "P3",
+      "proposed_action": "Add a minimal non-root Dockerfile that installs pinned dependencies.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a Dockerfile",
+      "verification": "`docker build` succeeds."
+     },
+     {
+      "affected_files": [
+       "package.json"
+      ],
+      "category": "dependencies",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-007"
+      ],
+      "id": "RT-009",
+      "priority": "P3",
+      "proposed_action": "Run `npm install old@<fixed version>` so package.json and package-lock.json change together. No fix is available.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Upgrade old to a patched release",
+      "verification": "npm audit reports no known vulnerabilities for old; the test baseline does not regress."
+     }
+    ],
+    "version": 1
+   },
+   "verification_data": {
+    "checks": [
+     {
+      "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
+      "detail": "1 passed, 1 failed, 0 errors. 1 failure(s) existed in the baseline; 0 new.",
+      "exit_code": 1,
+      "name": "tests",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "No lint result: the linter did not run.",
+      "exit_code": null,
+      "name": "lint",
+      "status": "not_measured"
+     },
+     {
+      "command": null,
+      "detail": "Known vulnerabilities: 3 before, 3 after.",
+      "exit_code": null,
+      "name": "dependency_audit",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+      "exit_code": null,
+      "name": "ci_workflows",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "No Dockerfile.",
+      "exit_code": null,
+      "name": "docker_build",
+      "status": "not_configured"
+     }
+    ],
+    "new_findings": [],
+    "regressions": [],
+    "resolved_findings": [
+     "No CI workflow found"
+    ],
+    "score_warning": null,
+    "unmeasured": [
+     "lint"
+    ],
+    "verdict": "verified"
+   },
+   "vitality_report": {
+    "after": {
+     "dimensions": [
+      {
+       "basis": "3 of 40 audited packages have known vulnerabilities (3 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 92.5,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "Not measured: Ruff did not produce a result.",
+       "name": "code_quality",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 40.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: absent, build not_configured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 50.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: code_quality.",
+     "score": 58.8,
+     "unmeasured": [
+      "code_quality"
+     ]
+    },
+    "before": {
+     "dimensions": [
+      {
+       "basis": "3 of 40 audited packages have known vulnerabilities (3 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 92.5,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "Not measured: Ruff did not produce a result.",
+       "name": "code_quality",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 40.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: code_quality.",
+     "score": 49.4,
+     "unmeasured": [
+      "code_quality"
+     ]
+    },
+    "comparison_warning": null
+   }
+  },
+  "events": [
+   {
+    "event": "run_started",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:1",
+    "id": "1",
+    "payload": {
+     "mode": "REVIVE",
+     "repository_id": "836e1a06-a440-4c7e-9a83-d601f35265c9"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 1,
+    "timestamp": "2026-11-19T13:22:35.293362",
+    "type": "run_started"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:2",
+    "id": "2",
+    "payload": {
+     "stage": "AUTOPSY",
+     "status": "RUNNING"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 2,
+    "timestamp": "2026-11-19T13:22:35.299395",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:3",
+    "id": "3",
+    "payload": {
+     "command": "/usr/bin/npm audit --package-lock-only --json --ignore-scripts",
+     "duration_seconds": 0.3,
+     "exit_code": 1,
+     "output": "{\"vulnerabilities\": {\"lodash\": {\"severity\": \"high\", \"fixAvailable\": {\"name\": \"lodash\", \"version\": \"4.17.21\", \"isSemVerMajor\": false}, \"via\": [{\"title\": \"Prototype Pollution in lodash\"}, {\"title\": \"Command Injection in lodash\"}, {\"title\": \"Prototype Pollution in lodash\"}]}, \"minimist\": {\"severity\": \"moderate\", \"fixAvailable\": true, \"via\": [\"lodash\"]}, \"old\": {\"severity\": \"low\", \"fixAvailable\": false, \"via\": []}}, \"metadata\": {\"vulnerabilities\": {\"total\": 3}, \"dependencies\": {\"total\": 40}}}",
+     "stage": "AUTOPSY",
+     "timed_out": false
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 3,
+    "timestamp": "2026-11-19T13:22:35.308613",
+    "type": "terminal_log"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:4",
+    "id": "4",
+    "payload": {
+     "stage": "CHARACTERIZATION",
+     "status": "RUNNING"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 4,
+    "timestamp": "2026-11-19T13:22:35.314227",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:5",
+    "id": "5",
+    "payload": {
+     "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
+     "duration_seconds": 0.1,
+     "exit_code": 1,
+     "output": "TAP version 13\nnot ok 2 - totalItems known failure\n1..2\n# tests 2\n# pass 1\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0",
+     "stage": "CHARACTERIZATION",
+     "timed_out": false
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 5,
+    "timestamp": "2026-11-19T13:22:35.316370",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:6",
+    "id": "6",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "3 of 40 audited packages have known vulnerabilities (3 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 92.5,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "Not measured: Ruff did not produce a result.",
+       "name": "code_quality",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 40.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: code_quality.",
+     "phase": "before",
+     "score": 49.4,
+     "unmeasured": [
+      "code_quality"
+     ]
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 6,
+    "timestamp": "2026-11-19T13:22:35.319240",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:7",
+    "id": "7",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 7,
+    "timestamp": "2026-11-19T13:22:35.321619",
+    "type": "stage_changed"
+   },
+   {
+    "event": "roadmap_ready",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:8",
+    "id": "8",
+    "payload": {
+     "roadmap_digest": "6dd7778766c4b1ff69ce773aa45d5fb788537bbf5c00a57cf316013522ded02c",
+     "roadmap_version": 1,
+     "task_count": 9
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 8,
+    "timestamp": "2026-11-19T13:22:35.325824",
+    "type": "roadmap_ready"
+   },
+   {
+    "event": "diff_generated",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:9",
+    "id": "9",
+    "payload": {
+     "files_changed": [
+      ".github/workflows/ci.yml"
+     ],
+     "llm": null,
+     "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
+     "patches": [
+      {
+       "action": "create",
+       "origin": "rule",
+       "path": ".github/workflows/ci.yml",
+       "task_id": "RT-007"
+      }
+     ],
+     "roadmap_version": 1,
+     "skipped": [
+      {
+       "reason": "npm upgrades must change package.json and package-lock.json together. Run `npm install <package>@<version>` yourself.",
+       "task_id": "RT-001",
+       "title": "Upgrade lodash to a patched release"
+      },
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-002",
+       "title": "Shell command via `child_process.exec`"
+      },
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-003",
+       "title": "Use of `eval`"
+      },
+      {
+       "reason": "npm upgrades must change package.json and package-lock.json together. Run `npm install <package>@<version>` yourself.",
+       "task_id": "RT-004",
+       "title": "Upgrade minimist to a patched release"
+      },
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-005",
+       "title": "Possible secret in src/report.ts: value assigned to `API_TOKEN`"
+      },
+      {
+       "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+       "task_id": "RT-006",
+       "title": "Investigate 1 pre-existing failing test(s)"
+      },
+      {
+       "reason": "There is no Dockerfile template for TypeScript projects yet.",
+       "task_id": "RT-008",
+       "title": "Add a Dockerfile"
+      },
+      {
+       "reason": "npm upgrades must change package.json and package-lock.json together. Run `npm install <package>@<version>` yourself.",
+       "task_id": "RT-009",
+       "title": "Upgrade old to a patched release"
+      }
+     ]
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 9,
+    "timestamp": "2026-11-19T13:22:35.332564",
+    "type": "diff_generated"
+   },
+   {
+    "event": "hitl_required",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:10",
+    "id": "10",
+    "payload": {
+     "ai_model": null,
+     "ai_patch_count": 0,
+     "dependency_changes": [],
+     "execution_target": "isolated working copy",
+     "files_affected": 1,
+     "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
+     "patched_task_count": 1,
+     "repository": "legacy-ts-utils",
+     "roadmap_version": 1,
+     "security_fixes": 0,
+     "source_commit": null,
+     "stage": "REANIMATION",
+     "status": "AWAITING_APPROVAL",
+     "task_count": 9
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 10,
+    "timestamp": "2026-11-19T13:22:35.335566",
+    "type": "hitl_required"
+   },
+   {
+    "event": "approval_received",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:11",
+    "id": "11",
+    "payload": {
+     "actor": "local",
+     "decision": "approve",
+     "excluded_task_ids": [],
+     "note": null,
+     "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
+     "roadmap_version": 1
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 11,
+    "timestamp": "2026-11-19T13:22:35.351116",
+    "type": "approval_received"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:12",
+    "id": "12",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 12,
+    "timestamp": "2026-11-19T13:22:35.351761",
+    "type": "stage_changed"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:13",
+    "id": "13",
+    "payload": {
+     "action": "create",
+     "after_sha256": "66ba7d5058931be50862ff40e235d7287646a4d7a572e5afafa9b87586aa1dfe",
+     "model": null,
+     "origin": "rule",
+     "path": ".github/workflows/ci.yml",
+     "target": "isolated working copy",
+     "task_id": "RT-007"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 13,
+    "timestamp": "2026-11-19T13:22:35.358703",
+    "type": "patch_applied"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:14",
+    "id": "14",
+    "payload": {
+     "stage": "CONSECRATION",
+     "status": "RUNNING"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 14,
+    "timestamp": "2026-11-19T13:22:35.361086",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:15",
+    "id": "15",
+    "payload": {
+     "command": "/usr/bin/npm audit --package-lock-only --json --ignore-scripts",
+     "duration_seconds": 0.3,
+     "exit_code": 1,
+     "output": "{\"vulnerabilities\": {\"lodash\": {\"severity\": \"high\", \"fixAvailable\": {\"name\": \"lodash\", \"version\": \"4.17.21\", \"isSemVerMajor\": false}, \"via\": [{\"title\": \"Prototype Pollution in lodash\"}, {\"title\": \"Command Injection in lodash\"}, {\"title\": \"Prototype Pollution in lodash\"}]}, \"minimist\": {\"severity\": \"moderate\", \"fixAvailable\": true, \"via\": [\"lodash\"]}, \"old\": {\"severity\": \"low\", \"fixAvailable\": false, \"via\": []}}, \"metadata\": {\"vulnerabilities\": {\"total\": 3}, \"dependencies\": {\"total\": 40}}}",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 15,
+    "timestamp": "2026-11-19T13:22:35.365339",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:16",
+    "id": "16",
+    "payload": {
+     "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
+     "duration_seconds": 0.1,
+     "exit_code": 1,
+     "output": "TAP version 13\nnot ok 2 - totalItems known failure\n1..2\n# tests 2\n# pass 1\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 16,
+    "timestamp": "2026-11-19T13:22:35.367771",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:17",
+    "id": "17",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "3 of 40 audited packages have known vulnerabilities (3 advisories). Unpinned packages are not audited.",
+       "name": "dependencies",
+       "score": 92.5,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "Not measured: Ruff did not produce a result.",
+       "name": "code_quality",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 40.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: absent, build not_configured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 50.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "dependencies",
+      "tests",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: code_quality.",
+     "phase": "after",
+     "score": 58.8,
+     "unmeasured": [
+      "code_quality"
+     ]
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 17,
+    "timestamp": "2026-11-19T13:22:35.373440",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "verification_completed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:18",
+    "id": "18",
+    "payload": {
+     "checks": [
+      {
+       "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
+       "detail": "1 passed, 1 failed, 0 errors. 1 failure(s) existed in the baseline; 0 new.",
+       "exit_code": 1,
+       "name": "tests",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "No lint result: the linter did not run.",
+       "exit_code": null,
+       "name": "lint",
+       "status": "not_measured"
+      },
+      {
+       "command": null,
+       "detail": "Known vulnerabilities: 3 before, 3 after.",
+       "exit_code": null,
+       "name": "dependency_audit",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+       "exit_code": null,
+       "name": "ci_workflows",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "No Dockerfile.",
+       "exit_code": null,
+       "name": "docker_build",
+       "status": "not_configured"
+      }
+     ],
+     "regressions": [],
+     "verdict": "verified"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 18,
+    "timestamp": "2026-11-19T13:22:35.374408",
+    "type": "verification_completed"
+   },
+   {
+    "event": "run_completed",
+    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:19",
+    "id": "19",
+    "payload": {
+     "mode": "REVIVE",
+     "patches_applied": 1,
+     "score_after": 58.8,
+     "score_before": 49.4,
+     "stage": "CONSECRATION",
+     "stages_completed": [
+      "AUTOPSY",
+      "CHARACTERIZATION",
+      "REANIMATION",
+      "CONSECRATION"
+     ],
+     "status": "COMPLETED",
+     "verdict": "verified"
+    },
+    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "sequence": 19,
+    "timestamp": "2026-11-19T13:22:35.378798",
+    "type": "run_completed"
+   }
+  ],
+  "final_run": {
+   "cancel_requested": false,
+   "completed_at": "2026-11-19T13:22:35.377772",
+   "created_at": "2026-11-19T13:22:35.291910",
+   "current_stage": "CONSECRATION",
+   "error": null,
+   "id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+   "mode": "REVIVE",
+   "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
+   "pinned_commit": null,
+   "repository_id": "836e1a06-a440-4c7e-9a83-d601f35265c9",
+   "roadmap_version": 1,
+   "status": "COMPLETED",
+   "updated_at": "2026-11-19T13:22:35.377772"
+  },
+  "waiting_run": {
+   "cancel_requested": false,
+   "completed_at": null,
+   "created_at": "2026-11-19T13:22:35.291910",
+   "current_stage": "REANIMATION",
+   "error": null,
+   "id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+   "mode": "REVIVE",
+   "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
+   "pinned_commit": null,
+   "repository_id": "836e1a06-a440-4c7e-9a83-d601f35265c9",
+   "roadmap_version": 1,
+   "status": "AWAITING_APPROVAL",
+   "updated_at": "2026-11-19T13:22:35.334526"
   }
  },
  "verified": {
   "artifacts": [
    {
-    "checksum": "4e8eada43b309ca0b021d203e6fc2e2411720d6a22ddc4231e6dfbf9af5fd248",
-    "created_at": "2026-11-19T13:06:40.365977",
-    "id": "20a66da1-954d-49bf-b365-74938a948584",
+    "checksum": "4f0df2b4040b9c3802a72343fa3c80001c4a9f262170b86155553a57f596e08a",
+    "created_at": "2026-11-19T13:22:34.693798",
+    "id": "340ebf27-596d-4a70-a349-d1b2d41b0e84",
     "name": "AUTOPSY_REPORT.md",
-    "size": 1630,
+    "size": 1713,
     "type": "autopsy_report"
    },
    {
-    "checksum": "cb0c5c460b4518013c0732e139728687669493196242d2963ef15110f29c78ed",
-    "created_at": "2026-11-19T13:06:40.367275",
-    "id": "e3a9c646-2f61-4d81-81ea-52556d07c03c",
+    "checksum": "537ae7626a8fad056bdf2ae55b8de6355523dc0237377fd8d7acb13c3933c718",
+    "created_at": "2026-11-19T13:22:34.695135",
+    "id": "212e2447-f601-451a-86b6-c7bc7bdb6d29",
     "name": "autopsy.json",
-    "size": 4160,
+    "size": 4423,
     "type": "autopsy_data"
    },
    {
     "checksum": "004383cd84a30a6bc9cc7def7891472de7f28e7d468dab3d34f94750c9335187",
-    "created_at": "2026-11-19T13:06:40.374472",
-    "id": "c225d7b7-ce8a-4f34-9d41-a9ad8367ba31",
+    "created_at": "2026-11-19T13:22:34.701910",
+    "id": "791b7ee2-00c1-4058-8909-4b9b3180c6cd",
     "name": "CHARACTERIZATION_REPORT.md",
     "size": 585,
     "type": "characterization_report"
    },
    {
     "checksum": "5f602acda5c7297ab1bc01aa6782891a40ef1633895273ea47e14f91af6c0862",
-    "created_at": "2026-11-19T13:06:40.375405",
-    "id": "4c0d68ca-5d22-4173-a2e1-ba3404bf2ce4",
+    "created_at": "2026-11-19T13:22:34.702772",
+    "id": "43bfd7dd-345e-44fd-9eae-c3e9369afe9f",
     "name": "characterization.json",
     "size": 625,
     "type": "characterization_data"
    },
    {
-    "checksum": "abac01541c42b5d2fb5b67c3ea05bf3957d9a0defb170b69e1f4dafa18ad4d76",
-    "created_at": "2026-11-19T13:06:40.380508",
-    "id": "3649cbca-4995-4c20-adc5-5372404a026e",
+    "checksum": "f2b49da4699bfa65ab00b218533414ce9428f4ed57f7f3e1826b866a67730140",
+    "created_at": "2026-11-19T13:22:34.707989",
+    "id": "c9588bb2-1ed7-4302-b124-20b55cbe35d9",
     "name": "REVIVAL_ROADMAP.v1.md",
-    "size": 2768,
+    "size": 2763,
     "type": "roadmap"
    },
    {
-    "checksum": "eb4dbd6d90fd3612406735278e95612ebd41427ce6576260e428dc4b0a0bac8c",
-    "created_at": "2026-11-19T13:06:40.381385",
-    "id": "bc130950-0d4c-4d5c-b713-c65e32bf05f7",
+    "checksum": "9161eb4b3634e499b2cafcb04fd0ab912913e910b046a8fe75fc1a625920bd60",
+    "created_at": "2026-11-19T13:22:34.709212",
+    "id": "ce14e3c8-f39e-4d19-869e-d75081fc5963",
     "name": "roadmap.v1.json",
-    "size": 3984,
+    "size": 3979,
     "type": "roadmap_data"
    },
    {
     "checksum": "05a1e79ac7b4c79cfd7e14d858d904f8669f02a3686dff96872a6eb0cdc2a3fd",
-    "created_at": "2026-11-19T13:06:40.420727",
-    "id": "e24698a7-0a58-4c15-b6ed-b75d0ff0fde8",
+    "created_at": "2026-11-19T13:22:34.750461",
+    "id": "ce6133c7-9bed-4bba-a90a-f99a253f21b2",
     "name": "PATCHSET.v1.diff",
     "size": 1941,
     "type": "patch_set"
    },
    {
     "checksum": "b1bd42cdc4e28e1d205075e2ad754e3e23badbfd855ec774a42a9ec5b85349c5",
-    "created_at": "2026-11-19T13:06:40.421611",
-    "id": "1f042075-0c9c-411e-ada1-f11fb4361e41",
+    "created_at": "2026-11-19T13:22:34.751339",
+    "id": "79c41bce-8fc4-4bef-9478-08043666f03d",
     "name": "PATCHSET.v1.md",
     "size": 991,
     "type": "patch_set_summary"
    },
    {
     "checksum": "13657b5591390abace8f5812df9b827f348da15027b957014963f9947331de27",
-    "created_at": "2026-11-19T13:06:40.422577",
-    "id": "55f00b5e-2050-4e78-b1d5-b14abf80f2f2",
+    "created_at": "2026-11-19T13:22:34.752223",
+    "id": "b30258ea-f542-4c6c-83d0-176840bb7fd4",
     "name": "patches.v1.json",
     "size": 6862,
     "type": "patch_set_data"
    },
    {
     "checksum": "e8b01555180d7f5773eb01902b1954d40a3c6c04cac03e54f783e6df44f7ab4a",
-    "created_at": "2026-11-19T13:06:40.575904",
-    "id": "421ce09c-8d68-4bdf-a782-5dfe926f31cb",
+    "created_at": "2026-11-19T13:22:34.836407",
+    "id": "c53f40ae-e71d-44c4-969c-167fe5d0ba2e",
     "name": "VERIFICATION_REPORT.md",
     "size": 1455,
     "type": "verification_report"
    },
    {
     "checksum": "54faa124c87b6b6170d68fcbcf49b2d4b4299840290fb3645c94c87e651ac91d",
-    "created_at": "2026-11-19T13:06:40.576855",
-    "id": "07bff3fa-053b-45e0-99ce-35a06b1e8183",
+    "created_at": "2026-11-19T13:22:34.837316",
+    "id": "14af0115-91fa-40f4-a71a-1fb1ebc1943e",
     "name": "verification.json",
     "size": 1476,
     "type": "verification_data"
    },
    {
-    "checksum": "c48968dff247a7714bc52f5057831ee2ae4ad26150c22b38aaf1c7bdeea77a87",
-    "created_at": "2026-11-19T13:06:40.577763",
-    "id": "0d62eb41-8feb-46bb-a384-8d4795cccf67",
+    "checksum": "55c1078a9e48c96576cfaacd955fadd02477f2c95151ea80ac323374a2980dee",
+    "created_at": "2026-11-19T13:22:34.838265",
+    "id": "11e45799-f3c5-4041-906e-0b6d5cfdd5d6",
     "name": "VITALITY_REPORT.json",
-    "size": 2639,
+    "size": 2703,
     "type": "vitality_report"
    },
    {
-    "checksum": "0b39daebb1c172a9a5b1d2be0bc06140511e7924bcfc10cfeece22e41ebc9229",
-    "created_at": "2026-11-19T13:06:40.583260",
-    "id": "124ce931-34ad-4c1e-a55b-5a5231041459",
+    "checksum": "d420c26843dbc29643190e302ea1b9e2cd4fe18fa7776a00be122b3e51c13e89",
+    "created_at": "2026-11-19T13:22:34.843451",
+    "id": "d9f102f4-a67e-42ba-9275-04064e2cc8a7",
     "name": "RUN_AUDIT.json",
-    "size": 3607,
+    "size": 3605,
     "type": "run_audit"
    }
   ],
@@ -1513,16 +2718,25 @@
     "language": "Python",
     "lint_violations": 1,
     "lockfile_present": false,
-    "python_files": 3,
-    "python_lines": 78,
     "repository_name": "legacy-python-cli",
+    "source_files": 3,
+    "source_lines": 78,
     "test_config": [],
     "test_files": 1,
     "test_functions": 2,
     "tools": [
      {
+      "command": "built-in pattern scan",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "0 possible secret(s) in 1 config and script file(s)",
+      "tool": "secret-scan"
+     },
+     {
       "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-      "duration_seconds": 0.032,
+      "duration_seconds": 0.031,
       "exit_code": 1,
       "measured": true,
       "output_excerpt": "",
@@ -1663,7 +2877,7 @@
       ],
       "id": "RT-001",
       "priority": "P1",
-      "proposed_action": "Raise the pin for requests to a release that fixes every listed advisory (fix versions across advisories: 0.12.3, 1.0), then re-run tests.",
+      "proposed_action": "Raise the pin for requests to a release that fixes every listed advisory (fix versions across advisories: 2.20.0, 2.31.0), then re-run tests.",
       "risk": "medium",
       "status": "proposed",
       "title": "Upgrade requests to a patched release",
@@ -1684,7 +2898,7 @@
       "risk": "low",
       "status": "proposed",
       "title": "Hardcoded secret-like value assigned to `API_TOKEN`",
-      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
      },
      {
       "affected_files": [
@@ -1701,7 +2915,7 @@
       "risk": "medium",
       "status": "proposed",
       "title": "Shell command via `os.popen`",
-      "verification": "The AST scan no longer reports this finding; the test baseline does not regress."
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
      },
      {
       "affected_files": [
@@ -1849,7 +3063,7 @@
        "weight": 0.2
       },
       {
-       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -1894,7 +3108,7 @@
        "weight": 0.2
       },
       {
-       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -1924,63 +3138,63 @@
   "events": [
    {
     "event": "run_started",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:1",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:1",
     "id": "1",
     "payload": {
      "mode": "REVIVE",
-     "repository_id": "772255dc-c5a6-4cd8-af19-88ac1a4f94af"
+     "repository_id": "29d4e32f-3fab-4cc4-97ed-2a48641ac579"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 1,
-    "timestamp": "2026-11-19T13:06:40.315413",
+    "timestamp": "2026-11-19T13:22:34.588869",
     "type": "run_started"
    },
    {
     "event": "stage_changed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:2",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:2",
     "id": "2",
     "payload": {
      "stage": "AUTOPSY",
      "status": "RUNNING"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 2,
-    "timestamp": "2026-11-19T13:06:40.322910",
+    "timestamp": "2026-11-19T13:22:34.597181",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:3",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:3",
     "id": "3",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.032,
+     "duration_seconds": 0.031,
      "exit_code": 1,
-     "output": "    },\n    \"filename\": \"/tmp/tmpsj6txr2x/data/runs/6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
+     "output": "    },\n    \"filename\": \"/tmp/tmpzhk67kmx/data/runs/c04ca400-d8e1-452e-b31e-c5a7b8b83ab0/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
      "stage": "AUTOPSY",
      "timed_out": false
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 3,
-    "timestamp": "2026-11-19T13:06:40.363405",
+    "timestamp": "2026-11-19T13:22:34.691391",
     "type": "terminal_log"
    },
    {
     "event": "stage_changed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:4",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:4",
     "id": "4",
     "payload": {
      "stage": "CHARACTERIZATION",
      "status": "RUNNING"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 4,
-    "timestamp": "2026-11-19T13:06:40.371179",
+    "timestamp": "2026-11-19T13:22:34.698627",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:5",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:5",
     "id": "5",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -1990,14 +3204,14 @@
      "stage": "CHARACTERIZATION",
      "timed_out": false
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 5,
-    "timestamp": "2026-11-19T13:06:40.373209",
+    "timestamp": "2026-11-19T13:22:34.700879",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:6",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:6",
     "id": "6",
     "payload": {
      "dimensions": [
@@ -2020,7 +3234,7 @@
        "weight": 0.2
       },
       {
-       "basis": "2 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -2045,58 +3259,58 @@
      "score": 46.3,
      "unmeasured": []
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 6,
-    "timestamp": "2026-11-19T13:06:40.376463",
+    "timestamp": "2026-11-19T13:22:34.703838",
     "type": "health_score_updated"
    },
    {
     "event": "stage_changed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:7",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:7",
     "id": "7",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 7,
-    "timestamp": "2026-11-19T13:06:40.379180",
+    "timestamp": "2026-11-19T13:22:34.706490",
     "type": "stage_changed"
    },
    {
     "event": "roadmap_ready",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:8",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:8",
     "id": "8",
     "payload": {
-     "roadmap_digest": "e826113d7e3ab9c7ff27400c722e2a0df1230d73bf54c90c4f5e2d0fe055e6f5",
+     "roadmap_digest": "9efc2c8d96494fc9d50f652d4bff02d45b840a1e89a3c83b175be7589626a6da",
      "roadmap_version": 1,
      "task_count": 7
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 8,
-    "timestamp": "2026-11-19T13:06:40.383235",
+    "timestamp": "2026-11-19T13:22:34.711351",
     "type": "roadmap_ready"
    },
    {
     "event": "terminal_log",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:9",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:9",
     "id": "9",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --fix --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.029,
+     "duration_seconds": 0.03,
      "exit_code": 0,
      "output": "Found 1 error (1 fixed, 0 remaining).",
      "stage": "REANIMATION",
      "timed_out": false
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 9,
-    "timestamp": "2026-11-19T13:06:40.419074",
+    "timestamp": "2026-11-19T13:22:34.748883",
     "type": "terminal_log"
    },
    {
     "event": "diff_generated",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:10",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:10",
     "id": "10",
     "payload": {
      "files_changed": [
@@ -2154,14 +3368,14 @@
       }
      ]
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 10,
-    "timestamp": "2026-11-19T13:06:40.424837",
+    "timestamp": "2026-11-19T13:22:34.754316",
     "type": "diff_generated"
    },
    {
     "event": "hitl_required",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:11",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:11",
     "id": "11",
     "payload": {
      "ai_model": null,
@@ -2181,14 +3395,14 @@
      "status": "AWAITING_APPROVAL",
      "task_count": 7
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 11,
-    "timestamp": "2026-11-19T13:06:40.427941",
+    "timestamp": "2026-11-19T13:22:34.758077",
     "type": "hitl_required"
    },
    {
     "event": "approval_received",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:12",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:12",
     "id": "12",
     "payload": {
      "actor": "local",
@@ -2198,27 +3412,27 @@
      "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
      "roadmap_version": 1
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 12,
-    "timestamp": "2026-11-19T13:06:40.450274",
+    "timestamp": "2026-11-19T13:22:34.778535",
     "type": "approval_received"
    },
    {
     "event": "stage_changed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:13",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:13",
     "id": "13",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 13,
-    "timestamp": "2026-11-19T13:06:40.450960",
+    "timestamp": "2026-11-19T13:22:34.779285",
     "type": "stage_changed"
    },
    {
     "event": "patch_applied",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:14",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:14",
     "id": "14",
     "payload": {
      "action": "modify",
@@ -2229,14 +3443,14 @@
      "target": "isolated working copy",
      "task_id": "RT-001"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 14,
-    "timestamp": "2026-11-19T13:06:40.528115",
+    "timestamp": "2026-11-19T13:22:34.788443",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:15",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:15",
     "id": "15",
     "payload": {
      "action": "modify",
@@ -2247,14 +3461,14 @@
      "target": "isolated working copy",
      "task_id": "RT-002"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 15,
-    "timestamp": "2026-11-19T13:06:40.529110",
+    "timestamp": "2026-11-19T13:22:34.789333",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:16",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:16",
     "id": "16",
     "payload": {
      "action": "modify",
@@ -2265,14 +3479,14 @@
      "target": "isolated working copy",
      "task_id": "RT-003"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 16,
-    "timestamp": "2026-11-19T13:06:40.529960",
+    "timestamp": "2026-11-19T13:22:34.790194",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:17",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:17",
     "id": "17",
     "payload": {
      "action": "create",
@@ -2283,14 +3497,14 @@
      "target": "isolated working copy",
      "task_id": "RT-005"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 17,
-    "timestamp": "2026-11-19T13:06:40.530881",
+    "timestamp": "2026-11-19T13:22:34.790995",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:18",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:18",
     "id": "18",
     "payload": {
      "action": "create",
@@ -2301,14 +3515,14 @@
      "target": "isolated working copy",
      "task_id": "RT-006"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 18,
-    "timestamp": "2026-11-19T13:06:40.531728",
+    "timestamp": "2026-11-19T13:22:34.791720",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:19",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:19",
     "id": "19",
     "payload": {
      "action": "modify",
@@ -2319,44 +3533,44 @@
      "target": "isolated working copy",
      "task_id": "RT-007"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 19,
-    "timestamp": "2026-11-19T13:06:40.532499",
+    "timestamp": "2026-11-19T13:22:34.792473",
     "type": "patch_applied"
    },
    {
     "event": "stage_changed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:20",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:20",
     "id": "20",
     "payload": {
      "stage": "CONSECRATION",
      "status": "RUNNING"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 20,
-    "timestamp": "2026-11-19T13:06:40.535309",
+    "timestamp": "2026-11-19T13:22:34.795130",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:21",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:21",
     "id": "21",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.029,
+     "duration_seconds": 0.03,
      "exit_code": 0,
      "output": "[]",
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 21,
-    "timestamp": "2026-11-19T13:06:40.569516",
+    "timestamp": "2026-11-19T13:22:34.830428",
     "type": "terminal_log"
    },
    {
     "event": "terminal_log",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:22",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:22",
     "id": "22",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -2366,14 +3580,14 @@
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 22,
-    "timestamp": "2026-11-19T13:06:40.572614",
+    "timestamp": "2026-11-19T13:22:34.833198",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:23",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:23",
     "id": "23",
     "payload": {
      "dimensions": [
@@ -2396,7 +3610,7 @@
        "weight": 0.2
       },
       {
-       "basis": "0 static (AST) security findings. This is a static scan only, not a complete security assessment.",
+       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -2421,14 +3635,14 @@
      "score": 76.2,
      "unmeasured": []
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 23,
-    "timestamp": "2026-11-19T13:06:40.578777",
+    "timestamp": "2026-11-19T13:22:34.839248",
     "type": "health_score_updated"
    },
    {
     "event": "verification_completed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:24",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:24",
     "id": "24",
     "payload": {
      "checks": [
@@ -2471,14 +3685,14 @@
      "regressions": [],
      "verdict": "verified"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 24,
-    "timestamp": "2026-11-19T13:06:40.579696",
+    "timestamp": "2026-11-19T13:22:34.840105",
     "type": "verification_completed"
    },
    {
     "event": "run_completed",
-    "event_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b:25",
+    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:25",
     "id": "25",
     "payload": {
      "mode": "REVIVE",
@@ -2495,41 +3709,41 @@
      "status": "COMPLETED",
      "verdict": "verified"
     },
-    "run_id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
     "sequence": 25,
-    "timestamp": "2026-11-19T13:06:40.584936",
+    "timestamp": "2026-11-19T13:22:34.845069",
     "type": "run_completed"
    }
   ],
   "final_run": {
    "cancel_requested": false,
-   "completed_at": "2026-11-19T13:06:40.583791",
-   "created_at": "2026-11-19T13:06:40.312922",
+   "completed_at": "2026-11-19T13:22:34.843960",
+   "created_at": "2026-11-19T13:22:34.586649",
    "current_stage": "CONSECRATION",
    "error": null,
-   "id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+   "id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "772255dc-c5a6-4cd8-af19-88ac1a4f94af",
+   "repository_id": "29d4e32f-3fab-4cc4-97ed-2a48641ac579",
    "roadmap_version": 1,
    "status": "COMPLETED",
-   "updated_at": "2026-11-19T13:06:40.583791"
+   "updated_at": "2026-11-19T13:22:34.843960"
   },
   "waiting_run": {
    "cancel_requested": false,
    "completed_at": null,
-   "created_at": "2026-11-19T13:06:40.312922",
+   "created_at": "2026-11-19T13:22:34.586649",
    "current_stage": "REANIMATION",
    "error": null,
-   "id": "6a0c597d-0e42-4fd0-9004-98e7fd6c5c3b",
+   "id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "772255dc-c5a6-4cd8-af19-88ac1a4f94af",
+   "repository_id": "29d4e32f-3fab-4cc4-97ed-2a48641ac579",
    "roadmap_version": 1,
    "status": "AWAITING_APPROVAL",
-   "updated_at": "2026-11-19T13:06:40.426920"
+   "updated_at": "2026-11-19T13:22:34.756550"
   }
  }
 }

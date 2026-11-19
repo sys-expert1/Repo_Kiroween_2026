@@ -49,6 +49,22 @@ jobs:
       - run: pytest -q
 """
 
+NODE_CI_WORKFLOW = """name: CI
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: {install}
+{typecheck}      - run: npm test --if-present
+"""
+
 DOCKERFILE = """FROM python:3.12-slim
 RUN useradd --create-home --uid 10001 app
 WORKDIR /app
@@ -208,6 +224,11 @@ def _generate_for_task(task, findings, ws, emit, fix_lint, report, llm) -> None:
     title = task.title
     linked: list[Finding] = [findings[e] for e in task.evidence if e in findings]
     if task.category == "dependencies" and title.startswith("Upgrade "):
+        if any(f.source == "npm-audit" for f in linked):
+            raise EditNotApplicable(
+                "npm upgrades must change package.json and package-lock.json together. "
+                "Run `npm install <package>@<version>` yourself."
+            )
         _dependency(task, linked, ws, emit)
     elif task.category == "security" and title.startswith("Hardcoded secret"):
         f = _only(linked)
@@ -237,6 +258,22 @@ def _generate_for_task(task, findings, ws, emit, fix_lint, report, llm) -> None:
         raise EditNotApplicable(
             "Tests are never edited automatically, so failures are not hidden or rewritten."
         )
+    elif title == "Add a CI workflow" and report.language == "TypeScript":
+        lock = ws.read("package-lock.json") is not None
+        typecheck = (
+            "      - run: npx tsc --noEmit\n" if ws.read("tsconfig.json") is not None else ""
+        )
+        workflow = NODE_CI_WORKFLOW.format(
+            install="npm ci" if lock else "npm install", typecheck=typecheck
+        )
+        emit(
+            task,
+            ".github/workflows/ci.yml",
+            workflow,
+            "Install, type-check and test on every push.",
+        )
+    elif title == "Add a Dockerfile" and report.language == "TypeScript":
+        raise EditNotApplicable("There is no Dockerfile template for TypeScript projects yet.")
     elif title == "Add a CI workflow":
         reqs = "-r requirements.txt " if ws.read("requirements.txt") is not None else ""
         emit(task, ".github/workflows/ci.yml", CI_WORKFLOW.format(requirements=reqs),

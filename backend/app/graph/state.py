@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable
+from collections.abc import Callable, Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from typing import TypedDict
@@ -22,6 +22,7 @@ class WorkflowState(TypedDict, total=False):
     mode: str  # INSPECT | PREVIEW | REVIVE
     repository_name: str
     source_type: str
+    language: str
     snapshot_dir: str
     commit: str | None
     autopsy: dict
@@ -47,7 +48,7 @@ RunnerFactory = Callable[[str, Path], CommandRunner | None]
 class WorkflowContext:
     settings: Settings
     session_factory: sessionmaker[Session]
-    adapter: LanguageAdapter
+    adapters: Sequence[LanguageAdapter]
     runner_for: RunnerFactory
     baseline_timeout: float = 300.0
     llm_client: LLMClient | None = None

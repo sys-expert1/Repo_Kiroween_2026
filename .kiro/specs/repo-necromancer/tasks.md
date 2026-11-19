@@ -60,5 +60,6 @@ Python flow before any other language.
 
 ## Stretch (P1)
 - [x] Run history view, secret-pattern scanner, OpenTelemetry (off by default)
-- [ ] TypeScript adapter
+- [x] TypeScript adapter (static scan, npm audit from the lockfile, Node test runner for trusted
+      fixtures). Not done: install dependencies, ESLint, tsc, a Node sandbox image, Dockerfile template
 - [ ] C++ adapter, optional MCP integration

@@ -8,7 +8,7 @@ from app.scoring.health_score import WEIGHTS, comparison_warning, compute_vitali
 
 def report(**kw) -> AutopsyReport:
     base = dict(
-        repository_name="r", frameworks=[], python_files=1, python_lines=100, dependency_files=[],
+        repository_name="r", frameworks=[], source_files=1, source_lines=100, dependency_files=[],
         dependencies=[], unpinned_dependencies=[], lockfile_present=False, test_files=1,
         test_functions=1, test_config=[], build_files=[], has_dockerfile=False, has_ci=False,
         findings=[], tools=[], known_vulnerabilities=None, vulnerable_packages=None,
@@ -37,7 +37,7 @@ def test_weights_match_the_model_and_sum_to_one():
 
 
 def test_unknown_stays_unknown_and_is_never_scored_100():
-    s = compute_vitality(report(python_files=0), BaselineReport(status="not_run"))
+    s = compute_vitality(report(source_files=0), BaselineReport(status="not_run"))
     for name in ("dependencies", "tests", "code_quality", "security"):
         assert dim(s, name).score is None and dim(s, name).basis.startswith("Not measured")
     assert dim(s, "ci_docker").score == 0.0  # absence of CI/Docker is a measured zero
@@ -48,7 +48,7 @@ def test_unknown_stays_unknown_and_is_never_scored_100():
 
 def test_aggregate_is_renormalised_over_measured_dimensions_only():
     s = compute_vitality(
-        report(python_files=0, has_ci=True, has_dockerfile=True), baseline(passed=3, failed=1)
+        report(source_files=0, has_ci=True, has_dockerfile=True), baseline(passed=3, failed=1)
     )
     assert dim(s, "tests").score == 75.0
     assert s.measured == ["tests", "ci_docker"] and s.measured_weight == 0.45
@@ -76,7 +76,7 @@ def test_dimension_formulas():
     s = compute_vitality(
         report(
             findings=findings, known_vulnerabilities=7, vulnerable_packages=1, audited_packages=4,
-            lint_violations=10, python_lines=1000,
+            lint_violations=10, source_lines=1000,
         ),
         baseline(passed=8, failed=1, errors=1),
     )  # fmt: skip

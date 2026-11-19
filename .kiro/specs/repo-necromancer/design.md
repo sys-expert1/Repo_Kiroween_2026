@@ -32,9 +32,10 @@ the REST/SSE contract; use real backend data only; avoid unnecessary services.
 `backend/app/`:
 - `config.py`, `db.py`, `schemas.py`, `fixtures.py`, `artifacts.py`, `reports.py`, `workspace.py`.
 - `repositories/`: path and URL validation, read-only detection, intake service.
-- `adapters/`: `base.py` interface, `models.py`, `python_adapter.py` (Autopsy, Ruff, pip-audit,
-  baseline pytest, safe lint fixes), `python_ast.py`, `python_deps.py`, `python_edit.py`
-  (conservative source edits). Adapters do not import LangGraph.
+- `adapters/`: `base.py` interface, `registry.py` (picks the adapter by score), `models.py`,
+  `python_adapter.py` (Autopsy, Ruff, pip-audit, baseline pytest, safe lint fixes), `python_ast.py`,
+  `python_deps.py`, `python_edit.py` (conservative source edits), `ts_adapter.py`, `ts_scan.py`,
+  `ts_deps.py`, `secrets_scan.py`. Adapters do not import LangGraph.
 - `agents/`: `roadmap.py` (deterministic, versioned), `patches.py` (proposal, digest, apply).
 - `execution/`: `runner.py` (no shell, minimal env, process-group kill, rlimits), `sandbox.py`
   (Docker runner and status), `redact.py`.
@@ -174,6 +175,6 @@ missing `conmon`). Real container execution must be verified on a machine with D
 | Revert in Diff Inspector | revert in managed workspace | not implemented. Rollback is automatic on a failed verification |
 | Entities | Finding, Roadmap, RoadmapTask, Patch, Verification tables | stored as JSON artifacts |
 | Observability, Git library | OpenTelemetry, GitPython | OpenTelemetry spans per node plus command events (`telemetry.py`), off unless `NECRO_OTEL` is set, only tested with an in-memory exporter. GitPython not added: `git` runs through the command runner |
-| Fixtures | `legacy-python-cli`, `legacy-ts-utils`, `legacy-cpp-parser` | `legacy-python-cli` only |
-| Languages | Python P0, TypeScript P1, C++ stretch | Python only |
+| Fixtures | `legacy-python-cli`, `legacy-ts-utils`, `legacy-cpp-parser` | `legacy-python-cli` and `legacy-ts-utils` |
+| Languages | Python P0, TypeScript P1, C++ stretch | Python complete. TypeScript with the limits in the README (no install, so no ESLint or tsc). C++ not built |
 | Folder layout | blueprint's logical tree | consolidated under `backend/app/` as the blueprint allows |

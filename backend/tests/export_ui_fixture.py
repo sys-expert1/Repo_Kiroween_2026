@@ -14,6 +14,7 @@ from pathlib import Path
 from fastapi.testclient import TestClient
 
 from app.config import FIXTURES_DIR, Settings
+from app.execution.runner import CommandResult
 from app.graph.runner import InlineExecutor
 from app.main import create_app
 from tests.conftest import OfflineAdapter, SequencedRunner, canned_output
@@ -64,7 +65,64 @@ def export(outcome: str) -> dict:
         }
 
 
+def export_typescript() -> dict:
+    """A REVIVE run on the TypeScript fixture, with a canned npm audit and a scripted Node runner."""
+    from app.adapters import ts_adapter
+    from app.adapters.ts_adapter import TypeScriptAdapter
+    from tests.test_typescript import AUDIT, NodeRunner
+
+    def canned(argv, cwd, timeout, env, **kw):
+        return CommandResult(
+            argv=list(argv), exit_code=1, stdout=json.dumps(AUDIT), stderr="", duration_seconds=0.3
+        )
+
+    original = ts_adapter.run_command
+    ts_adapter.run_command = canned
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            settings = Settings(
+                data_dir=Path(tmp) / "data", allowed_roots=(FIXTURES_DIR.resolve(),),
+                fixtures_dir=FIXTURES_DIR.resolve(), sandbox_mode="off",
+            )  # fmt: skip
+            app = create_app(
+                settings, executor=InlineExecutor(), adapter=OfflineAdapter(),
+                ts_adapter=TypeScriptAdapter(npm="/usr/bin/npm"),
+                runner_factory=lambda st, home: NodeRunner() if st == "fixture" else None,
+            )  # fmt: skip
+            app.state.sse_poll_seconds = 0.01
+            c = TestClient(app)
+            repo = c.post("/api/repositories/import", json={"fixture_id": "legacy-ts-utils"}).json()
+            run = c.post(
+                "/api/revive/start", json={"repository_id": repo["id"], "mode": "REVIVE"}
+            ).json()
+            waiting = c.get(f"/api/revive/{run['id']}").json()
+            c.post(
+                f"/api/revive/approve/{run['id']}",
+                json={"decision": "approve", "roadmap_version": run["roadmap_version"]},
+            )
+            done = c.get(f"/api/revive/{run['id']}").json()
+            arts = c.get(f"/api/revive/{run['id']}/artifacts").json()
+            data = {
+                a["type"]: json.loads(c.get(f"/api/revive/{run['id']}/artifacts/{a['id']}").text)
+                for a in arts
+                if a["type"].endswith("_data") or a["type"] == "vitality_report"
+            }
+            return {
+                "waiting_run": waiting,
+                "final_run": done,
+                "artifacts": arts,
+                "data": data,
+                "events": parse_sse(c.get(f"/api/revive/stream/{run['id']}").text),
+            }
+    finally:
+        ts_adapter.run_command = original
+
+
 if __name__ == "__main__":
-    out = {"verified": export("verified"), "rolled_back": export("rolled_back")}
+    out = {
+        "verified": export("verified"),
+        "rolled_back": export("rolled_back"),
+        "typescript": export_typescript(),
+    }
     OUT.write_text(json.dumps(out, indent=1, sort_keys=True))
     print(f"wrote {OUT} ({OUT.stat().st_size // 1024} KB)")

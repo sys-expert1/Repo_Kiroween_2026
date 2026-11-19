@@ -71,22 +71,25 @@ def _tests(b: BaselineReport) -> tuple[float | None, str]:
 def _quality(r: AutopsyReport) -> tuple[float | None, str]:
     if r.lint_violations is None:
         return None, "Not measured: Ruff did not produce a result."
-    density = r.lint_violations * 1000 / max(r.python_lines, 1)
+    density = r.lint_violations * 1000 / max(r.source_lines, 1)
     return _round(100 / (1 + density / 10)), (
-        f"{r.lint_violations} Ruff violations in {r.python_lines} lines "
+        f"{r.lint_violations} Ruff violations in {r.source_lines} lines "
         f"({density:.1f} per 1000 lines). Score = 100 / (1 + density / 10)."
     )
 
 
 def _security(r: AutopsyReport) -> tuple[float | None, str]:
-    if r.python_files == 0:
+    if r.source_files == 0:
         return None, "Not measured: no Python files were scanned."
-    hits = [f for f in r.findings if f.category == "security" and f.source in ("ast", "secrets")]
+    hits = [
+        f
+        for f in r.findings
+        if f.category == "security" and f.source in ("ast", "secrets", "ts-scan")
+    ]
     penalty = sum(SECURITY_PENALTY[f.severity] for f in hits)
     return _round(100 - penalty), (
-        f"{len(hits)} static security findings (AST and secret patterns). This is a static scan, "
-        "not a "
-        "complete security assessment."
+        f"{len(hits)} static security findings (AST, TypeScript scan and secret patterns). "
+        "This is a static scan, not a complete security assessment."
     )
 
 
