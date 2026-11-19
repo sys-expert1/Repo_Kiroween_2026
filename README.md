@@ -47,7 +47,7 @@ docker compose -f deployment/docker-compose.yml up --build
 | Area | State |
 | --- | --- |
 | Intake: Git URL, local path, demo fixture, with path and URL validation | Done |
-| Autopsy: AST, Ruff, pip-audit, dependency and test discovery, evidence-backed findings | Done (Python) |
+| Autopsy: AST, Ruff, pip-audit, secret-pattern scan of config and script files, dependency and test discovery, evidence-backed findings | Done (Python) |
 | Characterization: baseline tests, pre-existing failures recorded, coverage and build "not measured" | Done |
 | Revival Roadmap: versioned, evidence-linked, editable | Done (rule-based) |
 | Patches: bound to file hashes and a digest, shown as diffs | Done for 6 kinds of task |
@@ -56,15 +56,16 @@ docker compose -f deployment/docker-compose.yml up --build
 | Consecration: tests, lint, dependency audit, CI validation, optional Docker build | Done |
 | Vitality Score: before and after, unknown stays unknown | Done |
 | Live events: SSE with replay, `Last-Event-ID`, heartbeats | Done |
-| Dashboard: header, stepper, workspace, Vitality inspector, terminal, all four views | Done |
+| Dashboard: header, stepper, workspace, Vitality inspector, terminal, all four views, run history | Done |
+| OpenTelemetry traces correlated by run and stage | Built, **off by default** (`NECRO_OTEL`). Tested with an in-memory exporter. Never sent to a real collector |
 | Restricted Docker sandbox | Built and unit tested. **Never run against a real Docker daemon** (see below) |
 | AI-assisted patches (LiteLLM) | Built, **off by default**. Tested with a scripted fake client only. Never called a real model (see below) |
-| TypeScript and C++ adapters, OpenTelemetry, MCP | Not built (P1 and stretch) |
+| TypeScript and C++ adapters, MCP | Not built (P1 and stretch) |
 
 ### What was verified, and what was not
 
-- **Backend:** 254 tests pass and 1 is skipped. `ruff check` is clean.
-- **Frontend:** `tsc --noEmit` is clean, 53 tests pass and the production build succeeds. The tests
+- **Backend:** 281 tests pass and 1 is skipped. `ruff check` is clean.
+- **Frontend:** `tsc --noEmit` is clean, 57 tests pass and the production build succeeds. The tests
   cover the reducer, the stream hook (replay, reconnect, de-duplication), diff escaping, the
   approval flow, and a **contract test that replays a real run exported from the backend**.
 - **Real tools:** a full REVIVE run on the demo fixture was executed with real Ruff, real pytest and
@@ -111,6 +112,15 @@ must match the digest, otherwise nothing is written. Patches are generated for:
 Everything else gets a stated reason instead of a guess, for example "tests are never edited
 automatically" or "no automatic fix exists for this construct". Dependency upgrades can break
 compatibility. Only the repository's tests (and the Docker build, if enabled) check that.
+
+### Secret-pattern scan
+
+Besides the Python AST scan, Autopsy scans `.env*`, ini, yaml, json, toml, properties, shell and
+JavaScript files for private key blocks, AWS, GitHub and Slack tokens, and literal values assigned
+to names like `password` or `api_key`. Placeholders such as `changeme` or `${VAR}` are ignored.
+A finding names the kind and the line, **never the value**. These become roadmap tasks that need a
+person (rotate the credential, move it out of the repository), are never patched automatically and
+never sent to a model. Matches are "possible" secrets, so expect some false positives.
 
 ### AI-assisted patches (opt-in)
 
@@ -232,6 +242,7 @@ plus the JSON the dashboard reads.
 | `NECRO_ALLOW_HOST_FIXTURE_EXEC` | `1` | Let bundled fixtures run tests on the host when there is no sandbox |
 | `NECRO_ALLOW_DOCKER_BUILD` | `0` | `1` builds the repository's Dockerfile during Consecration |
 | `NECRO_STATIC_DIR` | `frontend/dist` | Built dashboard served at `/` |
+| `NECRO_OTEL` | empty (off) | `console` prints spans to stderr. `otlp` needs `opentelemetry-exporter-otlp` and the standard `OTEL_EXPORTER_OTLP_*` variables |
 | `NECRO_LLM_MODEL` | empty (off) | LiteLLM model for AI-assisted patches. Sends function source to that provider |
 | `NECRO_LLM_TIMEOUT` / `NECRO_LLM_MAX_TASKS` | `60` / `5` | Per-call timeout in seconds, and AI patch requests per run |
 

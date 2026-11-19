@@ -1,4 +1,4 @@
-import { Activity, BadgeCheck, FileDiff, LayoutDashboard, ListChecks, PanelRight } from "lucide-react";
+import { Activity, BadgeCheck, FileDiff, History, LayoutDashboard, ListChecks, PanelRight } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { ApprovalDialog, type ApprovalInfo } from "./components/ApprovalDialog";
@@ -8,6 +8,7 @@ import { IntakePanel } from "./components/IntakePanel";
 import { KiroTrace } from "./components/KiroTrace";
 import { Overview } from "./components/Overview";
 import { RoadmapView } from "./components/RoadmapView";
+import { RunHistory } from "./components/RunHistory";
 import { TerminalStream } from "./components/TerminalStream";
 import { TopHeader } from "./components/TopHeader";
 import { button, Notice, Spinner } from "./components/ui";
@@ -16,14 +17,15 @@ import { useRevivalStream } from "./hooks/useRevivalStream";
 import { useRunData } from "./hooks/useRunData";
 import { api, ApiError } from "./services/api";
 import { stageStates } from "./state/runState";
-import type { ExecutionMode, Fixture, Health, Repository, RepositorySource } from "./types/revival";
+import type { ExecutionMode, Fixture, Health, Repository, RepositorySource, Run } from "./types/revival";
 
-type View = "overview" | "roadmap" | "diff" | "trace";
+type View = "overview" | "roadmap" | "diff" | "trace" | "history";
 const TABS: { id: View; label: string; icon: typeof Activity }[] = [
   { id: "overview", label: "Overview", icon: LayoutDashboard },
   { id: "roadmap", label: "Revival Roadmap", icon: ListChecks },
   { id: "diff", label: "Diff Inspector", icon: FileDiff },
   { id: "trace", label: "Kiro Trace", icon: Activity },
+  { id: "history", label: "History", icon: History },
 ];
 const DATA_EVENTS = new Set([
   "stage_changed", "roadmap_ready", "diff_generated", "verification_completed", "run_completed",
@@ -46,6 +48,8 @@ export function App() {
   const [actionError, setActionError] = useState<string | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [history, setHistory] = useState<Run[] | null>(null);
+  const [historyError, setHistoryError] = useState<string | null>(null);
 
   const { view, connection } = useRevivalStream(runId);
   const refreshKey = `${view.events.filter((e) => DATA_EVENTS.has(e.type)).length}:${view.status}`;
@@ -65,8 +69,19 @@ export function App() {
     })();
   }, []);
 
+  useEffect(() => {
+    if (tab !== "history" || !repoId) return;
+    let cancelled = false;
+    api.runs(repoId).then(
+      (r) => { if (!cancelled) { setHistory(r); setHistoryError(null); } },
+      (e: unknown) => { if (!cancelled) setHistoryError(e instanceof ApiError ? e.message : "Could not load run history."); },
+    );
+    return () => { cancelled = true; };
+  }, [tab, repoId, runId, data.run?.status]);
+
   async function selectRepository(id: string) {
     setRepoId(id);
+    setHistory(null);
     setExcluded(new Set());
     try {
       const [latest] = await api.runs(id);
@@ -218,6 +233,9 @@ export function App() {
                 )}
                 {tab === "diff" && <DiffInspector patches={data.patches} />}
                 {tab === "trace" && <KiroTrace events={view.events} />}
+                {tab === "history" && (
+                  <RunHistory runs={history} error={historyError} currentId={runId} onOpen={(id) => { setRunId(id); setTab("overview"); }} />
+                )}
               </div>
               <p className="mt-8 text-center text-xs text-ink-3">Build something wicked and git commit to the darkness.</p>
             </>

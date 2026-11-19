@@ -163,6 +163,22 @@ describe("App", () => {
     expect(mocked.decide).toHaveBeenCalledWith("run-1", "edit", 1, { excluded_task_ids: ["RT-002"] });
   });
 
+  it("opens a past run from the history tab", async () => {
+    const older = run({ id: "run-0", status: "COMPLETED", mode: "INSPECT", roadmap_version: null, created_at: "2026-11-18T09:00:00Z", completed_at: "2026-11-18T09:00:03Z" });
+    mocked.repositories.mockResolvedValue([repo]);
+    mocked.runs.mockResolvedValue([run({ status: "COMPLETED" }), older]);
+    mocked.run.mockImplementation(async (id: string) => (id === "run-0" ? older : run({ status: "COMPLETED" })));
+    render(<App />);
+    const user = userEvent.setup();
+    await user.click(await screen.findByRole("tab", { name: /History/ }));
+    const buttons = await screen.findAllByRole("button", { name: /Open run/ });
+    expect(buttons).toHaveLength(2);
+    await user.click(buttons[1]!);
+    await waitFor(() => expect(mocked.run).toHaveBeenCalledWith("run-0"));
+    expect(FakeEventSource.last.url).toContain("run-0"); // its events are replayed from the backend log
+    expect(screen.getByRole("tab", { name: /Overview/ })).toHaveAttribute("aria-selected", "true");
+  });
+
   it("shows a failed run's reason and keeps the failed stage visible", async () => {
     mocked.repositories.mockResolvedValue([repo]);
     mocked.runs.mockResolvedValue([run({ status: "FAILED", current_stage: "CONSECRATION", error: "Verification failed and the working copy was rolled back" })]);

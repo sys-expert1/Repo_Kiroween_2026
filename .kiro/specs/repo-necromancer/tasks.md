@@ -59,5 +59,6 @@ Python flow before any other language.
   - [ ] Record the three-minute video
 
 ## Stretch (P1)
-- [ ] TypeScript adapter, run history view, additional scanners, OpenTelemetry
+- [x] Run history view, secret-pattern scanner, OpenTelemetry (off by default)
+- [ ] TypeScript adapter
 - [ ] C++ adapter, optional MCP integration

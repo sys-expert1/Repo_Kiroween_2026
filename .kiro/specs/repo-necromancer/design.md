@@ -173,7 +173,7 @@ missing `conmon`). Real container execution must be verified on a machine with D
 | Build and coverage | recorded when run | coverage is never measured. Docker build is opt-in (`NECRO_ALLOW_DOCKER_BUILD`) |
 | Revert in Diff Inspector | revert in managed workspace | not implemented. Rollback is automatic on a failed verification |
 | Entities | Finding, Roadmap, RoadmapTask, Patch, Verification tables | stored as JSON artifacts |
-| Observability, Git library | OpenTelemetry, GitPython | not added. `git` runs through the command runner |
+| Observability, Git library | OpenTelemetry, GitPython | OpenTelemetry spans per node plus command events (`telemetry.py`), off unless `NECRO_OTEL` is set, only tested with an in-memory exporter. GitPython not added: `git` runs through the command runner |
 | Fixtures | `legacy-python-cli`, `legacy-ts-utils`, `legacy-cpp-parser` | `legacy-python-cli` only |
 | Languages | Python P0, TypeScript P1, C++ stretch | Python only |
 | Folder layout | blueprint's logical tree | consolidated under `backend/app/` as the blueprint allows |

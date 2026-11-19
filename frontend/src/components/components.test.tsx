@@ -3,11 +3,12 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
 import { ev } from "../test/fakes";
-import type { PatchSet, Vitality } from "../types/revival";
+import type { PatchSet, Run, Vitality } from "../types/revival";
 import { ApprovalDialog } from "./ApprovalDialog";
 import { DiffInspector, renderDiff } from "./DiffInspector";
 import { HealthMeter } from "./HealthMeter";
 import { KiroTrace } from "./KiroTrace";
+import { formatDuration, RunHistory } from "./RunHistory";
 import { StatusChip } from "./StatusChip";
 import { terminalLines, TerminalStream } from "./TerminalStream";
 
@@ -197,5 +198,45 @@ describe("AI-proposed patches", () => {
     const info = { roadmap_version: 1, patch_set_digest: "ab".repeat(32), task_count: 3, files_affected: 2, ai_patch_count: 0 };
     render(<ApprovalDialog info={info} excludedCount={0} busy={false} error={null} onApprove={() => {}} onEdit={() => {}} onReject={() => {}} onClose={() => {}} />);
     expect(screen.queryByText("AI-proposed patches")).toBeNull();
+  });
+});
+
+describe("RunHistory", () => {
+  const mk = (over: Partial<Run>): Run => ({
+    id: "11111111-aaaa", repository_id: "r", mode: "REVIVE", status: "COMPLETED", current_stage: "CONSECRATION",
+    cancel_requested: false, roadmap_version: 1, patch_set_digest: null, pinned_commit: "abcdef1234567", error: null,
+    created_at: "2026-11-19T10:00:00Z", updated_at: "", completed_at: "2026-11-19T10:01:05Z", ...over,
+  });
+
+  it("shows loading, error and empty states distinctly", () => {
+    const { rerender } = render(<RunHistory runs={null} error={null} currentId={null} onOpen={() => {}} />);
+    expect(screen.getByText("Loading run history")).toBeInTheDocument();
+    rerender(<RunHistory runs={null} error="Could not load run history." currentId={null} onOpen={() => {}} />);
+    expect(screen.getByRole("alert")).toHaveTextContent("Could not load");
+    rerender(<RunHistory runs={[]} error={null} currentId={null} onOpen={() => {}} />);
+    expect(screen.getByText("No runs yet")).toBeInTheDocument();
+  });
+
+  it("lists runs with status text, short commit and duration, and marks the open one", async () => {
+    const open = vi.fn();
+    const runs = [mk({ id: "22222222-bbbb", status: "FAILED", error: "Verification failed and the working copy was rolled back", completed_at: "2026-11-19T10:00:07Z", pinned_commit: null }), mk({})];
+    render(<RunHistory runs={runs} error={null} currentId="11111111-aaaa" onOpen={open} />);
+    const rows = screen.getAllByRole("row").slice(1);
+    expect(rows).toHaveLength(2);
+    expect(within(rows[0]!).getByText("Failed")).toBeInTheDocument();
+    expect(within(rows[0]!).getByText("7.0s")).toBeInTheDocument();
+    expect(within(rows[0]!).getByText("n/a")).toBeInTheDocument();
+    expect(within(rows[1]!).getByText("1m 5s")).toBeInTheDocument();
+    expect(within(rows[1]!).getByText("abcdef1")).toBeInTheDocument();
+    expect(rows[1]).toHaveAttribute("aria-current", "true");
+    expect(within(rows[1]!).getByRole("button", { name: /Open run/ })).toBeDisabled();
+    expect(screen.getByText(/rolled back/)).toBeInTheDocument();
+    await userEvent.setup().click(within(rows[0]!).getByRole("button", { name: /Open run/ }));
+    expect(open).toHaveBeenCalledWith("22222222-bbbb");
+  });
+
+  it("formats unfinished and malformed durations without inventing numbers", () => {
+    expect(formatDuration(mk({ completed_at: null, status: "RUNNING" }))).toBe("in progress");
+    expect(formatDuration(mk({ completed_at: "not a date" }))).toBe("unknown");
   });
 });
