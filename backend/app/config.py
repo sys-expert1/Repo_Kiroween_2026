@@ -1,0 +1,41 @@
+"""Settings read from NECRO_* environment variables."""
+
+from __future__ import annotations
+
+import os
+from dataclasses import dataclass
+from pathlib import Path
+
+BACKEND_DIR = Path(__file__).resolve().parent.parent
+FIXTURES_DIR = BACKEND_DIR / "fixtures"
+
+
+@dataclass(frozen=True)
+class Settings:
+    data_dir: Path
+    allowed_roots: tuple[Path, ...]
+    fixtures_dir: Path
+
+    @property
+    def db_url(self) -> str:
+        return f"sqlite:///{self.data_dir / 'necromancer.db'}"
+
+
+def _forbidden_root(path: Path) -> bool:
+    return path == Path(path.anchor) or path == Path.home().resolve()
+
+
+def load_settings() -> Settings:
+    data_dir = Path(os.environ.get("NECRO_DATA_DIR", BACKEND_DIR / ".data")).resolve()
+    fixtures_dir = Path(os.environ.get("NECRO_FIXTURES_DIR", FIXTURES_DIR)).resolve()
+    raw = os.environ.get("NECRO_ALLOWED_ROOTS", "")
+    roots = [Path(p).resolve() for p in raw.split(os.pathsep) if p.strip()]
+    roots.append(fixtures_dir)
+    for root in roots:
+        if _forbidden_root(root):
+            raise ValueError(f"Refusing to allow filesystem root or home directory: {root}")
+    return Settings(
+        data_dir=data_dir,
+        allowed_roots=tuple(dict.fromkeys(roots)),
+        fixtures_dir=fixtures_dir,
+    )

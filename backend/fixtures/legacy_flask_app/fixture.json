@@ -1,0 +1,5 @@
+{
+  "name": "Legacy Flask Inventory",
+  "description": "A small Python 2-era Flask service with pinned old dependencies, a failing test, hardcoded secret and no CI.",
+  "language": "python"
+}
