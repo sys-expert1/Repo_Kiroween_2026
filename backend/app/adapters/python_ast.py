@@ -135,6 +135,13 @@ def _scan_call(node: ast.Call, rel: str, result: ScanResult) -> None:
             )
 
 
+def scan_source(source: str, rel: str) -> list[Finding]:
+    """Findings for one in-memory file. Raises SyntaxError if it does not parse."""
+    result = ScanResult()
+    _scan_tree(ast.parse(source), rel, False, result)
+    return result.findings
+
+
 def scan_python(root: Path) -> ScanResult:
     result = ScanResult()
     parse_failures = 0

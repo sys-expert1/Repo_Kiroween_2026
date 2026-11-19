@@ -162,3 +162,40 @@ describe("Revival Terminal and Kiro Trace", () => {
     expect(screen.getByText("No trace yet")).toBeInTheDocument();
   });
 });
+
+describe("AI-proposed patches", () => {
+  const ai: PatchSet = {
+    roadmap_version: 1, skipped: [],
+    patches: [
+      { task_id: "RT-004", path: "app.py", action: "modify", rationale: "AI-proposed (m): x", after_sha256: "x", origin: "llm", model: "openai/gpt-x", diff: "--- a/app.py\n+++ b/app.py\n@@ -1 +1 @@\n-a\n+b\n" },
+      { task_id: "RT-001", path: "requirements.txt", action: "modify", rationale: "bump", after_sha256: "y", origin: "rule", diff: "--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1 +1 @@\n-a\n+b\n" },
+    ],
+  };
+
+  it("labels only the AI patch and warns before it is reviewed", async () => {
+    render(<DiffInspector patches={ai} />);
+    expect(screen.getAllByText("AI-proposed")).toHaveLength(1);
+    expect(screen.getByText(/Proposed by an AI model \(openai\/gpt-x\)/)).toBeInTheDocument();
+    await userEvent.setup().click(screen.getByRole("button", { name: /requirements\.txt/ }));
+    expect(screen.queryByText(/Proposed by an AI model/)).toBeNull();
+  });
+
+  it("treats patches from older runs, with no origin field, as rule-based", () => {
+    const legacy: PatchSet = { roadmap_version: 1, skipped: [], patches: [{ ...ai.patches[1]!, origin: undefined }] };
+    render(<DiffInspector patches={legacy} />);
+    expect(screen.queryByText("AI-proposed")).toBeNull();
+  });
+
+  it("tells the approver how many patches an AI wrote", () => {
+    const info = { roadmap_version: 1, patch_set_digest: "ab".repeat(32), task_count: 3, files_affected: 2, ai_patch_count: 2, ai_model: "openai/gpt-x" };
+    render(<ApprovalDialog info={info} excludedCount={0} busy={false} error={null} onApprove={() => {}} onEdit={() => {}} onReject={() => {}} onClose={() => {}} />);
+    expect(screen.getByText("AI-proposed patches")).toBeInTheDocument();
+    expect(screen.getByText(/2 patch\(es\) were written by openai\/gpt-x/)).toBeInTheDocument();
+  });
+
+  it("shows no AI section when none were proposed", () => {
+    const info = { roadmap_version: 1, patch_set_digest: "ab".repeat(32), task_count: 3, files_affected: 2, ai_patch_count: 0 };
+    render(<ApprovalDialog info={info} excludedCount={0} busy={false} error={null} onApprove={() => {}} onEdit={() => {}} onReject={() => {}} onClose={() => {}} />);
+    expect(screen.queryByText("AI-proposed patches")).toBeNull();
+  });
+});

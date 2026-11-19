@@ -123,8 +123,14 @@ def patchset_md(ps: PatchSet) -> str:
         f"- Tasks with no automatic patch: {len(ps.skipped)}",
         "",
     ]
+    if ps.llm:
+        lines[5:5] = [
+            f"- AI assistance: model `{ps.llm.model}`, {ps.llm.requests} request(s), "
+            f"{ps.llm.accepted} accepted, {ps.llm.rejected} rejected",
+        ]
     for p in ps.patches:
-        lines += [f"## {p.task_id}: {p.action} `{p.path}`", "", p.rationale, ""]
+        tag = f" (AI-proposed, `{p.model}`)" if p.origin == "llm" else ""
+        lines += [f"## {p.task_id}: {p.action} `{p.path}`{tag}", "", p.rationale, ""]
     if ps.skipped:
         lines += ["## No automatic patch", ""]
         lines += [f"- **{s.task_id}** {s.title}: {s.reason}" for s in ps.skipped]

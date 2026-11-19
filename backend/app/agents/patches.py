@@ -26,6 +26,7 @@ from app.adapters.python_edit import (
     replace_popen,
     replace_secret_with_env,
 )
+from app.agents.llm_patches import LLMPatcher
 from app.agents.roadmap import Roadmap, RoadmapTask
 
 # Receives {path: current text} and returns only the files it changed.
@@ -71,6 +72,8 @@ class FilePatch(BaseModel):
     after_content: str
     diff: str
     rationale: str
+    origin: Literal["rule", "llm"] = "rule"
+    model: str | None = None  # set when origin is "llm"
 
 
 class SkippedTask(BaseModel):
@@ -79,15 +82,24 @@ class SkippedTask(BaseModel):
     reason: str
 
 
+class LLMStats(BaseModel):
+    model: str
+    requests: int
+    accepted: int
+    rejected: int
+
+
 class PatchSet(BaseModel):
     roadmap_version: int
     patches: list[FilePatch]
     skipped: list[SkippedTask]
+    llm: LLMStats | None = None  # present only when AI-assisted generation was enabled
 
     @property
     def digest(self) -> str:
         payload = [
-            [p.task_id, p.path, p.action, p.before_sha256, p.after_sha256] for p in self.patches
+            [p.task_id, p.path, p.action, p.before_sha256, p.after_sha256, p.origin]
+            for p in self.patches
         ]
         return hashlib.sha256(json.dumps(payload).encode()).hexdigest()
 
@@ -142,14 +154,25 @@ class _Workspace:
 
 
 def generate_patchset(
-    roadmap: Roadmap, report: AutopsyReport, snapshot: Path, fix_lint: LintFixer
+    roadmap: Roadmap,
+    report: AutopsyReport,
+    snapshot: Path,
+    fix_lint: LintFixer,
+    llm: LLMPatcher | None = None,
 ) -> PatchSet:
     ws = _Workspace(snapshot)
     findings = {f.id: f for f in report.findings}
     patches: list[FilePatch] = []
     skipped: list[SkippedTask] = []
 
-    def emit(task: RoadmapTask, path: str, new: str, why: str) -> None:
+    def emit(
+        task: RoadmapTask,
+        path: str,
+        new: str,
+        why: str,
+        origin: str = "rule",
+        model: str | None = None,
+    ) -> None:
         old = ws.read(path)
         if old == new:
             return
@@ -158,7 +181,7 @@ def generate_patchset(
                 task_id=task.id, path=path, action="modify" if old is not None else "create",
                 before_sha256=sha256(old) if old is not None else None,
                 after_sha256=sha256(new), after_content=new, diff=_unified(path, old, new),
-                rationale=why,
+                rationale=why, origin=origin, model=model,  # type: ignore[arg-type]
             )
         )  # fmt: skip
         ws.files[path] = new
@@ -166,15 +189,22 @@ def generate_patchset(
     for task in roadmap.included:
         before = len(patches)
         try:
-            _generate_for_task(task, findings, ws, emit, fix_lint, report)
+            _generate_for_task(task, findings, ws, emit, fix_lint, report, llm)
             if len(patches) == before:
                 raise EditNotApplicable("The change produced no difference.")
         except EditNotApplicable as exc:
             skipped.append(SkippedTask(task_id=task.id, title=task.title, reason=str(exc)))
-    return PatchSet(roadmap_version=roadmap.version, patches=patches, skipped=skipped)
+    stats = (
+        LLMStats(
+            model=llm.model, requests=llm.requests, accepted=llm.accepted, rejected=llm.rejected
+        )
+        if llm
+        else None
+    )
+    return PatchSet(roadmap_version=roadmap.version, patches=patches, skipped=skipped, llm=stats)
 
 
-def _generate_for_task(task, findings, ws, emit, fix_lint, report) -> None:  # noqa: ANN001
+def _generate_for_task(task, findings, ws, emit, fix_lint, report, llm) -> None:  # noqa: ANN001
     title = task.title
     linked: list[Finding] = [findings[e] for e in task.evidence if e in findings]
     if task.category == "dependencies" and title.startswith("Upgrade "):
@@ -188,7 +218,15 @@ def _generate_for_task(task, findings, ws, emit, fix_lint, report) -> None:  # n
         emit(task, _path(f), replace_popen(_text(ws, f), _line(f)),
              "Run the command without a shell so the argument cannot inject commands.")  # fmt: skip
     elif task.category == "security":
-        raise EditNotApplicable("No automatic fix exists for this construct. A person must decide.")
+        if llm is None:
+            raise EditNotApplicable(
+                "No automatic fix exists for this construct. A person must decide."
+            )
+        f = _only(linked)
+        new, why = llm.propose(_text(ws, f), f, _path(f))
+        emit(
+            task, _path(f), new, f"AI-proposed ({llm.model}): {why}", origin="llm", model=llm.model
+        )
     elif title == "Resolve lint findings":
         _lint(task, ws, emit, fix_lint)
     elif task.category == "tests":

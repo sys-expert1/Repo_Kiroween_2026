@@ -11,6 +11,7 @@ from pathlib import Path
 from sqlalchemy import select
 
 from app.adapters.models import AutopsyReport, BaselineReport
+from app.agents.llm_patches import LLMPatcher
 from app.agents.patches import PatchApplyError, PatchSet, apply_patchset, generate_patchset
 from app.agents.roadmap import Roadmap, build_roadmap, revise_roadmap
 from app.artifacts import write_artifact
@@ -215,8 +216,13 @@ class Nodes:
             self.ctx.adapter.fix_lint, scratch=scratch,
             observe=self._observer(run_id, Stage.REANIMATION),
         )  # fmt: skip
+        llm = (
+            LLMPatcher(self.ctx.llm_client, self.ctx.settings.llm_max_tasks)
+            if self.ctx.llm_client
+            else None
+        )
         ps = generate_patchset(
-            roadmap, AutopsyReport(**state["autopsy"]), Path(state["snapshot_dir"]), fixer
+            roadmap, AutopsyReport(**state["autopsy"]), Path(state["snapshot_dir"]), fixer, llm
         )
         v = roadmap.version
         self._store(run_id, "patch_set", f"PATCHSET.v{v}.diff", ps.combined_diff.encode())
@@ -231,9 +237,15 @@ class Nodes:
                     "patch_set_digest": ps.digest if ps.patches else None,
                     "files_changed": ps.files_changed,
                     "patches": [
-                        {"task_id": p.task_id, "path": p.path, "action": p.action}
+                        {
+                            "task_id": p.task_id,
+                            "path": p.path,
+                            "action": p.action,
+                            "origin": p.origin,
+                        }
                         for p in ps.patches
                     ],
+                    "llm": ps.llm.model_dump() if ps.llm else None,
                     "skipped": [s.model_dump() for s in ps.skipped],
                 },
             )  # fmt: skip
@@ -292,6 +304,8 @@ class Nodes:
                         if tasks[p.task_id].category == "dependencies"
                     ],
                     "security_fixes": sum(1 for t in patched if tasks[t].category == "security"),
+                    "ai_patch_count": sum(1 for p in ps.patches if p.origin == "llm"),
+                    "ai_model": ps.llm.model if ps.llm else None,
                     "execution_target": "isolated working copy",
                 },
             )  # fmt: skip
@@ -354,7 +368,8 @@ class Nodes:
                 service.log_event(
                     db, run_id, EventType.PATCH_APPLIED,
                     {"task_id": patch.task_id, "path": patch.path, "action": patch.action,
-                     "after_sha256": patch.after_sha256, "target": "isolated working copy"},
+                     "after_sha256": patch.after_sha256, "origin": patch.origin,
+                     "model": patch.model, "target": "isolated working copy"},
                 )  # fmt: skip
         return {"work_dir": str(work), "applied": applied}
 

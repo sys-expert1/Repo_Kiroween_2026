@@ -1,4 +1,4 @@
-import { ClipboardCopy, Download, FileDiff } from "lucide-react";
+import { Bot, ClipboardCopy, Download, FileDiff } from "lucide-react";
 import { html as diffHtml } from "diff2html";
 import { ColorSchemeType } from "diff2html/lib/types";
 import { useMemo, useState } from "react";
@@ -51,6 +51,7 @@ export function DiffInspector({ patches }: { patches: PatchSet | null }) {
                 <span className="block break-all font-code text-xs text-ink">{p.path}</span>
                 <span className="mt-1 flex items-center gap-2 text-xs text-ink-3">
                   <Badge tone={p.action === "create" ? "ok" : "agent"}>{p.action === "create" ? "new file" : "modified"}</Badge>
+                  {p.origin === "llm" && <Badge tone="warn" icon={Bot}>AI-proposed</Badge>}
                   {p.task_id}
                 </span>
               </button>
@@ -72,6 +73,12 @@ export function DiffInspector({ patches }: { patches: PatchSet | null }) {
                 <Download size={14} aria-hidden="true" /> Download
               </button>
             </div>
+            {current.origin === "llm" && (
+              <p className="mb-3 rounded-md border border-pumpkin/60 bg-pumpkin/10 px-3 py-2 text-xs text-pumpkin">
+                Proposed by an AI model ({current.model ?? "unknown"}). It passed automatic checks (it parses, keeps the
+                function signature, removes the finding and adds none), but review every line before approving.
+              </p>
+            )}
             <div className="overflow-x-auto" dangerouslySetInnerHTML={{ __html: rendered }} />
           </>
         )}

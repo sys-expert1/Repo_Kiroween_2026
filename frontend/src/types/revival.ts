@@ -61,6 +61,7 @@ export interface RepositorySource { git_url?: string; local_path?: string; fixtu
 
 export interface Health {
   status: string;
+  llm?: { enabled: boolean; model: string | null };
   sandbox: { mode: string; available: boolean; reason: string | null; host_fixture_exec: boolean };
 }
 
@@ -96,9 +97,12 @@ export interface Roadmap { version: number; repository_name: string; tasks: Road
 export interface FilePatch {
   task_id: string; path: string; action: "modify" | "create"; diff: string; rationale: string;
   after_sha256: string;
+  origin?: "rule" | "llm"; // absent in older runs, meaning rule-based
+  model?: string | null;
 }
 export interface PatchSet {
   roadmap_version: number; patches: FilePatch[];
+  llm?: { model: string; requests: number; accepted: number; rejected: number } | null;
   skipped: { task_id: string; title: string; reason: string }[];
 }
 

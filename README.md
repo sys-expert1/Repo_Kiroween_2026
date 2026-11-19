@@ -58,13 +58,13 @@ docker compose -f deployment/docker-compose.yml up --build
 | Live events: SSE with replay, `Last-Event-ID`, heartbeats | Done |
 | Dashboard: header, stepper, workspace, Vitality inspector, terminal, all four views | Done |
 | Restricted Docker sandbox | Built and unit tested. **Never run against a real Docker daemon** (see below) |
-| LiteLLM-assisted patch generation | Not built. Roadmaps and patches are deterministic |
+| AI-assisted patches (LiteLLM) | Built, **off by default**. Tested with a scripted fake client only. Never called a real model (see below) |
 | TypeScript and C++ adapters, OpenTelemetry, MCP | Not built (P1 and stretch) |
 
 ### What was verified, and what was not
 
-- **Backend:** 218 tests pass and 1 is skipped. `ruff check` is clean.
-- **Frontend:** `tsc --noEmit` is clean, 48 tests pass and the production build succeeds. The tests
+- **Backend:** 254 tests pass and 1 is skipped. `ruff check` is clean.
+- **Frontend:** `tsc --noEmit` is clean, 53 tests pass and the production build succeeds. The tests
   cover the reducer, the stream hook (replay, reconnect, de-duplication), diff escaping, the
   approval flow, and a **contract test that replays a real run exported from the backend**.
 - **Real tools:** a full REVIVE run on the demo fixture was executed with real Ruff, real pytest and
@@ -111,6 +111,28 @@ must match the digest, otherwise nothing is written. Patches are generated for:
 Everything else gets a stated reason instead of a guess, for example "tests are never edited
 automatically" or "no automatic fix exists for this construct". Dependency upgrades can break
 compatibility. Only the repository's tests (and the Docker build, if enabled) check that.
+
+### AI-assisted patches (opt-in)
+
+Set `NECRO_LLM_MODEL` (any LiteLLM model string, for example `openai/gpt-4o`) and the provider's
+usual API key variable. With no model set, nothing leaves your machine and nothing changes.
+
+When enabled, a security finding that has **no rule-based fix** (for example `eval`, `os.system`,
+`subprocess` with `shell=True`, `pickle`, `yaml.load`) is sent to the model, together with only the
+source of the enclosing function. The dashboard says so when it is on. The model is treated as an
+untrusted text generator, and the repository code is treated as untrusted data (prompt injection):
+
+- Code that looks like it holds a secret is never sent.
+- The reply must be JSON. The new function must keep its name, parameters and decorators, and parse.
+- The same detectors re-scan the file. The finding must be gone and no new security finding may
+  appear, which rejects injected shell calls and similar.
+- Calls use temperature 0, a timeout, a token cap and a per-run budget (`NECRO_LLM_MAX_TASKS`,
+  default 5). A failed call is never retried.
+- The result is a normal patch: labelled **AI-proposed** in the diff list and the approval dialog,
+  covered by the approved digest and the file-hash checks, and recorded in the audit trail.
+
+These checks reduce risk but do not prove a patch is correct. Read AI-proposed diffs closely.
+Only the scripted tests exercise this path. It has **not** been run against a real model.
 
 ### Verification and rollback
 
@@ -210,6 +232,8 @@ plus the JSON the dashboard reads.
 | `NECRO_ALLOW_HOST_FIXTURE_EXEC` | `1` | Let bundled fixtures run tests on the host when there is no sandbox |
 | `NECRO_ALLOW_DOCKER_BUILD` | `0` | `1` builds the repository's Dockerfile during Consecration |
 | `NECRO_STATIC_DIR` | `frontend/dist` | Built dashboard served at `/` |
+| `NECRO_LLM_MODEL` | empty (off) | LiteLLM model for AI-assisted patches. Sends function source to that provider |
+| `NECRO_LLM_TIMEOUT` / `NECRO_LLM_MAX_TASKS` | `60` / `5` | Per-call timeout in seconds, and AI patch requests per run |
 
 `/` and your home directory are refused as allowed roots. Git URLs must be `https://`, `ssh://` or
 `git@host:path`.

@@ -39,7 +39,8 @@ Python flow before any other language.
         The real-container test exists and is skipped when Docker is missing.
 - [x] 7. Managed working copy, patch generation, digest-bound apply, rollback, PATCHSET.diff
   - [x] Patches for dependency pins, hardcoded secrets, os.popen, Ruff safe fixes, CI, Dockerfile
-  - [ ] LiteLLM-assisted patch generation (patches are deterministic today)
+  - [x] LiteLLM-assisted patch generation: opt-in, validated, labelled. Tested with a fake client;
+        not run against a real model
 
 ## Day 5: Consecration and integration
 - [x] 8. Consecration checks, baseline comparison, Vitality Score, VERIFICATION_REPORT.md, RUN_AUDIT.json

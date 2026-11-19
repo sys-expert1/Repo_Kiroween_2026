@@ -144,6 +144,12 @@ export function App() {
               : "No repository tests will run."}
           </Notice>
         )}
+        {health?.llm?.enabled && (
+          <Notice tone="info" title={`AI-assisted patches are on (${health.llm.model})`} role="status">
+            For security findings with no rule-based fix, the source of the affected function is sent to the model
+            provider. Code that looks like it holds a secret is never sent. AI patches are labelled and need your approval.
+          </Notice>
+        )}
         {(connection === "reconnecting" || connection === "failed") && (
           <Notice tone="warn" title={connection === "failed" ? "Live stream disconnected" : "Reconnecting to the live stream"} role="status">
             {connection === "failed"

@@ -7,6 +7,7 @@ export interface ApprovalInfo {
   repository?: string; source_commit?: string | null; roadmap_version: number;
   patch_set_digest: string; task_count: number; files_affected: number;
   dependency_changes?: string[]; security_fixes?: number; execution_target?: string;
+  ai_patch_count?: number; ai_model?: string | null;
 }
 
 interface Props {
@@ -62,6 +63,15 @@ export function ApprovalDialog({ info, excludedCount, busy, error, onApprove, on
             <dt className="text-ink-3">Patch-set digest</dt>
             <dd className="break-all font-code text-xs text-ink">{info.patch_set_digest}</dd>
           </div>
+          {!!info.ai_patch_count && (
+            <div className="px-3 py-1.5">
+              <dt className="text-pumpkin">AI-proposed patches</dt>
+              <dd className="text-xs text-ink">
+                {info.ai_patch_count} patch(es) were written by {info.ai_model ?? "an AI model"}. Review them in the Diff
+                Inspector before approving.
+              </dd>
+            </div>
+          )}
           {!!info.dependency_changes?.length && (
             <div className="px-3 py-1.5">
               <dt className="text-ink-3">Dependency changes</dt>

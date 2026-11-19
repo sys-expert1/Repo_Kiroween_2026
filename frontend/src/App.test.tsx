@@ -82,6 +82,19 @@ describe("App", () => {
     expect(screen.getByText(/only for bundled demo fixtures/)).toBeInTheDocument();
   });
 
+  it("discloses when code can be sent to a model provider, and stays quiet otherwise", async () => {
+    mocked.repositories.mockResolvedValue([]);
+    mocked.health.mockResolvedValue({ ...health(true), llm: { enabled: true, model: "openai/gpt-x" } });
+    const { unmount } = render(<App />);
+    expect(await screen.findByText("AI-assisted patches are on (openai/gpt-x)")).toBeInTheDocument();
+    expect(screen.getByText(/never sent/)).toBeInTheDocument();
+    unmount();
+    mocked.health.mockResolvedValue({ ...health(true), llm: { enabled: false, model: null } });
+    render(<App />);
+    await screen.findByText(/Build something wicked/);
+    expect(screen.queryByText(/AI-assisted patches are on/)).toBeNull();
+  });
+
   it("reports an unreachable backend", async () => {
     mocked.health.mockRejectedValue(new Error("down"));
     mocked.repositories.mockRejectedValue(new Error("down"));

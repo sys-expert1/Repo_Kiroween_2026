@@ -8,3 +8,4 @@ pip-audit==2.10.1
 ruff==0.17.5
 PyYAML==6.0.3
 packaging==26.3
+litellm==1.110.1

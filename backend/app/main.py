@@ -10,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 
 from app.adapters.base import LanguageAdapter
 from app.adapters.python_adapter import PythonAdapter
+from app.agents.llm_patches import LiteLLMClient, LLMClient
 from app.api import repositories, revive
 from app.config import Settings, load_settings
 from app.db import make_engine, make_session_factory
@@ -55,6 +56,7 @@ def create_app(
     executor: Executor | None = None,
     runner_factory: RunnerFactory | None = None,
     adapter: LanguageAdapter | None = None,
+    llm_client: LLMClient | None = None,
 ) -> FastAPI:
     """`executor`, `runner_factory` and `adapter` let tests run the workflow inline and offline."""
     settings = settings or load_settings()
@@ -66,6 +68,10 @@ def create_app(
         adapter=adapter or PythonAdapter(),
         runner_for=runner_factory or default_runner_factory(settings),
         no_runner_reason=no_runner_reason(settings),
+        llm_client=llm_client
+        or (
+            LiteLLMClient(settings.llm_model, settings.llm_timeout) if settings.llm_model else None
+        ),
     )
     workflow = WorkflowRunner(ctx, executor)
 
@@ -97,6 +103,10 @@ def create_app(
         )
         return {
             "status": "ok",
+            "llm": {
+                "enabled": ctx.llm_client is not None,
+                "model": ctx.llm_client.model if ctx.llm_client else None,
+            },
             "sandbox": {
                 "mode": settings.sandbox_mode,
                 "available": bool(status and status.available),
