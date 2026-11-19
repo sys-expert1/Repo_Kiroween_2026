@@ -223,6 +223,10 @@ def _generate_for_task(task, findings, ws, emit, fix_lint, report, llm) -> None:
                 "No automatic fix exists for this construct. A person must decide."
             )
         f = _only(linked)
+        if f.source != "ast" or not _path(f).endswith(".py"):
+            raise EditNotApplicable(
+                "Only Python findings are sent to a model. A person must handle this one."
+            )
         new, why = llm.propose(_text(ws, f), f, _path(f))
         emit(
             task, _path(f), new, f"AI-proposed ({llm.model}): {why}", origin="llm", model=llm.model

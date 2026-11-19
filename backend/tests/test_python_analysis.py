@@ -208,7 +208,7 @@ def test_autopsy_on_fixture_reports_real_evidence(tmp_path: Path, monkeypatch):
     assert any("requests 2.19.1 has 2 known vulnerabilities" in t for t in titles)
     assert any("API_TOKEN" in t for t in titles) and any("os.popen" in t for t in titles)
     assert any(t.startswith("F401") for t in titles)
-    assert [t.tool for t in report.tools] == ["ruff", "pip-audit"]
+    assert [t.tool for t in report.tools] == ["secret-scan", "ruff", "pip-audit"]
     assert all(t.measured for t in report.tools) and len(seen) == 2
     ids = [f.id for f in report.findings]
     assert ids == [f"F-{i:03d}" for i in range(1, len(ids) + 1)]

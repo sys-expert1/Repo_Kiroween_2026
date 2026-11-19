@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 
 Category = Literal["dependencies", "tests", "code_quality", "security", "ci_docker", "structure"]
 Severity = Literal["critical", "high", "medium", "low", "info"]
-Source = Literal["ast", "ruff", "pip-audit", "detect"]
+Source = Literal["ast", "ruff", "pip-audit", "detect", "secrets"]
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3, "info": 4}
 
 

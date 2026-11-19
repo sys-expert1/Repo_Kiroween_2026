@@ -94,8 +94,17 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
             f"pip-audit reports no known vulnerabilities for {pkg}; the test baseline does not "
             "regress.",
         )  # fmt: skip
-    for f in (x for x in report.findings if x.source == "ast" and x.category == "security"):
-        if "secret" in f.title.lower():
+    for f in (
+        x for x in report.findings if x.source in ("ast", "secrets") and x.category == "security"
+    ):
+        if f.source == "secrets":
+            action = (
+                "Remove the value from the file, load it from the environment or a secrets store, "
+                "and rotate the credential, because it is already in the repository history. "
+                "Keep local env files out of version control."
+            )
+            effort, risk = "S", "low"
+        elif "secret" in f.title.lower():
             action = (
                 "Remove the literal from source and read it from the environment or a secrets "
                 "store. Rotate the exposed value."
@@ -109,7 +118,7 @@ def build_roadmap(report: AutopsyReport, baseline: BaselineReport) -> Roadmap:
             effort, risk = "M", "medium"
         add(
             f.title, "security", [f], [f.file_path] if f.file_path else [], action, risk, effort,
-            "The AST scan no longer reports this finding; the test baseline does not regress.",
+            "The scan no longer reports this finding; the test baseline does not regress.",
         )  # fmt: skip
     parse_fail = [x for x in report.findings if x.title.startswith("File does not parse")]
     if parse_fail:

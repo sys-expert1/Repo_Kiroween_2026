@@ -21,6 +21,7 @@ from app.adapters.models import (
 )
 from app.adapters.python_ast import SKIP_DIRS, scan_python
 from app.adapters.python_deps import LOCKFILES, read_dependencies
+from app.adapters.secrets_scan import scan_secrets
 from app.execution.runner import CommandResult, CommandRunner, build_env, run_command
 
 FRAMEWORKS = {
@@ -91,6 +92,8 @@ class PythonAdapter:
         )
         scan = scan_python(root)
         findings: list[Finding] = list(scan.findings)
+        secrets = scan_secrets(root)
+        findings.extend(secrets.findings)
         for err in parse_errors:
             findings.append(
                 Finding(
@@ -99,7 +102,14 @@ class PythonAdapter:
                 )
             )  # fmt: skip
 
-        tools: list[ToolRun] = []
+        tools: list[ToolRun] = [
+            ToolRun(
+                tool="secret-scan", command="built-in pattern scan", exit_code=None, measured=True,
+                summary=f"{len(secrets.findings)} possible secret(s) in {secrets.files} config and "
+                "script file(s)" + ("; stopped at the limit" if secrets.truncated else ""),
+                duration_seconds=0.0,
+            )
+        ]  # fmt: skip
         lint_count, lint_findings, lint_tool = self._ruff(root, scratch, observe)
         tools.append(lint_tool)
         findings.extend(lint_findings)

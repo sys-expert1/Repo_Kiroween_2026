@@ -81,10 +81,11 @@ def _quality(r: AutopsyReport) -> tuple[float | None, str]:
 def _security(r: AutopsyReport) -> tuple[float | None, str]:
     if r.python_files == 0:
         return None, "Not measured: no Python files were scanned."
-    hits = [f for f in r.findings if f.category == "security" and f.source == "ast"]
+    hits = [f for f in r.findings if f.category == "security" and f.source in ("ast", "secrets")]
     penalty = sum(SECURITY_PENALTY[f.severity] for f in hits)
     return _round(100 - penalty), (
-        f"{len(hits)} static (AST) security findings. This is a static scan only, not a "
+        f"{len(hits)} static security findings (AST and secret patterns). This is a static scan, "
+        "not a "
         "complete security assessment."
     )
 
