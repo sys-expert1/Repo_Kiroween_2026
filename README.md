@@ -58,7 +58,7 @@ docker compose -f deployment/docker-compose.yml up --build
 | Live events: SSE with replay, `Last-Event-ID`, heartbeats | Done |
 | Dashboard: header, stepper, workspace, Vitality inspector, terminal, all four views, run history | Done |
 | OpenTelemetry traces correlated by run and stage | Built, **off by default** (`NECRO_OTEL`). Tested with an in-memory exporter. Never sent to a real collector |
-| Restricted Docker sandbox | Built and unit tested. **Never run against a real Docker daemon** (see below) |
+| Restricted Docker sandbox | Built and unit tested. **Never run against a real container runtime**: attempted, blocked by the build environment. Run `scripts/verify_sandbox.sh` on a machine with Docker (see [Verifying the sandbox](#verifying-the-sandbox)) |
 | AI-assisted patches (LiteLLM) | Built, **off by default**. Tested with a scripted fake client only. Never called a real model (see below) |
 | TypeScript adapter | Built with limits (see below). Python stays the complete flow |
 | C++ adapter | Built with limits (see below). Real CMake, compiler, CTest and clang-tidy verified here |
@@ -66,7 +66,8 @@ docker compose -f deployment/docker-compose.yml up --build
 
 ### What was verified, and what was not
 
-- **Backend:** 402 tests pass and 1 is skipped. `ruff check` is clean.
+- **Backend:** 406 tests pass and 8 are skipped: the real-container sandbox tests, which need a
+  container runtime and so did **not** run. `ruff check` is clean.
 - **Frontend:** `tsc --noEmit` is clean, 67 tests pass and the production build succeeds. The tests
   cover the reducer, the stream hook (replay, reconnect, de-duplication), diff escaping, the
   approval flow, and a **contract test that replays a real run exported from the backend**.
@@ -299,6 +300,36 @@ only runs bundled fixtures' tests. The image has no Node, CMake or compiler, so 
 C++ fixtures' tests are reported as not run there. For the full sandbox, or to run those tests, run
 the backend on a host with Docker or the toolchains.
 
+### Verifying the sandbox
+
+The sandbox's command line is unit tested, but it has **never started a real container**, so its
+core promises (non-root, no network, read-only root, one mount, memory and process limits, timeout
+kill) are unverified. On a machine with Docker:
+
+```bash
+scripts/verify_sandbox.sh          # builds the image, runs backend/tests/test_sandbox_real.py
+```
+
+It exits 0 only if every real-container test ran and passed. A skipped test is not a pass: exit 3
+means something was skipped, 2 means no usable runtime, 1 means a test failed. `NECRO_DOCKER_BIN`
+selects another Docker-compatible runtime, for example `podman`. The 8 tests have **never run**
+either, so a first failure may be a sandbox bug or a test bug.
+
+What an attempt in the build environment found (it could not get further):
+
+- The `docker` command there is Podman 5.2.3, and it has no `conmon`. I fetched the official
+  static `conmon` and checked its SHA-256 against the release digest, and Podman then ran.
+- `/var`, `/run` and `/usr/local` are read-only, so Podman's storage and runtime directories had to
+  be redirected with flags. That worked.
+- This Podman build supports only the netavark network helper. The official prebuilt netavark needs
+  a newer glibc than the host has, so it cannot run there.
+- `/sys/fs/cgroup` is read-only. A runtime cannot create the cgroup that `--memory`, `--cpus` and
+  `--pids-limit` need, so the resource limits **cannot be applied or verified in that environment**
+  at all. Running with cgroups disabled would test a different configuration and was not done.
+
+Known gaps to check on a real host: on SELinux systems a bind mount may need relabelling (`:z`),
+which the runner does not add; and rootless Podman may not enforce all of the limits.
+
 ## API
 
 See `/docs` on a running server for the live schema.
@@ -334,6 +365,7 @@ plus the JSON the dashboard reads.
 | `NECRO_FIXTURES_DIR` | `fixtures` | Demo fixtures, always allowed |
 | `NECRO_SANDBOX` | `auto` | `off` never uses Docker |
 | `NECRO_SANDBOX_IMAGE` | `necromancer-sandbox:latest` | Image for sandboxed commands |
+| `NECRO_DOCKER_BIN` | `docker` | Container runtime command. Only exit statuses are used, so Docker-compatible runtimes such as Podman can work |
 | `NECRO_SANDBOX_INSTALL_DEPS` | `0` | `1` installs a repository's wheels (network on) before its tests |
 | `NECRO_ALLOW_HOST_FIXTURE_EXEC` | `1` | Let bundled fixtures run tests on the host when there is no sandbox |
 | `NECRO_ALLOW_DOCKER_BUILD` | `0` | `1` builds the repository's Dockerfile during Consecration |
@@ -387,7 +419,7 @@ backend/tests/                  pytest suite and UI fixture exporter
 frontend/src/                   components, hooks, state reducer, API client, tests
 fixtures/                       legacy-python-cli, legacy-ts-utils, legacy-cpp-parser (demo repositories)
 deployment/                     app Dockerfile, sandbox Dockerfile, docker-compose.yml
-scripts/                        run_local.sh, reset_demo.sh
+scripts/                        run_local.sh, reset_demo.sh, verify_sandbox.sh
 ```
 
 ## Terminology

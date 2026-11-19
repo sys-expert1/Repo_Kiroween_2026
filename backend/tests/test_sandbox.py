@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-import shutil
-import subprocess
 from pathlib import Path
 
 import pytest
@@ -216,35 +214,47 @@ def test_missing_docker_binary_is_unavailable_not_an_exception(tmp_path: Path):
     assert not s.available and s.reason
 
 
-# ------------------------------------------------------- real Docker (if any)
-def _real_docker_ready() -> bool:
-    if shutil.which("docker") is None:
-        return False
+def test_status_uses_only_exit_codes_so_docker_and_podman_both_work(monkeypatch, tmp_path: Path):
+    """`docker info --format` templates differ between runtimes, so none may be used."""
+    seen: list[list[str]] = []
+
+    def record(argv, cwd, timeout, env, **kw):
+        seen.append(list(argv))
+        return CommandResult(argv=list(argv), exit_code=0, stdout="", stderr="", duration_seconds=0)
+
+    monkeypatch.setattr(sb, "run_command", record)
     sb._cache.clear()
-    import tempfile
-
-    return sandbox_status(SandboxConfig(), Path(tempfile.mkdtemp())).available
-
-
-needs_docker = pytest.mark.skipif(
-    not _real_docker_ready(),
-    reason="Docker daemon or image 'necromancer-sandbox:latest' is not available here; "
-    "this test did NOT run",
-)
+    assert sandbox_status(SandboxConfig(docker_bin="/opt/podman-wrapper"), tmp_path).available
+    assert seen == [
+        ["/opt/podman-wrapper", "info"],
+        ["/opt/podman-wrapper", "image", "inspect", "necromancer-sandbox:latest"],
+    ]
+    assert not any("--format" in call for call in seen)
 
 
-@needs_docker
-def test_real_container_is_non_root_offline_and_read_only(tmp_path: Path):  # pragma: no cover
-    root = tmp_path / "runs"
-    work = root / "r" / "work"
-    work.mkdir(parents=True)
-    runner = DockerSandboxRunner(SandboxConfig(), root, tmp_path / "h")
-    uid = runner.run(["id", "-u"], work, 60)
-    assert uid.stdout.strip() == "65534"
-    net = runner.run(
-        ["python", "-c", "import socket; socket.create_connection(('1.1.1.1', 53), 3)"], work, 60
+def test_the_build_hint_names_the_configured_runtime(monkeypatch, tmp_path: Path):
+    fake_docker(monkeypatch, info_code=0, image_code=1)
+    s = sandbox_status(SandboxConfig(docker_bin="podman"), tmp_path)
+    assert s.reason.startswith(
+        "Sandbox image 'necromancer-sandbox:latest' is not built. Run: podman build"
     )
-    assert net.exit_code != 0  # network is disabled
-    ro = runner.run(["sh", "-c", "touch /etc/pwned"], work, 60)
-    assert ro.exit_code != 0  # read-only root filesystem
-    assert subprocess.run(["docker", "ps", "-aq"], capture_output=True, text=True).stdout == ""
+
+
+def test_the_container_runtime_binary_is_configurable_from_the_environment(
+    monkeypatch, tmp_path: Path
+):
+    from app.config import load_settings
+
+    monkeypatch.setenv("NECRO_DATA_DIR", str(tmp_path))
+    monkeypatch.delenv("NECRO_DOCKER_BIN", raising=False)
+    assert load_settings().sandbox.docker_bin == "docker"
+    monkeypatch.setenv("NECRO_DOCKER_BIN", "/usr/bin/podman")
+    assert load_settings().sandbox.docker_bin == "/usr/bin/podman"
+
+
+def test_every_command_uses_the_configured_runtime_binary(tmp_path: Path):
+    root = tmp_path / "runs"
+    (root / "r" / "work").mkdir(parents=True)
+    runner = DockerSandboxRunner(SandboxConfig(docker_bin="/opt/rt"), root, tmp_path / "h")
+    cmd = runner.build_argv(["true"], root / "r" / "work", "n")
+    assert cmd[0] == "/opt/rt" and cmd[1] == "run"

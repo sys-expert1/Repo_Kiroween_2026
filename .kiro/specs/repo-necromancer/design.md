@@ -169,7 +169,7 @@ missing `conmon`). Real container execution must be verified on a machine with D
 | Duplicate-event protection | required | the server guarantees unique, ordered `(run_id, sequence)`. The React reducer drops sequences it has seen |
 | Approval actor | actor or local user context | always `local` |
 | Roadmap and patch generation | LLM-assisted (LiteLLM) | roadmap is rule-based. Patches are rule-based, plus opt-in LiteLLM proposals for security findings with no rule (`agents/llm_patches.py`), validated and labelled. Never run against a real model |
-| Sandbox | Docker sandbox | implemented and unit tested, never run against a real daemon. Bundled fixtures fall back to the host with rlimits |
+| Sandbox | Docker sandbox | implemented and unit tested, never run against a real container runtime (blocked by the build environment, see README). `scripts/verify_sandbox.sh` is the path to verify it. Bundled fixtures fall back to the host with rlimits |
 | Compose | Docker Compose packaging | single service with no Docker socket, sandbox off, the container is the boundary |
 | Build and coverage | recorded when run | coverage is never measured. Docker build is opt-in (`NECRO_ALLOW_DOCKER_BUILD`) |
 | Revert in Diff Inspector | revert in managed workspace | not implemented. Rollback is automatic on a failed verification |

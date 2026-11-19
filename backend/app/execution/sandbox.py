@@ -171,29 +171,28 @@ _cache: dict[str, tuple[float, SandboxStatus]] = {}
 
 
 def sandbox_status(config: SandboxConfig, home: Path, *, use_cache: bool = True) -> SandboxStatus:
-    """Report whether the Docker daemon and the sandbox image are usable. Never raises."""
+    """Report whether the container runtime and the sandbox image are usable. Never raises.
+
+    Only exit statuses are used, not Go templates: `docker info` and `podman info` name their
+    fields differently, so a template that works for one fails for the other.
+    """
     key = f"{config.docker_bin}|{config.image}"
     now = time.monotonic()
     if use_cache and key in _cache and now - _cache[key][0] < STATUS_CACHE_SECONDS:
         return _cache[key][1]
     home.mkdir(parents=True, exist_ok=True)
     env = build_env(home)
-    info = run_command([config.docker_bin, "info", "--format", "{{.ServerVersion}}"], home, 10, env)
+    info = run_command([config.docker_bin, "info"], home, 10, env)
     if info.exit_code != 0:
         why = (info.error or info.stderr or "docker info failed").strip().splitlines()
         status = SandboxStatus(False, f"Docker is unavailable: {why[-1][:200]}")
     else:
-        image = run_command(
-            [config.docker_bin, "image", "inspect", "--format", "{{.Id}}", config.image],
-            home,
-            10,
-            env,
-        )
+        image = run_command([config.docker_bin, "image", "inspect", config.image], home, 10, env)
         if image.exit_code != 0:
             status = SandboxStatus(
                 False,
                 f"Sandbox image '{config.image}' is not built. "
-                "Run: docker build -f deployment/sandbox.Dockerfile -t "
+                f"Run: {config.docker_bin} build -f deployment/sandbox.Dockerfile -t "
                 f"{config.image} deployment",
             )
         else:

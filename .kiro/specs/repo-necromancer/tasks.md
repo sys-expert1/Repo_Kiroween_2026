@@ -35,8 +35,12 @@ Python flow before any other language.
 ## Day 4: Reanimation
 - [x] 6. Docker sandbox runner (non-root, CPU/memory/PID/time limits, no network, one restricted mount)
   - [x] Command construction, mount validation, status check, timeout kill: unit tested
-  - [ ] **Run against a real Docker daemon.** Not done: none was available in the build environment.
-        The real-container test exists and is skipped when Docker is missing.
+  - [ ] **Run against a real container runtime.** Not done. Attempted: the build environment's
+        Podman lacks conmon (worked around), has read-only /var and /run (worked around), needs a
+        netavark that cannot run on its glibc, and has a read-only cgroup filesystem, so resource
+        limits cannot be applied there. Prepared: 8 skip-guarded real-container tests in
+        `backend/tests/test_sandbox_real.py` and `scripts/verify_sandbox.sh`. Both have never run
+        against a container. Finish by running `scripts/verify_sandbox.sh` on a Docker host.
 - [x] 7. Managed working copy, patch generation, digest-bound apply, rollback, PATCHSET.diff
   - [x] Patches for dependency pins, hardcoded secrets, os.popen, Ruff safe fixes, CI, Dockerfile
   - [x] LiteLLM-assisted patch generation: opt-in, validated, labelled. Tested with a fake client;

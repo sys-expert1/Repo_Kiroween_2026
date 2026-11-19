@@ -67,6 +67,7 @@ def load_settings() -> Settings:
         sandbox_mode="off" if os.environ.get("NECRO_SANDBOX", "auto") == "off" else "auto",
         sandbox=SandboxConfig(
             image=os.environ.get("NECRO_SANDBOX_IMAGE", SandboxConfig.image),
+            docker_bin=os.environ.get("NECRO_DOCKER_BIN", SandboxConfig.docker_bin),
             install_dependencies=os.environ.get("NECRO_SANDBOX_INSTALL_DEPS", "0") == "1",
         ),
     )
