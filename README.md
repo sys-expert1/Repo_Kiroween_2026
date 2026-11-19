@@ -47,7 +47,7 @@ docker compose -f deployment/docker-compose.yml up --build
 | Area | State |
 | --- | --- |
 | Intake: Git URL, local path, demo fixture, with path and URL validation | Done |
-| Autopsy: AST, Ruff, pip-audit, secret-pattern scan of config and script files, dependency and test discovery, evidence-backed findings | Done for Python and TypeScript |
+| Autopsy: AST, Ruff, pip-audit, secret-pattern scan of config and script files, dependency and test discovery, evidence-backed findings | Done for Python, TypeScript and C++ |
 | Characterization: baseline tests, pre-existing failures recorded, coverage and build "not measured" | Done |
 | Revival Roadmap: versioned, evidence-linked, editable | Done (rule-based) |
 | Patches: bound to file hashes and a digest, shown as diffs | Done for 6 kinds of task |
@@ -61,18 +61,23 @@ docker compose -f deployment/docker-compose.yml up --build
 | Restricted Docker sandbox | Built and unit tested. **Never run against a real Docker daemon** (see below) |
 | AI-assisted patches (LiteLLM) | Built, **off by default**. Tested with a scripted fake client only. Never called a real model (see below) |
 | TypeScript adapter | Built with limits (see below). Python stays the complete flow |
-| C++ adapter, MCP | Not built (stretch) |
+| C++ adapter | Built with limits (see below). Real CMake, compiler, CTest and clang-tidy verified here |
+| MCP server for AI agents | Built. Read-only plus Inspect and Preview. **No approval or Revive tool exists** (see below) |
 
 ### What was verified, and what was not
 
-- **Backend:** 320 tests pass and 1 is skipped. `ruff check` is clean.
-- **Frontend:** `tsc --noEmit` is clean, 62 tests pass and the production build succeeds. The tests
+- **Backend:** 402 tests pass and 1 is skipped. `ruff check` is clean.
+- **Frontend:** `tsc --noEmit` is clean, 67 tests pass and the production build succeeds. The tests
   cover the reducer, the stream hook (replay, reconnect, de-duplication), diff escaping, the
   approval flow, and a **contract test that replays a real run exported from the backend**.
 - **Real tools:** a full REVIVE run on the demo fixture was executed with real Ruff, real pytest and
   real pip-audit. It took known vulnerabilities from 13 to 0 and Ruff violations from 1 to 0, kept
   the pre-existing test failure as a baseline failure, and moved the score from 36.3 to 81.2.
-- **Not verified here:** the Docker sandbox and Compose image (no Docker daemon was available), and
+  The TypeScript fixture ran with the real `npm audit` and Node test runner. The C++ fixture ran
+  with the real CMake, g++, CTest and clang-tidy (one pass, one baseline failure, build passed).
+- **Not verified here:** a real MCP client application (the server was tested through the protocol
+  and a real stdio launch), the AI-assisted patches against a real model, OpenTelemetry against a
+  real collector, the Docker sandbox and Compose image (no Docker daemon was available), and
   the dashboard in a real browser against a live server. The one real-container test is skipped and
   reported as skipped. The Dockerfile steps were replayed locally (clean `npm ci` and build, clean
   `pip install`, static serving, a run on the thread-pool executor). `scripts/run_local.sh` and
@@ -136,6 +141,71 @@ TypeScript are never sent to a model. Node has no memory cap through `RLIMIT_AS`
 so Node runs use a V8 heap cap (`--max-old-space-size=1024`) plus the CPU and file-size limits. The
 Docker sandbox image contains no Node yet, so TypeScript tests only run for bundled fixtures on the
 host and are reported as not run elsewhere.
+
+### C++
+
+The demo fixture is `fixtures/legacy-cpp-parser`. Reading a C++ project is safe; **building it is
+not**, because `cmake` runs the project's own scripts (`execute_process`, custom commands,
+downloads) and compilers run for as long as the project wants. So the adapter splits the work:
+
+| Measured | How |
+| --- | --- |
+| Unbounded `strcpy`, `strcat`, `sprintf`, `gets`, `scanf("%s")`, `system` / `popen` (rated by whether the argument is constant), format strings from variables, insecure temp names | Built-in heuristic scan that ignores comments, strings and raw strings. Not a compiler |
+| Bugprone, CERT and static-analyzer findings | `clang-tidy` run **without a compilation database** (that would need CMake to run), with its own inline config so a repository's `.clang-tidy` is ignored. Real, but partial: it cannot see headers a project fetches or generates, and it says so |
+| Dependencies | `find_package`, `FetchContent` (pinned only by tag, hash or SHA, never a branch), `ExternalProject`, Conan and vcpkg, read as text. CMake is never run to learn them |
+| Secrets | The same secret-pattern scan, now also over C and C++ sources |
+| Build and tests | `cmake` configure, build and `ctest` in a fresh `necro-build` directory of a disposable copy, **only** through a runner allowed to execute code (the Docker sandbox, or bundled fixtures on the host) |
+| **Not measured** | Known vulnerabilities: there is no vulnerability lookup for C/C++ dependencies, so it stays `null` and out of the score |
+
+Build status is now `passed`, `failed` or *not measured*. A project that cannot configure here
+(missing system dependency, or it needs the network) is reported as *not measured*, not as a broken
+build. A compile error is `failed`, and Consecration treats "built before, no longer builds" as a
+regression and rolls back. The Docker sandbox image has no C++ toolchain yet, so a sandbox runner
+reports the tests as not run; bundled fixtures fall back to the host instead. Patches for C++ are
+limited to a CMake CI workflow. Unsafe calls are listed with a reason for a person to fix, and C++
+findings are never sent to a model. A scan finding and a clang-tidy finding on the same line are
+listed once.
+
+### MCP server (optional)
+
+`python -m app.mcp_server` lets an AI agent (for example Kiro) use Repo Necromancer over MCP. It
+talks to a running backend, so start that first. Install with `pip install -r requirements-mcp.txt`.
+
+```json
+{
+  "mcpServers": {
+    "repo-necromancer": {
+      "command": "backend/.venv/bin/python",
+      "args": ["-m", "app.mcp_server"],
+      "cwd": "backend",
+      "env": { "NECRO_API_URL": "http://127.0.0.1:8000" }
+    }
+  }
+}
+```
+
+**What an agent can do:** list and import bundled fixtures, start an `INSPECT` or `PREVIEW` run, wait
+for it, cancel it, and read findings, baseline, roadmap, patch list and diffs, Vitality Score and
+verification. **What it cannot do, by design:** there is no tool to approve, reject or start a
+Revive run. Approval is a human decision made in the dashboard, so a prompt-injected agent cannot
+authorize a patch. `start_run` refuses `REVIVE` before making any request.
+
+- Importing Git URLs and local paths is off unless `NECRO_MCP_ALLOW_IMPORT=1` (then an
+  `import_repository` tool appears, and the backend's own path and URL validation still applies).
+  Local paths are never shown to the agent.
+- Everything that came from a scanned repository (finding titles, file paths, test names, diffs) is
+  untrusted text. It is stripped of control and invisible characters (bidirectional overrides,
+  zero-width characters), length-capped, and returned with a notice saying not to follow
+  instructions found in it. That is a mitigation, not a guarantee: the real protection is that the
+  tools cannot do anything dangerous.
+- Ids are validated before they are put into a URL, errors are short messages without tracebacks,
+  and the backend must be on this machine unless `NECRO_MCP_ALLOW_REMOTE=1`, because it has no
+  authentication.
+- Unknown values stay `null` through the interface (a test count of `null` means the tests did not
+  run, not zero).
+
+Tested through the MCP protocol against the real backend, including a real stdio launch of the entry
+point. Not tested with a real MCP client application such as Kiro.
 
 ### Secret-pattern scan
 
@@ -225,7 +295,9 @@ docker build -f deployment/sandbox.Dockerfile -t necromancer-sandbox:latest depl
 not. **Docker Compose does not mount the Docker socket**, because that would give the app container
 root-equivalent control of the host. The Compose container is itself the boundary (non-root,
 read-only root filesystem, no capabilities, memory/CPU/PID limits), runs with the sandbox off, and
-only runs bundled fixtures' tests. For the full sandbox, run the backend on a host with Docker.
+only runs bundled fixtures' tests. The image has no Node, CMake or compiler, so the TypeScript and
+C++ fixtures' tests are reported as not run there. For the full sandbox, or to run those tests, run
+the backend on a host with Docker or the toolchains.
 
 ## API
 
@@ -267,6 +339,7 @@ plus the JSON the dashboard reads.
 | `NECRO_ALLOW_DOCKER_BUILD` | `0` | `1` builds the repository's Dockerfile during Consecration |
 | `NECRO_STATIC_DIR` | `frontend/dist` | Built dashboard served at `/` |
 | `NECRO_OTEL` | empty (off) | `console` prints spans to stderr. `otlp` needs `opentelemetry-exporter-otlp` and the standard `OTEL_EXPORTER_OTLP_*` variables |
+| `NECRO_MCP_ALLOW_IMPORT` / `NECRO_MCP_ALLOW_REMOTE` | `0` / `0` | MCP server only: add the `import_repository` tool, or allow a backend that is not on this machine |
 | `NECRO_LLM_MODEL` | empty (off) | LiteLLM model for AI-assisted patches. Sends function source to that provider |
 | `NECRO_LLM_TIMEOUT` / `NECRO_LLM_MAX_TASKS` | `60` / `5` | Per-call timeout in seconds, and AI patch requests per run |
 
@@ -279,6 +352,7 @@ plus the JSON the dashboard reads.
 cd backend && .venv/bin/ruff check . && .venv/bin/python -m pytest -q
 cd frontend && npm run typecheck && npm test && npm run build
 cd backend && .venv/bin/python -m tests.export_ui_fixture   # regenerate the UI contract fixture
+                                                            # (needs npm, cmake, ctest on PATH)
 ```
 
 Run stream tests under a hard `timeout`: a run that is waiting for approval keeps its stream open
@@ -307,10 +381,11 @@ Status is never colour alone. The UI honours `prefers-reduced-motion`.
 ```
 .kiro/specs/repo-necromancer/   requirements.md, design.md, tasks.md
 .kiro/steering/                 product, stack, rules, security, standards, testing, brand
-backend/app/                    api, repositories, adapters, agents, graph, execution, runs, scoring
+backend/app/                    api, repositories, adapters (python, ts, cpp), agents, graph,
+                                execution, runs, scoring, mcp_api + mcp_server
 backend/tests/                  pytest suite and UI fixture exporter
 frontend/src/                   components, hooks, state reducer, API client, tests
-fixtures/legacy-python-cli/     deterministic demo repository
+fixtures/                       legacy-python-cli, legacy-ts-utils, legacy-cpp-parser (demo repositories)
 deployment/                     app Dockerfile, sandbox Dockerfile, docker-compose.yml
 scripts/                        run_local.sh, reset_demo.sh
 ```

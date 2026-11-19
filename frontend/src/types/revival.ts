@@ -75,7 +75,7 @@ export interface Finding {
 }
 export interface ToolRun { tool: string; measured: boolean; summary: string; exit_code: number | null }
 export interface Autopsy {
-  repository_name: string; language?: "Python" | "TypeScript"; frameworks: string[]; source_files: number; source_lines: number;
+  repository_name: string; language?: "Python" | "TypeScript" | "C++"; frameworks: string[]; source_files: number; source_lines: number;
   dependency_files: string[]; unpinned_dependencies: string[]; test_files: number;
   test_functions: number; has_dockerfile: boolean; has_ci: boolean; findings: Finding[];
   tools: ToolRun[]; known_vulnerabilities: number | null; lint_violations: number | null;
@@ -83,7 +83,7 @@ export interface Autopsy {
 export interface Baseline {
   status: "completed" | "not_run" | "failed_to_execute"; reason: string | null;
   counts: { passed: number; failed: number; errors: number; skipped: number } | null;
-  failing_tests: string[]; coverage: string; build: string; exit_code: number | null;
+  failing_tests: string[]; coverage: string; build: "passed" | "failed" | "not_measured"; exit_code: number | null;
 }
 
 export interface RoadmapTask {

@@ -1,106 +1,1285 @@
 {
+ "cpp": {
+  "artifacts": [
+   {
+    "checksum": "ac21275542807850fe7233ee742c4e3e7cab6e54c9df6531a19fdcd6c7da165e",
+    "created_at": "2026-11-19T16:44:51.593986",
+    "id": "8d31ae03-7dc7-4e42-a375-3d4df3217217",
+    "name": "AUTOPSY_REPORT.md",
+    "size": 1894,
+    "type": "autopsy_report"
+   },
+   {
+    "checksum": "3dd3a83a02c72aadb7c9feb8e7c9d4e91891023490dd0ce87af7c4a06ac60173",
+    "created_at": "2026-11-19T16:44:51.595236",
+    "id": "9ad61546-5ed1-4b04-83e0-cdf086653a4a",
+    "name": "autopsy.json",
+    "size": 4316,
+    "type": "autopsy_data"
+   },
+   {
+    "checksum": "fb5e71caac1f6cd1f7919be786d3274e8cddcacbeafd745ef808db3c8b0e13c6",
+    "created_at": "2026-11-19T16:44:52.523727",
+    "id": "f447b9b9-d34f-4503-9937-585719b2499d",
+    "name": "CHARACTERIZATION_REPORT.md",
+    "size": 1248,
+    "type": "characterization_report"
+   },
+   {
+    "checksum": "31db3cd0abc9b94e6559001a19cde55e255e5a324e0d72d3dc93427ac7bd02a5",
+    "created_at": "2026-11-19T16:44:52.524651",
+    "id": "bdd4ce6e-d473-4f3d-b868-c52ba36a9a31",
+    "name": "characterization.json",
+    "size": 1306,
+    "type": "characterization_data"
+   },
+   {
+    "checksum": "bd2f314c25fd8060674134c832624bfe59036b0e08a1fa73dc9301fe2138e3b6",
+    "created_at": "2026-11-19T16:44:52.529996",
+    "id": "ab57aa11-652f-4645-be14-eef9d72e7708",
+    "name": "REVIVAL_ROADMAP.v1.md",
+    "size": 3170,
+    "type": "roadmap"
+   },
+   {
+    "checksum": "9c0b2b33edb5546df03c37b21e5e6f09bb59afd33752af4d2bc48273d1ef2f19",
+    "created_at": "2026-11-19T16:44:52.531055",
+    "id": "814ce830-b7d5-41bc-87c8-c566d5f68200",
+    "name": "roadmap.v1.json",
+    "size": 4386,
+    "type": "roadmap_data"
+   },
+   {
+    "checksum": "478d0e3fef499e12b56c645cce57d6503177582c1f0d91ee692321ad4bd0bf84",
+    "created_at": "2026-11-19T16:44:52.536026",
+    "id": "dd1bfc7b-9976-4d4c-80af-5ca71d942b5d",
+    "name": "PATCHSET.v1.diff",
+    "size": 451,
+    "type": "patch_set"
+   },
+   {
+    "checksum": "835f2e4aad66bb88f746987e3e6bb9ac4ee65b0ee6481a98ae03824143ea667e",
+    "created_at": "2026-11-19T16:44:52.536863",
+    "id": "534240c5-7f4e-445a-835a-e7feeea6eeeb",
+    "name": "PATCHSET.v1.md",
+    "size": 974,
+    "type": "patch_set_summary"
+   },
+   {
+    "checksum": "5de7915175b0b4a61cefe8be7e4230c111fe88eb0a53edbc22b80cd88a19adcc",
+    "created_at": "2026-11-19T16:44:52.537650",
+    "id": "59ceb76c-250e-4b6d-a71e-eee9e2013029",
+    "name": "patches.v1.json",
+    "size": 2250,
+    "type": "patch_set_data"
+   },
+   {
+    "checksum": "6e20630c7e3786af0d59c0a6537116fa29cbdbb33f24a15906d8079ab8bde9ed",
+    "created_at": "2026-11-19T16:44:55.185789",
+    "id": "c6d362b4-d27e-4d38-9d90-aa4c014ba1e0",
+    "name": "VERIFICATION_REPORT.md",
+    "size": 1378,
+    "type": "verification_report"
+   },
+   {
+    "checksum": "a2016dd9db981bf9824b33e89d4a83695b1df107f39e136e9e598fd654494a5d",
+    "created_at": "2026-11-19T16:44:55.186936",
+    "id": "fdb84e3d-70a1-4af6-9925-8a36ee21251f",
+    "name": "verification.json",
+    "size": 1370,
+    "type": "verification_data"
+   },
+   {
+    "checksum": "a4cf96fea26364a06fb383751d6db79faec6420248c0603c9ec1440b1c3b474f",
+    "created_at": "2026-11-19T16:44:55.187889",
+    "id": "4265a730-3bfa-4ed7-87ff-a202c82df8c8",
+    "name": "VITALITY_REPORT.json",
+    "size": 2755,
+    "type": "vitality_report"
+   },
+   {
+    "checksum": "b417819a818d7b818296807c5fe1e07b9a3ec8371c5dedc42657af4928cfbd76",
+    "created_at": "2026-11-19T16:44:55.193123",
+    "id": "e607f1f2-0af1-4a68-bd16-548cb828e90d",
+    "name": "RUN_AUDIT.json",
+    "size": 3652,
+    "type": "run_audit"
+   }
+  ],
+  "data": {
+   "autopsy_data": {
+    "audited_packages": null,
+    "build_files": [
+     "CMakeLists.txt"
+    ],
+    "dependencies": [],
+    "dependency_files": [
+     "CMakeLists.txt"
+    ],
+    "findings": [
+     {
+      "category": "security",
+      "evidence": "`system` with a dynamic argument runs through a shell",
+      "file_path": "src/parser.cpp",
+      "fix_versions": [],
+      "id": "F-001",
+      "installed_version": null,
+      "line": 42,
+      "package": null,
+      "severity": "high",
+      "source": "cpp-scan",
+      "status": "open",
+      "title": "Shell command via `system`"
+     },
+     {
+      "category": "security",
+      "evidence": "A literal value is assigned on line 8 (the value is not shown).",
+      "file_path": "src/parser.cpp",
+      "fix_versions": [],
+      "id": "F-002",
+      "installed_version": null,
+      "line": 8,
+      "package": null,
+      "severity": "medium",
+      "source": "secrets",
+      "status": "open",
+      "title": "Possible secret in src/parser.cpp: value assigned to `API_TOKEN`"
+     },
+     {
+      "category": "security",
+      "evidence": "`Unbounded `strcpy`` appears in code",
+      "file_path": "src/parser.cpp",
+      "fix_versions": [],
+      "id": "F-003",
+      "installed_version": null,
+      "line": 18,
+      "package": null,
+      "severity": "medium",
+      "source": "cpp-scan",
+      "status": "open",
+      "title": "Unbounded `strcpy`"
+     },
+     {
+      "category": "security",
+      "evidence": "`Unbounded `sprintf`` appears in code",
+      "file_path": "src/parser.cpp",
+      "fix_versions": [],
+      "id": "F-004",
+      "installed_version": null,
+      "line": 23,
+      "package": null,
+      "severity": "medium",
+      "source": "cpp-scan",
+      "status": "open",
+      "title": "Unbounded `sprintf`"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No .github/workflows, .gitlab-ci.yml or equivalent.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-005",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "low",
+      "source": "detect",
+      "status": "open",
+      "title": "No CI workflow found"
+     },
+     {
+      "category": "ci_docker",
+      "evidence": "No Dockerfile in the repository.",
+      "file_path": null,
+      "fix_versions": [],
+      "id": "F-006",
+      "installed_version": null,
+      "line": null,
+      "package": null,
+      "severity": "info",
+      "source": "detect",
+      "status": "open",
+      "title": "No Dockerfile found"
+     }
+    ],
+    "frameworks": [],
+    "has_ci": false,
+    "has_dockerfile": false,
+    "known_vulnerabilities": null,
+    "language": "C++",
+    "lint_violations": 2,
+    "lockfile_present": false,
+    "repository_name": "legacy-cpp-parser",
+    "source_files": 4,
+    "source_lines": 114,
+    "test_config": [
+     "CTest"
+    ],
+    "test_files": 1,
+    "test_functions": 2,
+    "tools": [
+     {
+      "command": "built-in heuristic scan",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "3 finding(s) in 4 file(s). Heuristic, not a compiler.",
+      "tool": "cpp-scan"
+     },
+     {
+      "command": "built-in pattern scan",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "1 possible secret(s) in 5 config and script file(s)",
+      "tool": "secret-scan"
+     },
+     {
+      "command": "/root/.local/bin/clang-tidy --quiet --config={Checks: 'clang-analyzer-*,bugprone-*,cert-*,-bugprone-easily-swappable-parameters,-cert-err58-cpp,-bugprone-reserved-identifier', HeaderFilterRegex: ''} /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/main.cpp /tmp/tmpb58ng45",
+      "duration_seconds": 1.677,
+      "exit_code": 0,
+      "measured": true,
+      "output_excerpt": "",
+      "summary": "2 warning(s) in 2 file(s); 2 already reported by the built-in scan",
+      "tool": "clang-tidy"
+     },
+     {
+      "command": "",
+      "duration_seconds": 0.0,
+      "exit_code": null,
+      "measured": false,
+      "output_excerpt": "",
+      "summary": "Not measured: there is no vulnerability database lookup for C and C++ dependencies, so known vulnerabilities stay unknown",
+      "tool": "dependency-audit"
+     }
+    ],
+    "unpinned_dependencies": [],
+    "vulnerable_packages": null
+   },
+   "characterization_data": {
+    "build": "passed",
+    "command": "/usr/bin/ctest --test-dir necro-build --timeout 60",
+    "counts": {
+     "errors": 0,
+     "failed": 1,
+     "passed": 1,
+     "skipped": 0,
+     "xfailed": 0,
+     "xpassed": 0
+    },
+    "coverage": "not_measured",
+    "duration_seconds": 0.015,
+    "exit_code": 8,
+    "failing_tests": [
+     "known_failure_trims_spaces"
+    ],
+    "output_excerpt": "Internal ctest changing into directory: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build\nTest project /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build\n    Start 1: parses_key_value\n1/2 Test #1: parses_key_value .................   Passed    0.00 sec\n    Start 2: known_failure_trims_spaces\n2/2 Test #2: known_failure_trims_spaces .......***Failed    0.00 sec\n\n50% tests passed, 1 tests failed out of 2\n\nTotal Test time (real) =   0.00 sec\n\nThe following tests FAILED:\n\t  2 - known_failure_trims_spaces (Failed)\n\nErrors while running CTest\nOutput from these tests are in: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build/Testing/Temporary/LastTest.log\nUse \"--rerun-failed --output-on-failure\" to re-run the failed cases verbosely.",
+    "reason": null,
+    "status": "completed",
+    "timed_out": false
+   },
+   "patch_set_data": {
+    "llm": null,
+    "patches": [
+     {
+      "action": "create",
+      "after_content": "name: CI\non: [push, pull_request]\npermissions:\n  contents: read\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug\n      - run: cmake --build build --parallel\n      - run: ctest --test-dir build --output-on-failure --timeout 60\n",
+      "after_sha256": "5933d51c06e5cdad79dfa9e05cab8826eb555c51002849926dcf0ffc0b7d41ce",
+      "before_sha256": null,
+      "diff": "--- /dev/null\n+++ b/.github/workflows/ci.yml\n@@ -0,0 +1,12 @@\n+name: CI\n+on: [push, pull_request]\n+permissions:\n+  contents: read\n+jobs:\n+  test:\n+    runs-on: ubuntu-latest\n+    steps:\n+      - uses: actions/checkout@v4\n+      - run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug\n+      - run: cmake --build build --parallel\n+      - run: ctest --test-dir build --output-on-failure --timeout 60\n",
+      "model": null,
+      "origin": "rule",
+      "path": ".github/workflows/ci.yml",
+      "rationale": "Configure, build and run CTest on every push.",
+      "task_id": "RT-006"
+     }
+    ],
+    "roadmap_version": 1,
+    "skipped": [
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-001",
+      "title": "Shell command via `system`"
+     },
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-002",
+      "title": "Possible secret in src/parser.cpp: value assigned to `API_TOKEN`"
+     },
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-003",
+      "title": "Unbounded `sprintf`"
+     },
+     {
+      "reason": "No automatic fix exists for this construct. A person must decide.",
+      "task_id": "RT-004",
+      "title": "Unbounded `strcpy`"
+     },
+     {
+      "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+      "task_id": "RT-005",
+      "title": "Investigate 1 pre-existing failing test(s)"
+     },
+     {
+      "reason": "There is no Dockerfile template for C++ projects yet.",
+      "task_id": "RT-007",
+      "title": "Add a Dockerfile"
+     }
+    ]
+   },
+   "roadmap_data": {
+    "repository_name": "legacy-cpp-parser",
+    "tasks": [
+     {
+      "affected_files": [
+       "src/parser.cpp"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-001"
+      ],
+      "id": "RT-001",
+      "priority": "P1",
+      "proposed_action": "Replace unbounded C string functions with bounded ones (`snprintf`, `std::string`, or a checked length), and replace `system` and `popen` with a direct exec-style call or a library, validating every input that reaches them.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Shell command via `system`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "src/parser.cpp"
+      ],
+      "category": "security",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-002"
+      ],
+      "id": "RT-002",
+      "priority": "P2",
+      "proposed_action": "Remove the value from the file, load it from the environment or a secrets store, and rotate the credential, because it is already in the repository history. Keep local env files out of version control.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Possible secret in src/parser.cpp: value assigned to `API_TOKEN`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "src/parser.cpp"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-004"
+      ],
+      "id": "RT-003",
+      "priority": "P2",
+      "proposed_action": "Replace unbounded C string functions with bounded ones (`snprintf`, `std::string`, or a checked length), and replace `system` and `popen` with a direct exec-style call or a library, validating every input that reaches them.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Unbounded `sprintf`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "src/parser.cpp"
+      ],
+      "category": "security",
+      "estimated_effort": "M",
+      "evidence": [
+       "F-003"
+      ],
+      "id": "RT-004",
+      "priority": "P2",
+      "proposed_action": "Replace unbounded C string functions with bounded ones (`snprintf`, `std::string`, or a checked length), and replace `system` and `popen` with a direct exec-style call or a library, validating every input that reaches them.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Unbounded `strcpy`",
+      "verification": "The scan no longer reports this finding; the test baseline does not regress."
+     },
+     {
+      "affected_files": [
+       "known_failure_trims_spaces"
+      ],
+      "category": "tests",
+      "estimated_effort": "M",
+      "evidence": [
+       "Baseline failure: known_failure_trims_spaces"
+      ],
+      "id": "RT-005",
+      "priority": "P2",
+      "proposed_action": "Determine for each failing test whether the production code or the test expectation is wrong. Do not edit a test only to make it pass.",
+      "risk": "medium",
+      "status": "proposed",
+      "title": "Investigate 1 pre-existing failing test(s)",
+      "verification": "Each failure is explained, and any fix is confirmed against intended behaviour."
+     },
+     {
+      "affected_files": [
+       ".github/workflows/ci.yml"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-005"
+      ],
+      "id": "RT-006",
+      "priority": "P3",
+      "proposed_action": "Add a workflow that installs dependencies, runs lint and tests.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a CI workflow",
+      "verification": "The workflow file validates and runs the same commands used locally."
+     },
+     {
+      "affected_files": [
+       "Dockerfile"
+      ],
+      "category": "ci_docker",
+      "estimated_effort": "S",
+      "evidence": [
+       "F-006"
+      ],
+      "id": "RT-007",
+      "priority": "P3",
+      "proposed_action": "Add a minimal non-root Dockerfile that installs pinned dependencies.",
+      "risk": "low",
+      "status": "proposed",
+      "title": "Add a Dockerfile",
+      "verification": "`docker build` succeeds."
+     }
+    ],
+    "version": 1
+   },
+   "verification_data": {
+    "checks": [
+     {
+      "command": "/usr/bin/ctest --test-dir necro-build --timeout 60",
+      "detail": "1 passed, 1 failed, 0 errors. 1 failure(s) existed in the baseline; 0 new.",
+      "exit_code": 8,
+      "name": "tests",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "Linter findings: 2 before, 2 after.",
+      "exit_code": null,
+      "name": "lint",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "The dependency audit gave no result (for example, no network).",
+      "exit_code": null,
+      "name": "dependency_audit",
+      "status": "not_measured"
+     },
+     {
+      "command": null,
+      "detail": "The project builds.",
+      "exit_code": null,
+      "name": "build",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+      "exit_code": null,
+      "name": "ci_workflows",
+      "status": "passed"
+     },
+     {
+      "command": null,
+      "detail": "No Dockerfile.",
+      "exit_code": null,
+      "name": "docker_build",
+      "status": "not_configured"
+     }
+    ],
+    "new_findings": [],
+    "regressions": [],
+    "resolved_findings": [
+     "No CI workflow found"
+    ],
+    "score_warning": null,
+    "unmeasured": [
+     "dependency_audit"
+    ],
+    "verdict": "verified"
+   },
+   "vitality_report": {
+    "after": {
+     "dimensions": [
+      {
+       "basis": "Not measured: no dependency audit result for pinned packages.",
+       "name": "dependencies",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "2 linter findings in 114 lines (17.5 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 36.3,
+       "weight": 0.2
+      },
+      {
+       "basis": "4 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 45.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: absent, build not_configured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 50.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: dependencies.",
+     "score": 45.6,
+     "unmeasured": [
+      "dependencies"
+     ]
+    },
+    "before": {
+     "dimensions": [
+      {
+       "basis": "Not measured: no dependency audit result for pinned packages.",
+       "name": "dependencies",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "2 linter findings in 114 lines (17.5 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 36.3,
+       "weight": 0.2
+      },
+      {
+       "basis": "4 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 45.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: dependencies.",
+     "score": 36.3,
+     "unmeasured": [
+      "dependencies"
+     ]
+    },
+    "comparison_warning": null
+   }
+  },
+  "events": [
+   {
+    "event": "run_started",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:1",
+    "id": "1",
+    "payload": {
+     "mode": "REVIVE",
+     "repository_id": "6707a0b4-f0fb-4a37-8204-c7fae73caf84"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 1,
+    "timestamp": "2026-11-19T16:44:49.896211",
+    "type": "run_started"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:2",
+    "id": "2",
+    "payload": {
+     "stage": "AUTOPSY",
+     "status": "RUNNING"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 2,
+    "timestamp": "2026-11-19T16:44:49.902479",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:3",
+    "id": "3",
+    "payload": {
+     "command": "/root/.local/bin/clang-tidy --quiet --config={Checks: 'clang-analyzer-*,bugprone-*,cert-*,-bugprone-easily-swappable-parameters,-cert-err58-cpp,-bugprone-reserved-identifier', HeaderFilterRegex: ''} /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/main.cpp /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/parser.cpp -- -std=c++17 -I/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot -I/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/include -I/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src",
+     "duration_seconds": 1.677,
+     "exit_code": 0,
+     "output": "/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/parser.cpp:18:5: warning: Call to function 'strcpy' is insecure as it does not provide bounding of the memory buffer. Replace unbounded copy functions with analogous functions that support length arguments such as 'strlcpy'. CWE-119 [clang-analyzer-security.insecureAPI.strcpy]\n   18 |     strcpy(value, eq + 1);  // legacy: no bounds check\n      |     ^~~~~~\n/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/parser.cpp:18:5: note: Call to function 'strcpy' is insecure as it does not provide bounding of the memory buffer. Replace unbounded copy functions with analogous functions that support length arguments such as 'strlcpy'. CWE-119\n   18 |     strcpy(value, eq + 1);  // legacy: no bounds check\n      |     ^~~~~~\n/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/parser.cpp:42:12: warning: calling 'system' uses a command processor [bugprone-command-processor,cert-env33-c]\n   42 |     return std::system((\"report \" + args).c_str());\n      |            ^\n[1/2] Processing file /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/main.cpp.\n[2/2] Processing file /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/snapshot/src/parser.cpp.",
+     "stage": "AUTOPSY",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 3,
+    "timestamp": "2026-11-19T16:44:51.591616",
+    "type": "terminal_log"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:4",
+    "id": "4",
+    "payload": {
+     "stage": "CHARACTERIZATION",
+     "status": "RUNNING"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 4,
+    "timestamp": "2026-11-19T16:44:51.599055",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:5",
+    "id": "5",
+    "payload": {
+     "command": "/usr/bin/cmake -S . -B necro-build -DCMAKE_BUILD_TYPE=Debug",
+     "duration_seconds": 0.165,
+     "exit_code": 0,
+     "output": "-- The CXX compiler identification is GNU 11.5.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build",
+     "stage": "CHARACTERIZATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 5,
+    "timestamp": "2026-11-19T16:44:51.767582",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:6",
+    "id": "6",
+    "payload": {
+     "command": "/usr/bin/cmake --build necro-build --parallel 2",
+     "duration_seconds": 0.734,
+     "exit_code": 0,
+     "output": "[ 16%] Building CXX object CMakeFiles/parser.dir/src/parser.cpp.o\n[ 33%] Linking CXX static library libparser.a\n[ 33%] Built target parser\n[ 66%] Building CXX object CMakeFiles/parse_cli.dir/src/main.cpp.o\n[ 66%] Building CXX object CMakeFiles/test_parser.dir/tests/test_parser.cpp.o\n[ 83%] Linking CXX executable parse_cli\n[100%] Linking CXX executable test_parser\n[100%] Built target parse_cli\n[100%] Built target test_parser",
+     "stage": "CHARACTERIZATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 6,
+    "timestamp": "2026-11-19T16:44:52.504521",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:7",
+    "id": "7",
+    "payload": {
+     "command": "/usr/bin/ctest --test-dir necro-build --timeout 60",
+     "duration_seconds": 0.015,
+     "exit_code": 8,
+     "output": "Internal ctest changing into directory: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build\nTest project /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build\n    Start 1: parses_key_value\n1/2 Test #1: parses_key_value .................   Passed    0.00 sec\n    Start 2: known_failure_trims_spaces\n2/2 Test #2: known_failure_trims_spaces .......***Failed    0.00 sec\n\n50% tests passed, 1 tests failed out of 2\n\nTotal Test time (real) =   0.00 sec\n\nThe following tests FAILED:\n\t  2 - known_failure_trims_spaces (Failed)\nErrors while running CTest\nOutput from these tests are in: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/baseline-run/necro-build/Testing/Temporary/LastTest.log\nUse \"--rerun-failed --output-on-failure\" to re-run the failed cases verbosely.",
+     "stage": "CHARACTERIZATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 7,
+    "timestamp": "2026-11-19T16:44:52.521618",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:8",
+    "id": "8",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "Not measured: no dependency audit result for pinned packages.",
+       "name": "dependencies",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "2 linter findings in 114 lines (17.5 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 36.3,
+       "weight": 0.2
+      },
+      {
+       "basis": "4 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 45.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: absent, validation not_measured. Docker: absent, build not_measured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 0.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: dependencies.",
+     "phase": "before",
+     "score": 36.3,
+     "unmeasured": [
+      "dependencies"
+     ]
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 8,
+    "timestamp": "2026-11-19T16:44:52.525762",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:9",
+    "id": "9",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 9,
+    "timestamp": "2026-11-19T16:44:52.528443",
+    "type": "stage_changed"
+   },
+   {
+    "event": "roadmap_ready",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:10",
+    "id": "10",
+    "payload": {
+     "roadmap_digest": "6393dc5e4749c7c8a88d28378af2bd841fadd128a7f6fcb115f87c97d5753fb8",
+     "roadmap_version": 1,
+     "task_count": 7
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 10,
+    "timestamp": "2026-11-19T16:44:52.532977",
+    "type": "roadmap_ready"
+   },
+   {
+    "event": "diff_generated",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:11",
+    "id": "11",
+    "payload": {
+     "files_changed": [
+      ".github/workflows/ci.yml"
+     ],
+     "llm": null,
+     "patch_set_digest": "82c7e333242c5ac7b74fbd75682f21849c2e4acc468a15a3a9779c6ef4bd4816",
+     "patches": [
+      {
+       "action": "create",
+       "origin": "rule",
+       "path": ".github/workflows/ci.yml",
+       "task_id": "RT-006"
+      }
+     ],
+     "roadmap_version": 1,
+     "skipped": [
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-001",
+       "title": "Shell command via `system`"
+      },
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-002",
+       "title": "Possible secret in src/parser.cpp: value assigned to `API_TOKEN`"
+      },
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-003",
+       "title": "Unbounded `sprintf`"
+      },
+      {
+       "reason": "No automatic fix exists for this construct. A person must decide.",
+       "task_id": "RT-004",
+       "title": "Unbounded `strcpy`"
+      },
+      {
+       "reason": "Tests are never edited automatically, so failures are not hidden or rewritten.",
+       "task_id": "RT-005",
+       "title": "Investigate 1 pre-existing failing test(s)"
+      },
+      {
+       "reason": "There is no Dockerfile template for C++ projects yet.",
+       "task_id": "RT-007",
+       "title": "Add a Dockerfile"
+      }
+     ]
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 11,
+    "timestamp": "2026-11-19T16:44:52.539556",
+    "type": "diff_generated"
+   },
+   {
+    "event": "hitl_required",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:12",
+    "id": "12",
+    "payload": {
+     "ai_model": null,
+     "ai_patch_count": 0,
+     "dependency_changes": [],
+     "execution_target": "isolated working copy",
+     "files_affected": 1,
+     "patch_set_digest": "82c7e333242c5ac7b74fbd75682f21849c2e4acc468a15a3a9779c6ef4bd4816",
+     "patched_task_count": 1,
+     "repository": "legacy-cpp-parser",
+     "roadmap_version": 1,
+     "security_fixes": 0,
+     "source_commit": null,
+     "stage": "REANIMATION",
+     "status": "AWAITING_APPROVAL",
+     "task_count": 7
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 12,
+    "timestamp": "2026-11-19T16:44:52.542474",
+    "type": "hitl_required"
+   },
+   {
+    "event": "approval_received",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:13",
+    "id": "13",
+    "payload": {
+     "actor": "local",
+     "decision": "approve",
+     "excluded_task_ids": [],
+     "note": null,
+     "patch_set_digest": "82c7e333242c5ac7b74fbd75682f21849c2e4acc468a15a3a9779c6ef4bd4816",
+     "roadmap_version": 1
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 13,
+    "timestamp": "2026-11-19T16:44:52.558613",
+    "type": "approval_received"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:14",
+    "id": "14",
+    "payload": {
+     "stage": "REANIMATION",
+     "status": "RUNNING"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 14,
+    "timestamp": "2026-11-19T16:44:52.559237",
+    "type": "stage_changed"
+   },
+   {
+    "event": "patch_applied",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:15",
+    "id": "15",
+    "payload": {
+     "action": "create",
+     "after_sha256": "5933d51c06e5cdad79dfa9e05cab8826eb555c51002849926dcf0ffc0b7d41ce",
+     "model": null,
+     "origin": "rule",
+     "path": ".github/workflows/ci.yml",
+     "target": "isolated working copy",
+     "task_id": "RT-006"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 15,
+    "timestamp": "2026-11-19T16:44:52.566195",
+    "type": "patch_applied"
+   },
+   {
+    "event": "stage_changed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:16",
+    "id": "16",
+    "payload": {
+     "stage": "CONSECRATION",
+     "status": "RUNNING"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 16,
+    "timestamp": "2026-11-19T16:44:52.568666",
+    "type": "stage_changed"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:17",
+    "id": "17",
+    "payload": {
+     "command": "/root/.local/bin/clang-tidy --quiet --config={Checks: 'clang-analyzer-*,bugprone-*,cert-*,-bugprone-easily-swappable-parameters,-cert-err58-cpp,-bugprone-reserved-identifier', HeaderFilterRegex: ''} /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/main.cpp /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/parser.cpp -- -std=c++17 -I/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work -I/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/include -I/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src",
+     "duration_seconds": 1.687,
+     "exit_code": 0,
+     "output": "/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/parser.cpp:18:5: warning: Call to function 'strcpy' is insecure as it does not provide bounding of the memory buffer. Replace unbounded copy functions with analogous functions that support length arguments such as 'strlcpy'. CWE-119 [clang-analyzer-security.insecureAPI.strcpy]\n   18 |     strcpy(value, eq + 1);  // legacy: no bounds check\n      |     ^~~~~~\n/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/parser.cpp:18:5: note: Call to function 'strcpy' is insecure as it does not provide bounding of the memory buffer. Replace unbounded copy functions with analogous functions that support length arguments such as 'strlcpy'. CWE-119\n   18 |     strcpy(value, eq + 1);  // legacy: no bounds check\n      |     ^~~~~~\n/tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/parser.cpp:42:12: warning: calling 'system' uses a command processor [bugprone-command-processor,cert-env33-c]\n   42 |     return std::system((\"report \" + args).c_str());\n      |            ^\n[1/2] Processing file /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/main.cpp.\n[2/2] Processing file /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/work/src/parser.cpp.",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 17,
+    "timestamp": "2026-11-19T16:44:54.262345",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:18",
+    "id": "18",
+    "payload": {
+     "command": "/usr/bin/cmake -S . -B necro-build -DCMAKE_BUILD_TYPE=Debug",
+     "duration_seconds": 0.17,
+     "exit_code": 0,
+     "output": "-- The CXX compiler identification is GNU 11.5.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Configuring done\n-- Generating done\n-- Build files have been written to: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/final-run/necro-build",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 18,
+    "timestamp": "2026-11-19T16:44:54.436375",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:19",
+    "id": "19",
+    "payload": {
+     "command": "/usr/bin/cmake --build necro-build --parallel 2",
+     "duration_seconds": 0.727,
+     "exit_code": 0,
+     "output": "[ 16%] Building CXX object CMakeFiles/parser.dir/src/parser.cpp.o\n[ 33%] Linking CXX static library libparser.a\n[ 33%] Built target parser\n[ 50%] Building CXX object CMakeFiles/parse_cli.dir/src/main.cpp.o\n[ 66%] Building CXX object CMakeFiles/test_parser.dir/tests/test_parser.cpp.o\n[ 83%] Linking CXX executable parse_cli\n[100%] Linking CXX executable test_parser\n[100%] Built target parse_cli\n[100%] Built target test_parser",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 19,
+    "timestamp": "2026-11-19T16:44:55.165981",
+    "type": "terminal_log"
+   },
+   {
+    "event": "terminal_log",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:20",
+    "id": "20",
+    "payload": {
+     "command": "/usr/bin/ctest --test-dir necro-build --timeout 60",
+     "duration_seconds": 0.014,
+     "exit_code": 8,
+     "output": "Internal ctest changing into directory: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/final-run/necro-build\nTest project /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/final-run/necro-build\n    Start 1: parses_key_value\n1/2 Test #1: parses_key_value .................   Passed    0.00 sec\n    Start 2: known_failure_trims_spaces\n2/2 Test #2: known_failure_trims_spaces .......***Failed    0.00 sec\n\n50% tests passed, 1 tests failed out of 2\n\nTotal Test time (real) =   0.00 sec\n\nThe following tests FAILED:\n\t  2 - known_failure_trims_spaces (Failed)\nErrors while running CTest\nOutput from these tests are in: /tmp/tmpb58ng45z/data/runs/b2622cab-6e20-4ad0-b016-280148cb0ed8/final-run/necro-build/Testing/Temporary/LastTest.log\nUse \"--rerun-failed --output-on-failure\" to re-run the failed cases verbosely.",
+     "stage": "CONSECRATION",
+     "timed_out": false
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 20,
+    "timestamp": "2026-11-19T16:44:55.182279",
+    "type": "terminal_log"
+   },
+   {
+    "event": "health_score_updated",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:21",
+    "id": "21",
+    "payload": {
+     "dimensions": [
+      {
+       "basis": "Not measured: no dependency audit result for pinned packages.",
+       "name": "dependencies",
+       "score": null,
+       "weight": 0.2
+      },
+      {
+       "basis": "1 of 2 executed tests passed (0 skipped). Coverage was not measured.",
+       "name": "tests",
+       "score": 50.0,
+       "weight": 0.3
+      },
+      {
+       "basis": "2 linter findings in 114 lines (17.5 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "name": "code_quality",
+       "score": 36.3,
+       "weight": 0.2
+      },
+      {
+       "basis": "4 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
+       "name": "security",
+       "score": 45.0,
+       "weight": 0.15
+      },
+      {
+       "basis": "CI: present, validation passed. Docker: absent, build not_configured. Present but unverified counts half.",
+       "name": "ci_docker",
+       "score": 50.0,
+       "weight": 0.15
+      }
+     ],
+     "measured": [
+      "tests",
+      "code_quality",
+      "security",
+      "ci_docker"
+     ],
+     "measured_weight": 0.8,
+     "note": "Computed from 4 of 5 dimensions (80% of the model); weights are renormalised. Not measured: dependencies.",
+     "phase": "after",
+     "score": 45.6,
+     "unmeasured": [
+      "dependencies"
+     ]
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 21,
+    "timestamp": "2026-11-19T16:44:55.188916",
+    "type": "health_score_updated"
+   },
+   {
+    "event": "verification_completed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:22",
+    "id": "22",
+    "payload": {
+     "checks": [
+      {
+       "command": "/usr/bin/ctest --test-dir necro-build --timeout 60",
+       "detail": "1 passed, 1 failed, 0 errors. 1 failure(s) existed in the baseline; 0 new.",
+       "exit_code": 8,
+       "name": "tests",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "Linter findings: 2 before, 2 after.",
+       "exit_code": null,
+       "name": "lint",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "The dependency audit gave no result (for example, no network).",
+       "exit_code": null,
+       "name": "dependency_audit",
+       "status": "not_measured"
+      },
+      {
+       "command": null,
+       "detail": "The project builds.",
+       "exit_code": null,
+       "name": "build",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "1 workflow file(s) parse and define jobs. Syntax check only; the workflows were not executed.",
+       "exit_code": null,
+       "name": "ci_workflows",
+       "status": "passed"
+      },
+      {
+       "command": null,
+       "detail": "No Dockerfile.",
+       "exit_code": null,
+       "name": "docker_build",
+       "status": "not_configured"
+      }
+     ],
+     "regressions": [],
+     "verdict": "verified"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 22,
+    "timestamp": "2026-11-19T16:44:55.189816",
+    "type": "verification_completed"
+   },
+   {
+    "event": "run_completed",
+    "event_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8:23",
+    "id": "23",
+    "payload": {
+     "mode": "REVIVE",
+     "patches_applied": 1,
+     "score_after": 45.6,
+     "score_before": 36.3,
+     "stage": "CONSECRATION",
+     "stages_completed": [
+      "AUTOPSY",
+      "CHARACTERIZATION",
+      "REANIMATION",
+      "CONSECRATION"
+     ],
+     "status": "COMPLETED",
+     "verdict": "verified"
+    },
+    "run_id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+    "sequence": 23,
+    "timestamp": "2026-11-19T16:44:55.194713",
+    "type": "run_completed"
+   }
+  ],
+  "final_run": {
+   "cancel_requested": false,
+   "completed_at": "2026-11-19T16:44:55.193628",
+   "created_at": "2026-11-19T16:44:49.894773",
+   "current_stage": "CONSECRATION",
+   "error": null,
+   "id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+   "mode": "REVIVE",
+   "patch_set_digest": "82c7e333242c5ac7b74fbd75682f21849c2e4acc468a15a3a9779c6ef4bd4816",
+   "pinned_commit": null,
+   "repository_id": "6707a0b4-f0fb-4a37-8204-c7fae73caf84",
+   "roadmap_version": 1,
+   "status": "COMPLETED",
+   "updated_at": "2026-11-19T16:44:55.193628"
+  },
+  "waiting_run": {
+   "cancel_requested": false,
+   "completed_at": null,
+   "created_at": "2026-11-19T16:44:49.894773",
+   "current_stage": "REANIMATION",
+   "error": null,
+   "id": "b2622cab-6e20-4ad0-b016-280148cb0ed8",
+   "mode": "REVIVE",
+   "patch_set_digest": "82c7e333242c5ac7b74fbd75682f21849c2e4acc468a15a3a9779c6ef4bd4816",
+   "pinned_commit": null,
+   "repository_id": "6707a0b4-f0fb-4a37-8204-c7fae73caf84",
+   "roadmap_version": 1,
+   "status": "AWAITING_APPROVAL",
+   "updated_at": "2026-11-19T16:44:52.541471"
+  }
+ },
  "rolled_back": {
   "artifacts": [
    {
     "checksum": "4f0df2b4040b9c3802a72343fa3c80001c4a9f262170b86155553a57f596e08a",
-    "created_at": "2026-11-19T13:22:35.015515",
-    "id": "df78b6f3-3f35-428c-b0f3-0fd59989c43c",
+    "created_at": "2026-11-19T16:44:49.432853",
+    "id": "0b681e4a-24a1-491a-97a1-0e74ed0c1e24",
     "name": "AUTOPSY_REPORT.md",
     "size": 1713,
     "type": "autopsy_report"
    },
    {
     "checksum": "bd08a82eb941ecdddfd56d83ddac0e00be16af633a5ecf3dd83dfd2009b546b6",
-    "created_at": "2026-11-19T13:22:35.016675",
-    "id": "b1102fb8-a243-4d72-8d0a-926450cc8358",
+    "created_at": "2026-11-19T16:44:49.434062",
+    "id": "c1b1cc51-6fa7-4b01-b46b-29b061386453",
     "name": "autopsy.json",
     "size": 4423,
     "type": "autopsy_data"
    },
    {
     "checksum": "004383cd84a30a6bc9cc7def7891472de7f28e7d468dab3d34f94750c9335187",
-    "created_at": "2026-11-19T13:22:35.023283",
-    "id": "c7900920-e90c-44a5-8aa4-41c2038860f1",
+    "created_at": "2026-11-19T16:44:49.440816",
+    "id": "5eebd52a-06ef-4fe3-9e3b-24354a038c90",
     "name": "CHARACTERIZATION_REPORT.md",
     "size": 585,
     "type": "characterization_report"
    },
    {
     "checksum": "5f602acda5c7297ab1bc01aa6782891a40ef1633895273ea47e14f91af6c0862",
-    "created_at": "2026-11-19T13:22:35.024122",
-    "id": "5e12894b-68b2-40da-a4ae-b2038834688e",
+    "created_at": "2026-11-19T16:44:49.441845",
+    "id": "4f40c671-a28c-48b4-8ef5-ed5f16216603",
     "name": "characterization.json",
     "size": 625,
     "type": "characterization_data"
    },
    {
     "checksum": "f2b49da4699bfa65ab00b218533414ce9428f4ed57f7f3e1826b866a67730140",
-    "created_at": "2026-11-19T13:22:35.029043",
-    "id": "ab645192-2b79-464d-9347-ac7269ff1ef4",
+    "created_at": "2026-11-19T16:44:49.446688",
+    "id": "60e7787c-7d31-4fc8-9e26-fed5f724a179",
     "name": "REVIVAL_ROADMAP.v1.md",
     "size": 2763,
     "type": "roadmap"
    },
    {
     "checksum": "9161eb4b3634e499b2cafcb04fd0ab912913e910b046a8fe75fc1a625920bd60",
-    "created_at": "2026-11-19T13:22:35.030119",
-    "id": "3faab348-2c57-4021-9eaa-2e8d39414e87",
+    "created_at": "2026-11-19T16:44:49.447705",
+    "id": "2b9f61b5-be09-4b62-a81f-af1d0be79471",
     "name": "roadmap.v1.json",
     "size": 3979,
     "type": "roadmap_data"
    },
    {
     "checksum": "05a1e79ac7b4c79cfd7e14d858d904f8669f02a3686dff96872a6eb0cdc2a3fd",
-    "created_at": "2026-11-19T13:22:35.069277",
-    "id": "d3416a06-e4ab-4e45-85de-3df69429b229",
+    "created_at": "2026-11-19T16:44:49.486919",
+    "id": "5d7d2446-12e1-4265-826f-fdaae05b80d6",
     "name": "PATCHSET.v1.diff",
     "size": 1941,
     "type": "patch_set"
    },
    {
     "checksum": "b1bd42cdc4e28e1d205075e2ad754e3e23badbfd855ec774a42a9ec5b85349c5",
-    "created_at": "2026-11-19T13:22:35.070212",
-    "id": "611bacb7-97dd-448c-8152-c2ca0f47bc51",
+    "created_at": "2026-11-19T16:44:49.487826",
+    "id": "33a9b26a-867c-44e4-a0d3-eb4c0a1a1206",
     "name": "PATCHSET.v1.md",
     "size": 991,
     "type": "patch_set_summary"
    },
    {
     "checksum": "13657b5591390abace8f5812df9b827f348da15027b957014963f9947331de27",
-    "created_at": "2026-11-19T13:22:35.071208",
-    "id": "d72ae9c9-60ee-4918-ae2e-da327400f178",
+    "created_at": "2026-11-19T16:44:49.488765",
+    "id": "1cbe34ea-f567-4e4d-b4dc-0cce8af49456",
     "name": "patches.v1.json",
     "size": 6862,
     "type": "patch_set_data"
    },
    {
-    "checksum": "070a5802f5f0efeddd3a098da8c143ed38c888ebb4ab7b90c58513e9bc69049d",
-    "created_at": "2026-11-19T13:22:35.153320",
-    "id": "7659b8c7-9d53-40a6-87a5-e186cd07b668",
+    "checksum": "7f14182b6dc09696133cba69668a74a03002880237c6bb0f1b7da17cfb789e15",
+    "created_at": "2026-11-19T16:44:49.570234",
+    "id": "dcdd6eed-e5ab-4141-8268-224d0661352b",
     "name": "VERIFICATION_REPORT.md",
     "size": 1496,
     "type": "verification_report"
    },
    {
-    "checksum": "05a7ad7d72b8ff815cd342040de3ca80d729f942c693990598cb6f9efec0ddb2",
-    "created_at": "2026-11-19T13:22:35.154283",
-    "id": "2d8e59ea-4d9d-475f-887f-e9d0deb10c94",
+    "checksum": "77f0aa4bea5256c972cc2390eedbc415ef6481e34591136c060a7065ae770934",
+    "created_at": "2026-11-19T16:44:49.571225",
+    "id": "6c5c7adf-4190-4f2e-b0f4-ed03c11fb401",
     "name": "verification.json",
     "size": 1508,
     "type": "verification_data"
    },
    {
-    "checksum": "4aa4dcfe83ca6f6b02a335b8e3b319fc6524111d98b6d7974a76f8c94cda62ff",
-    "created_at": "2026-11-19T13:22:35.155372",
-    "id": "a35bcc4e-e6d5-4cd6-bae5-3eefeab1d5c3",
+    "checksum": "cc8d297c6350c896c42e33b96ec7da8276f3f590c4e0ce533a7b9a7e37a65ee2",
+    "created_at": "2026-11-19T16:44:49.572116",
+    "id": "e9b299e4-70e3-41db-a989-928baceec64d",
     "name": "VITALITY_REPORT.json",
-    "size": 2702,
+    "size": 2682,
     "type": "vitality_report"
    },
    {
-    "checksum": "f4f3ff8d23929566528aaef844e87082ce42d0ba2be500ef8f62cbf58136a600",
-    "created_at": "2026-11-19T13:22:35.160396",
-    "id": "19cb9ef6-0a28-4655-9c47-4a61aaf51532",
+    "checksum": "95500dc365b30f924d674dd6e7e55d7569b87352781588b72ecfc0858d4df247",
+    "created_at": "2026-11-19T16:44:49.577109",
+    "id": "9e394bb6-1b1c-48a0-a983-27a3fabcd780",
     "name": "RUN_AUDIT.json",
     "size": 3606,
     "type": "run_audit"
@@ -518,7 +1697,7 @@
      },
      {
       "command": null,
-      "detail": "Ruff violations: 1 before, 0 after.",
+      "detail": "Linter findings: 1 before, 0 after.",
       "exit_code": null,
       "name": "lint",
       "status": "passed"
@@ -578,13 +1757,13 @@
        "weight": 0.3
       },
       {
-       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "0 linter findings in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 100.0,
        "weight": 0.2
       },
       {
-       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "0 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -623,13 +1802,13 @@
        "weight": 0.3
       },
       {
-       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "1 linter findings in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 43.8,
        "weight": 0.2
       },
       {
-       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "2 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -659,63 +1838,63 @@
   "events": [
    {
     "event": "run_started",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:1",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:1",
     "id": "1",
     "payload": {
      "mode": "REVIVE",
-     "repository_id": "db1e0565-142d-4869-810c-c79d85f2fe6a"
+     "repository_id": "4e54f345-eccb-4142-9925-d5e7ab16dbcd"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 1,
-    "timestamp": "2026-11-19T13:22:34.965890",
+    "timestamp": "2026-11-19T16:44:49.383253",
     "type": "run_started"
    },
    {
     "event": "stage_changed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:2",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:2",
     "id": "2",
     "payload": {
      "stage": "AUTOPSY",
      "status": "RUNNING"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 2,
-    "timestamp": "2026-11-19T13:22:34.971660",
+    "timestamp": "2026-11-19T16:44:49.388959",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:3",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:3",
     "id": "3",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
      "duration_seconds": 0.032,
      "exit_code": 1,
-     "output": "    },\n    \"filename\": \"/tmp/tmpz0ec_xxr/data/runs/1f9dda81-21d9-4a09-ab55-e4faddd71ec9/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
+     "output": "    },\n    \"filename\": \"/tmp/tmpnvfl7mv3/data/runs/e6a00003-131b-4e5b-87f9-43c492b7a3f4/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
      "stage": "AUTOPSY",
      "timed_out": false
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 3,
-    "timestamp": "2026-11-19T13:22:35.013186",
+    "timestamp": "2026-11-19T16:44:49.430742",
     "type": "terminal_log"
    },
    {
     "event": "stage_changed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:4",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:4",
     "id": "4",
     "payload": {
      "stage": "CHARACTERIZATION",
      "status": "RUNNING"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 4,
-    "timestamp": "2026-11-19T13:22:35.020293",
+    "timestamp": "2026-11-19T16:44:49.437179",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:5",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:5",
     "id": "5",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -725,14 +1904,14 @@
      "stage": "CHARACTERIZATION",
      "timed_out": false
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 5,
-    "timestamp": "2026-11-19T13:22:35.022279",
+    "timestamp": "2026-11-19T16:44:49.439735",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:6",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:6",
     "id": "6",
     "payload": {
      "dimensions": [
@@ -749,13 +1928,13 @@
        "weight": 0.3
       },
       {
-       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "1 linter findings in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 43.8,
        "weight": 0.2
       },
       {
-       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "2 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -780,58 +1959,58 @@
      "score": 46.3,
      "unmeasured": []
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 6,
-    "timestamp": "2026-11-19T13:22:35.025410",
+    "timestamp": "2026-11-19T16:44:49.442974",
     "type": "health_score_updated"
    },
    {
     "event": "stage_changed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:7",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:7",
     "id": "7",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 7,
-    "timestamp": "2026-11-19T13:22:35.027684",
+    "timestamp": "2026-11-19T16:44:49.445273",
     "type": "stage_changed"
    },
    {
     "event": "roadmap_ready",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:8",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:8",
     "id": "8",
     "payload": {
      "roadmap_digest": "9efc2c8d96494fc9d50f652d4bff02d45b840a1e89a3c83b175be7589626a6da",
      "roadmap_version": 1,
      "task_count": 7
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 8,
-    "timestamp": "2026-11-19T13:22:35.031947",
+    "timestamp": "2026-11-19T16:44:49.449472",
     "type": "roadmap_ready"
    },
    {
     "event": "terminal_log",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:9",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:9",
     "id": "9",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --fix --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.029,
+     "duration_seconds": 0.03,
      "exit_code": 0,
      "output": "Found 1 error (1 fixed, 0 remaining).",
      "stage": "REANIMATION",
      "timed_out": false
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 9,
-    "timestamp": "2026-11-19T13:22:35.067716",
+    "timestamp": "2026-11-19T16:44:49.485269",
     "type": "terminal_log"
    },
    {
     "event": "diff_generated",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:10",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:10",
     "id": "10",
     "payload": {
      "files_changed": [
@@ -889,14 +2068,14 @@
       }
      ]
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 10,
-    "timestamp": "2026-11-19T13:22:35.073373",
+    "timestamp": "2026-11-19T16:44:49.491070",
     "type": "diff_generated"
    },
    {
     "event": "hitl_required",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:11",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:11",
     "id": "11",
     "payload": {
      "ai_model": null,
@@ -916,14 +2095,14 @@
      "status": "AWAITING_APPROVAL",
      "task_count": 7
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 11,
-    "timestamp": "2026-11-19T13:22:35.077864",
+    "timestamp": "2026-11-19T16:44:49.494531",
     "type": "hitl_required"
    },
    {
     "event": "approval_received",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:12",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:12",
     "id": "12",
     "payload": {
      "actor": "local",
@@ -933,27 +2112,27 @@
      "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
      "roadmap_version": 1
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 12,
-    "timestamp": "2026-11-19T13:22:35.096302",
+    "timestamp": "2026-11-19T16:44:49.513130",
     "type": "approval_received"
    },
    {
     "event": "stage_changed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:13",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:13",
     "id": "13",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 13,
-    "timestamp": "2026-11-19T13:22:35.096952",
+    "timestamp": "2026-11-19T16:44:49.513805",
     "type": "stage_changed"
    },
    {
     "event": "patch_applied",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:14",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:14",
     "id": "14",
     "payload": {
      "action": "modify",
@@ -964,14 +2143,14 @@
      "target": "isolated working copy",
      "task_id": "RT-001"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 14,
-    "timestamp": "2026-11-19T13:22:35.105745",
+    "timestamp": "2026-11-19T16:44:49.522707",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:15",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:15",
     "id": "15",
     "payload": {
      "action": "modify",
@@ -982,14 +2161,14 @@
      "target": "isolated working copy",
      "task_id": "RT-002"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 15,
-    "timestamp": "2026-11-19T13:22:35.106733",
+    "timestamp": "2026-11-19T16:44:49.523607",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:16",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:16",
     "id": "16",
     "payload": {
      "action": "modify",
@@ -1000,14 +2179,14 @@
      "target": "isolated working copy",
      "task_id": "RT-003"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 16,
-    "timestamp": "2026-11-19T13:22:35.107573",
+    "timestamp": "2026-11-19T16:44:49.524377",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:17",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:17",
     "id": "17",
     "payload": {
      "action": "create",
@@ -1018,14 +2197,14 @@
      "target": "isolated working copy",
      "task_id": "RT-005"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 17,
-    "timestamp": "2026-11-19T13:22:35.108461",
+    "timestamp": "2026-11-19T16:44:49.525144",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:18",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:18",
     "id": "18",
     "payload": {
      "action": "create",
@@ -1036,14 +2215,14 @@
      "target": "isolated working copy",
      "task_id": "RT-006"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 18,
-    "timestamp": "2026-11-19T13:22:35.109225",
+    "timestamp": "2026-11-19T16:44:49.525905",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:19",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:19",
     "id": "19",
     "payload": {
      "action": "modify",
@@ -1054,44 +2233,44 @@
      "target": "isolated working copy",
      "task_id": "RT-007"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 19,
-    "timestamp": "2026-11-19T13:22:35.109947",
+    "timestamp": "2026-11-19T16:44:49.526666",
     "type": "patch_applied"
    },
    {
     "event": "stage_changed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:20",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:20",
     "id": "20",
     "payload": {
      "stage": "CONSECRATION",
      "status": "RUNNING"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 20,
-    "timestamp": "2026-11-19T13:22:35.112322",
+    "timestamp": "2026-11-19T16:44:49.529033",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:21",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:21",
     "id": "21",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.03,
+     "duration_seconds": 0.031,
      "exit_code": 0,
      "output": "[]",
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 21,
-    "timestamp": "2026-11-19T13:22:35.147759",
+    "timestamp": "2026-11-19T16:44:49.564793",
     "type": "terminal_log"
    },
    {
     "event": "terminal_log",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:22",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:22",
     "id": "22",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -1101,14 +2280,14 @@
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 22,
-    "timestamp": "2026-11-19T13:22:35.150652",
+    "timestamp": "2026-11-19T16:44:49.567508",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:23",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:23",
     "id": "23",
     "payload": {
      "dimensions": [
@@ -1125,13 +2304,13 @@
        "weight": 0.3
       },
       {
-       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "0 linter findings in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 100.0,
        "weight": 0.2
       },
       {
-       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "0 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -1156,14 +2335,14 @@
      "score": 61.2,
      "unmeasured": []
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 23,
-    "timestamp": "2026-11-19T13:22:35.156267",
+    "timestamp": "2026-11-19T16:44:49.572989",
     "type": "health_score_updated"
    },
    {
     "event": "verification_completed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:24",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:24",
     "id": "24",
     "payload": {
      "checks": [
@@ -1176,7 +2355,7 @@
       },
       {
        "command": null,
-       "detail": "Ruff violations: 1 before, 0 after.",
+       "detail": "Linter findings: 1 before, 0 after.",
        "exit_code": null,
        "name": "lint",
        "status": "passed"
@@ -1208,28 +2387,28 @@
      ],
      "verdict": "failed"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 24,
-    "timestamp": "2026-11-19T13:22:35.157050",
+    "timestamp": "2026-11-19T16:44:49.573813",
     "type": "verification_completed"
    },
    {
     "event": "rollback_completed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:25",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:25",
     "id": "25",
     "payload": {
      "evidence_kept": "work-failed",
      "reason": "New failing test: t::new",
      "restored_from": "snapshot"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 25,
-    "timestamp": "2026-11-19T13:22:35.162055",
+    "timestamp": "2026-11-19T16:44:49.578805",
     "type": "rollback_completed"
    },
    {
     "event": "run_failed",
-    "event_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9:26",
+    "event_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4:26",
     "id": "26",
     "payload": {
      "error": "Verification failed and the working copy was rolled back: New failing test: t::new",
@@ -1247,145 +2426,145 @@
      "status": "FAILED",
      "verdict": "failed"
     },
-    "run_id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+    "run_id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
     "sequence": 26,
-    "timestamp": "2026-11-19T13:22:35.163776",
+    "timestamp": "2026-11-19T16:44:49.580441",
     "type": "run_failed"
    }
   ],
   "final_run": {
    "cancel_requested": false,
-   "completed_at": "2026-11-19T13:22:35.162640",
-   "created_at": "2026-11-19T13:22:34.964108",
+   "completed_at": "2026-11-19T16:44:49.579332",
+   "created_at": "2026-11-19T16:44:49.381556",
    "current_stage": "CONSECRATION",
    "error": "Verification failed and the working copy was rolled back: New failing test: t::new",
-   "id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+   "id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "db1e0565-142d-4869-810c-c79d85f2fe6a",
+   "repository_id": "4e54f345-eccb-4142-9925-d5e7ab16dbcd",
    "roadmap_version": 1,
    "status": "FAILED",
-   "updated_at": "2026-11-19T13:22:35.162640"
+   "updated_at": "2026-11-19T16:44:49.579332"
   },
   "waiting_run": {
    "cancel_requested": false,
    "completed_at": null,
-   "created_at": "2026-11-19T13:22:34.964108",
+   "created_at": "2026-11-19T16:44:49.381556",
    "current_stage": "REANIMATION",
    "error": null,
-   "id": "1f9dda81-21d9-4a09-ab55-e4faddd71ec9",
+   "id": "e6a00003-131b-4e5b-87f9-43c492b7a3f4",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "db1e0565-142d-4869-810c-c79d85f2fe6a",
+   "repository_id": "4e54f345-eccb-4142-9925-d5e7ab16dbcd",
    "roadmap_version": 1,
    "status": "AWAITING_APPROVAL",
-   "updated_at": "2026-11-19T13:22:35.076697"
+   "updated_at": "2026-11-19T16:44:49.493082"
   }
  },
  "typescript": {
   "artifacts": [
    {
     "checksum": "046b43961319404e001114a15254b4f5d5c688ca2c2c483f65f10d797a176689",
-    "created_at": "2026-11-19T13:22:35.310230",
-    "id": "dff94c1d-6089-4763-ae93-29f689e73486",
+    "created_at": "2026-11-19T16:44:49.717776",
+    "id": "51171e6b-c163-46c7-b6f4-a0f4cc4d7f96",
     "name": "AUTOPSY_REPORT.md",
     "size": 2433,
     "type": "autopsy_report"
    },
    {
     "checksum": "ed548a82dcbdce1dcdabe54f4d98f9c15931f6a7e49a6f1fbcb4e7eae2cf8c69",
-    "created_at": "2026-11-19T13:22:35.311467",
-    "id": "dc6037c5-a40c-4c06-abe6-b2dc6c89c427",
+    "created_at": "2026-11-19T16:44:49.719049",
+    "id": "839daf74-29af-4710-ab14-721bb61b99a9",
     "name": "autopsy.json",
     "size": 5469,
     "type": "autopsy_data"
    },
    {
     "checksum": "71bd78556dcb6546e652c33714b1b3ab2e4f9718686b156ff48915e71749bc5a",
-    "created_at": "2026-11-19T13:22:35.317334",
-    "id": "ee415ecd-d325-40e0-934f-47e3d57bfc00",
+    "created_at": "2026-11-19T16:44:49.725184",
+    "id": "516a02c7-55b6-4bfb-bbf8-56b9013318ae",
     "name": "CHARACTERIZATION_REPORT.md",
     "size": 564,
     "type": "characterization_report"
    },
    {
     "checksum": "b816f937b3f425fe1f7e0b612e84b823b521551c249be5a6b9ceedfe8e13cece",
-    "created_at": "2026-11-19T13:22:35.318161",
-    "id": "bd4996e7-99ae-45f2-8fef-6923f15a0c48",
+    "created_at": "2026-11-19T16:44:49.726072",
+    "id": "850bf82f-de6e-46f1-8e3a-98eb96cf7538",
     "name": "characterization.json",
     "size": 609,
     "type": "characterization_data"
    },
    {
     "checksum": "3bc172f85e0ec7161089e1853b322cd7b737fbb79c00e4f096698559f3d3da5c",
-    "created_at": "2026-11-19T13:22:35.322959",
-    "id": "15c753ea-c4bc-45c4-894a-f0fa8e8d2226",
+    "created_at": "2026-11-19T16:44:49.730785",
+    "id": "aa132a6d-a4c3-46c4-92c5-36817b923e85",
     "name": "REVIVAL_ROADMAP.v1.md",
     "size": 3832,
     "type": "roadmap"
    },
    {
     "checksum": "913be2f1346f9fb0a27e0acbb9277c0dbcc49d98181d0a656da52fb3795f4c5c",
-    "created_at": "2026-11-19T13:22:35.323923",
-    "id": "a79f37cf-4669-4f86-a907-c6ab942961fb",
+    "created_at": "2026-11-19T16:44:49.731801",
+    "id": "e9aea208-a5c2-47dc-9abe-9d43d22c603c",
     "name": "roadmap.v1.json",
     "size": 5444,
     "type": "roadmap_data"
    },
    {
     "checksum": "3e297367139294533b8821e6aac389d8a69811fc654886f1260230acde03a9bb",
-    "created_at": "2026-11-19T13:22:35.328995",
-    "id": "f2318547-f553-402d-857c-d6e28fffbaa1",
+    "created_at": "2026-11-19T16:44:49.736430",
+    "id": "22f39c86-d484-4259-bc11-d6b65b5b4638",
     "name": "PATCHSET.v1.diff",
     "size": 445,
     "type": "patch_set"
    },
    {
     "checksum": "111ba4d7c816888ee0fc1b92b4238ad0e8bedc1679f86176de14af0b5299bec2",
-    "created_at": "2026-11-19T13:22:35.329861",
-    "id": "1d6302dd-a837-4e35-ac5b-f127b292b34c",
+    "created_at": "2026-11-19T16:44:49.737327",
+    "id": "7c81bf39-b1d2-445d-bbbb-e8fe29c546c9",
     "name": "PATCHSET.v1.md",
     "size": 1388,
     "type": "patch_set_summary"
    },
    {
     "checksum": "c7cebccc3491095f6ed3011e0e3fb6f6ae85e27bb7fc130b6817f6dc35fc5769",
-    "created_at": "2026-11-19T13:22:35.330770",
-    "id": "0db6fbd3-e932-411c-a2f9-44b18ac55a4c",
+    "created_at": "2026-11-19T16:44:49.738301",
+    "id": "ae55ff35-fe0b-4d84-9d4b-454269f45ec8",
     "name": "patches.v1.json",
     "size": 2787,
     "type": "patch_set_data"
    },
    {
     "checksum": "0eb90980f047482bba030f0621655d02c1d80828044fed5d70986dfe09cebe6a",
-    "created_at": "2026-11-19T13:22:35.370358",
-    "id": "a7b7dabe-05c8-4a38-a9bf-0d1a12124132",
+    "created_at": "2026-11-19T16:44:49.779555",
+    "id": "c186f0f9-4319-4c2b-8ed0-4ccceea5695a",
     "name": "VERIFICATION_REPORT.md",
     "size": 1351,
     "type": "verification_report"
    },
    {
     "checksum": "a7fabe5ebae56170e08216db2cf019eed422940a15faff84d5e2b68d97819226",
-    "created_at": "2026-11-19T13:22:35.371432",
-    "id": "5f1b14b3-f811-4d3a-94ae-2128d1fd0789",
+    "created_at": "2026-11-19T16:44:49.780476",
+    "id": "72d2b2db-02a3-44fc-9e22-b8d50a493c86",
     "name": "verification.json",
     "size": 1236,
     "type": "verification_data"
    },
    {
-    "checksum": "ca2e9d4594627e363d37dae1784433bdc8b61f00d606386fc134a1b345491cc6",
-    "created_at": "2026-11-19T13:22:35.372483",
-    "id": "022b3226-a538-40c3-833c-c6bf1b33e73d",
+    "checksum": "a68c2637952b7d6a033f50fcd54c1b107ed34d9abc7c9d1442b0407e62594e53",
+    "created_at": "2026-11-19T16:44:49.781351",
+    "id": "68127e40-df72-49bb-a826-375d12420ddc",
     "name": "VITALITY_REPORT.json",
-    "size": 2771,
+    "size": 2763,
     "type": "vitality_report"
    },
    {
-    "checksum": "cc1106e5503b1d28cf8b1292d84baa6a5301ce6bee78c375e33a021e686e0180",
-    "created_at": "2026-11-19T13:22:35.377276",
-    "id": "cca0a61b-96c7-48c3-88d2-b1ca62767bd1",
+    "checksum": "32b778c0b7c37b58c3d1b41a6f1b408502d03f18e11d006b703804fa8e396a09",
+    "created_at": "2026-11-19T16:44:49.785595",
+    "id": "e6ba61bc-1e24-4ac5-a9ad-1cb1551ed8d3",
     "name": "RUN_AUDIT.json",
     "size": 1933,
     "type": "run_audit"
@@ -1894,13 +3073,13 @@
        "weight": 0.3
       },
       {
-       "basis": "Not measured: Ruff did not produce a result.",
+       "basis": "Not measured: the linter did not produce a result.",
        "name": "code_quality",
        "score": null,
        "weight": 0.2
       },
       {
-       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "3 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 40.0,
        "weight": 0.15
@@ -1940,13 +3119,13 @@
        "weight": 0.3
       },
       {
-       "basis": "Not measured: Ruff did not produce a result.",
+       "basis": "Not measured: the linter did not produce a result.",
        "name": "code_quality",
        "score": null,
        "weight": 0.2
       },
       {
-       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "3 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 40.0,
        "weight": 0.15
@@ -1977,33 +3156,33 @@
   "events": [
    {
     "event": "run_started",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:1",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:1",
     "id": "1",
     "payload": {
      "mode": "REVIVE",
-     "repository_id": "836e1a06-a440-4c7e-9a83-d601f35265c9"
+     "repository_id": "499869cb-17fd-43e4-8731-b4675e6ace3e"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 1,
-    "timestamp": "2026-11-19T13:22:35.293362",
+    "timestamp": "2026-11-19T16:44:49.701308",
     "type": "run_started"
    },
    {
     "event": "stage_changed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:2",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:2",
     "id": "2",
     "payload": {
      "stage": "AUTOPSY",
      "status": "RUNNING"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 2,
-    "timestamp": "2026-11-19T13:22:35.299395",
+    "timestamp": "2026-11-19T16:44:49.706878",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:3",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:3",
     "id": "3",
     "payload": {
      "command": "/usr/bin/npm audit --package-lock-only --json --ignore-scripts",
@@ -2013,27 +3192,27 @@
      "stage": "AUTOPSY",
      "timed_out": false
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 3,
-    "timestamp": "2026-11-19T13:22:35.308613",
+    "timestamp": "2026-11-19T16:44:49.716300",
     "type": "terminal_log"
    },
    {
     "event": "stage_changed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:4",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:4",
     "id": "4",
     "payload": {
      "stage": "CHARACTERIZATION",
      "status": "RUNNING"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 4,
-    "timestamp": "2026-11-19T13:22:35.314227",
+    "timestamp": "2026-11-19T16:44:49.721521",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:5",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:5",
     "id": "5",
     "payload": {
      "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
@@ -2043,14 +3222,14 @@
      "stage": "CHARACTERIZATION",
      "timed_out": false
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 5,
-    "timestamp": "2026-11-19T13:22:35.316370",
+    "timestamp": "2026-11-19T16:44:49.724199",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:6",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:6",
     "id": "6",
     "payload": {
      "dimensions": [
@@ -2067,13 +3246,13 @@
        "weight": 0.3
       },
       {
-       "basis": "Not measured: Ruff did not produce a result.",
+       "basis": "Not measured: the linter did not produce a result.",
        "name": "code_quality",
        "score": null,
        "weight": 0.2
       },
       {
-       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "3 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 40.0,
        "weight": 0.15
@@ -2099,41 +3278,41 @@
       "code_quality"
      ]
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 6,
-    "timestamp": "2026-11-19T13:22:35.319240",
+    "timestamp": "2026-11-19T16:44:49.727132",
     "type": "health_score_updated"
    },
    {
     "event": "stage_changed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:7",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:7",
     "id": "7",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 7,
-    "timestamp": "2026-11-19T13:22:35.321619",
+    "timestamp": "2026-11-19T16:44:49.729293",
     "type": "stage_changed"
    },
    {
     "event": "roadmap_ready",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:8",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:8",
     "id": "8",
     "payload": {
      "roadmap_digest": "6dd7778766c4b1ff69ce773aa45d5fb788537bbf5c00a57cf316013522ded02c",
      "roadmap_version": 1,
      "task_count": 9
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 8,
-    "timestamp": "2026-11-19T13:22:35.325824",
+    "timestamp": "2026-11-19T16:44:49.733621",
     "type": "roadmap_ready"
    },
    {
     "event": "diff_generated",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:9",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:9",
     "id": "9",
     "payload": {
      "files_changed": [
@@ -2193,14 +3372,14 @@
       }
      ]
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 9,
-    "timestamp": "2026-11-19T13:22:35.332564",
+    "timestamp": "2026-11-19T16:44:49.739996",
     "type": "diff_generated"
    },
    {
     "event": "hitl_required",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:10",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:10",
     "id": "10",
     "payload": {
      "ai_model": null,
@@ -2218,14 +3397,14 @@
      "status": "AWAITING_APPROVAL",
      "task_count": 9
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 10,
-    "timestamp": "2026-11-19T13:22:35.335566",
+    "timestamp": "2026-11-19T16:44:49.742875",
     "type": "hitl_required"
    },
    {
     "event": "approval_received",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:11",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:11",
     "id": "11",
     "payload": {
      "actor": "local",
@@ -2235,27 +3414,27 @@
      "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
      "roadmap_version": 1
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 11,
-    "timestamp": "2026-11-19T13:22:35.351116",
+    "timestamp": "2026-11-19T16:44:49.759437",
     "type": "approval_received"
    },
    {
     "event": "stage_changed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:12",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:12",
     "id": "12",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 12,
-    "timestamp": "2026-11-19T13:22:35.351761",
+    "timestamp": "2026-11-19T16:44:49.760143",
     "type": "stage_changed"
    },
    {
     "event": "patch_applied",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:13",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:13",
     "id": "13",
     "payload": {
      "action": "create",
@@ -2266,27 +3445,27 @@
      "target": "isolated working copy",
      "task_id": "RT-007"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 13,
-    "timestamp": "2026-11-19T13:22:35.358703",
+    "timestamp": "2026-11-19T16:44:49.767938",
     "type": "patch_applied"
    },
    {
     "event": "stage_changed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:14",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:14",
     "id": "14",
     "payload": {
      "stage": "CONSECRATION",
      "status": "RUNNING"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 14,
-    "timestamp": "2026-11-19T13:22:35.361086",
+    "timestamp": "2026-11-19T16:44:49.770401",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:15",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:15",
     "id": "15",
     "payload": {
      "command": "/usr/bin/npm audit --package-lock-only --json --ignore-scripts",
@@ -2296,14 +3475,14 @@
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 15,
-    "timestamp": "2026-11-19T13:22:35.365339",
+    "timestamp": "2026-11-19T16:44:49.774772",
     "type": "terminal_log"
    },
    {
     "event": "terminal_log",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:16",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:16",
     "id": "16",
     "payload": {
      "command": "/usr/bin/node --max-old-space-size=1024 --experimental-strip-types --test --test-reporter=tap",
@@ -2313,14 +3492,14 @@
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 16,
-    "timestamp": "2026-11-19T13:22:35.367771",
+    "timestamp": "2026-11-19T16:44:49.777176",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:17",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:17",
     "id": "17",
     "payload": {
      "dimensions": [
@@ -2337,13 +3516,13 @@
        "weight": 0.3
       },
       {
-       "basis": "Not measured: Ruff did not produce a result.",
+       "basis": "Not measured: the linter did not produce a result.",
        "name": "code_quality",
        "score": null,
        "weight": 0.2
       },
       {
-       "basis": "3 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "3 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 40.0,
        "weight": 0.15
@@ -2369,14 +3548,14 @@
       "code_quality"
      ]
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 17,
-    "timestamp": "2026-11-19T13:22:35.373440",
+    "timestamp": "2026-11-19T16:44:49.782268",
     "type": "health_score_updated"
    },
    {
     "event": "verification_completed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:18",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:18",
     "id": "18",
     "payload": {
      "checks": [
@@ -2419,14 +3598,14 @@
      "regressions": [],
      "verdict": "verified"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 18,
-    "timestamp": "2026-11-19T13:22:35.374408",
+    "timestamp": "2026-11-19T16:44:49.783066",
     "type": "verification_completed"
    },
    {
     "event": "run_completed",
-    "event_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f:19",
+    "event_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555:19",
     "id": "19",
     "payload": {
      "mode": "REVIVE",
@@ -2443,147 +3622,147 @@
      "status": "COMPLETED",
      "verdict": "verified"
     },
-    "run_id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+    "run_id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
     "sequence": 19,
-    "timestamp": "2026-11-19T13:22:35.378798",
+    "timestamp": "2026-11-19T16:44:49.787184",
     "type": "run_completed"
    }
   ],
   "final_run": {
    "cancel_requested": false,
-   "completed_at": "2026-11-19T13:22:35.377772",
-   "created_at": "2026-11-19T13:22:35.291910",
+   "completed_at": "2026-11-19T16:44:49.786157",
+   "created_at": "2026-11-19T16:44:49.699782",
    "current_stage": "CONSECRATION",
    "error": null,
-   "id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+   "id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
    "mode": "REVIVE",
    "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
    "pinned_commit": null,
-   "repository_id": "836e1a06-a440-4c7e-9a83-d601f35265c9",
+   "repository_id": "499869cb-17fd-43e4-8731-b4675e6ace3e",
    "roadmap_version": 1,
    "status": "COMPLETED",
-   "updated_at": "2026-11-19T13:22:35.377772"
+   "updated_at": "2026-11-19T16:44:49.786157"
   },
   "waiting_run": {
    "cancel_requested": false,
    "completed_at": null,
-   "created_at": "2026-11-19T13:22:35.291910",
+   "created_at": "2026-11-19T16:44:49.699782",
    "current_stage": "REANIMATION",
    "error": null,
-   "id": "afbebfd9-a01c-489c-a7b3-03df32a1119f",
+   "id": "55cd36b7-adc2-4107-adeb-c4ef128a1555",
    "mode": "REVIVE",
    "patch_set_digest": "2a17bf054809f0f68b942d350d2684233f38d56391b45d2e69eb4ce41fe75515",
    "pinned_commit": null,
-   "repository_id": "836e1a06-a440-4c7e-9a83-d601f35265c9",
+   "repository_id": "499869cb-17fd-43e4-8731-b4675e6ace3e",
    "roadmap_version": 1,
    "status": "AWAITING_APPROVAL",
-   "updated_at": "2026-11-19T13:22:35.334526"
+   "updated_at": "2026-11-19T16:44:49.741905"
   }
  },
  "verified": {
   "artifacts": [
    {
     "checksum": "4f0df2b4040b9c3802a72343fa3c80001c4a9f262170b86155553a57f596e08a",
-    "created_at": "2026-11-19T13:22:34.693798",
-    "id": "340ebf27-596d-4a70-a349-d1b2d41b0e84",
+    "created_at": "2026-11-19T16:44:49.121585",
+    "id": "29a0fed6-6daf-4eee-9311-32d205891e8d",
     "name": "AUTOPSY_REPORT.md",
     "size": 1713,
     "type": "autopsy_report"
    },
    {
-    "checksum": "537ae7626a8fad056bdf2ae55b8de6355523dc0237377fd8d7acb13c3933c718",
-    "created_at": "2026-11-19T13:22:34.695135",
-    "id": "212e2447-f601-451a-86b6-c7bc7bdb6d29",
+    "checksum": "d11c125fcff550a621c671338188ffb27df5be0a5c6f79d2021e577a6cc34185",
+    "created_at": "2026-11-19T16:44:49.123047",
+    "id": "50789741-6e06-4a10-9d45-6a0e9cf7fb18",
     "name": "autopsy.json",
     "size": 4423,
     "type": "autopsy_data"
    },
    {
     "checksum": "004383cd84a30a6bc9cc7def7891472de7f28e7d468dab3d34f94750c9335187",
-    "created_at": "2026-11-19T13:22:34.701910",
-    "id": "791b7ee2-00c1-4058-8909-4b9b3180c6cd",
+    "created_at": "2026-11-19T16:44:49.129617",
+    "id": "56b1c94e-9cc1-44a8-aa56-211dfaf56fc2",
     "name": "CHARACTERIZATION_REPORT.md",
     "size": 585,
     "type": "characterization_report"
    },
    {
     "checksum": "5f602acda5c7297ab1bc01aa6782891a40ef1633895273ea47e14f91af6c0862",
-    "created_at": "2026-11-19T13:22:34.702772",
-    "id": "43bfd7dd-345e-44fd-9eae-c3e9369afe9f",
+    "created_at": "2026-11-19T16:44:49.130556",
+    "id": "a08e767d-2ddb-446e-b0ad-9344a1b41e13",
     "name": "characterization.json",
     "size": 625,
     "type": "characterization_data"
    },
    {
     "checksum": "f2b49da4699bfa65ab00b218533414ce9428f4ed57f7f3e1826b866a67730140",
-    "created_at": "2026-11-19T13:22:34.707989",
-    "id": "c9588bb2-1ed7-4302-b124-20b55cbe35d9",
+    "created_at": "2026-11-19T16:44:49.135259",
+    "id": "e5eec8ea-d640-428f-bfda-1dba358847a5",
     "name": "REVIVAL_ROADMAP.v1.md",
     "size": 2763,
     "type": "roadmap"
    },
    {
     "checksum": "9161eb4b3634e499b2cafcb04fd0ab912913e910b046a8fe75fc1a625920bd60",
-    "created_at": "2026-11-19T13:22:34.709212",
-    "id": "ce14e3c8-f39e-4d19-869e-d75081fc5963",
+    "created_at": "2026-11-19T16:44:49.136148",
+    "id": "ef1713ae-5fc4-43f0-bd66-7db0bed7769c",
     "name": "roadmap.v1.json",
     "size": 3979,
     "type": "roadmap_data"
    },
    {
     "checksum": "05a1e79ac7b4c79cfd7e14d858d904f8669f02a3686dff96872a6eb0cdc2a3fd",
-    "created_at": "2026-11-19T13:22:34.750461",
-    "id": "ce6133c7-9bed-4bba-a90a-f99a253f21b2",
+    "created_at": "2026-11-19T16:44:49.176281",
+    "id": "e8f628f9-ff93-4b1a-93e1-767efd798b54",
     "name": "PATCHSET.v1.diff",
     "size": 1941,
     "type": "patch_set"
    },
    {
     "checksum": "b1bd42cdc4e28e1d205075e2ad754e3e23badbfd855ec774a42a9ec5b85349c5",
-    "created_at": "2026-11-19T13:22:34.751339",
-    "id": "79c41bce-8fc4-4bef-9478-08043666f03d",
+    "created_at": "2026-11-19T16:44:49.177083",
+    "id": "a7aae9af-aada-4cea-86ae-642fc7ff197f",
     "name": "PATCHSET.v1.md",
     "size": 991,
     "type": "patch_set_summary"
    },
    {
     "checksum": "13657b5591390abace8f5812df9b827f348da15027b957014963f9947331de27",
-    "created_at": "2026-11-19T13:22:34.752223",
-    "id": "b30258ea-f542-4c6c-83d0-176840bb7fd4",
+    "created_at": "2026-11-19T16:44:49.177957",
+    "id": "e6896de7-f355-4f3a-a8e1-226015fa83dc",
     "name": "patches.v1.json",
     "size": 6862,
     "type": "patch_set_data"
    },
    {
-    "checksum": "e8b01555180d7f5773eb01902b1954d40a3c6c04cac03e54f783e6df44f7ab4a",
-    "created_at": "2026-11-19T13:22:34.836407",
-    "id": "c53f40ae-e71d-44c4-969c-167fe5d0ba2e",
+    "checksum": "7106d3220bef628b9ea700f737b2f3baba092b140480a66e1ca64e693b6cc42c",
+    "created_at": "2026-11-19T16:44:49.260670",
+    "id": "122c1a47-7717-4e49-b506-d2073bbc0a72",
     "name": "VERIFICATION_REPORT.md",
     "size": 1455,
     "type": "verification_report"
    },
    {
-    "checksum": "54faa124c87b6b6170d68fcbcf49b2d4b4299840290fb3645c94c87e651ac91d",
-    "created_at": "2026-11-19T13:22:34.837316",
-    "id": "14af0115-91fa-40f4-a71a-1fb1ebc1943e",
+    "checksum": "2ad8e1a7fe58d62ee4cd40a5881e6df16c0e1b27adf4eb50a76b27372684b16d",
+    "created_at": "2026-11-19T16:44:49.261649",
+    "id": "4370238e-bcbd-425d-b287-2e05adc9efc8",
     "name": "verification.json",
     "size": 1476,
     "type": "verification_data"
    },
    {
-    "checksum": "55c1078a9e48c96576cfaacd955fadd02477f2c95151ea80ac323374a2980dee",
-    "created_at": "2026-11-19T13:22:34.838265",
-    "id": "11e45799-f3c5-4041-906e-0b6d5cfdd5d6",
+    "checksum": "25c792e66a73285dc3094b9a93050d6fd48646822ae42c6c2763912acb9f4942",
+    "created_at": "2026-11-19T16:44:49.262600",
+    "id": "1777a83f-99d5-46bc-adff-48c2ac860d56",
     "name": "VITALITY_REPORT.json",
-    "size": 2703,
+    "size": 2683,
     "type": "vitality_report"
    },
    {
-    "checksum": "d420c26843dbc29643190e302ea1b9e2cd4fe18fa7776a00be122b3e51c13e89",
-    "created_at": "2026-11-19T13:22:34.843451",
-    "id": "d9f102f4-a67e-42ba-9275-04064e2cc8a7",
+    "checksum": "da8711d03f4cffa24d486e1ad04c8de0e7ea5594d06b6c7668f2fce6f0ee12e8",
+    "created_at": "2026-11-19T16:44:49.267749",
+    "id": "865fde37-1e39-427b-b566-3fc55a85df0e",
     "name": "RUN_AUDIT.json",
-    "size": 3605,
+    "size": 3606,
     "type": "run_audit"
    }
   ],
@@ -2736,7 +3915,7 @@
      },
      {
       "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-      "duration_seconds": 0.031,
+      "duration_seconds": 0.034,
       "exit_code": 1,
       "measured": true,
       "output_excerpt": "",
@@ -2999,7 +4178,7 @@
      },
      {
       "command": null,
-      "detail": "Ruff violations: 1 before, 0 after.",
+      "detail": "Linter findings: 1 before, 0 after.",
       "exit_code": null,
       "name": "lint",
       "status": "passed"
@@ -3057,13 +4236,13 @@
        "weight": 0.3
       },
       {
-       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "0 linter findings in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 100.0,
        "weight": 0.2
       },
       {
-       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "0 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -3102,13 +4281,13 @@
        "weight": 0.3
       },
       {
-       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "1 linter findings in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 43.8,
        "weight": 0.2
       },
       {
-       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "2 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -3138,63 +4317,63 @@
   "events": [
    {
     "event": "run_started",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:1",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:1",
     "id": "1",
     "payload": {
      "mode": "REVIVE",
-     "repository_id": "29d4e32f-3fab-4cc4-97ed-2a48641ac579"
+     "repository_id": "ef233ccd-bd3b-4179-8b0f-c7b4860e6c3f"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 1,
-    "timestamp": "2026-11-19T13:22:34.588869",
+    "timestamp": "2026-11-19T16:44:49.002733",
     "type": "run_started"
    },
    {
     "event": "stage_changed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:2",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:2",
     "id": "2",
     "payload": {
      "stage": "AUTOPSY",
      "status": "RUNNING"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 2,
-    "timestamp": "2026-11-19T13:22:34.597181",
+    "timestamp": "2026-11-19T16:44:49.075035",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:3",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:3",
     "id": "3",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.031,
+     "duration_seconds": 0.034,
      "exit_code": 1,
-     "output": "    },\n    \"filename\": \"/tmp/tmpzhk67kmx/data/runs/c04ca400-d8e1-452e-b31e-c5a7b8b83ab0/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
+     "output": "    },\n    \"filename\": \"/tmp/tmpqod5a1sh/data/runs/4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30/snapshot/inventory.py\",\n    \"fix\": {\n      \"applicability\": \"safe\",\n      \"edits\": [\n        {\n          \"content\": \"\",\n          \"end_location\": {\n            \"column\": 1,\n            \"row\": 29\n          },\n          \"location\": {\n            \"column\": 1,\n            \"row\": 28\n          }\n        }\n      ],\n      \"message\": \"Remove unused import: `json`\"\n    },\n    \"location\": {\n      \"column\": 12,\n      \"row\": 28\n    },\n    \"message\": \"`json` imported but unused\",\n    \"name\": \"unused-import\",\n    \"noqa_row\": 28,\n    \"severity\": \"error\",\n    \"url\": \"https://docs.astral.sh/ruff/rules/unused-import\"\n  }\n]",
      "stage": "AUTOPSY",
      "timed_out": false
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 3,
-    "timestamp": "2026-11-19T13:22:34.691391",
+    "timestamp": "2026-11-19T16:44:49.119014",
     "type": "terminal_log"
    },
    {
     "event": "stage_changed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:4",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:4",
     "id": "4",
     "payload": {
      "stage": "CHARACTERIZATION",
      "status": "RUNNING"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 4,
-    "timestamp": "2026-11-19T13:22:34.698627",
+    "timestamp": "2026-11-19T16:44:49.126437",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:5",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:5",
     "id": "5",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -3204,14 +4383,14 @@
      "stage": "CHARACTERIZATION",
      "timed_out": false
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 5,
-    "timestamp": "2026-11-19T13:22:34.700879",
+    "timestamp": "2026-11-19T16:44:49.128537",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:6",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:6",
     "id": "6",
     "payload": {
      "dimensions": [
@@ -3228,13 +4407,13 @@
        "weight": 0.3
       },
       {
-       "basis": "1 Ruff violations in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "1 linter findings in 78 lines (12.8 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 43.8,
        "weight": 0.2
       },
       {
-       "basis": "2 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "2 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 50.0,
        "weight": 0.15
@@ -3259,41 +4438,41 @@
      "score": 46.3,
      "unmeasured": []
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 6,
-    "timestamp": "2026-11-19T13:22:34.703838",
+    "timestamp": "2026-11-19T16:44:49.131624",
     "type": "health_score_updated"
    },
    {
     "event": "stage_changed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:7",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:7",
     "id": "7",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 7,
-    "timestamp": "2026-11-19T13:22:34.706490",
+    "timestamp": "2026-11-19T16:44:49.134006",
     "type": "stage_changed"
    },
    {
     "event": "roadmap_ready",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:8",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:8",
     "id": "8",
     "payload": {
      "roadmap_digest": "9efc2c8d96494fc9d50f652d4bff02d45b840a1e89a3c83b175be7589626a6da",
      "roadmap_version": 1,
      "task_count": 7
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 8,
-    "timestamp": "2026-11-19T13:22:34.711351",
+    "timestamp": "2026-11-19T16:44:49.137860",
     "type": "roadmap_ready"
    },
    {
     "event": "terminal_log",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:9",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:9",
     "id": "9",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --fix --select E,F,B --ignore E501 .",
@@ -3303,14 +4482,14 @@
      "stage": "REANIMATION",
      "timed_out": false
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 9,
-    "timestamp": "2026-11-19T13:22:34.748883",
+    "timestamp": "2026-11-19T16:44:49.174792",
     "type": "terminal_log"
    },
    {
     "event": "diff_generated",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:10",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:10",
     "id": "10",
     "payload": {
      "files_changed": [
@@ -3368,14 +4547,14 @@
       }
      ]
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 10,
-    "timestamp": "2026-11-19T13:22:34.754316",
+    "timestamp": "2026-11-19T16:44:49.179927",
     "type": "diff_generated"
    },
    {
     "event": "hitl_required",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:11",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:11",
     "id": "11",
     "payload": {
      "ai_model": null,
@@ -3395,14 +4574,14 @@
      "status": "AWAITING_APPROVAL",
      "task_count": 7
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 11,
-    "timestamp": "2026-11-19T13:22:34.758077",
+    "timestamp": "2026-11-19T16:44:49.183617",
     "type": "hitl_required"
    },
    {
     "event": "approval_received",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:12",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:12",
     "id": "12",
     "payload": {
      "actor": "local",
@@ -3412,27 +4591,27 @@
      "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
      "roadmap_version": 1
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 12,
-    "timestamp": "2026-11-19T13:22:34.778535",
+    "timestamp": "2026-11-19T16:44:49.202200",
     "type": "approval_received"
    },
    {
     "event": "stage_changed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:13",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:13",
     "id": "13",
     "payload": {
      "stage": "REANIMATION",
      "status": "RUNNING"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 13,
-    "timestamp": "2026-11-19T13:22:34.779285",
+    "timestamp": "2026-11-19T16:44:49.202907",
     "type": "stage_changed"
    },
    {
     "event": "patch_applied",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:14",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:14",
     "id": "14",
     "payload": {
      "action": "modify",
@@ -3443,14 +4622,14 @@
      "target": "isolated working copy",
      "task_id": "RT-001"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 14,
-    "timestamp": "2026-11-19T13:22:34.788443",
+    "timestamp": "2026-11-19T16:44:49.211913",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:15",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:15",
     "id": "15",
     "payload": {
      "action": "modify",
@@ -3461,14 +4640,14 @@
      "target": "isolated working copy",
      "task_id": "RT-002"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 15,
-    "timestamp": "2026-11-19T13:22:34.789333",
+    "timestamp": "2026-11-19T16:44:49.212810",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:16",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:16",
     "id": "16",
     "payload": {
      "action": "modify",
@@ -3479,14 +4658,14 @@
      "target": "isolated working copy",
      "task_id": "RT-003"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 16,
-    "timestamp": "2026-11-19T13:22:34.790194",
+    "timestamp": "2026-11-19T16:44:49.213629",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:17",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:17",
     "id": "17",
     "payload": {
      "action": "create",
@@ -3497,14 +4676,14 @@
      "target": "isolated working copy",
      "task_id": "RT-005"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 17,
-    "timestamp": "2026-11-19T13:22:34.790995",
+    "timestamp": "2026-11-19T16:44:49.214475",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:18",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:18",
     "id": "18",
     "payload": {
      "action": "create",
@@ -3515,14 +4694,14 @@
      "target": "isolated working copy",
      "task_id": "RT-006"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 18,
-    "timestamp": "2026-11-19T13:22:34.791720",
+    "timestamp": "2026-11-19T16:44:49.215334",
     "type": "patch_applied"
    },
    {
     "event": "patch_applied",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:19",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:19",
     "id": "19",
     "payload": {
      "action": "modify",
@@ -3533,44 +4712,44 @@
      "target": "isolated working copy",
      "task_id": "RT-007"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 19,
-    "timestamp": "2026-11-19T13:22:34.792473",
+    "timestamp": "2026-11-19T16:44:49.216160",
     "type": "patch_applied"
    },
    {
     "event": "stage_changed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:20",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:20",
     "id": "20",
     "payload": {
      "stage": "CONSECRATION",
      "status": "RUNNING"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 20,
-    "timestamp": "2026-11-19T13:22:34.795130",
+    "timestamp": "2026-11-19T16:44:49.218558",
     "type": "stage_changed"
    },
    {
     "event": "terminal_log",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:21",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:21",
     "id": "21",
     "payload": {
      "command": "/projects/sandbox/backend/.venv/bin/python -m ruff check --isolated --no-cache --output-format json --select E,F,B --ignore E501 .",
-     "duration_seconds": 0.03,
+     "duration_seconds": 0.031,
      "exit_code": 0,
      "output": "[]",
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 21,
-    "timestamp": "2026-11-19T13:22:34.830428",
+    "timestamp": "2026-11-19T16:44:49.254765",
     "type": "terminal_log"
    },
    {
     "event": "terminal_log",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:22",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:22",
     "id": "22",
     "payload": {
      "command": "python -m pytest -q -rfE --tb=no --no-header -p no:cacheprovider",
@@ -3580,14 +4759,14 @@
      "stage": "CONSECRATION",
      "timed_out": false
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 22,
-    "timestamp": "2026-11-19T13:22:34.833198",
+    "timestamp": "2026-11-19T16:44:49.257568",
     "type": "terminal_log"
    },
    {
     "event": "health_score_updated",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:23",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:23",
     "id": "23",
     "payload": {
      "dimensions": [
@@ -3604,13 +4783,13 @@
        "weight": 0.3
       },
       {
-       "basis": "0 Ruff violations in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
+       "basis": "0 linter findings in 78 lines (0.0 per 1000 lines). Score = 100 / (1 + density / 10).",
        "name": "code_quality",
        "score": 100.0,
        "weight": 0.2
       },
       {
-       "basis": "0 static security findings (AST, TypeScript scan and secret patterns). This is a static scan, not a complete security assessment.",
+       "basis": "0 static security findings (code scans and secret patterns). This is a static scan, not a complete security assessment.",
        "name": "security",
        "score": 100.0,
        "weight": 0.15
@@ -3635,14 +4814,14 @@
      "score": 76.2,
      "unmeasured": []
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 23,
-    "timestamp": "2026-11-19T13:22:34.839248",
+    "timestamp": "2026-11-19T16:44:49.263492",
     "type": "health_score_updated"
    },
    {
     "event": "verification_completed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:24",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:24",
     "id": "24",
     "payload": {
      "checks": [
@@ -3655,7 +4834,7 @@
       },
       {
        "command": null,
-       "detail": "Ruff violations: 1 before, 0 after.",
+       "detail": "Linter findings: 1 before, 0 after.",
        "exit_code": null,
        "name": "lint",
        "status": "passed"
@@ -3685,14 +4864,14 @@
      "regressions": [],
      "verdict": "verified"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 24,
-    "timestamp": "2026-11-19T13:22:34.840105",
+    "timestamp": "2026-11-19T16:44:49.264286",
     "type": "verification_completed"
    },
    {
     "event": "run_completed",
-    "event_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0:25",
+    "event_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30:25",
     "id": "25",
     "payload": {
      "mode": "REVIVE",
@@ -3709,41 +4888,41 @@
      "status": "COMPLETED",
      "verdict": "verified"
     },
-    "run_id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+    "run_id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
     "sequence": 25,
-    "timestamp": "2026-11-19T13:22:34.845069",
+    "timestamp": "2026-11-19T16:44:49.269259",
     "type": "run_completed"
    }
   ],
   "final_run": {
    "cancel_requested": false,
-   "completed_at": "2026-11-19T13:22:34.843960",
-   "created_at": "2026-11-19T13:22:34.586649",
+   "completed_at": "2026-11-19T16:44:49.268242",
+   "created_at": "2026-11-19T16:44:48.999493",
    "current_stage": "CONSECRATION",
    "error": null,
-   "id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+   "id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "29d4e32f-3fab-4cc4-97ed-2a48641ac579",
+   "repository_id": "ef233ccd-bd3b-4179-8b0f-c7b4860e6c3f",
    "roadmap_version": 1,
    "status": "COMPLETED",
-   "updated_at": "2026-11-19T13:22:34.843960"
+   "updated_at": "2026-11-19T16:44:49.268242"
   },
   "waiting_run": {
    "cancel_requested": false,
    "completed_at": null,
-   "created_at": "2026-11-19T13:22:34.586649",
+   "created_at": "2026-11-19T16:44:48.999493",
    "current_stage": "REANIMATION",
    "error": null,
-   "id": "c04ca400-d8e1-452e-b31e-c5a7b8b83ab0",
+   "id": "4006d0cf-1e8c-44a4-a0b4-92d5e5a42e30",
    "mode": "REVIVE",
    "patch_set_digest": "93f611f3b2539ee759473e03ce5445f0e72d4918e0dcf6e88f93e11fd65684bb",
    "pinned_commit": null,
-   "repository_id": "29d4e32f-3fab-4cc4-97ed-2a48641ac579",
+   "repository_id": "ef233ccd-bd3b-4179-8b0f-c7b4860e6c3f",
    "roadmap_version": 1,
    "status": "AWAITING_APPROVAL",
-   "updated_at": "2026-11-19T13:22:34.756550"
+   "updated_at": "2026-11-19T16:44:49.182589"
   }
  }
 }

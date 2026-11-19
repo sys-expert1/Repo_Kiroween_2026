@@ -62,4 +62,6 @@ Python flow before any other language.
 - [x] Run history view, secret-pattern scanner, OpenTelemetry (off by default)
 - [x] TypeScript adapter (static scan, npm audit from the lockfile, Node test runner for trusted
       fixtures). Not done: install dependencies, ESLint, tsc, a Node sandbox image, Dockerfile template
-- [ ] C++ adapter, optional MCP integration
+- [x] C++ adapter (heuristic scan, clang-tidy, CMake parsing, real build and CTest for trusted
+      fixtures). Not done: a C++ sandbox image, a vulnerability lookup, automatic C++ fixes
+- [x] Optional MCP integration: read-only plus Inspect/Preview, no approval or Revive tool

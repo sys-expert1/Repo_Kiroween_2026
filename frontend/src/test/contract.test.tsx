@@ -16,7 +16,11 @@ import real from "./real-run.json";
  * These tests replay a real run exported from the backend (see backend/tests/export_ui_fixture.py).
  * They fail if the backend's event or artifact shapes drift away from what the UI reads.
  */
-type Export = typeof real.verified | typeof real.rolled_back | typeof real.typescript;
+type Export =
+  | typeof real.verified
+  | typeof real.rolled_back
+  | typeof real.typescript
+  | typeof real.cpp;
 const load = (e: Export) => ({
   events: e.events as unknown as RunEvent[],
   run: e.final_run as unknown as Run,
@@ -169,5 +173,47 @@ describe("a TypeScript run from the real backend", () => {
     expect(screen.getByRole("navigation", { name: "Changed files" })).toHaveTextContent(".github/workflows/ci.yml");
     expect(screen.getAllByText(/not measured/i).length).toBeGreaterThan(0);
     expect(screen.getByText("totalItems known failure", { selector: "li" })).toBeInTheDocument(); // baseline list
+  });
+});
+
+describe("a C++ run from the real backend", () => {
+  const { events, run, data, artifacts } = load(real.cpp);
+  const view = replay(run.id, events);
+
+  it("completes through every stage with a measured build and the baseline failure kept", () => {
+    expect(data.autopsy_data.language).toBe("C++");
+    expect(view.status).toBe("COMPLETED");
+    expect(view.verdict).toBe("verified");
+    expect(data.characterization_data.build).toBe("passed");
+    expect(data.characterization_data.failing_tests).toEqual(["known_failure_trims_spaces"]);
+    expect(stageStates(view, run)).toEqual({
+      AUTOPSY: "completed", CHARACTERIZATION: "completed", REANIMATION: "completed", CONSECRATION: "completed",
+    });
+  });
+
+  it("leaves dependencies unknown instead of scoring them", () => {
+    expect(data.autopsy_data.known_vulnerabilities).toBeNull();
+    expect(view.scoreAfter?.unmeasured).toEqual(["dependencies"]);
+    const deps = view.scoreAfter!.dimensions.find((d) => d.name === "dependencies");
+    expect(deps?.score).toBeNull();
+    expect(view.scoreAfter!.score!).toBeGreaterThan(view.scoreBefore!.score!);
+  });
+
+  it("renders the C++ findings, the build line and the build check", () => {
+    const patched = new Set(data.patch_set_data.patches.map((p) => p.task_id));
+    const skipped = new Map(data.patch_set_data.skipped.map((s) => [s.task_id, s.reason]));
+    render(
+      <>
+        <RoadmapView roadmap={data.roadmap_data} patchedTaskIds={patched} skipped={skipped} editing={null} />
+        <HealthMeter before={view.scoreBefore} after={view.scoreAfter} autopsy={data.autopsy_data} warning={null} />
+        <Overview run={run} autopsy={data.autopsy_data} baseline={data.characterization_data} verification={data.verification_data} artifacts={artifacts} hasRepository />
+      </>,
+    );
+    expect(screen.getByText("C++")).toBeInTheDocument();
+    expect(screen.getByText("Shell command via `system`", { selector: "h3" })).toBeInTheDocument();
+    expect(screen.getByText(/Build: passed\./)).toBeInTheDocument();
+    expect(screen.getByText("build", { selector: "td" })).toBeInTheDocument();
+    expect(screen.getByText("known_failure_trims_spaces", { selector: "li" })).toBeInTheDocument();
+    expect(screen.getByText("Known vulnerabilities").nextSibling).toHaveTextContent("not measured");
   });
 });

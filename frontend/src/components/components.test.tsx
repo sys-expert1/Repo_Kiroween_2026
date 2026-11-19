@@ -3,11 +3,12 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
 import { ev } from "../test/fakes";
-import type { Autopsy, PatchSet, Run, Vitality } from "../types/revival";
+import type { Autopsy, Baseline, PatchSet, Run, Vitality } from "../types/revival";
 import { ApprovalDialog } from "./ApprovalDialog";
 import { DiffInspector, renderDiff } from "./DiffInspector";
 import { HealthMeter } from "./HealthMeter";
 import { KiroTrace } from "./KiroTrace";
+import { Overview } from "./Overview";
 import { formatDuration, RunHistory } from "./RunHistory";
 import { StatusChip } from "./StatusChip";
 import { terminalLines, TerminalStream } from "./TerminalStream";
@@ -259,5 +260,35 @@ describe("language awareness", () => {
   it("falls back to Python for runs recorded before the language field existed", () => {
     render(<HealthMeter before={null} after={null} autopsy={autopsy(undefined)} warning={null} />);
     expect(screen.getByText("Python")).toBeInTheDocument();
+  });
+});
+
+describe("C++ results", () => {
+  const baseline = (over: Partial<Baseline>): Baseline => ({
+    status: "completed", reason: null, counts: { passed: 1, failed: 1, errors: 0, skipped: 0 },
+    failing_tests: ["known_failure_trims_spaces"], coverage: "not_measured", build: "passed", exit_code: 8, ...over,
+  });
+  it("shows the build status that was measured, and 'not measured' when it was not", () => {
+    const runOf = { id: "r", status: "COMPLETED", error: null } as Run;
+    const { rerender } = render(<Overview run={runOf} autopsy={null} baseline={baseline({})} verification={null} artifacts={[]} hasRepository />);
+    expect(screen.getByText(/Build: passed\./)).toBeInTheDocument();
+    rerender(<Overview run={runOf} autopsy={null} baseline={baseline({ build: "failed", status: "failed_to_execute", counts: null, failing_tests: [], reason: "The build failed. First error: expected ';'" })} verification={null} artifacts={[]} hasRepository />);
+    expect(screen.getByText(/Build: failed\./)).toBeInTheDocument();
+    expect(screen.getByText(/First error: expected ';'/)).toBeInTheDocument();
+    expect(screen.getByText(/not measured \(failed to execute\)/)).toBeInTheDocument();
+    rerender(<Overview run={runOf} autopsy={null} baseline={baseline({ build: "not_measured", status: "not_run", counts: null, failing_tests: [], reason: "C++ tests need CMake and a compiler inside the sandbox." })} verification={null} artifacts={[]} hasRepository />);
+    expect(screen.getByText(/Build: not measured\./)).toBeInTheDocument();
+  });
+
+  it("names C++ as the analysed language", () => {
+    const autopsy = {
+      repository_name: "r", language: "C++", frameworks: ["GoogleTest"], source_files: 4, source_lines: 114,
+      dependency_files: [], unpinned_dependencies: [], test_files: 1, test_functions: 2, has_dockerfile: false,
+      has_ci: false, findings: [], tools: [], known_vulnerabilities: null, lint_violations: 2,
+    } satisfies Autopsy;
+    render(<HealthMeter before={null} after={null} autopsy={autopsy} warning={null} />);
+    expect(screen.getByText("C++")).toBeInTheDocument();
+    expect(screen.getByText("Known vulnerabilities").nextSibling).toHaveTextContent("not measured");
+    expect(screen.getByText("Lint violations").nextSibling).toHaveTextContent("2");
   });
 });

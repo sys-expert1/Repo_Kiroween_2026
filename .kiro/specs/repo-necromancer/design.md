@@ -35,7 +35,7 @@ the REST/SSE contract; use real backend data only; avoid unnecessary services.
 - `adapters/`: `base.py` interface, `registry.py` (picks the adapter by score), `models.py`,
   `python_adapter.py` (Autopsy, Ruff, pip-audit, baseline pytest, safe lint fixes), `python_ast.py`,
   `python_deps.py`, `python_edit.py` (conservative source edits), `ts_adapter.py`, `ts_scan.py`,
-  `ts_deps.py`, `secrets_scan.py`. Adapters do not import LangGraph.
+  `ts_deps.py`, `cpp_adapter.py`, `cpp_scan.py`, `cpp_deps.py`, `secrets_scan.py`. Adapters do not import LangGraph.
 - `agents/`: `roadmap.py` (deterministic, versioned), `patches.py` (proposal, digest, apply).
 - `execution/`: `runner.py` (no shell, minimal env, process-group kill, rlimits), `sandbox.py`
   (Docker runner and status), `redact.py`.
@@ -175,6 +175,7 @@ missing `conmon`). Real container execution must be verified on a machine with D
 | Revert in Diff Inspector | revert in managed workspace | not implemented. Rollback is automatic on a failed verification |
 | Entities | Finding, Roadmap, RoadmapTask, Patch, Verification tables | stored as JSON artifacts |
 | Observability, Git library | OpenTelemetry, GitPython | OpenTelemetry spans per node plus command events (`telemetry.py`), off unless `NECRO_OTEL` is set, only tested with an in-memory exporter. GitPython not added: `git` runs through the command runner |
-| Fixtures | `legacy-python-cli`, `legacy-ts-utils`, `legacy-cpp-parser` | `legacy-python-cli` and `legacy-ts-utils` |
-| Languages | Python P0, TypeScript P1, C++ stretch | Python complete. TypeScript with the limits in the README (no install, so no ESLint or tsc). C++ not built |
+| Fixtures | `legacy-python-cli`, `legacy-ts-utils`, `legacy-cpp-parser` | all three |
+| MCP | optional | `app/mcp_server.py` over `app/mcp_api.py`: reads, Inspect and Preview only. Approval and Revive are deliberately not exposed |
+| Languages | Python P0, TypeScript P1, C++ stretch | Python complete. TypeScript with the limits in the README (no install, so no ESLint or tsc). C++ built with the limits in the README (static analysis, no vulnerability lookup, tests only through a runner that may execute code) |
 | Folder layout | blueprint's logical tree | consolidated under `backend/app/` as the blueprint allows |

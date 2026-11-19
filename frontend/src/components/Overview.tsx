@@ -82,7 +82,8 @@ export function Overview({ run, autopsy, baseline, verification, artifacts, hasR
                 <ul className="list-disc pl-5 font-code text-xs">{baseline.failing_tests.map((t) => <li key={t}>{t}</li>)}</ul>
               </div>
             )}
-            <p className="text-xs text-ink-3">Coverage: {baseline.coverage.replace("_", " ")}. Build: {baseline.build.replace("_", " ")}.</p>
+            <p className="text-xs text-ink-3">Coverage: {baseline.coverage.replace("_", " ")}. Build:{" "}
+              {baseline.build === "not_measured" ? "not measured" : baseline.build}.</p>
           </div>
         )}
       </Panel>

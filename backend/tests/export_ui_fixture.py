@@ -118,11 +118,55 @@ def export_typescript() -> dict:
         ts_adapter.run_command = original
 
 
+def export_cpp() -> dict:
+    """A REVIVE run on the C++ fixture with the real CMake, compiler, CTest and clang-tidy.
+
+    Needs those tools installed: it fails loudly instead of writing a fake run.
+    """
+    import shutil
+
+    from app.adapters.cpp_adapter import CppAdapter
+
+    if not (shutil.which("cmake") and shutil.which("ctest")):
+        raise SystemExit("export_cpp needs cmake and ctest installed")
+    with tempfile.TemporaryDirectory() as tmp:
+        settings = Settings(
+            data_dir=Path(tmp) / "data", allowed_roots=(FIXTURES_DIR.resolve(),),
+            fixtures_dir=FIXTURES_DIR.resolve(), sandbox_mode="off",
+        )  # fmt: skip
+        app = create_app(
+            settings, executor=InlineExecutor(), adapter=OfflineAdapter(), cpp_adapter=CppAdapter()
+        )
+        app.state.sse_poll_seconds = 0.01
+        c = TestClient(app)
+        repo = c.post("/api/repositories/import", json={"fixture_id": "legacy-cpp-parser"}).json()
+        run = c.post(
+            "/api/revive/start", json={"repository_id": repo["id"], "mode": "REVIVE"}
+        ).json()
+        waiting = c.get(f"/api/revive/{run['id']}").json()
+        c.post(
+            f"/api/revive/approve/{run['id']}",
+            json={"decision": "approve", "roadmap_version": run["roadmap_version"]},
+        )
+        done = c.get(f"/api/revive/{run['id']}").json()
+        arts = c.get(f"/api/revive/{run['id']}/artifacts").json()
+        data = {
+            a["type"]: json.loads(c.get(f"/api/revive/{run['id']}/artifacts/{a['id']}").text)
+            for a in arts
+            if a["type"].endswith("_data") or a["type"] == "vitality_report"
+        }
+        return {
+            "waiting_run": waiting, "final_run": done, "artifacts": arts, "data": data,
+            "events": parse_sse(c.get(f"/api/revive/stream/{run['id']}").text),
+        }  # fmt: skip
+
+
 if __name__ == "__main__":
     out = {
         "verified": export("verified"),
         "rolled_back": export("rolled_back"),
         "typescript": export_typescript(),
+        "cpp": export_cpp(),
     }
     OUT.write_text(json.dumps(out, indent=1, sort_keys=True))
     print(f"wrote {OUT} ({OUT.stat().st_size // 1024} KB)")

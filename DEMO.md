@@ -38,6 +38,13 @@ Your exact numbers can differ if new advisories are published; read them off the
 
 ## Optional beats
 
+- **C++:** pick **Legacy C++ Parser**. Autopsy finds the `system()` call with user input, the
+  unbounded `strcpy` and `sprintf`, and the hardcoded token. Characterization really configures,
+  builds and runs CTest (one pass, one pre-existing failure) and shows `Build: passed`. Dependencies
+  and known vulnerabilities are **not measured**, and the demo should say so.
+- **MCP:** with the dashboard running, connect an MCP client to `python -m app.mcp_server` and ask it
+  to inspect the fixture. Show that it can read the findings but has no tool to approve a patch.
+
 - **TypeScript:** pick **Legacy TypeScript Utils** instead. Autopsy runs `npm audit` (network needed)
   and finds a vulnerable `lodash`, an `eval`, a shell `exec` and a hardcoded token. The Node baseline
   shows one pass and one pre-existing failure. Revive proposes only a CI workflow and lists why the
